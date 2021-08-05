@@ -7,7 +7,7 @@
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
-	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
@@ -58,20 +58,46 @@
 	</b:navBar>
 
 	<div class="container">
+		<h1>My Website</h1>
 		<!--  
 		<h:graphicImage library="images" name="logo.png" />
 				<ui:insert name="content"></ui:insert>		
 		-->
-		<h1>Mes Terrain</h1>
-		<br />
-		<ui:include src="ajout_terrain.xhtml" label="ajouter un terrain" />
-		
-		
-		<ui:repeat value="#{mbTerrain.ShowAll()}" var="value">
-   		 #{value.nom} &nbsp;
-   		 #{value.description} <br />
-</ui:repeat>
-	</div>
 	
+		<ui:insert>
+		<b:form>
+			<br />
+			<b:inputText id="inpEmail"
+				placeholder="Veuillez entrer un identifiant"
+				value="#{mbUtilisateur.email}">
+			</b:inputText>
+			<b:message for="inpEmail" />
+			<b:icon name="user" />
+			<br />
+			<b:inputText id="inpMotDePasse"
+				placeholder="Veuillez entrer un mot de passe"
+				value="#{mbUtilisateur.motDePasse}" >
+			</b:inputText>
+			<b:message for="inpmotDePasse" />
+			<b:iconAwesome name="key" />
+			<br />
+			
+			<b:commandButton class="btn-suivant" value="Connexion" 
+			action="#{mbUtilisateur.connect()}" />
+			<br />
+			</b:form>
+		
+
+		<ui:repeat value="#{mbUtilisateur.showAll()}" var="value">
+   		 #{value.nom} &nbsp;
+   		 #{value.prenom} &nbsp;
+   		 #{value.email} &nbsp;
+   		 #{value.motDePasse} &nbsp;
+   		 <br />
+		</ui:repeat>
+</ui:insert>
+
+	</div>
+
 </h:body>
 </html>
