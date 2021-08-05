@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
+import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 import fr.eql.ai109.tontapat.idao.TerrainIDAO;
 
@@ -23,6 +24,12 @@ public class TerrainBusiness implements TerrainIBusiness {
 	public List<Terrain> findAll() {
 		
 		return terrainIDAO.getAll();
+	}
+
+	@Override
+	public List<Terrain> findAllByCurrentUser(Utilisateur utilisateur) {
+
+		return terrainIDAO.getTerrainsByUtilisateur(utilisateur);
 	}
 
 }
