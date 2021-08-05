@@ -1,0 +1,163 @@
+/* General body
+--------------------------------------------------
+--------------------------------------------------*/
+
+/* body infos */
+.body {
+	    background-color: rgb(255,255,255) !important;
+}
+
+/*container of the page*/
+.container {
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: rgb(112,173,71);
+}
+
+a:hover {
+	color: rgb(112,173,71);
+}
+
+h4 {
+	font-family: roboto;
+}
+/* navbar
+--------------------------------------------------
+--------------------------------------------------*/
+
+/* logo */
+.nav > li > a > img {
+    width: 5.2rem;
+}
+
+.dropdown-menu {
+    margin: .7rem 0 0 !important;
+}
+
+.dropdown-item {
+    padding: .25rem 1rem;
+    color: rgb(90,90,90);
+}
+
+    .dropdown-item i {
+        padding: 0 .6rem 0 0;
+    }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.navbar {
+    background-color: rgb(250,250,250) !important;
+    padding: .35rem .35rem !important;   
+}
+
+.navbar-brand > img {
+	width: 50px;
+}
+
+.navbar-brand {
+	padding: 0px !important;
+}
+
+.navbar-left {
+	margin-left: 17rem !important;
+}
+
+
+/*search button in navbar */
+.search-button {
+    background-color: white;
+    border: 1px solid rgb(230,230,230);
+    color: rgb(128 128 128);
+    padding: 4px 30px 6px 30px;
+    font-size: 16px;
+    cursor: text !important;
+    margin-top: 0px !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 2px rgb(240,240,240);
+}
+
+/* modal
+--------------------------------------------------
+--------------------------------------------------*/
+
+div.modal-header > h4 {
+    font-family: coolvetica;
+    font-size: x-large;
+    padding-left: 15rem;
+}
+
+.zone {
+    border-bottom: 0.0009rem solid lightgray;
+}
+
+.form-rows {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-rows > div {
+	padding-bottom: 20px;
+	padding-left: 30px;
+}
+
+.form-columns {
+	display: flex;
+	flex-direction: row;
+}
+
+.form-columns > div {
+	align-self: end;
+}
+
+/*champ date*/
+
+.form-inline label, input {
+    margin-right: 0px !important;
+}
+
+.input-group-addon {
+    width: 0% !important;
+}
+
+label {	
+    float: left;
+}
+
+.date {
+    width: 15rem !important;
+    margin-right: 5rem;
+}
+
+label {
+    font-weight: initial !important;
+    padding-right: 10px;
+    font-size: small;
+}
+
+textarea.form-control {
+    width: 84.2rem !important;
+}
+
+.select-menu {
+    width: 60%;
+}
+
+body .ui-slider.ui-slider-horizontal {
+    height: 0.5rem;
+    width: 30rem;
+}
+
+.btn-suivant {
+    width: 70%;
+    margin-top: 10px !important;
+    margin-left: 60px !important;
+    margin-bottom: 0px !important;
+}
