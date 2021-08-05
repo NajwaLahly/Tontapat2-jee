@@ -63,6 +63,8 @@
 				<ui:insert name="content"></ui:insert>		
 		-->
 		<h1>Mes Terrain</h1>
+		<h4>Utilisateur en session : </h4>
+		<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
 		<br />
 		<ui:include src="ajout_terrain.xhtml" label="ajouter un terrain" />
 		
