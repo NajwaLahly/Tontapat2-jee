@@ -8,7 +8,25 @@
 	<ui:define name="content">
 
 		<h1>Mes annonces</h1>
+		<div class="container">
+			<!--  
+		<h:graphicImage library="images" name="logo.png" />
+				<ui:insert name="content"></ui:insert>		
+		-->
+			<h1>Mes Annonce</h1>
+			<h4>Utilisateur en session :</h4>
+			<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
+			<br />
 
+
+			<h4>annonce de l'utilisateur :</h4>
+			<ui:repeat value="#{mbAnnonce.ShowAllbyCurrentUser()}" var="value">
+   		 
+   		 #{value.nom} <br />
+   		 #{value.description} <br />
+			</ui:repeat>
+
+		</div>
 	</ui:define>
 
 </ui:composition>

@@ -14,16 +14,11 @@ import fr.eql.ai109.tontapat.idao.TerrainIDAO;
 @Stateless
 public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 
-	@Override
-	public List<Terrain> getAnnoncesByUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Terrain> getAll(Terrain terrain) {
 		List<Terrain> terrains = null;
-		Query query = em.createQuery("SELECT a FROM Annonce a");
+		Query query = em.createQuery("SELECT a FROM Terrain a");
 		terrains = query.getResultList();
 		return terrains;
 	}
