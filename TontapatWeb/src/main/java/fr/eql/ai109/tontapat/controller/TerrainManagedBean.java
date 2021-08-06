@@ -25,8 +25,8 @@ public class TerrainManagedBean implements Serializable  {
 		return terrainIBusiness.findAll();
 	}
 	
-	public List<Terrain> ShowAllbyCurrentUser(Utilisateur utilisateur){
-		return terrainIBusiness.findAllByCurrentUser(utilisateur);
-	}
+	//public List<Terrain> ShowAllbyCurrentUser(Utilisateur utilisateur){
+	//	return terrainIBusiness.findAllByCurrentUser(utilisateur);
+	//}
 
 }
