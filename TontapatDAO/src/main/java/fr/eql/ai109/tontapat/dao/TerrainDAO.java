@@ -30,12 +30,14 @@ public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 
 
 	@Override
-	public List<Terrain> getTerrainsByUtilisateur(int i) {
-		System.out.println(i);
+	public List<Terrain> getTerrainsByUtilisateur(Utilisateur utilisateur) {
 		List<Terrain> terrains = null;
 		Query query = em.createQuery("SELECT t FROM Terrain t WHERE t.utilisateur=:utilisateurParam");
-		query.setParameter("utilisateurParam", i);
+		query.setParameter("utilisateurParam", utilisateur);
 		terrains = query.getResultList();
+		System.out.println("********************* HELLO LES TERRAINS *******************");
+		//System.out.println(utilisateur.getNom());
+		//System.out.println(terrains);
 		return terrains;
 	}
 

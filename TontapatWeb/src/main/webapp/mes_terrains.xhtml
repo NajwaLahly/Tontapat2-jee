@@ -74,6 +74,10 @@
    		 #{value.description} <br />
 </ui:repeat>
 <h4>terrain de l'utilisateur : </h4>
+		<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="value">
+   		 #{value.nom} &nbsp;
+   		 #{value.description} <br />
+</ui:repeat>
 
 	</div>
 	
