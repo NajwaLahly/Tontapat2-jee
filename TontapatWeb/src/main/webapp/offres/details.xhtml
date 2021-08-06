@@ -2,7 +2,9 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 	<ui:define name="title">
 		Visualisation d'une offre
 	</ui:define>
@@ -33,21 +35,22 @@
 				<h3>Troupeau</h3>
 				<ul>
 					<li>Nom : #{offre.troupeau.nom}</li>
-					<li>Espèce et race : #{offre.troupeau.race.espece.nom} - #{offre.troupeau.race.nom}</li>
+					<li>Espèce et race : #{offre.troupeau.race.espece.nom} -
+						#{offre.troupeau.race.nom}</li>
 					<li>Effectif : #{offre.troupeau.effectif}</li>
 					<li>Divisible : #{offre.troupeau.divisibilite ? "oui" : "non"}</li>
 				</ul>
 				<h3>Photos</h3>
-				
+
 				<h3>Evaluations</h3>
-				
+
 				<h3>Tarification</h3>
 				<ul>
-				<li>Prix au km : #{offre.prixKm} €</li>
-				<li>Prix bête/jour : #{offre.prixBeteJour} €</li>
-				<li>Coef. d'installation : #{offre.prixInstallation} €</li>
-				<li>Coef d'intervention : #{offre.prixIntervention} €</li>
-				
+					<li>Prix au km : #{offre.prixKm} €</li>
+					<li>Prix bête/jour : #{offre.prixBeteJour} €</li>
+					<li>Coef. d'installation : #{offre.prixInstallation} €</li>
+					<li>Coef d'intervention : #{offre.prixIntervention} €</li>
+
 				</ul>
    		 --------------------------- <br />
 

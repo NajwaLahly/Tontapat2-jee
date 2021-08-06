@@ -18,15 +18,17 @@
 				<ui:insert name="content"></ui:insert>		
 		-->
 			<h1>Mes Terrains</h1>
-			<h4>Utilisateur en session :</h4>
-			<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
-			<br />
 			<ui:include src="editer.xhtml" label="ajouter un terrain" />
 
-			<h4>terrain de l'utilisateur :</h4>
-			<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="value">
-   		 #{value.nom} <br />
-   		 #{value.description} <br />
+			<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="terrain">
+				<h3>#{terrain.nom}</h3>
+				<ul>
+					<li>(photo)</li>
+					<li>Ajouté le #{terrain.dateAjout}</li>
+					<li>Superficie : #{terrain.superficie}</li>
+					<li>Adresse : #{terrain.adresseVoie}</li>
+					<li>#{terrain.description}</li>
+				</ul>
 			</ui:repeat>
 		</div>
 	</ui:define>

@@ -12,24 +12,29 @@
 
 	<ui:define name="content">
 
-<div class="container">
-		<!--  
+		<div class="container">
+			<!--  
 		<h:graphicImage library="images" name="logo.png" />
 				<ui:insert name="content"></ui:insert>		
 		-->
-		<h1>Mes Troupeaux</h1>
-		<h4>Utilisateur en session : </h4>
-		<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
-		<br />
-		<ui:include outcome="utilisateur/troupeaux/editer.xhtml" label="ajouter un troupeau" />
-		
-	
-<h4>troupeau de l'utilisateur : </h4>
-		<ui:repeat value="#{mbTroupeau.ShowAllbyCurrentUser()}" var="value">
-   		 #{value.nom} <br />
-   		 #{value.description} <br />
+			<h1>Mes troupeaux</h1>
+			<ui:include src="editer.xhtml" label="ajouter un troupeau" />
+
+			<ui:repeat value="#{mbTroupeau.ShowAllbyCurrentUser()}"
+				var="troupeau">
+				<h3>#{troupeau.nom}</h3>
+				<ul>
+					<li>Adresse : #{troupeau.adresseVoie}</li>
+					<li>Ajouté le #{troupeau.dateAjout}</li>
+					<li>Disponible le #{troupeau.dateDisponibilite}</li>
+					<li>Effectif : #{troupeau.effectif}</li>
+					<li>Divisible : #{troupeau.divisibilite ? "oui" : "non"}</li>
+					<li>#{troupeau.description}</li>
+
+				</ul>
+   		 #{value.description}
 </ui:repeat>
 
-	</div>
+		</div>
 	</ui:define>
 </ui:composition>

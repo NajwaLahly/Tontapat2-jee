@@ -30,7 +30,7 @@ public class AnnonceManagedBean implements Serializable {
 	}
 	
 	public String mesAnnonces() {
-		return "/mes_annonces.xhtml?faces-redirection=false";
+		return "/utilisateur/annonces/index.xhtml";
 	}
 	
 	public List<Annonce> ShowAllbyCurrentUser(){

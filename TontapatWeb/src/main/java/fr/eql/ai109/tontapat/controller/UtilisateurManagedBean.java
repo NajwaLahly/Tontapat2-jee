@@ -61,6 +61,9 @@ public class UtilisateurManagedBean implements Serializable {
 		return "/connexion.xhtml?faces-redirection=true";
 	}
 	
+	public String disconnectPage() {
+		return "/deconnexion.xhtml?faces-redirection=true";
+	}
 	
 	public List<Utilisateur> showAll(){
 		return utilisateurIBusiness.findAll(); 
@@ -95,6 +98,9 @@ public class UtilisateurManagedBean implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-
+	public String editer() {
+		return "/utilisateur/editer.xhtml?faces-redirection=false";
+	}
+	
 }
 

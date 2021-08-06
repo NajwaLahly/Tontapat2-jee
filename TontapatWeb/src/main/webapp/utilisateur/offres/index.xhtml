@@ -12,30 +12,26 @@
 
 	<ui:define name="content">
 
-		<div class="container">
-
 			<h1>Mes offres</h1>
 
 			<div class="container">
-				<!--  
-		<h:graphicImage library="images" name="logo.png" />
-				<ui:insert name="content"></ui:insert>		
-		-->
-				<h1>Mes Offres</h1>
-				<h4>Utilisateur en session :</h4>
-				<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
-				<br />
 
-
-				<h4>Offre de l'utilisateur :</h4>
-				<ui:repeat value="#{mbOffre.ShowAllbyCurrentUser()}" var="value">
-   		 #{value.nom} <br />
-   		 #{value.description} <br />
+				<ui:repeat value="#{mbOffre.ShowAllbyCurrentUser()}" var="offre">
+					<h3>#{offre.nom}</h3>
+					<ul>
+						<li>(photo)</li>
+						<li>Troupeau : #{offre.troupeau.nom}</li>
+						<li>Superficie : #{annonce.terrain.superficie} hectares</li>
+						<li>Adresse : #{annonce.troupeau.adresseVoie}</li>
+						<li>Ajoutée le #{offre.dateAjout}</li>
+						<li>Disponible du #{offre.dateDebut} au #{offre.dateFin}</li>
+						<li>Installation : #{annonce.installationAssuree == true ? "à
+							votre charge" : "à la charge du client"}</li>
+						<li>#{offre.description}</li>
+					</ul>
 				</ui:repeat>
 
 			</div>
-
-
-		</div>
 	</ui:define>
+
 </ui:composition>

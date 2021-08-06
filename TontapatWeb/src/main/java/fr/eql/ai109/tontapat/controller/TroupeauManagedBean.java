@@ -38,7 +38,7 @@ public class TroupeauManagedBean implements Serializable  {
 	//}
 	
 	public String mesTroupeaux() {
-		return "/mes_troupeaux.xhtml?faces-redirection=false";
+		return "/utilisateur/troupeaux/index.xhtml";
 	}
 	
 	public List<Troupeau> ShowAll(){

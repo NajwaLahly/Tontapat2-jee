@@ -61,24 +61,24 @@
 					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
 				</b:navLink>
 
-				<b:dropMenu value="Nom utilisateur">
+				<b:dropMenu value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
 					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
 						outcome="/utilisateur/prestations/index.xhtml"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
-						outcome="/utilisateur/terrains/index.xhtml"></b:navLink>
+						outcome="#{mbTerrain.mesTerrains()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-tasks" value="Mes annonces"
-						outcome="/utilisateur/annonces/index.xhtml"></b:navLink>
+						outcome="#{mbAnnonce.mesAnnonces()}"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-horse" value="Mes troupeaux"
-						outcome="/utilisateur/troupeaux/index.xhtml"></b:navLink>
+						outcome="#{mbTroupeau.mesTroupeaux()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-euro-sign" value="Mes offres"
 						outcome="/utilisateur/offres/index.xhtml"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-user-alt" value="Mon profil"
-						outcome="/utilisateur/profil/editer.xhtml"></b:navLink>
+						outcome="#{mbUtilisateur.editer()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-times" value="Déconnexion"
-						outcome="/utilisateur/deconnexion.xhtml"></b:navLink>
+						outcome="#{mbUtilisateur.disconnectPage()}"></b:navLink>
 				</b:dropMenu>
 			</b:navbarLinks>
 		</div>
