@@ -28,21 +28,19 @@ public class OffreDAO  extends GenericDAO<Offre> implements OffreIDAO {
 		List<Offre> offres = null;
 		Query query = em.createQuery(
 				"SELECT o"
-						+ "FROM Offre o"
-						+ "WHERE o.dateDebut <= :dateDebutParam"
-						+ "AND o.dateFin >= :dateFinParam"
-						+ "AND o.troupeau.race.espece == :especeParam"
-						+ "AND o.installationAssuree == :installationAssureeParam");
+				+ "FROM Offre o"
+				+ "WHERE o.dateDebut <= :dateDebutParam"
+				+ "AND o.dateFin >= :dateFinParam"
+				+ "AND o.troupeau.race.espece == :especeParam"
+				+ "AND o.installationAssuree == :installationAssureeParam");
+
 		query.setParameter("dateDebutParam", offreSearch.getDateDebut());
 		query.setParameter("dateFinParam", offreSearch.getDateFin());
 		query.setParameter("especeParam", offreSearch.getEspece());
 		query.setParameter("installationAssureeParam", offreSearch.getInstallationAssuree());
 
+		
 		return offres;
-	}
-	public List<Offre> getSearchResults(OffreSearch offreSearch) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

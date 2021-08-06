@@ -12,5 +12,5 @@ public interface OffreIBusiness {
 	public List<Offre> findAllfromUtilisateur(Utilisateur utilisateur);
 	public Offre getById(int id);
 	public List<OffreDTO> getSearchResults(OffreSearch offreSearch);
-	
 }
+

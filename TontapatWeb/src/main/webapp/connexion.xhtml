@@ -2,108 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-<<<<<<< Upstream, based on branch 'Elodie' of https://github.com/NajwaLahly/Tontapat2-jee
-	xmlns:b="http://bootsfaces.net/ui">
-
-<h:head>
-	<ui:insert name="head"></ui:insert>
-	<h:outputStylesheet library="css" name="style.css" />
-</h:head>
-
-<h:body>
-	<b:navBar>
-		<div class="container">
-			<h:link class="navbar-brand">
-				<h:graphicImage library="images" name="logo.png" />
-			</h:link>
-			<b:navbarLinks>
-				<b:navLink value="Offres" href="#"></b:navLink>
-				<b:navLink value="Annonces" href="#"></b:navLink>
-			</b:navbarLinks>
-
-			<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
-				<div class="form-group">
-					<button class="search-button">
-						<b:iconAwesome value="fal fa-search"></b:iconAwesome>
-						Rechercher une prestation
-					</button>
-				</div>
-			</form>
-			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
-			<b:navbarLinks pull="right">
-				<b:navLink value="" href="#"></b:navLink>
-			</b:navbarLinks>
-			<b:navbarLinks pull="right" styleClass="hidden-xs">
-				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
-				</b:navLink>
-				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-bell" size="lg"></b:iconAwesome>
-				</b:navLink>
-				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
-				</b:navLink>
-
-				<b:dropMenu value="Dropdown">
-					<b:navLink value="Action" href="#"></b:navLink>
-					<b:navLink value="Another action" href="#"></b:navLink>
-					<b:navLink value="Something else here" href="#"></b:navLink>
-					<b:navLink></b:navLink>
-					<b:navLink header="Nav header"></b:navLink>
-					<b:navLink value="Separated link" href="#"></b:navLink>
-					<b:navLink value="One more separated link" href="#"></b:navLink>
-				</b:dropMenu>
-			</b:navbarLinks>
-		</div>
-	</b:navBar>
-
-	<div class="container">
-		<h1>My Website</h1>
-		<!--  
-		<h:graphicImage library="images" name="logo.png" />
-				<ui:insert name="content"></ui:insert>		
-		-->
-	
-		<ui:insert>
-		<b:form>
-			<br />
-			<b:inputText id="inpEmail"
-				placeholder="Veuillez entrer un identifiant"
-				value="#{mbUtilisateur.email}">
-			</b:inputText>
-			<b:message for="inpEmail" />
-			<b:icon name="user" />
-			<br />
-			<b:inputText id="inpMotDePasse"
-				placeholder="Veuillez entrer un mot de passe"
-				value="#{mbUtilisateur.motDePasse}" >
-			</b:inputText>
-			<b:message for="inpmotDePasse" />
-			<b:iconAwesome name="key" />
-			<br />
-			
-			<b:commandButton class="btn-suivant" value="Connexion" 
-			action="#{mbUtilisateur.connect()}" />
-			<br />
-			</b:form>
-		
-
-		<ui:repeat value="#{mbUtilisateur.showAll()}" var="value">
-   		 #{value.nom} &nbsp;
-   		 #{value.prenom} &nbsp;
-   		 #{value.email} &nbsp;
-   		 #{value.motDePasse} &nbsp;
-   		 <br />
-		</ui:repeat>
-</ui:insert>
-
-	</div>
-
-</h:body>
-=======
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 
@@ -192,11 +91,4 @@
 		</b:navBar>
 	</b:form>
 </body>
-
-
-
-
-
-
->>>>>>> 4649c27 connexion front
 </html>
