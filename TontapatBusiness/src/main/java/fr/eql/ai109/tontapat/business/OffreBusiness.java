@@ -25,9 +25,8 @@ public class OffreBusiness implements OffreIBusiness {
 	}
 
 	@Override
-	public List<Offre> findAllfromUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Offre> findAllByCurrentUser(Utilisateur utilisateur) {
+		return offreIDAO.getOffresByUtilisateur(utilisateur);
 	}
 
 	@Override

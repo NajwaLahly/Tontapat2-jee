@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.eql.ai109.tontapat.entity.Annonce;
+import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.AnnonceIBusiness;
 import fr.eql.ai109.tontapat.idao.AnnonceIDAO;
 
@@ -19,5 +20,10 @@ public class AnnonceBusiness implements AnnonceIBusiness {
 
 	public List<Annonce> findAll() {
 		return annonceIDAO.getAll();
+	}
+
+	@Override
+	public List<Annonce> findAllByCurrentUser(Utilisateur utilisateur) {
+		return annonceIDAO.getAnnoncesByUtilisateur(utilisateur);
 	}
 }

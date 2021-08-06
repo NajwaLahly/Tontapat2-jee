@@ -3,13 +3,10 @@ package fr.eql.ai109.tontapat.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.Utilisateur;

@@ -9,7 +9,7 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 
 public interface OffreIBusiness {
 	public List<Offre> findAll();
-	public List<Offre> findAllfromUtilisateur(Utilisateur utilisateur);
+	public List<Offre> findAllByCurrentUser(Utilisateur utilisateur);
 	public Offre getById(int id);
 	public List<OffreDTO> getSearchResults(OffreSearch offreSearch);
 	

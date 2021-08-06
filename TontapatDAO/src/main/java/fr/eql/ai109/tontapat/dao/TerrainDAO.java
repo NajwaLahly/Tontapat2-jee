@@ -14,11 +14,6 @@ import fr.eql.ai109.tontapat.idao.TerrainIDAO;
 @Stateless
 public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 
-	@Override
-	public List<Terrain> getAnnoncesByUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Terrain> getAll(Terrain terrain) {

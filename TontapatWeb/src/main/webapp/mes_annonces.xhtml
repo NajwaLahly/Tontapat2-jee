@@ -6,9 +6,8 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><ui:insert name="title"></ui:insert> - Tontapat</title>
-	<h:outputStylesheet library="css" name="style.css" />
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
@@ -57,50 +56,26 @@
 			</b:navbarLinks>
 		</div>
 	</b:navBar>
-	<h4>Utilisateur en session :</h4>
-	<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
 
-	<b:form>
+	<div class="container">
+		<!--  
+		<h:graphicImage library="images" name="logo.png" />
+				<ui:insert name="content"></ui:insert>		
+		-->
+		<h1>Mes Annonce</h1>
+		<h4>Utilisateur en session : </h4>
+		<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
+		<br />
+	
+	
+<h4>annonce de l'utilisateur : </h4>
+		<ui:repeat value="#{mbAnnonce.ShowAllbyCurrentUser()}" var="value">
+   		 
+   		 #{value.nom} &nbsp;
+   		 #{value.description} <br />
+ </ui:repeat >
 
-		<div class="btn-suivant">
-			<b:commandButton styleClass="btn-suivant" update="@form"
-				value="Mes terrains" look="primary" size="lg"
-				action="#{mbTerrain.mesTerrains()}" />
-		</div>
-		<div class="btn-suivant">
-			<b:commandButton styleClass="btn-suivant" update="@form"
-				value="Mes troupeaux" look="primary" size="lg"
-				action="#{mbTroupeau.mesTroupeaux()}" />
-		</div>
-		<div class="btn-suivant">
-			<b:commandButton styleClass="btn-suivant" update="@form"
-				value="Mes annonces" look="primary" size="lg"
-				action="#{mbAnnonce.mesAnnonces()}" />
-		</div>
-		<div class="btn-suivant">
-			<b:commandButton styleClass="btn-suivant" update="@form"
-				value="Mes offres" look="primary" size="lg"
-				action="#{mbOffre.mesOffres()}" />
-		</div>
-	</b:form>
-	<b:container>
-		<b:row>
-			<b:column>
-				<ui:insert name="content"></ui:insert>
-			</b:column>
-		</b:row>
-	</b:container>
-	<!-- 	<div class="container"> -->
-	<!-- 		<h1>My Website</h1> -->
-
-	<!-- 		<ui:include src="modal_offre.xhtml" /> -->
-
-	<!-- 		<h1>Mes Annonces</h1> -->
-	<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->
-	<!--    		 #{value.nom} <br /> -->
-	<!-- </ui:repeat> -->
-	<!-- 	</div> -->
-
-
+	</div>
+	
 </h:body>
 </html>
