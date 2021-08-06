@@ -3,21 +3,18 @@ package fr.eql.ai109.tontapat.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
-import fr.eql.ai109.tontapat.entity.Terrain;
+import fr.eql.ai109.tontapat.entity.Troupeau;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
-import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.TroupeauIBusiness;
 
-@ManagedBean(name = "mbTerrain")
+@ManagedBean(name = "mbTroupeau")
 @RequestScoped
-public class TerrainManagedBean implements Serializable  {
+public class TroupeauManagedBean implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +22,7 @@ public class TerrainManagedBean implements Serializable  {
 	private Utilisateur utilisateurConnecte;
 	
 	@EJB
-	private TerrainIBusiness terrainIBusiness;
+	private TroupeauIBusiness troupeauIBusiness;
 	
 	//@EJB
 	//private UtilisateurManagedBean utilisateurManganedBean;
@@ -40,16 +37,16 @@ public class TerrainManagedBean implements Serializable  {
 		//System.out.println(utilisateurConnecte.getNom());
 	//}
 	
-	public String mesTerrains() {
-		return "/mes_terrains.xhtml?faces-redirection=false";
+	public String mesTroupeaux() {
+		return "/mes_troupeaux.xhtml?faces-redirection=false";
 	}
 	
-	public List<Terrain> ShowAll(){
-		return terrainIBusiness.findAll();
+	public List<Troupeau> ShowAll(){
+		return troupeauIBusiness.findAll();
 	}
 	
-	public List<Terrain> ShowAllbyCurrentUser(){
-		return terrainIBusiness.findAllByCurrentUser(utilisateurConnecte);
+	public List<Troupeau> ShowAllbyCurrentUser(){
+		return troupeauIBusiness.findAllByCurrentUser(utilisateurConnecte);
 	}
 	
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
@@ -57,3 +54,4 @@ public class TerrainManagedBean implements Serializable  {
 	}
 
 }
+
