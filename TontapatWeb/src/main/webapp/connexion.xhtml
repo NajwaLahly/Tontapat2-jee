@@ -27,7 +27,7 @@
 					</b:column>
 					<b:column medium-screen="6">
 						<b:inputText placeholder="Votre adresse e-mail" required="true"
-							size="35" styleclass="input">
+							size="35" styleclass="input" value="#{mbUtilisateur.email}">
 							<f:facet name="prepend">
 								<b:icon name="user" />
 							</f:facet>
@@ -43,7 +43,7 @@
 					</b:column>
 					<b:column medium-screen="6">
 						<b:inputSecret placeholder="Votre mot de passe" required="true"
-							size="35" styleclass="input">
+							size="35" styleclass="input" value="#{mbUtilisateur.motDePasse}">
 							<f:facet name="prepend">
 								<b:iconAwesome name="key" />
 							</f:facet>
@@ -60,13 +60,13 @@
 							<div class="btn-suivant">
 								<b:commandButton styleClass="btn-suivant" update="@form"
 									value="Connexion" look="success" size="lg"
-									action="#{mbAccount.connect()}" />
+									action="#{mbUtilisateur.connect()}" />
 							</div>
 							<!-- 					style-class="cat-padding-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4"> -->
 							<div class="btn-suivant">
 								<b:commandButton styleClass="btn-suivant" update="@form"
 									value="S'inscrire" look="primary" size="lg"
-									action="#{mbAccount.disconnect()}" />
+									action="#{mbUtilisateur.disconnect()}" />
 							</div>
 						</b:buttonGroup>
 						<div class="text">
