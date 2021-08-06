@@ -62,15 +62,15 @@
 		<h:graphicImage library="images" name="logo.png" />
 				<ui:insert name="content"></ui:insert>		
 		-->
-		<h1>Mes Terrain</h1>
+		<h1>Mes Troupeaux</h1>
 		<h4>Utilisateur en session : </h4>
 		<h:outputLabel value="#{mbUtilisateur.utilisateur.nom}" />
 		<br />
-		<ui:include src="ajout_terrain.xhtml" label="ajouter un terrain" />
+		<ui:include src="ajout_troupeau.xhtml" label="ajouter un troupeau" />
 		
 	
-<h4>terrain de l'utilisateur : </h4>
-		<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="value">
+<h4>troupeau de l'utilisateur : </h4>
+		<ui:repeat value="#{mbTroupeau.ShowAllbyCurrentUser()}" var="value">
    		 #{value.nom} &nbsp;
    		 #{value.description} <br />
 </ui:repeat>
