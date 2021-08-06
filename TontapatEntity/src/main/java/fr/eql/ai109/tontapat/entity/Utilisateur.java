@@ -126,6 +126,13 @@ public class Utilisateur implements Serializable {
 		this.evaluationsRecues = evaluationsRecues;
 		this.reclamations = reclamations;
 	}
+	
+	public Utilisateur (int id, String email, String motDePasse) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.motDePasse = motDePasse;	
+	}
 
 	public int getId() {
 		return id;
