@@ -7,4 +7,5 @@ import fr.eql.ai109.tontapat.entity.Annonce;
 
 public interface AnnonceIBusiness {
 		List<Annonce> findAll();
+		
 }
