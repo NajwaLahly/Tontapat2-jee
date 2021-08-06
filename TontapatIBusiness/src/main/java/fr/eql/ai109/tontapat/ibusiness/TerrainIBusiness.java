@@ -7,5 +7,5 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 
 public interface TerrainIBusiness {
 	List<Terrain> findAll();
-	List<Terrain> findAllByCurrentUser(Utilisateur utilisateur);
+	List<Terrain> findAllByCurrentUser(int i);
 }
