@@ -27,9 +27,9 @@ public class TerrainBusiness implements TerrainIBusiness {
 	}
 
 	@Override
-	public List<Terrain> findAllByCurrentUser(Utilisateur utilisateur) {
+	public List<Terrain> findAllByCurrentUser(int i) {
 
-		return terrainIDAO.getTerrainsByUtilisateur(utilisateur);
+		return terrainIDAO.getTerrainsByUtilisateur(i);
 	}
 
 }
