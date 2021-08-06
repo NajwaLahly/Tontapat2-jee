@@ -43,4 +43,13 @@ public class OffreDAO  extends GenericDAO<Offre> implements OffreIDAO {
 		return offres;
 	}
 
+	@Override
+	public List<Offre> getOffresByUtilisateur(Utilisateur utilisateur) {
+		List<Offre> offres = null;
+		Query query = em.createQuery("SELECT o FROM Offre o WHERE o.troupeau.utilisateur=:utilisateurParam");
+		query.setParameter("utilisateurParam", utilisateur);
+		offres = query.getResultList();
+		return offres;
+	}
+
 }
