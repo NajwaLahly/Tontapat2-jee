@@ -6,30 +6,32 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><ui:insert name="title"></ui:insert> - Tontapat</title>
-	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
+	<ui:include src="offres/recherche.xhtml" />
 	<b:navBar>
 		<div class="container">
-			<h:link class="navbar-brand">
-				<h:graphicImage library="images" name="logo.png" />
-			</h:link>
+				<h:link class="navbar-brand">
+					<h:graphicImage library="images" name="logo.png" />
+				</h:link>
 			<b:navbarLinks>
-				<b:navLink value="Offres" href="Offres.xhtml"></b:navLink>
-				<b:navLink value="Annonces" href="#"></b:navLink>
+				<b:navLink value="Offres" outcome="/offres/index.xhtml"></b:navLink>
+				<b:navLink value="Annonces" outcome="/annonces/index.xhtml"></b:navLink>
 			</b:navbarLinks>
 
-			<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+			<div class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
 				<div class="form-group">
-					<button class="search-button">
+					<button class="search-button"
+						onclick="$('.formValidationModalClass').modal('show')">
 						<b:iconAwesome value="fal fa-search"></b:iconAwesome>
 						Rechercher une prestation
 					</button>
 				</div>
-			</form>
+			</div>
 			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
 			<b:navbarLinks pull="right">
 				<b:navLink value="" href="#"></b:navLink>
@@ -39,41 +41,65 @@
 					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
 				</b:navLink>
 				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-bell" size="lg"></b:iconAwesome>
+					<b:dropMenu value="" iconAwesome="fal fa-bell" size="lg">
+
+						<b:navLink value="n a validé votre demande de réservation."
+							href="#"></b:navLink>
+						<b:navLink></b:navLink>
+						<b:navLink value="n a refusé votre demande de réservation."
+							href="#"></b:navLink>
+						<b:navLink></b:navLink>
+						<b:navLink value="n a validé votre demande de réservation."
+							href="#"></b:navLink>
+						<b:navLink></b:navLink>
+						<b:navLink value="n a refusé votre demande de réservation."
+							href="#"></b:navLink>
+						<b:navLink></b:navLink>
+					</b:dropMenu>
 				</b:navLink>
 				<b:navLink href="#">
 					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
 				</b:navLink>
 
-				<b:dropMenu value="Dropdown">
-					<b:navLink value="Action" href="#"></b:navLink>
-					<b:navLink value="Another action" href="#"></b:navLink>
-					<b:navLink value="Something else here" href="#"></b:navLink>
+				<b:dropMenu value="Nom utilisateur">
+					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
+						outcome="/utilisateur/prestations/index.xhtml"></b:navLink>
 					<b:navLink></b:navLink>
-					<b:navLink header="Nav header"></b:navLink>
-					<b:navLink value="Separated link" href="#"></b:navLink>
-					<b:navLink value="One more separated link" href="#"></b:navLink>
+					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
+						outcome="/utilisateur/terrains/index.xhtml"></b:navLink>
+					<b:navLink iconAwesome="fas fa-tasks" value="Mes annonces"
+						outcome="/utilisateur/annonces/index.xhtml"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink iconAwesome="fas fa-horse" value="Mes troupeaux"
+						outcome="/utilisateur/troupeaux/index.xhtml"></b:navLink>
+					<b:navLink iconAwesome="fas fa-euro-sign" value="Mes offres"
+						outcome="/utilisateur/offres/index.xhtml"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink iconAwesome="fas fa-user-alt" value="Mon profil"
+						outcome="/utilisateur/profil/editer.xhtml"></b:navLink>
+					<b:navLink iconAwesome="fas fa-times" value="Déconnexion"
+						outcome="/utilisateur/deconnexion.xhtml"></b:navLink>
 				</b:dropMenu>
 			</b:navbarLinks>
 		</div>
 	</b:navBar>
-<b:container>
+	<b:container>
 		<b:row>
 			<b:column>
 				<ui:insert name="content"></ui:insert>
 			</b:column>
 		</b:row>
 	</b:container>
-<!-- 	<div class="container"> -->
-<!-- 		<h1>My Website</h1> -->
+	<!-- 	<div class="container"> -->
+	<!-- 		<h1>My Website</h1> -->
 
-<!-- 		<ui:include src="modal_offre.xhtml" /> -->
-		
-<!-- 		<h1>Mes Annonces</h1> -->
-<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->
-<!--    		 #{value.nom} <br /> -->
-<!-- </ui:repeat> -->
-<!-- 	</div> -->
-	
+	<!-- 		<ui:include src="modal_offre.xhtml" /> -->
+
+	<!-- 		<h1>Mes Annonces</h1> -->
+	<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->
+	<!--    		 #{value.nom} <br /> -->
+	<!-- </ui:repeat> -->
+	<!-- 	</div> -->
+
 </h:body>
 </html>
