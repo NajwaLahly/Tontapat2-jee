@@ -23,7 +23,7 @@ public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 	@Override
 	public List<Terrain> getAll(Terrain terrain) {
 		List<Terrain> terrains = null;
-		Query query = em.createQuery("SELECT a FROM Annonce a");
+		Query query = em.createQuery("SELECT a FROM Terrain a");
 		terrains = query.getResultList();
 		return terrains;
 	}
