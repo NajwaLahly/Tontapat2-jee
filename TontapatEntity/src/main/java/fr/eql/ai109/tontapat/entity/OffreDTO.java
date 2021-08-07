@@ -1,11 +1,14 @@
 package fr.eql.ai109.tontapat.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OffreDTO extends Offre {
+public class OffreDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private Offre offre;
+	private OffreSearch search;
 	private Date dateApportTroupeau;
 	private Date dateRetraitTroupeau;
 	private Date dateDebutInstallation;
@@ -16,16 +19,8 @@ public class OffreDTO extends Offre {
 	private float fraisIntervention;
 	private float fraisBetail;
 	private float fraisService;
-	
-	@Override
-	public String toString() {
-		return "OffreDTO [dateApportTroupeau=" + dateApportTroupeau + ", dateRetraitTroupeau=" + dateRetraitTroupeau
-				+ ", dateDebutInstallation=" + dateDebutInstallation + ", dateFinInstallation=" + dateFinInstallation
-				+ ", dateDebutDesinstallation=" + dateDebutDesinstallation + ", dateFinDesinstallation="
-				+ dateFinDesinstallation + ", fraisInstallation=" + fraisInstallation + ", fraisIntervention="
-				+ fraisIntervention + ", fraisBetail=" + fraisBetail + ", fraisService=" + fraisService + ", prixTotal="
-				+ prixTotal + "]";
-	}
+	private float prixTotal;
+
 	public Date getDateApportTroupeau() {
 		return dateApportTroupeau;
 	}
@@ -92,5 +87,16 @@ public class OffreDTO extends Offre {
 	public void setPrixTotal(float prixTotal) {
 		this.prixTotal = prixTotal;
 	}
-	private float prixTotal;
+	public Offre getOffre() {
+		return offre;
+	}
+	public void setOffre(Offre offre) {
+		this.offre = offre;
+	}
+	public OffreSearch getSearch() {
+		return search;
+	}
+	public void setSearch(OffreSearch search) {
+		this.search = search;
+	}
 }
