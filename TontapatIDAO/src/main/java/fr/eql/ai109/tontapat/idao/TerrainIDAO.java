@@ -9,4 +9,5 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 public interface TerrainIDAO  extends GenericIDAO<Terrain> {
 	List<Terrain> getAll(Terrain terrain);
 	List<Terrain> getTerrainsByUtilisateur(Utilisateur utilisateur);
+	List<String> getTerrainsByUtilisateurAsList(Utilisateur utilisateur);
 }

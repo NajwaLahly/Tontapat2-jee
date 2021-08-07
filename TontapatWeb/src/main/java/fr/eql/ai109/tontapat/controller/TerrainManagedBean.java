@@ -3,6 +3,7 @@ package fr.eql.ai109.tontapat.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -14,43 +15,58 @@ import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 
 @ManagedBean(name = "mbTerrain")
 @RequestScoped
-public class TerrainManagedBean implements Serializable  {
+public class TerrainManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	private int terrainId;
+	private List<Terrain> terrains;
 	
-	@ManagedProperty(value="#{mbUtilisateur.utilisateur}")
+	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
 	private Utilisateur utilisateurConnecte;
-	
+
 	@EJB
 	private TerrainIBusiness terrainIBusiness;
-	
-	//@EJB
-	//private UtilisateurManagedBean utilisateurManganedBean;
-	
-	//@PostConstruct
-	//public void init () {
-		//FacesContext fc = FacesContext.getCurrentInstance();
-		//HttpSession session  = (HttpSession) fc.getExternalContext().getSession(false);
-		//utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateurConnecte");
-		//System.out.println(utilisateurConnecte.geNom());
-		//utilisateurConnecte = utilisateurManganedBean.getUtilisateur();
-		//System.out.println(utilisateurConnecte.getNom());
-	//}
-	
+
+	@PostConstruct
+	public void init() {
+		terrains = ShowAllbyCurrentUser();
+	}
+
 	public String mesTerrains() {
 		return "/utilisateur/terrains/index.xhtml?faces-redirection=false";
 	}
-	
-	public List<Terrain> ShowAll(){
+
+	public List<Terrain> ShowAll() {
 		return terrainIBusiness.findAll();
 	}
-	
-	public List<Terrain> ShowAllbyCurrentUser(){
+
+	public List<Terrain> ShowAllbyCurrentUser() {
 		return terrainIBusiness.findAllByCurrentUser(utilisateurConnecte);
 	}
-	
+
+	public List<String> ShowAllbyCurrentUserAsList() {
+		return terrainIBusiness.findAllByCurrentUserAsList(utilisateurConnecte);
+	}
+
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
+	}
+
+	public List<Terrain> getTerrains() {
+		return terrains;
+	}
+
+	public void setTerrains(List<Terrain> terrains) {
+		this.terrains = terrains;
+	}
+
+	public int getTerrainId() {
+		return terrainId;
+	}
+
+	public void setTerrainId(int terrainId) {
+		this.terrainId = terrainId;
 	}
 
 }
