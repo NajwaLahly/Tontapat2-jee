@@ -12,20 +12,21 @@
 	<ui:define name="content">
 
 		<div class="container">
-			<h1>Toutes les offres</h1>
+			<h1>Résultats de recherche</h1>
 
-			<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
+			<ui:repeat value="#{mbOffre.searchResults}" var="searchResult">
 				<h3>
-					<a href="detail.xhtml?id=#{offre.id}">#{offre.nom}</a>
+					<a href="detail.xhtml?id=#{searchResult.id}">#{searchResult.nom}</a>
 				</h3>
-   		 Proposée par #{offre.troupeau.utilisateur.prenom} <br />
-   		 #{offre.dateDebut} <br />
-   		 #{offre.dateFin} <br />
-   		 Tous les #{offre.frequenceIntervention} jours<br />
-   		 Prise en charge de l'installation : #{offre.installationAssuree == true ? "éleveur" : "client"} <br />
-   		 Couverture : #{offre.zoneCouverture}km autour de #{offre.troupeau.adresseVoie} <br />
-   		 Conditions d'annulation : #{offre.conditionAnnulation.nom} <br />
-   		 #{offre.description} <br />
+   		 Proposée par #{searchResult.troupeau.utilisateur.prenom} <br />
+   		 #{searchResult.dateDebut} <br />
+   		 #{searchResult.dateFin} <br />
+   		 Tous les #{searchResult.frequenceIntervention} jours<br />
+   		 Prise en charge de l'installation : #{searchResult.installationAssuree == true ? "éleveur" : "client"} <br />
+   		 Couverture : #{searchResult.zoneCouverture}km autour de #{searchResult.troupeau.adresseVoie} <br />
+   		 Conditions d'annulation : #{searchResult.conditionAnnulation.nom} <br />
+   		 #{searchResult.description} <br />
+   		 #{searchResult.prixTotal} <br />
    		 --------------------------- <br />
 			</ui:repeat>
 		</div>

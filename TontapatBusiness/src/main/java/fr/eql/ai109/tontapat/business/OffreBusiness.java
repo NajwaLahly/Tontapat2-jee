@@ -32,32 +32,32 @@ public class OffreBusiness implements OffreIBusiness {
 	}
 
 	@Override
-	public Offre getById(int id) {
+	public Offre findById(int id) {
 		return offreIDAO.getById(id);
 	}
 
 	@Override
-	public List<OffreDTO> getSearchResults(OffreSearch offreSearch) {
+	public List<OffreDTO> findSearchResults(OffreSearch offreSearch) {
 		List<Offre> offres = offreIDAO.getQueryResults(offreSearch);
 		List<OffreDTO> offresDTO = null;
 		for (Offre o : offres) {
 			OffreDTO offreDTO = new OffreDTO();
 			offreDTO.setOffre(o);
 			offreDTO.setSearch(offreSearch);
-			offresDTO.add(getQualifiedResult(offreDTO));
+			offresDTO.add(findQualifiedResult(offreDTO));
 		}
 		return offresDTO;
 	}
 
 	@Override
-	public OffreDTO getQualifiedResult(OffreDTO offreDTO) {
-		float distance = getDistanceBetween(offreDTO.getOffre().getTroupeau(), offreDTO.getSearch().getTerrain());
+	public OffreDTO findQualifiedResult(OffreDTO offreDTO) {
+		float distance = findDistanceBetween(offreDTO.getOffre().getTroupeau(), offreDTO.getSearch().getTerrain());
 		
 		
 		return offreDTO;
 	}
 
-	private float getDistanceBetween(Troupeau troupeau, Terrain terrain) {
+	private float findDistanceBetween(Troupeau troupeau, Terrain terrain) {
 
 		return 0;
 	}
