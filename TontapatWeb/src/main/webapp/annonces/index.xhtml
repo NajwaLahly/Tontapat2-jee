@@ -6,34 +6,66 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="title">
-		Toutes les offres
+		Toutes les annonces
 	</ui:define>
 
+	
 	<ui:define name="content">
+
 		<div class="container">
-			<!--  
-		<h:graphicImage library="images" name="logo.png" />
-				<ui:insert name="content"></ui:insert>		
-		-->
 			<h1>Toutes les annonces</h1>
 			<ui:repeat value="#{mbAnnonce.ShowAll()}" var="annonce">
 
-				<h3>#{annonce.nom}</h3>
-				<ul>
-					<li>(photo)</li>
-					<li>Terrain : #{annonce.terrain.nom}</li>
-					<li>Superficie : #{annonce.terrain.superficie}
-						hectares</li>
-						<li>Adresse : #{annonce.terrain.adresseVoie}</li>
-					<li>Ajoutée le #{annonce.dateAjout}</li>
-					<li>Du #{annonce.dateDebut} au #{annonce.dateFin}</li>
-					<li>Installation souhaitée : #{annonce.installationAssuree == true ? "à la charge du berger" : "à la charge du client"}</li>
-					<li>#{annonce.description}</li>
+				<div class="offre-box">
+					<div class="offre-box-img">
+						<h:link class="">
+							<h:graphicImage class="img-in-box" library="images"
+								name="/photos/user/terrain/1-1.png" />
+						</h:link>
+					</div>
+					<div class="offre-box-info">
+						<div class="offre-box-info-header">
+							<h3>#{annonce.nom}</h3>
+							<p>Proposée par #{annonce.terrain.utilisateur.prenom} </p>
+						</div>
 
-				</ul>
-   		 --------------------- <br />
+						<div class="offre-box-info-body">
+							<div class="offre-box-info-body-left">
+								<div class="info">
+								
+									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+									<h:outputText value="#{annonce.dateDebut}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+									au
+									<h:outputText value="#{annonce.dateFin}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-map-marker" size="lg" styleClass="icon"></b:iconAwesome>
+									#{annonce.terrain.adresseVoie}
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-pie-chart" size="lg" styleClass="icon"></b:iconAwesome>
+								
+								
+									Superficie : #{annonce.terrain.superficie} ha
+								</div>
+							</div>
+							<div class="offre-box-info-body-right">				
+								<div class="info">
+									<h:graphicImage library="images" styleClass="icon"
+										name="/icons/install.png" />
+									Installation souhaitée : #{annonce.installationAssuree == true ? "à la charge du berger" : "à la charge du client"}
+								</div>
+									
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</ui:repeat>
-
 		</div>
 	</ui:define>
 

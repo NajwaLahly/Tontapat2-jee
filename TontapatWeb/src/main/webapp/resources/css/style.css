@@ -22,8 +22,15 @@ a:hover {
 	color: rgb(112, 173, 71);
 }
 
-h4 {
-	font-family: roboto;
+h4, h1, h3 {
+	font-family: roboto Medium !important;
+	color: black !important;
+}
+
+
+h1 {
+    text-align:center !important;
+    margin-bottom: 20px !important;
 }
 /* navbar
 --------------------------------------------------
@@ -86,14 +93,15 @@ h4 {
 /* modal
 --------------------------------------------------
 --------------------------------------------------*/
-div.modal-header>h4 {
-	font-family: coolvetica;
-	font-size: x-large;
-	padding-left: 15rem;
+
+div.modal-header > h4 {
+    font-family: coolvetica;
+    font-size: x-large;
+    padding-left: 15rem;
 }
 
 .zone {
-	border-bottom: 0.0009rem solid lightgray;
+    border-bottom: 0.0009rem solid lightgray;
 }
 
 .form-rows {
@@ -101,7 +109,7 @@ div.modal-header>h4 {
 	flex-direction: column;
 }
 
-.form-rows>div {
+.form-rows > div {
 	padding-bottom: 20px;
 	padding-left: 30px;
 }
@@ -111,96 +119,123 @@ div.modal-header>h4 {
 	flex-direction: row;
 }
 
-.form-columns>div {
+.form-columns > div {
 	align-self: end;
 }
 
 /*champ date*/
+
 .form-inline label, input {
-	margin-right: 0px !important;
+    margin-right: 0px !important;
 }
 
 .input-group-addon {
-	width: 0% !important;
+    width: 0% !important;
 }
 
-label {
-	float: left;
+label {	
+    float: left;
 }
 
 .date {
-	width: 15rem !important;
-	margin-right: 5rem;
+    width: 15rem !important;
+    margin-right: 5rem;
 }
 
 label {
-	font-weight: initial !important;
-	padding-right: 10px;
-	font-size: small;
+    font-weight: initial !important;
+    padding-right: 10px;
+    font-size: small;
 }
 
 textarea.form-control {
-	width: 84.2rem !important;
+    width: 84.2rem !important;
 }
 
 .select-menu {
-	width: 60%;
+    width: 60%;
 }
 
 body .ui-slider.ui-slider-horizontal {
-	height: 0.5rem;
-	width: 30rem;
+    height: 0.5rem;
+    width: 30rem;
 }
 
 .btn-suivant {
-	width: 70%;
-	margin-top: 10px !important;
-	margin-left: 60px !important;
-	margin-bottom: 0px !important;
-}
-/* ------- Page Connexion ---------*/
-text {
-	height: 100px;
-	line-height: 100px;
-	text-align: center;
+    width: 70%;
+    margin-top: 10px !important;
+    margin-left: 60px !important;
+    margin-bottom: 0px !important;
 }
 
-.container_cnx {
-	background-color: lightgrey;
-	width: 60rem;
-	height: 40rem;
-	margin-left: auto;
-	padding-right: 100re;
-	margin-right: 20rem;
-	margin-top: 20rem;
-	border-radius: 10px;
+/* box-offre (template pour toutes les box annonces-terrain..
+--------------------------------------------------
+--------------------------------------------------*/
+.boxes-page-title {
+	align-content: center;
 }
 
-body {
-	background-color: lightgrey;
+.offre-box {
+	display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: 1px solid rgb(230,230,230);
+    color: rgb(128 128 128);
+    font-size: 16px;
+    cursor: text !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 2px rgb(240,240,240);
+    margin-right: 15rem;
+    margin-left: 15rem;
 }
 
-.btn-suivant {
-	width: 100%;
-	margin-top: 10px !important;
-	margin-left: 60px !important;
-	margin-bottom: 0px !important;
+.offre-box-img {
+	flex:1;
 }
 
-.text {
-	text-align: center;
-	padding: 20px;
-	white-space:nowrap;
-	padding-left: 15rem;
+.offre-box-info {
+	display: flex;
+	flex-direction: column;
+	flex: 2;
 }
-.input {
-	width: 30rem;
-	padding-top: 5rem;
-	padding-left: inherit;
-}
-.img {
-	position: absolute; 
-	top: 10rem; 
-	left: 10rem;
 
+.offre-box-info-header {
+	flex: 1;
+}
+
+.offre-box-info-body {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex: 3;
+	min-height: 0;
+	min-width: 0;
+	align-content: center;
+	}
+
+.offre-box-info-body-right {
+	flex:2;
+}
+
+.offre-box-info-body-left {
+	flex:2;
+}
+
+.info {
+	 flex: 1 0 25%;
+	 /*margin: 20px;*/
+}
+
+.img-in-box {
+    border-radius: 10px 0px 0px 10px;
+    width: 275px;
+    height: 190px;
+}
+
+.icon {
+	opacity: 25%;
+	width: 20px;
+	height: 20px;
 }
