@@ -33,7 +33,7 @@ public class UtilisateurManagedBean implements Serializable {
 		utilisateur = utilisateurIBusiness.connection(email, motDePasse);
 		if (utilisateur != null) {
 			System.out.println("good");
-			forward = "/mes_terrains.xhtml?faces-redirection=true";
+			forward = "/index.xhtml?faces-redirection=true";
 		} else {
 			System.out.println("pas good");
 			FacesMessage facesMessage = new FacesMessage(
@@ -59,6 +59,10 @@ public class UtilisateurManagedBean implements Serializable {
 		motDePasse = "";
 		utilisateur = new Utilisateur();
 		return "/connexion.xhtml?faces-redirection=true";
+	}
+	
+	public String disconnectPage() {
+		return "/deconnexion.xhtml?faces-redirection=true";
 	}
 	
 	public List<Utilisateur> showAll(){
@@ -94,6 +98,9 @@ public class UtilisateurManagedBean implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-
+	public String editer() {
+		return "/utilisateur/editer.xhtml?faces-redirection=false";
+	}
+	
 }
 

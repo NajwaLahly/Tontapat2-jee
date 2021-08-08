@@ -9,15 +9,17 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><ui:insert name="title"></ui:insert> - Tontapat</title>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" /> 
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
 </h:head>
 
 <h:body>
 	<ui:include src="offres/recherche.xhtml" />
 	<b:navBar>
 		<div class="container">
-				<h:link class="navbar-brand">
-					<h:graphicImage library="images" name="logo.png" />
-				</h:link>
+			<h:link class="navbar-brand">
+				<h:graphicImage library="images" name="logo.png" />
+			</h:link>
 			<b:navbarLinks>
 				<b:navLink value="Offres" outcome="/offres/index.xhtml"></b:navLink>
 				<b:navLink value="Annonces" outcome="/annonces/index.xhtml"></b:navLink>
@@ -41,44 +43,47 @@
 					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
 				</b:navLink>
 				<b:navLink href="#">
-					<b:dropMenu value="" iconAwesome="fal fa-bell" size="lg">
+					<b:iconAwesome value="fal fa-bell" size="lg"></b:iconAwesome>
 
-						<b:navLink value="n a validé votre demande de réservation."
-							href="#"></b:navLink>
-						<b:navLink></b:navLink>
-						<b:navLink value="n a refusé votre demande de réservation."
-							href="#"></b:navLink>
-						<b:navLink></b:navLink>
-						<b:navLink value="n a validé votre demande de réservation."
-							href="#"></b:navLink>
-						<b:navLink></b:navLink>
-						<b:navLink value="n a refusé votre demande de réservation."
-							href="#"></b:navLink>
-						<b:navLink></b:navLink>
-					</b:dropMenu>
+					<!-- 					<b:dropMenu value="" iconAwesome="fal fa-bell" size="lg"> -->
+
+					<!-- 						<b:navLink value="n a validé votre demande de réservation." -->
+					<!-- 							href="#"></b:navLink> -->
+					<!-- 						<b:navLink></b:navLink> -->
+					<!-- 						<b:navLink value="n a refusé votre demande de réservation." -->
+					<!-- 							href="#"></b:navLink> -->
+					<!-- 						<b:navLink></b:navLink> -->
+					<!-- 						<b:navLink value="n a validé votre demande de réservation." -->
+					<!-- 							href="#"></b:navLink> -->
+					<!-- 						<b:navLink></b:navLink> -->
+					<!-- 						<b:navLink value="n a refusé votre demande de réservation." -->
+					<!-- 							href="#"></b:navLink> -->
+					<!-- 						<b:navLink></b:navLink> -->
+					<!-- 					</b:dropMenu> -->
 				</b:navLink>
 				<b:navLink href="#">
 					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
 				</b:navLink>
 
-				<b:dropMenu value="Nom utilisateur">
+				<b:dropMenu
+					value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
 					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
 						outcome="/utilisateur/prestations/index.xhtml"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
-						outcome="/utilisateur/terrains/index.xhtml"></b:navLink>
+						outcome="#{mbTerrain.mesTerrains()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-tasks" value="Mes annonces"
-						outcome="/utilisateur/annonces/index.xhtml"></b:navLink>
+						outcome="#{mbAnnonce.mesAnnonces()}"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-horse" value="Mes troupeaux"
-						outcome="/utilisateur/troupeaux/index.xhtml"></b:navLink>
+						outcome="#{mbTroupeau.mesTroupeaux()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-euro-sign" value="Mes offres"
 						outcome="/utilisateur/offres/index.xhtml"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-user-alt" value="Mon profil"
-						outcome="/utilisateur/profil/editer.xhtml"></b:navLink>
+						outcome="#{mbUtilisateur.editer()}"></b:navLink>
 					<b:navLink iconAwesome="fas fa-times" value="Déconnexion"
-						outcome="/utilisateur/deconnexion.xhtml"></b:navLink>
+						outcome="#{mbUtilisateur.disconnectPage()}"></b:navLink>
 				</b:dropMenu>
 			</b:navbarLinks>
 		</div>
