@@ -14,7 +14,7 @@
 		<div class="container">
 			<h1>Résultats de recherche</h1>
 
-			<ui:repeat value="#{mbOffre.searchResults}" var="searchResult">
+			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 				<h3>
 					<a href="detail.xhtml?id=#{searchResult.id}">#{searchResult.nom}</a>
 				</h3>
@@ -25,8 +25,8 @@
    		 Prise en charge de l'installation : #{searchResult.installationAssuree == true ? "éleveur" : "client"} <br />
    		 Couverture : #{searchResult.zoneCouverture}km autour de #{searchResult.troupeau.adresseVoie} <br />
    		 Conditions d'annulation : #{searchResult.conditionAnnulation.nom} <br />
-   		 #{searchResult.description} <br />
-   		 #{searchResult.prixTotal} <br />
+   		 desc : #{searchResult.description} <br />
+   		 prix total : #{searchResult.prixTotal} <br />
    		 --------------------------- <br />
 			</ui:repeat>
 		</div>

@@ -31,6 +31,10 @@ public class EspeceManagedBean implements Serializable {
 	private List<Espece> ShowAll() {
 		return especeIBusiness.findAll();
 	}
+	
+	public Espece showById(int id) {
+		return especeIBusiness.findById(id);
+	}
 
 	public List<Espece> getEspeces() {
 		return especes;
@@ -47,4 +51,5 @@ public class EspeceManagedBean implements Serializable {
 	public void setEspeceId(int especeId) {
 		this.especeId = especeId;
 	}
+
 }
