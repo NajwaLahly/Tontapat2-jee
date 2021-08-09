@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
@@ -27,16 +28,9 @@
 										prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="" required="false" label="">
-										<f:selectItem itemLabel="Terrain représenté dans l'annonce"
-											itemValue="" />
-
-										<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}"
-											var="terrain">
-											<f:selectItem itemLabel="#{terrain.nom}"
-												itemValue="#{terrain.id}" />
-										</ui:repeat>
-
+									<b:selectOneMenu value="#{mbTerrain.terrainId}" required="true"
+										label="Terrain représenté dans l'annonce">
+										<f:selectItems value="#{mbTerrain.terrains}" var="terrain" itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
@@ -64,11 +58,9 @@
 										apparaître dans la prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="" required="false" label="">
-										<f:selectItem itemLabel="Espèce préférée" itemValue="" />
-										<f:selectItem itemLabel="Espèce1" itemValue="1" />
-										<f:selectItem itemLabel="Espèce2" itemValue="2" />
-										<f:selectItem itemLabel="Espèce3" itemValue="3" />
+									<b:selectOneMenu value="#{mbEspece.especeId}" required="false"
+										label="Sélectionnez une espèce de bétail">
+										<f:selectItems value="#{mbEspece.especes}" var="espece" itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
