@@ -168,6 +168,10 @@ body .ui-slider.ui-slider-horizontal {
     margin-bottom: 0px !important;
 }
 
+.btn-modal {
+	text-align: center;
+}
+
 /* box-offre (template pour toutes les box annonces-terrain..
 --------------------------------------------------
 --------------------------------------------------*/
@@ -226,6 +230,11 @@ body .ui-slider.ui-slider-horizontal {
 .info {
 	 flex: 1 0 25%;
 	 /*margin: 20px;*/
+	 overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 1; /* number of lines to show */
+     -webkit-box-orient: vertical;
 }
 
 .img-in-box {
