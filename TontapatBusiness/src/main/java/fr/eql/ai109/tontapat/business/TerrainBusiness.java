@@ -39,4 +39,9 @@ public class TerrainBusiness implements TerrainIBusiness {
 
 	}
 
+	@Override
+	public Terrain findById(int id) {
+		return terrainIDAO.getById(id);
+	}
+
 }

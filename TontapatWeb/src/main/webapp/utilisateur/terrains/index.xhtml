@@ -6,30 +6,70 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 	<ui:define name="title">
-		Toutes les offres
+		Mes terrains
 	</ui:define>
 
-
 	<ui:define name="content">
-
+		
 		<div class="container">
-			<!--  
-		<h:graphicImage library="images" name="logo.png" />
-				<ui:insert name="content"></ui:insert>		
-		-->
-			<h1>Mes Terrains</h1>
-			<ui:include src="editer.xhtml" label="ajouter un terrain" />
-
+			<h1>Mes terrains</h1>
+			<ui:include src="editer.xhtml" />
 			<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="terrain">
-				<h3>#{terrain.nom}</h3>
-				<ul>
-					<li>(photo)</li>
-					<li>Ajouté le #{terrain.dateAjout}</li>
-					<li>Superficie : #{terrain.superficie}</li>
-					<li>Adresse : #{terrain.adresseVoie}</li>
-					<li>#{terrain.description}</li>
-				</ul>
+
+				<div class="offre-box">
+					<div class="offre-box-img">
+						<h:link class="">
+							<h:graphicImage class="img-in-box" library="images"
+								name="/photos/user/terrain/1-1.png" />
+						</h:link>
+					</div>
+					<div class="offre-box-info">
+						<div class="offre-box-info-header">
+							<h3>#{terrain.nom}</h3>
+						</div>
+
+						<div class="offre-box-info-body">
+							<div class="offre-box-info-body-left">
+								<div class="info">
+
+									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+									Ajouté le
+									<h:outputText value="#{terrain.dateAjout}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-map-marker" size="lg"
+										styleClass="icon"></b:iconAwesome>
+									#{terrain.adresseVoie}
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-pie-chart" size="lg" styleClass="icon"></b:iconAwesome>
+
+
+									#{terrain.superficie} ha
+								</div>
+							</div>
+							<div class="offre-box-info-body-right">							
+								<div class="info">
+								<b:iconAwesome value="fa-pagelines" size="lg"
+										styleClass="icon"></b:iconAwesome>		
+								
+									<ui:repeat value="#{terrain.typesVegetation.toArray()}"
+										var="type">
+										#{type.nom}/
+									</ui:repeat>
+								</div>
+								
+						</div>
+					</div>
+
+				</div>
+				</div>
 			</ui:repeat>
+			
 		</div>
+		
 	</ui:define>
 </ui:composition>
