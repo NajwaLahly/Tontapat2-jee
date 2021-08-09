@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
@@ -12,8 +13,7 @@
 
 <h:body>
 	<ui:composition>
-		<b:button onclick="$('.formValidationModalClass').modal('show')"
-			value="show modal" />
+
 		<b:modal title="Rechercher une offre"
 			styleClass="formValidationModalClass" closable="true"
 			closeOnEscape="true">
@@ -28,12 +28,9 @@
 										prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="" required="false" label="">
-										<f:selectItem itemLabel="Terrain repésenté dans l'annonce"
-											itemValue="" />
-										<f:selectItem itemLabel="Terrain1" itemValue="1" />
-										<f:selectItem itemLabel="Terrain2" itemValue="2" />
-										<f:selectItem itemLabel="Terrain3" itemValue="3" />
+									<b:selectOneMenu value="#{mbTerrain.terrainId}" required="true"
+										label="Terrain représenté dans l'annonce">
+										<f:selectItems value="#{mbTerrain.terrains}" var="terrain" itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
@@ -43,7 +40,7 @@
 									<h4>2. Sélectionnez les dates de votre prestation</h4>
 								</div>
 								<div class="form-columns">
-									<div class="date-debut">										    
+									<div class="date-debut">
 										<b:dateTimePicker mode="toggle-icon" value="#{dateBean.cdate}"
 											required="" label="Date de début" />
 									</div>
@@ -57,22 +54,22 @@
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>3. Sélectionnez une espèce de bétail</h4>
-									<h5>Une espèce particulière que vous souhaitez voir apparaître dans la prestation.</h5>
+									<h5>Une espèce particulière que vous souhaitez voir
+										apparaître dans la prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="" required="false" label="">
-										<f:selectItem itemLabel="Espèce préférée" itemValue="" />
-										<f:selectItem itemLabel="Espèce1" itemValue="1" />
-										<f:selectItem itemLabel="Espèce2" itemValue="2" />
-										<f:selectItem itemLabel="Espèce3" itemValue="3" />
+									<b:selectOneMenu value="#{mbEspece.especeId}" required="false"
+										label="Sélectionnez une espèce de bétail">
+										<f:selectItems value="#{mbEspece.especes}" var="espece" itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
-							
+
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>4. Sélectionnez un type d'installation</h4>
-									<h5>Le type d'installation détermine qui, de vous ou de l'éleveur, est en charge de la mise en place du matériel.</h5>
+									<h5>Le type d'installation détermine qui, de vous ou de
+										l'éleveur, est en charge de la mise en place du matériel.</h5>
 								</div>
 								<div class="select-menu">
 									<b:selectOneMenu value="" required="false" label="">
@@ -85,24 +82,25 @@
 									</b:selectOneMenu>
 								</div>
 							</div>
-							
+
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>5. Sélectionnez un prix maximal</h4>
-									<h5>Le prix maximal que vous êtes prêt(e) à payer pour la prestation.</h5>
+									<h5>Le prix maximal que vous êtes prêt(e) à payer pour la
+										prestation.</h5>
 								</div>
 								<div class="prix-slider">
-									<b:slider min="0" max="100" step="1" value="25" label=""/>	
+									<b:slider min="0" max="100" step="1" value="25" label="" />
 								</div>
 							</div>
-							
+
 							<div class="btn-suivant">
-								<b:commandButton styleClass="btn-suivant"
-								update="@form" dismiss="modal" value="Lancer la recherche" look="success"
-								oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
-								</div>
+								<b:commandButton styleClass="btn-suivant" update="@form"
+									dismiss="modal" value="Lancer la recherche" look="success"
+									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
-						
+						</div>
+
 					</b:formGroup>
 				</b:form>
 

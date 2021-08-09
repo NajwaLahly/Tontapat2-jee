@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<div class="btn-suivant">
+			<b:button onclick="$('.formValidationModalClass').modal('show')"
+				value="ajouter terrain" styleClass="btn-suivant" />
+		</div>
+		<b:modal title="Faire une proposition"
+			styleClass="formValidationModalClass" closable="true"
+			closeOnEscape="true">
+			<h4>Général</h4>
+			<div>
+				<b:form horizontal="true">
+					<b:formGroup>
+						<div class="form-rows">
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>1. Titre</h4>
+									<h5>Explication.</h5>
+								</div>
+								<div class="select-menu">
+									<input type="text" id="nom" value="" placeholder="Nom du champ ..." />
+								</div>
+							</div>
+
+							<div class="dates zone">
+								<div class="titre-ss-titre">
+									<h4>2. Choisissez une adresse pour le troupeau</h4>
+								</div>
+								<div class="select-menu">
+									<input type="text" id="adresseVoie" value="" placeholder="Adresse du terrain ..." />
+								</div>
+							</div>
+
+							<div class="btn-suivant">
+								<b:commandButton styleClass="btn-suivant" update="@form"
+									dismiss="modal" value="Suivant" look="success"
+									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+							</div>
+						</div>
+
+					</b:formGroup>
+				</b:form>
+
+			</div>
+		</b:modal>
+	</ui:composition>
+</h:body>
+</html>
