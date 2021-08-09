@@ -63,6 +63,8 @@ INSERT INTO `troupeau` (adresse_lat, adresse_long, adresse_voie, date_ajout, dat
 INSERT INTO `terrain` (adresse_lat, adresse_long, adresse_voie, date_ajout, description, nom, superficie, utilisateur_id_utilisateur) VALUES ('48.966062064184236','3.0216160478515786', 'Rue Marcel Neyrat','2021-06-15','Vaste terrain avec une majeur partie dans les collines','Les vertes collines', '125', '4');
 INSERT INTO `terrain` (adresse_lat, adresse_long, adresse_voie, date_ajout, description, nom, superficie, utilisateur_id_utilisateur) VALUES ('48.83832616391294','3.0957737626953286', 'Ferme du Charnoy','2021-07-06','Terrain à l abandon ayant besoin d ordre','La jungle', '200', '5');
 INSERT INTO `terrain` (adresse_lat, adresse_long, adresse_voie, date_ajout, description, nom, superficie, utilisateur_id_utilisateur) VALUES ('48.74197033276085','3.1297627153320473', '18 Rue de la Chapelle','2021-07-29','Petite prairie qui accueillerait avec plaisir un troupeau pour sa gestion','La prairie chatoyante', '50', '6');
+INSERT INTO `terrain` (adresse_lat, adresse_long, adresse_voie, date_ajout, description, nom, superficie, utilisateur_id_utilisateur) VALUES ('48.966062064184236','3.0216160478515786', 'Rue Marcel Neyrat','2021-06-15','petit terrain à tondre','Le petit', '25', '4');
+
 
 INSERT INTO `seuil_tarification` (coef_installation, coef_intervention, nom, prix_bete_jour, prix_km) VALUES ('0.5', '0.5', 'Minimum', '1', '.10');
 INSERT INTO `seuil_tarification` (coef_installation, coef_intervention, nom, prix_bete_jour, prix_km) VALUES ('1.5', '1.5', 'Maximum', '10', '1');
@@ -83,6 +85,8 @@ INSERT INTO `motif_reclamation` (nom) VALUES ('Non-respect des actions de suivi'
 INSERT INTO `annonce` (date_ajout, date_debut, date_fin, description, installation_assuree, nom, terrain_id_terrain) VALUES ('2021-06-15', '2021-06-15', '2021-08-15', 'je recherche un troupeau pour une tonte de 2 mois', false,'annonce pour les vertes collines', '1');
 INSERT INTO `annonce` (date_ajout, date_debut, date_fin, description, installation_assuree, nom, terrain_id_terrain) VALUES ('2021-07-06', '2021-07-06', '2021-12-06', 'je recherche un troupeau pour une tonte de 5 mois', false,'annonce pour la jungle', '2');
 INSERT INTO `annonce` (date_ajout, date_debut, date_fin, description, installation_assuree, nom, terrain_id_terrain) VALUES ('2021-07-29', '2021-07-29', '2021-10-29', 'je recherche un troupeau pour une tonte de 3 mois', true,'annonce pour la prairie chatoyante', '3');
+INSERT INTO `annonce` (date_ajout, date_debut, date_fin, description, installation_assuree, nom, terrain_id_terrain) VALUES ('2021-06-15', '2021-06-15', '2021-08-15', 'je recherche un troupeau pour une tonte de 2 mois', false,'annonce pour le petit', '4');
+
 
 INSERT INTO `offre` (date_ajout, date_debut, date_fin, description, frequence_intervention, installation_assuree, nom, prix_bete_jour, prix_installation, prix_intervention, prix_km, zone_couverture,conditionAnnulation_id_condition_annulation, troupeau_id_troupeau) VALUES ('2021-04-04', '2021-04-04', '2022-10-29', 'je recherche un terrain pour mon troupeau','2', true,'offre pour les chèvre Attila','2','1000','20','.5','60','1', '1');
 INSERT INTO `offre` (date_ajout, date_debut, date_fin, description, frequence_intervention, installation_assuree, nom, prix_bete_jour, prix_installation, prix_intervention, prix_km, zone_couverture,conditionAnnulation_id_condition_annulation, troupeau_id_troupeau) VALUES ('2021-04-08', '2021-04-08', '2022-06-10', 'je recherche un terrain pour mon troupeau','2', true,'offre pour les faiseuses de désert','3','800','20','.8','200','1', '2');
@@ -155,6 +159,11 @@ INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('
 INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('3','3');
 INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('3','4');
 INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('3','5');
+INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('4','1');
+INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('4','2');
+INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('4','3');
+INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('4','4');
+INSERT INTO `terrain_type_vegetation` (id_terrain, id_type_vegetation) VALUES ('4','5');
 
 INSERT INTO `terrain_type_abreuvoir` (id_terrain, id_type_abreuvoir) VALUES ('1','1');
 

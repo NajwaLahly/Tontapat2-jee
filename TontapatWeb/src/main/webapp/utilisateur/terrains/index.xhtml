@@ -1,0 +1,75 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+		Mes terrains
+	</ui:define>
+
+	<ui:define name="content">
+		
+		<div class="container">
+			<h1>Mes terrains</h1>
+			<ui:include src="editer.xhtml" />
+			<ui:repeat value="#{mbTerrain.ShowAllbyCurrentUser()}" var="terrain">
+
+				<div class="offre-box">
+					<div class="offre-box-img">
+						<h:link class="">
+							<h:graphicImage class="img-in-box" library="images"
+								name="/photos/user/terrain/1-1.png" />
+						</h:link>
+					</div>
+					<div class="offre-box-info">
+						<div class="offre-box-info-header">
+							<h3>#{terrain.nom}</h3>
+						</div>
+
+						<div class="offre-box-info-body">
+							<div class="offre-box-info-body-left">
+								<div class="info">
+
+									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+									Ajouté le
+									<h:outputText value="#{terrain.dateAjout}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-map-marker" size="lg"
+										styleClass="icon"></b:iconAwesome>
+									#{terrain.adresseVoie}
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fa-pie-chart" size="lg" styleClass="icon"></b:iconAwesome>
+
+
+									#{terrain.superficie} ha
+								</div>
+							</div>
+							<div class="offre-box-info-body-right">							
+								<div class="info">
+								<b:iconAwesome value="fa-pagelines" size="lg"
+										styleClass="icon"></b:iconAwesome>		
+								
+									<ui:repeat value="#{terrain.typesVegetation.toArray()}"
+										var="type">
+										#{type.nom}/
+									</ui:repeat>
+								</div>
+								
+						</div>
+					</div>
+
+				</div>
+				</div>
+			</ui:repeat>
+			
+		</div>
+		
+	</ui:define>
+</ui:composition>

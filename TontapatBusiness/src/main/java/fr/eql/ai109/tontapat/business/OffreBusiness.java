@@ -7,8 +7,6 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.eql.ai109.tontapat.entity.Offre;
-import fr.eql.ai109.tontapat.entity.OffreDTO;
-import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.OffreIBusiness;
 import fr.eql.ai109.tontapat.idao.OffreIDAO;
@@ -25,20 +23,12 @@ public class OffreBusiness implements OffreIBusiness {
 	}
 
 	@Override
-	public List<Offre> findAllfromUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Offre> findAllByCurrentUser(Utilisateur utilisateur) {
+		return offreIDAO.getOffresByUtilisateur(utilisateur);
 	}
 
 	@Override
-	public Offre getById(int id) {
+	public Offre findById(int id) {
 		return offreIDAO.getById(id);
-	}
-
-	@Override
-	public List<OffreDTO> getSearchResults(OffreSearch offreSearch) {
-		List<Offre> offres = offreIDAO.getQueryResults(offreSearch);
-		
-		return null;
 	}
 }
