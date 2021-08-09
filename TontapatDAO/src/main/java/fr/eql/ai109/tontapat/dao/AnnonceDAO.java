@@ -14,11 +14,6 @@ import fr.eql.ai109.tontapat.idao.AnnonceIDAO;
 @Stateless
 public class AnnonceDAO extends GenericDAO<Annonce> implements AnnonceIDAO{
 
-	@Override
-	public List<Annonce> getAnnoncesByUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Annonce> getAll(Annonce annonce) {
@@ -26,6 +21,16 @@ public class AnnonceDAO extends GenericDAO<Annonce> implements AnnonceIDAO{
 		Query query = em.createQuery("SELECT a FROM Annonce a");
 		annonces = query.getResultList();
 	return annonces;
+	}
+	
+
+	@Override
+	public List<Annonce> getAnnoncesByUtilisateur(Utilisateur utilisateur) {
+		List<Annonce> annonces = null;
+		Query query = em.createQuery("SELECT t FROM Annonce t WHERE t.terrain.utilisateur=:utilisateurParam");
+		query.setParameter("utilisateurParam", utilisateur);
+		annonces = query.getResultList();
+		return annonces;
 	}
 
 }

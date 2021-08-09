@@ -1,0 +1,37 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+		Mes offres
+	</ui:define>
+
+
+	<ui:define name="content">
+
+			<h1>Mes offres</h1>
+
+			<div class="container">
+
+				<ui:repeat value="#{mbOffre.ShowAllbyCurrentUser()}" var="offre">
+					<h3>#{offre.nom}</h3>
+					<ul>
+						<li>(photo)</li>
+						<li>Troupeau : #{offre.troupeau.nom}</li>
+						<li>Superficie : #{annonce.terrain.superficie} hectares</li>
+						<li>Adresse : #{annonce.troupeau.adresseVoie}</li>
+						<li>Ajoutée le #{offre.dateAjout}</li>
+						<li>Disponible du #{offre.dateDebut} au #{offre.dateFin}</li>
+						<li>Installation : #{annonce.installationAssuree == true ? "à
+							votre charge" : "à la charge du client"}</li>
+						<li>#{offre.description}</li>
+					</ul>
+				</ui:repeat>
+
+			</div>
+	</ui:define>
+
+</ui:composition>

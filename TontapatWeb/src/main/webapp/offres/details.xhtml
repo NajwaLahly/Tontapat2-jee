@@ -1,0 +1,61 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="title">
+		Visualisation d'une offre
+	</ui:define>
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbOffre.id}" />
+		</f:metadata>
+
+		<div class="container">
+
+			<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
+				<h1>#{offre.nom}</h1>
+   		 Proposée par #{offre.troupeau.utilisateur.prenom} <br />
+				<h3>Caractéristiques</h3>
+				<ul>
+					<li>Valable du #{offre.dateDebut} au #{offre.dateFin}</li>
+					<li>Intervention : tous les #{offre.frequenceIntervention}
+						jours</li>
+					<li>Prise en charge de l'installation :
+						#{offre.installationAssuree == true ? "éleveur" : "client"}</li>
+					<li>Couverture : #{offre.zoneCouverture}km autour de
+						#{offre.troupeau.adresseVoie}</li>
+				</ul>
+				<h3>Description</h3>
+   		 #{offre.description} <br />
+				<h3>Troupeau</h3>
+				<ul>
+					<li>Nom : #{offre.troupeau.nom}</li>
+					<li>Espèce et race : #{offre.troupeau.race.espece.nom} -
+						#{offre.troupeau.race.nom}</li>
+					<li>Effectif : #{offre.troupeau.effectif}</li>
+					<li>Divisible : #{offre.troupeau.divisibilite ? "oui" : "non"}</li>
+				</ul>
+				<h3>Photos</h3>
+
+				<h3>Evaluations</h3>
+
+				<h3>Tarification</h3>
+				<ul>
+					<li>Prix au km : #{offre.prixKm} €</li>
+					<li>Prix bête/jour : #{offre.prixBeteJour} €</li>
+					<li>Coef. d'installation : #{offre.prixInstallation} €</li>
+					<li>Coef d'intervention : #{offre.prixIntervention} €</li>
+
+				</ul>
+   		 --------------------------- <br />
+
+			</ui:repeat>
+		</div>
+	</ui:define>
+
+</ui:composition>

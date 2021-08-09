@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div>
+					<h3 class="center-block text-center">Demande de réclamation
+						envoyée</h3>
+
+				</div>
+				<div class="modal-body">
+					<p></p>
+					<p>Votre demande de réclamation nous a bien été transmise.
+						Notre service client prendra contact avec vous dans les plus brefs
+						délais.</p>
+					<p></p>
+					<p>En cas de danger immédiat, contactez les autorités.</p>
+				</div>
+
+
+				<div>
+					<b:form horizontal="true">
+						<b:formGroup>
+							<div class="form-rows">
+								<div class="btn-suivant">
+									<b:commandButton styleClass="btn-suivant" update="@form"
+										dismiss="modal" value="Continuer" look="primary"
+										oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+								</div>
+							</div>
+
+						</b:formGroup>
+					</b:form>
+				</div>
+
+			</div>
+		</div>
+	</ui:composition>
+</h:body>
+</html>
