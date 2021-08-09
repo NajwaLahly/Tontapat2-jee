@@ -22,11 +22,8 @@ public class AnnonceBusiness implements AnnonceIBusiness {
 		return annonceIDAO.getAll();
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public List<Annonce> findAllByCurrentUser(Utilisateur utilisateur) {
 		return annonceIDAO.getAnnoncesByUtilisateur(utilisateur);
 	}
->>>>>>> 89bbd879e02c54b851b493b1d23c85284107092e
 }
