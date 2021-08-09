@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
 	<ui:define name="title">
-		Toutes les offres
+		Résultats de votre recherche
 	</ui:define>
 
 	<ui:define name="content">
@@ -14,21 +14,22 @@
 		<div class="container">
 			<h1>Résultats de recherche</h1>
 
-			<ui:repeat value="#{mbOffre.searchResults}" var="searchResult">
+			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 				<h3>
-					<a href="detail.xhtml?id=#{searchResult.id}">#{searchResult.nom}</a>
+					<a href="offres/details.xhtml?id=#{searchResult.offre.id}">#{searchResult.offre.nom}</a>
 				</h3>
-   		 Proposée par #{searchResult.troupeau.utilisateur.prenom} <br />
-   		 #{searchResult.dateDebut} <br />
-   		 #{searchResult.dateFin} <br />
-   		 Tous les #{searchResult.frequenceIntervention} jours<br />
-   		 Prise en charge de l'installation : #{searchResult.installationAssuree == true ? "éleveur" : "client"} <br />
-   		 Couverture : #{searchResult.zoneCouverture}km autour de #{searchResult.troupeau.adresseVoie} <br />
-   		 Conditions d'annulation : #{searchResult.conditionAnnulation.nom} <br />
-   		 #{searchResult.description} <br />
-   		 #{searchResult.prixTotal} <br />
+   		 Proposée par #{searchResult.offre.troupeau.utilisateur.prenom} <br />
+   		 Disponible du #{searchResult.offre.dateDebut} au #{searchResult.offre.dateFin} <br />
+   		 Tous les #{searchResult.offre.frequenceIntervention} jours<br />
+   		 Prise en charge de l'installation : #{searchResult.offre.installationAssuree == true ? "éleveur" : "client"} <br />
+   		 Couverture : #{searchResult.offre.zoneCouverture}km autour de #{searchResult.offre.troupeau.adresseVoie} <br />
+   		 Espèce et race : #{searchResult.offre.troupeau.race.espece.nom} - #{searchResult.offre.troupeau.race.nom} <br />
+   		 Conditions d'annulation : #{searchResult.offre.conditionAnnulation.nom} <br />
+   		 desc : #{searchResult.offre.description} <br />
+   		 prix total : #{searchResult.prixTotal} <br />
    		 --------------------------- <br />
 			</ui:repeat>
+			
 		</div>
 	</ui:define>
 

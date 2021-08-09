@@ -30,7 +30,7 @@
 										prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbOffre.searchIdTerrain}"
+									<b:selectOneMenu value="#{mbOffreSearch.searchIdTerrain}"
 										required="true" id="inpTerrain">
 										<f:selectItems value="#{mbTerrain.terrains}" var="terrain"
 											itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
@@ -45,14 +45,14 @@
 								<div class="form-columns">
 									<div class="date-debut">
 										<b:dateTimePicker mode="toggle-icon"
-											value="#{mbOffre.searchDateDebut}" id="inpDateDebut"
+											value="#{mbOffreSearch.searchDateDebut}" id="inpDateDebut"
 											required="true" label="Date de début">
 											<f:convertDateTime pattern="yyyy-MM-dd"/>
 											</b:dateTimePicker>
 									</div>
 									<div class="date-fin">
 										<b:dateTimePicker mode="toggle-icon"
-											value="#{mbOffre.searchDateFin}" id="inpDateFin" required="true"
+											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin" required="true"
 											label="Date de fin" />
 									</div>
 								</div>
@@ -65,7 +65,7 @@
 										apparaître dans la prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbOffre.searchIdEspece}"
+									<b:selectOneMenu value="#{mbOffreSearch.searchIdEspece}"
 										required="false" id="inpEspece">
 										<f:selectItem itemLabel="Toutes les espèces" itemValue="0" />
 										<f:selectItems value="#{mbEspece.especes}" var="espece"
@@ -80,7 +80,7 @@
 									<h5>Qui est en charge de la mise en place du matériel.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbOffre.searchInstallationAssuree}"
+									<b:selectOneMenu value="#{mbOffreSearch.searchInstallationAssuree}"
 										required="" id="inpInstallationAssuree">
 										<f:selectItem itemLabel="À la charge de l'éleveur"
 											itemValue="1" />
@@ -106,7 +106,7 @@
 							<div class="btn-suivant">
 								<b:commandButton styleClass="btn-suivant" update="@form"
 									dismiss="modal" value="Trouver des offres" look="success"
-									action="#{mbOffre.showSearchResults()}"
+									action="#{mbOffreSearch.showSearchResults()}"
 									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
 						</div>
