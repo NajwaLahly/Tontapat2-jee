@@ -3,12 +3,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" />
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
+
 </h:head>
 
 <h:body>
@@ -28,9 +30,10 @@
 										prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbTerrain.terrainId}" required="true"
-										label="Terrain représenté dans l'annonce">
-										<f:selectItems value="#{mbTerrain.terrains}" var="terrain" itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
+									<b:selectOneMenu value="#{mbOffreSearch.searchIdTerrain}"
+										required="true" id="inpTerrain">
+										<f:selectItems value="#{mbTerrain.terrains}" var="terrain"
+											itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
@@ -41,12 +44,16 @@
 								</div>
 								<div class="form-columns">
 									<div class="date-debut">
-										<b:dateTimePicker mode="toggle-icon" value="#{dateBean.cdate}"
-											required="" label="Date de début" />
+										<b:dateTimePicker mode="toggle-icon"
+											value="#{mbOffreSearch.searchDateDebut}" id="inpDateDebut"
+											required="true" label="Date de début">
+											<f:convertDateTime pattern="yyyy-MM-dd"/>
+											</b:dateTimePicker>
 									</div>
 									<div class="date-fin">
-										<b:dateTimePicker mode="toggle-icon" value="#{dateBean.cdate}"
-											required="" label="Date de fin" />
+										<b:dateTimePicker mode="toggle-icon"
+											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin" required="true"
+											label="Date de fin" />
 									</div>
 								</div>
 							</div>
@@ -58,9 +65,11 @@
 										apparaître dans la prestation.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbEspece.especeId}" required="false"
-										label="Sélectionnez une espèce de bétail">
-										<f:selectItems value="#{mbEspece.especes}" var="espece" itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
+									<b:selectOneMenu value="#{mbOffreSearch.searchIdEspece}"
+										required="false" id="inpEspece">
+										<f:selectItem itemLabel="Toutes les espèces" itemValue="0" />
+										<f:selectItems value="#{mbEspece.especes}" var="espece"
+											itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
 									</b:selectOneMenu>
 								</div>
 							</div>
@@ -68,35 +77,36 @@
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>4. Sélectionnez un type d'installation</h4>
-									<h5>Le type d'installation détermine qui, de vous ou de
-										l'éleveur, est en charge de la mise en place du matériel.</h5>
+									<h5>Qui est en charge de la mise en place du matériel.</h5>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="" required="false" label="">
-										<f:selectItem itemLabel="Type d'installation" itemValue="" />
-										<f:selectItem itemLabel="A la charge de l'éleveur"
+									<b:selectOneMenu value="#{mbOffreSearch.searchInstallationAssuree}"
+										required="" id="inpInstallationAssuree">
+										<f:selectItem itemLabel="À la charge de l'éleveur"
 											itemValue="1" />
 										<f:selectItem
-											itemLabel="A la charge du propriétaire de terrain"
-											itemValue="2" />
+											itemLabel="À la charge du propriétaire de terrain"
+											itemValue="0" />
 									</b:selectOneMenu>
 								</div>
 							</div>
 
 							<div class="zone">
 								<div class="titre-ss-titre">
-									<h4>5. Sélectionnez un prix maximal</h4>
+									<h4>5. Sélectionnez une limite de prix</h4>
 									<h5>Le prix maximal que vous êtes prêt(e) à payer pour la
 										prestation.</h5>
 								</div>
 								<div class="prix-slider">
+
 									<b:slider min="0" max="100" step="1" value="25" label="" />
 								</div>
 							</div>
 
 							<div class="btn-suivant">
 								<b:commandButton styleClass="btn-suivant" update="@form"
-									dismiss="modal" value="Lancer la recherche" look="success"
+									dismiss="modal" value="Trouver des offres" look="success"
+									action="#{mbOffreSearch.showSearchResults()}"
 									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
 						</div>

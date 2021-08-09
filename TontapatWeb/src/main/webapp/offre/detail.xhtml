@@ -4,6 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
+
 	<ui:define name="title">
 		Visualisation d'une offre
 	</ui:define>
@@ -17,6 +18,7 @@
 		<div class="container">
 
 			<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
+
 				<h1>
 					#{offre.nom}
 				</h1>
@@ -85,8 +87,17 @@
 		</ui:repeat>		
 				
 				
-				
-				
+
+   		 --------------------------- <br />	
+   		 <h:form>
+   		 		<h:commandButton value="Réserver" action="#{mbPrestation.createPrestationOffer()}" />
+
+		</h:form>
+   		 
+   		 
+   		 
+			</ui:repeat>
+
 		</div>
 	</ui:define>
 

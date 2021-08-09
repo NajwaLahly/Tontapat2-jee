@@ -9,4 +9,5 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 public interface AnnonceIBusiness {
 		List<Annonce> findAll();
 		List<Annonce> findAllByCurrentUser(Utilisateur utilisateur);
+
 }
