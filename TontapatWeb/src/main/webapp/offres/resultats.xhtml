@@ -6,28 +6,30 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
 	<ui:define name="title">
-		Toutes les offres
+		Résultats de votre recherche
 	</ui:define>
 
 	<ui:define name="content">
 
 		<div class="container">
-			<h1>Toutes les offres</h1>
+			<h1>Résultats de recherche</h1>
 
-			<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
+			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 				<h3>
-					<a href="detail.xhtml?id=#{offre.id}">#{offre.nom}</a>
+					<a href="offres/details.xhtml?id=#{searchResult.offre.id}">#{searchResult.offre.nom}</a>
 				</h3>
-   		 Proposée par #{offre.troupeau.utilisateur.prenom} <br />
-   		 #{offre.dateDebut} <br />
-   		 #{offre.dateFin} <br />
-   		 Tous les #{offre.frequenceIntervention} jours<br />
-   		 Prise en charge de l'installation : #{offre.installationAssuree == true ? "éleveur" : "client"} <br />
-   		 Couverture : #{offre.zoneCouverture}km autour de #{offre.troupeau.adresseVoie} <br />
-   		 Conditions d'annulation : #{offre.conditionAnnulation.nom} <br />
-   		 #{offre.description} <br />
+   		 Proposée par #{searchResult.offre.troupeau.utilisateur.prenom} <br />
+   		 Disponible du #{searchResult.offre.dateDebut} au #{searchResult.offre.dateFin} <br />
+   		 Tous les #{searchResult.offre.frequenceIntervention} jours<br />
+   		 Prise en charge de l'installation : #{searchResult.offre.installationAssuree == true ? "éleveur" : "client"} <br />
+   		 Couverture : #{searchResult.offre.zoneCouverture}km autour de #{searchResult.offre.troupeau.adresseVoie} <br />
+   		 Espèce et race : #{searchResult.offre.troupeau.race.espece.nom} - #{searchResult.offre.troupeau.race.nom} <br />
+   		 Conditions d'annulation : #{searchResult.offre.conditionAnnulation.nom} <br />
+   		 desc : #{searchResult.offre.description} <br />
+   		 prix total : #{searchResult.prixTotal} <br />
    		 --------------------------- <br />
 			</ui:repeat>
+			
 		</div>
 	</ui:define>
 

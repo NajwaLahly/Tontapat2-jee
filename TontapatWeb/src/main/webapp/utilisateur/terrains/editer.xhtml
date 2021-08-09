@@ -12,13 +12,13 @@
 
 <h:body>
 	<ui:composition>
-	<div class="btn-suivant">
-		<b:button onclick="$('.formValidationModalClass').modal('show')"
-			value="ajouter terrain" styleClass="btn-suivant"/>
-			</div>
-		<b:modal title="Ajouter un terrain"
-			styleClass="formValidationModalClass" closable="true"
-			closeOnEscape="true">
+	<div class="container">
+		<div class="btn-modal">
+			<b:button onclick="$('.ajout-terrain').modal('show')"
+				value="Ajouter un terrain" styleClass="btn-success" />
+		</div>
+		<b:modal title="Ajouter un terrain" styleClass="ajout-terrain"
+			closable="true" closeOnEscape="true">
 			<h4>Général</h4>
 			<div>
 				<b:form horizontal="true">
@@ -30,9 +30,7 @@
 									<h5>Ce nom personnalisera le terrain dans les recherches.</h5>
 								</div>
 								<div class="select-menu">
-									<input value="" placeholder="Nom du terrain ..." >
-																
-									</input>
+									<input value="" placeholder="Nom du terrain ..."> </input>
 								</div>
 							</div>
 
@@ -41,8 +39,8 @@
 									<h4>2. Choissisez une adresse pour le terrain</h4>
 								</div>
 								<div class="select-menu">
-									<input value="" placeholder="Adresse du terrain ..." >
-																
+									<input value="" placeholder="Adresse du terrain ...">
+
 									</input>
 								</div>
 							</div>
@@ -51,39 +49,41 @@
 								<div class="titre-ss-titre">
 									<h4>3. Choissisez une superficie pour le terrain</h4>
 								</div>
-							<div class="select-menu">
-									<input value="" placeholder="Superficie du terrain (Ha) ..." >
-																
+								<div class="select-menu">
+									<input value="" placeholder="Superficie du terrain (Ha) ...">
+
 									</input>
 								</div>
 							</div>
-							
+
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>4. Choissisez une description de votre terrain</h4>
 								</div>
-							
-									<div class="select-menu">
-									<input value="" placeholder="Description du terrain ..." >
-																
+
+								<div class="select-menu">
+									<input value="" placeholder="Description du terrain ...">
+
 									</input>
 								</div>
-							
+
 							</div>
-							
-							
+
+
 							<div class="btn-suivant">
-								<b:commandButton styleClass="btn-suivant"
-								update="@form" dismiss="modal" value="suivant" look="success"
-								oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
-								</div>
+								<b:commandButton styleClass="btn-suivant" update="@form"
+									dismiss="modal" value="suivant" look="success"
+									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
-						
+						</div>
+
 					</b:formGroup>
 				</b:form>
 
 			</div>
 		</b:modal>
+		</div>
 	</ui:composition>
+	
 </h:body>
 </html>

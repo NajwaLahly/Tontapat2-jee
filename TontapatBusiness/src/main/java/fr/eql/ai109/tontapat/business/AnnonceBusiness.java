@@ -18,16 +18,12 @@ public class AnnonceBusiness implements AnnonceIBusiness {
 	@EJB
 	private AnnonceIDAO annonceIDAO;
 
+	public List<Annonce> findAll() {
+		return annonceIDAO.getAll();
+	}
 
 	@Override
 	public List<Annonce> findAllByCurrentUser(Utilisateur utilisateur) {
 		return annonceIDAO.getAnnoncesByUtilisateur(utilisateur);
-	}
-
-
-	@Override
-	public List<Annonce> findAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

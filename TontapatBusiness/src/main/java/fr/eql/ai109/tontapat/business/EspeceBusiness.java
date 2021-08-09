@@ -22,4 +22,9 @@ public class EspeceBusiness implements EspeceIBusiness {
 		return especeIDAO.getAll();
 	}
 
+	@Override
+	public Espece findById(int id) {
+		return especeIDAO.getById(id);
+	}
+
 }

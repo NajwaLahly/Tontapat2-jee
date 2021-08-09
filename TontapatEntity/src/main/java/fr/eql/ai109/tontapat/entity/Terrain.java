@@ -57,7 +57,7 @@ public class Terrain implements Serializable {
 //			inverseJoinColumns = @JoinColumn(name = "id_morphologie"))
 	@OneToMany(mappedBy = "terrain")
 	Set<TerrainMorphologie> terrainMorphologies;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "terrain_type_vegetation",
 			joinColumns = @JoinColumn(name = "id_terrain"),
@@ -246,7 +246,6 @@ public class Terrain implements Serializable {
 	public void setTypesAbreuvoir(Set<TypeAbreuvoir> typesAbreuvoir) {
 		this.typesAbreuvoir = typesAbreuvoir;
 	}
-	
 	
 	
 	

@@ -15,6 +15,7 @@ public class OffreDTO implements Serializable {
 	private Date dateFinInstallation;
 	private Date dateDebutDesinstallation;
 	private Date dateFinDesinstallation;
+	private int nombreBetes;
 	private float fraisInstallation;
 	private float fraisIntervention;
 	private float fraisBetail;
@@ -98,5 +99,11 @@ public class OffreDTO implements Serializable {
 	}
 	public void setSearch(OffreSearch search) {
 		this.search = search;
+	}
+	public int getNombreBetes() {
+		return nombreBetes;
+	}
+	public void setNombreBetes(int nombreBetes) {
+		this.nombreBetes = nombreBetes;
 	}
 }

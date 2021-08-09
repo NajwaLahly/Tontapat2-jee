@@ -49,6 +49,10 @@ public class TerrainManagedBean implements Serializable {
 		return terrainIBusiness.findAllByCurrentUserAsList(utilisateurConnecte);
 	}
 
+	public Terrain showById(int id) {
+		return terrainIBusiness.findById(id);
+	}
+
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
 	}
