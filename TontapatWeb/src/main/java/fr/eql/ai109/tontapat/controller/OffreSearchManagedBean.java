@@ -9,15 +9,14 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.ibusiness.OffreSearchIBusiness;
 
 @ManagedBean(name = "mbOffreSearch")
-@SessionScoped
+@RequestScoped
 public class OffreSearchManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -52,8 +52,10 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 				System.out.println(" Offre n°" + o.getId() + " : " + o.getNom());
 				offreDTO.setOffre(o);
 				offreDTO.setSearch(offreSearch);
+				
+				//Calcul du prix
 				offreDTO = calculatePrice(offreDTO);
-//				if (offreDTO.getPrixTotal() <= offreSearch.getPrixMaximum())
+				if (offreDTO.getPrixTotal() <= offreSearch.getPrixMaximum())
 					offresDTO.add(offreDTO);
 			}
 			return offresDTO;
@@ -81,7 +83,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 //		long duree = TimeUnit.DAYS.convert(dureeEnMillisecondes, TimeUnit.MILLISECONDS);
 		int duree = 15;
 		
-		int nombreBetes = (int) (offreDTO.getSearch().getTerrain().getSuperficie() / duree / 10);
+		int nombreBetes = (int) (offreDTO.getSearch().getTerrain().getSuperficie() / (duree * 10));
 
 		float fraisInstallation = prixKm * prixInstallation * distance * 2;
 		float fraisBetail = prixBeteJour * nombreBetes * duree;
