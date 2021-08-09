@@ -10,6 +10,7 @@ public class OffreSearch implements Serializable {
 	private Terrain terrain;
 	private Date dateDebut;
 	private Date dateFin;
+	private Date duree;
 	private Espece espece;
 	private Boolean installationAssuree;
 	private float prixMaximum;
@@ -64,5 +65,13 @@ public class OffreSearch implements Serializable {
 	}
 	public void setPrixMaximum(float prixMaximum) {
 		this.prixMaximum = prixMaximum;
+	}
+
+	public Date getDuree() {
+		return duree;
+	}
+
+	public void setDuree(Date duree) {
+		this.duree = duree;
 	}
 }

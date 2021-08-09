@@ -27,19 +27,19 @@ public class OffreDAO extends GenericDAO<Offre> implements OffreIDAO {
 	public List<Offre> getQueryResults(OffreSearch offreSearch) {
 		List<Offre> offres = null;
 		String queryString = ("SELECT o "
-				+ "FROM Offre o ");
-//				+ "WHERE o.dateDebut <= :dateDebutParam "
-//				+"AND o.dateFin >= :dateFinParam "
-//				+ "AND o.installationAssuree = :installationAssureeParam");
-//		if (offreSearch.getEspece() != null)
-//			queryString += "AND o.troupeau.race.espece = :especeParam ";
+				+ "FROM Offre o "
+				+ "WHERE o.dateDebut <= :dateDebutParam "
+				+"AND o.dateFin >= :dateFinParam "
+				+ "AND o.installationAssuree = :installationAssureeParam");
+		if (offreSearch.getEspece() != null)
+			queryString += "AND o.troupeau.race.espece = :especeParam ";
 		Query query = em.createQuery(queryString);
-//
-//		query.setParameter("dateDebutParam", offreSearch.getDateDebut());
-//		query.setParameter("dateFinParam", offreSearch.getDateFin());
-//		query.setParameter("installationAssureeParam", offreSearch.getInstallationAssuree());
-//		if (offreSearch.getEspece() != null)
-//			query.setParameter("especeParam", offreSearch.getEspece());
+
+		query.setParameter("dateDebutParam", offreSearch.getDateDebut());
+		query.setParameter("dateFinParam", offreSearch.getDateFin());
+		query.setParameter("installationAssureeParam", offreSearch.getInstallationAssuree());
+		if (offreSearch.getEspece() != null)
+			query.setParameter("especeParam", offreSearch.getEspece());
 		offres = query.getResultList();
 		return offres;
 	}
