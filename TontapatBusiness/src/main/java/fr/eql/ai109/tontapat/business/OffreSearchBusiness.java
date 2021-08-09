@@ -55,7 +55,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 				
 				//Calcul du prix
 				offreDTO = calculatePrice(offreDTO);
-				if (offreDTO.getPrixTotal() <= offreSearch.getPrixMaximum())
+				//if (offreDTO.getPrixTotal() <= offreSearch.getPrixMaximum())
 					offresDTO.add(offreDTO);
 			}
 			return offresDTO;
