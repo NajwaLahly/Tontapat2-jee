@@ -20,4 +20,5 @@ public class AnnonceBusiness implements AnnonceIBusiness {
 	public List<Annonce> findAll() {
 		return annonceIDAO.getAll();
 	}
+
 }

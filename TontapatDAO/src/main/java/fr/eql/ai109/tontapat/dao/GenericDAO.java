@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import fr.eql.ai109.tontapat.idao.GenericIDAO;
 
 public abstract class GenericDAO<T> implements GenericIDAO<T> {
@@ -16,6 +15,7 @@ public abstract class GenericDAO<T> implements GenericIDAO<T> {
 
 
 	public T add(T t) {
+		
 		em.persist(t);
 		return t;
 	}

@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
+import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.OffreIBusiness;
 import fr.eql.ai109.tontapat.idao.OffreIDAO;
@@ -29,7 +30,6 @@ public class OffreBusiness implements OffreIBusiness {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public Offre getById(int id) {
 		return offreIDAO.getById(id);
@@ -38,7 +38,8 @@ public class OffreBusiness implements OffreIBusiness {
 	@Override
 	public List<OffreDTO> getSearchResults(OffreSearch offreSearch) {
 		List<Offre> offres = offreIDAO.getQueryResults(offreSearch);
-		
 		return null;
 	}
+
+	
 }

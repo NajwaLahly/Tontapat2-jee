@@ -15,7 +15,7 @@
 
 		<div class="container">
 
-			<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
+			<ui:repeat value="#{mbOffre.ShowById()}" var="offre">
 				<h1>
 					#{offre.nom}
 				</h1>
@@ -27,8 +27,16 @@
    		 Couverture : #{offre.zoneCouverture}km autour de #{offre.troupeau.adresseVoie} <br />
    		 Conditions d'annulation : #{offre.conditionAnnulation.nom} <br />
    		 #{offre.description} <br />
-   		 --------------------------- <br />
+   		 --------------------------- <br />	
+   		 <h:form>
+   		 		<h:commandButton value="Réserver" action="#{mbPrestation.createPrestationOffer()}" />
+
+		</h:form>
+   		 
+   		 
+   		 
 			</ui:repeat>
+			
 		</div>
 	</ui:define>
 
