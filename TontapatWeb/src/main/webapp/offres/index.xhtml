@@ -15,63 +15,64 @@
 		<div class="container">
 			<h1>Toutes les offres</h1>
 			<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
-
-				<div class="offre-box">
-					<div class="offre-box-img">
-						<h:link class="">
+				<a class="box-link" href="details.xhtml?id=#{offre.id}">
+					<div class="offre-box">
+						<div class="offre-box-img">
 							<h:graphicImage class="img-in-box" library="images"
-								name="/photos/user/troupeau/1-1.png" />
-						</h:link>
-					</div>
-					<div class="offre-box-info">
-						<div class="offre-box-info-header">
-							<h3>#{offre.nom}</h3>
-							<p>Proposée par #{offre.troupeau.utilisateur.prenom} </p>
+								name="/photos/user/troupeau/#{offre.troupeau.id}-1.jpg" />
 						</div>
+						<div class="offre-box-info">
+							<div class="offre-box-info-header">
+								<h3>#{offre.nom}</h3>
+								<p>Proposée par #{offre.troupeau.utilisateur.prenom}</p>
+							</div>
 
-						<div class="offre-box-info-body">
-							<div class="offre-box-info-body-left">
-								<div class="info">
-								
-									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
-									<h:outputText value="#{offre.dateDebut}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:outputText>
-									au
-									<h:outputText value="#{offre.dateFin}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:outputText>
+							<div class="offre-box-info-body">
+								<div class="offre-box-info-body-left">
+									<div class="info">
+
+										<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+										<h:outputText value="#{offre.dateDebut}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+										au
+										<h:outputText value="#{offre.dateFin}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</div>
+									<div class="info">
+										<h:graphicImage library="images" styleClass="icon"
+											name="/icons/espece/#{offre.troupeau.race.espece.id}.png" />
+										#{offre.troupeau.race.nom}
+									</div>
+									<div class="info">
+										<b:iconAwesome value="fal fa-close" size="lg"
+											styleClass="icon"></b:iconAwesome>
+										Annulation #{offre.conditionAnnulation.nom}
+									</div>
 								</div>
-								<div class="info">
-									<h:graphicImage library="images" styleClass="icon"
-										name="/icons/espece/#{offre.troupeau.race.espece.id}.png" />
-									#{offre.troupeau.race.nom}
-								</div>
-								<div class="info">
-									 <b:iconAwesome value="fal fa-close" size="lg" styleClass="icon"></b:iconAwesome>
-									Annulation #{offre.conditionAnnulation.nom}
+								<div class="offre-box-info-body-right">
+									<div class="info">
+										<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
+										Intervention tous les #{offre.frequenceIntervention} jours
+									</div>
+									<div class="info">
+										<h:graphicImage library="images" styleClass="icon"
+											name="/icons/install.png" />
+										#{offre.installationAssuree == true ? "Installation asssurée"
+										: "Installation non assurée"}
+									</div>
+									<div class="info">
+										<b:iconAwesome value="fal fa-globe" size="lg"
+											styleClass="icon"></b:iconAwesome>
+										Couverture : #{offre.zoneCouverture}km
+									</div>
 								</div>
 							</div>
-							<div class="offre-box-info-body-right">
-								<div class="info">
-									<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
-									Intervention tous les #{offre.frequenceIntervention} jours
-								</div>
-								<div class="info">
-									<h:graphicImage library="images" styleClass="icon"
-										name="/icons/install.png" />
-									#{offre.installationAssuree == true ? "Installation asssurée" :
-									"Installation non assurée"}
-								</div>
-								<div class="info">
-									<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
-									Couverture : #{offre.zoneCouverture}km
-								</div>
-							</div>
 						</div>
-					</div>
 
-				</div>
+					</div>
+				</a>
 			</ui:repeat>
 		</div>
 	</ui:define>
