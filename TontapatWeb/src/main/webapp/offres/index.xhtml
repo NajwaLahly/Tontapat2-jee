@@ -25,14 +25,16 @@
 					</div>
 					<div class="offre-box-info">
 						<div class="offre-box-info-header">
-							<h3>#{offre.nom}</h3>
-							<p>Proposée par #{offre.troupeau.utilisateur.prenom} </p>
+							<h3>
+								<a href="details.xhtml?id=#{offre.id}">#{offre.nom}</a>
+							</h3>
+							<p>Proposée par #{offre.troupeau.utilisateur.prenom}</p>
 						</div>
 
 						<div class="offre-box-info-body">
 							<div class="offre-box-info-body-left">
 								<div class="info">
-								
+
 									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
 									<h:outputText value="#{offre.dateDebut}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -48,7 +50,7 @@
 									#{offre.troupeau.race.nom}
 								</div>
 								<div class="info">
-									 <b:iconAwesome value="fal fa-close" size="lg" styleClass="icon"></b:iconAwesome>
+									<b:iconAwesome value="fal fa-close" size="lg" styleClass="icon"></b:iconAwesome>
 									Annulation #{offre.conditionAnnulation.nom}
 								</div>
 							</div>

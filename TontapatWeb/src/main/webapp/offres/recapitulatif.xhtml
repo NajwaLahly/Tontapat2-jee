@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<b:button onclick="$('.ticketRecapitulatif').modal('show')"
+			value="Réserver" />
+		<b:modal title="Réservation d'une offre"
+			styleClass="ticketRecapitulatif" closable="true"
+			closeOnEscape="true">
+			<div>
+				<b:form horizontal="true">
+					<b:formGroup>
+						<div class="form-rows">
+							<div>
+								<div class="titre-ss-titre">
+									<h4>
+										<strong>Récapitulatif</strong>
+									</h4>
+									<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
+										<h5>Nom de l'offre:#{offre.troupeau.nom}</h5>
+										<h5>Prestataire:#{offre.troupeau.utilisateur.nom}#{offre.troupeau.utilisateur.prenom}</h5>
+										<h5>Date de début:#{offre.dateDebut}</h5>
+										<h5>Date de fin:#{offre.dateFin}</h5>
+										<h5>Lieu de la prestation:#{offre.troupeau.adresseVoie}</h5>
+										<h5>Conditions
+											d'annulation:#{offre.conditionAnnulation.nom}</h5>
+										<p></p>
+										<h5>Frais d'installation:</h5>
+										<h5>Frais d'intervention:</h5>
+										<h5>Frais de bétail:</h5>
+										<h5>Frais de service:</h5>
+										<h5>TVA (20%):</h5>
+										<h5>Prix total:</h5>
+									</ui:repeat>
+								</div>
+
+							</div>
+							<div>
+								<div class="btn-toolbar">
+									<h:form>
+										<h:commandButton value="Réserver"
+											action="#{mbPrestation.createPrestationOffer()}" />
+
+
+									</h:form>
+								</div>
+
+							</div>
+						</div>
+
+					</b:formGroup>
+				</b:form>
+			</div>
+		</b:modal>
+	</ui:composition>
+</h:body>
+</html>
