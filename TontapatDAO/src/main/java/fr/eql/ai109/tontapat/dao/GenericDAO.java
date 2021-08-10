@@ -13,13 +13,14 @@ public abstract class GenericDAO<T> implements GenericIDAO<T> {
 	@PersistenceContext(name="myPersistenceUnit")
 	protected EntityManager em;
 
-
 	public T add(T t) {
-		
-		em.persist(t);
-		return t;
-	}
 
+		em.persist(t);
+		em.flush();
+		return t;
+	}    
+    
+	
 	public void delete(T t) {
 
 		em.remove(t);

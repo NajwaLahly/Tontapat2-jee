@@ -1,5 +1,6 @@
 package fr.eql.ai109.tontapat.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -17,11 +18,8 @@ import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 public class PrestationDAO  extends GenericDAO<Prestation> implements PrestationIDAO{
 
 	@Override
-	public void createPrestationOffer(Offre offre) {
-		Prestation prestation = new Prestation(); 
-		Query query = em.createQuery("INSERT INTO Prestation (id_offre) VALUES (offre.id)");
-		//terrains = query.getResultList();
-		
-		
-	}
+    public void createPrestationOffer() {
+        Prestation prestation = new Prestation(); 
+        add(prestation);
+    }
 }

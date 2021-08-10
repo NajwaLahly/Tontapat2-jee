@@ -43,6 +43,12 @@ public class OffreManagedBean implements Serializable {
 		return "/utilisateur/offres/index.xhtml?faces-redirection=false";
 	}
 
+	
+	public Utilisateur getUtilisateurConnecte() {
+		return utilisateurConnecte;
+	}
+	
+	
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
 	}
