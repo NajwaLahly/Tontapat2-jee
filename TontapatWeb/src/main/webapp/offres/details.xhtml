@@ -1,62 +1,91 @@
 <ui:composition template="/template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:b="http://bootsfaces.net/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-    <ui:define name="title">
-        Visualisation d'une offre
-    </ui:define>
+	<ui:define name="title">
+		Visualisation d'une offre
+	</ui:define>
 
-    <ui:define name="content">
+	<ui:define name="content">
 
-        <f:metadata>
-            <f:viewParam name="id" value="#{mbOffre.id}" />
-        </f:metadata>
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbOffre.id}" />
+			<c:set var="offre" value="#{mbOffre.ShowById(mbOffre.id)}"
+				scope="request" />
+		</f:metadata>
 
-        <div class="container">
+		<div class="container">
+			<h1>#{offre.nom}</h1>
+			<div class="offre-details-box">
+				<div class="offre-details-info">
+					<div class="offre-caracteristiques details-box">
+						<h3>Caractéristiques de l'offre</h3>
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+						Valable du
+						<h:outputText value="#{offre.dateDebut}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						au
+						<h:outputText value="#{offre.dateFin}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
+						Intervention: tous les #{offre.frequenceIntervention} jours <br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/install.png" />
+						Prise en charge de l'installation : #{offre.installationAssuree ==
+						true ? "éleveur" : "client"} <br />
+						<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
+						Couverture : #{offre.zoneCouverture}km autour de
+						#{offre.troupeau.adresseVoie}
+						<h3>Description</h3>
+						#{offre.description}
+					</div>
+					<div class="offre-troupeau-infos details-box">
+						<h3>Troupeau: #{offre.troupeau.nom}</h3>
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+						Valable à partir du
+						<h:outputText value="#{offre.troupeau.dateDisponibilite}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/espece/#{offre.troupeau.race.espece.id}.png" />
+						Espèce et race : #{offre.troupeau.race.espece.nom} -
+						#{offre.troupeau.race.nom} <br />
+						<h:graphicImage library="images" class="img-in-details"
+							name="/photos/user/troupeau/1-#{offre.troupeau.id}.png" />
+					</div>
+					<div class="offre-evaluations details-box">
+						<h3>Evaluations</h3>
+					</div>
+				</div>
+				<div class="tarif-reservation">
+					<div class="offre-details-tarif details-box">
+						<h3>Tarification</h3>
 
-            <ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
-                <h1>#{offre.nom}</h1>
-            Proposée par #{offre.troupeau.utilisateur.prenom} <br />
-                <h3>Caractéristiques</h3>
-                <ul>
-                    <li>Valable du #{offre.dateDebut} au #{offre.dateFin}</li>
-                    <li>Intervention : tous les #{offre.frequenceIntervention}
-                        jours</li>
-                    <li>Prise en charge de l'installation :
-                        #{offre.installationAssuree == true ? "éleveur" : "client"}</li>
-                    <li>Couverture : #{offre.zoneCouverture}km autour de
-                        #{offre.troupeau.adresseVoie}</li>
-                </ul>
-                <h3>Description</h3>
-            #{offre.description} <br />
-                <h3>Troupeau</h3>
-                <ul>
-                    <li>Nom : #{offre.troupeau.nom}</li>
-                    <li>Espèce et race : #{offre.troupeau.race.espece.nom} -
-                        #{offre.troupeau.race.nom}</li>
-                    <li>Effectif : #{offre.troupeau.effectif}</li>
-                    <li>Divisible : #{offre.troupeau.divisibilite ? "oui" : "non"}</li>
-                </ul>
-                <h3>Photos</h3>
+						Prix au km : #{offre.prixKm} € <br /> Prix bête/jour :
+						#{offre.prixBeteJour} € <br /> Coef d'installation :
+						#{offre.prixInstallation} € <br /> Coef d'intervention :
+						#{offre.prixIntervention} € <br />
+					</div>
+					<div class="btn-reservation">
+						<div>
+							<b:button onclick="" value="Réserver" styleClass="btn-success" />
+						</div>
+						<div>
+							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                <h3>Evaluations</h3>
-
-                <h3>Tarification</h3>
-                <ul>
-                    <li>Prix au km : #{offre.prixKm} €</li>
-                    <li>Prix bête/jour : #{offre.prixBeteJour} €</li>
-                    <li>Coef. d'installation : #{offre.prixInstallation} €</li>
-                    <li>Coef d'intervention : #{offre.prixIntervention} €</li>
-
-                </ul>
-            --------------------------- <br />
-            </ui:repeat>
-            <ui:include src="recapitulatif.xhtml" />
-            
-        </div>
-    </ui:define>
+	</ui:define>
 
 </ui:composition>
