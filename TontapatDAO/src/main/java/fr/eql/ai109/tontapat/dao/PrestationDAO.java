@@ -20,6 +20,8 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 	@Override
     public void createPrestationOffer() {
         Prestation prestation = new Prestation(); 
+        prestation.setDateReservation(new Date());
+		prestation.setDateDebutInstallation(new Date());
         add(prestation);
     }
 }

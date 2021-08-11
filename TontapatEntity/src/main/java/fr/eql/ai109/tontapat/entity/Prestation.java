@@ -31,7 +31,7 @@ public class Prestation implements Serializable {
 	@Column(name = "date_validation")
 	private Date dateValidation;
 	@Column(name = "num_reservation")
-	private int numReservation;
+	private String numReservation;
 	@Column(name = "date_refus")
 	private Date dateRefus;
 	@Column(name = "date_annulation")
@@ -98,7 +98,7 @@ public class Prestation implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Prestation(int id, Date dateReservation, Date dateValidation, int numReservation, Date dateRefus,
+	public Prestation(int id, Date dateReservation, Date dateValidation, String numReservation, Date dateRefus,
 			Date dateAnnulation, String descriptionAnnulation, float prixConvenu, Date dateDebut, Date dateFin,
 			boolean typeInstallation, Date dateDebutInstallation, Date dateFinInstallation, Date dateApportTroupeau,
 			Date dateRecuperationTroupeau, Date dateDebutDesinstallation, Date dateFinDesinstallation,
@@ -163,11 +163,11 @@ public class Prestation implements Serializable {
 		this.dateValidation = dateValidation;
 	}
 
-	public int getNumReservation() {
+	public String getNumReservation() {
 		return numReservation;
 	}
 
-	public void setNumReservation(int numReservation) {
+	public void setNumReservation(String numReservation) {
 		this.numReservation = numReservation;
 	}
 
