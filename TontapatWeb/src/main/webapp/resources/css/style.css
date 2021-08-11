@@ -172,6 +172,11 @@ body .ui-slider.ui-slider-horizontal {
 	text-align: center;
 }
 
+.modal-open {
+    overflow: initial !important;
+    padding-right: 0px !important;
+}
+
 /* box-offre (template pour toutes les box annonces-terrain..
 --------------------------------------------------
 --------------------------------------------------*/
