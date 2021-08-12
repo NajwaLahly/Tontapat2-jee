@@ -415,14 +415,6 @@ div.search-result:hover {
 	border-radius: 50%;
 }
 
-.adresse-long {
-	display: none !important;
-}
-
-.adresse-lat {
-	display: none !important;
-}
-
-.hidden-name {
+.adresse-long,.hidden-name, .adresse-lat{
 	display: none !important;
 }
