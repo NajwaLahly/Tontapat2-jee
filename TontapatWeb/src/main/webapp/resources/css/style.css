@@ -319,6 +319,20 @@ tarif-reservation {
 .search-container {
 	display: flex;
 	flex-direction: row;
+	
+}
+
+.map-search-results {
+	width: 550px !important;
+	height: 500px;
+	flex: 2;
+	margin-right: 10px;
+}
+
+.search-results {
+	display: flex;
+	flex-direction: column;
+	color: rgb(128 128 128);
 	background-color: white;
     border: 1px solid rgb(230,230,230);
     color: rgb(128 128 128);
@@ -328,25 +342,19 @@ tarif-reservation {
     margin: 0px 15px 15px 0px;
     padding-left: 15px;
 	padding-right: 10px;
-	width: 600px !important;
+	width: 550px !important;
 	padding-left: 15px;
 	padding-right: 10px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	height: 500px;
-}
-
-.search-results {
-	display: flex;
-	flex-direction: column;
-	color: rgb(128 128 128);
+	flex: 2;
 }
 
 .search-result {
 	display: flex;
 	flex-direction: column;
 	color: rgb(128 128 128) !important;
-	padding-left: 10px;
 }
 
 .result-offre-box-info {
@@ -380,7 +388,7 @@ tarif-reservation {
     padding-top: 10px;
     flex: 2;
     text-align: end;
-    padding-right: 22px !important;
+    padding-right: 50px !important;
     font-weight: bold;
     color: black;
 }
@@ -405,4 +413,12 @@ div.search-result:hover {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
+}
+
+.adresse-long {
+	display: none !important;
+}
+
+.adresse-lat {
+	display: none !important;
 }
