@@ -24,6 +24,7 @@ public class UtilisateurManagedBean implements Serializable {
 	private String email;
 	private String motDePasse;
 	private Utilisateur utilisateur;
+	private String paiement;
 	
 	@EJB
 	private UtilisateurIBusiness utilisateurIBusiness;
@@ -100,6 +101,16 @@ public class UtilisateurManagedBean implements Serializable {
 
 	public String editer() {
 		return "/utilisateur/editer.xhtml?faces-redirection=false";
+	}
+
+
+	public String getPaiement() {
+		return paiement;
+	}
+
+
+	public void setPaiement(String paiement) {
+		this.paiement = paiement;
 	}
 	
 }
