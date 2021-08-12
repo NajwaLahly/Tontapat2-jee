@@ -20,11 +20,7 @@
 			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 			<a class="box-link" href="details.xhtml?id=#{searchResult.offre.id}">
 				<div class="search-result">
-					<div class="result-offre-box-img">
-						<h:graphicImage class="result-img-in-box" library="images"
-							name="/photos/user/troupeau/#{searchResult.offre.troupeau.id}-1.jpg" />
-					</div>
-					<div class="result-offre-box-info">
+					
 						<div class="result-offre-box-info-header">
 
 							<div class="result-offre-box-info-title">
@@ -32,7 +28,7 @@
 									#{searchResult.offre.nom}
 								</h4>
 								<h:graphicImage class="profile-img" library="images"
-									name="/photos/user/profile/#{searchResult.offre.troupeau.utilisateur.id}.png" />
+									name="/photos/user/profile/#{searchResult.offre.troupeau.id}.png" />
 									#{searchResult.offre.troupeau.utilisateur.prenom}
 							</div>
 							<div class="result-offre-box-info-price">
@@ -80,7 +76,6 @@
 						</div>
 
 					</div>
-				</div>
 				</a>
 			</ui:repeat>
 		</div>
