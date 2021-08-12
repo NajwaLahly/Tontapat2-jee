@@ -17,7 +17,7 @@ public class PrestationBusiness implements PrestationIBusiness  {
 	private PrestationIDAO prestationIdao;
 	
 	  @Override
-	    public void createPrestationOffer() {
-	        prestationIdao.createPrestationOffer();
+	    public void createPrestationOffer(Prestation prestation) {
+	        prestationIdao.createPrestationOffer(prestation);
 	    }
 }

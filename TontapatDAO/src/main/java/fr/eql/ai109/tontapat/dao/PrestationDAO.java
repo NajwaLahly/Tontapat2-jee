@@ -18,10 +18,7 @@ import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 public class PrestationDAO  extends GenericDAO<Prestation> implements PrestationIDAO{
 
 	@Override
-    public void createPrestationOffer() {
-        Prestation prestation = new Prestation(); 
-        prestation.setDateReservation(new Date());
-		prestation.setDateDebutInstallation(new Date());
+    public void createPrestationOffer(Prestation prestation) {      
         add(prestation);
     }
 }

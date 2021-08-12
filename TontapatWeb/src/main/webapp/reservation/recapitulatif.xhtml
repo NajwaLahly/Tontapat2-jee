@@ -32,13 +32,15 @@
 									<h5>Lieu de la prestation:#{offre.troupeau.adresseVoie}</h5>
 									<h5>Conditions
 										d'annulation:#{offre.conditionAnnulation.nom}</h5>
+								</ui:repeat>
+								<ui:repeat value="#{mbOffreSearch.createOffreDTO()}" var="offreSearch">
 									<p></p>
 									<h5>Frais d'installation:</h5>
 									<h5>Frais d'intervention:</h5>
 									<h5>Frais de bétail:</h5>
 									<h5>Frais de service:</h5>
 									<h5>TVA (20%):</h5>
-									<h5>Prix total:</h5>
+									<h5>Prix total:#{"offreSearch.createOffreDTO()"}</h5>
 								</ui:repeat>
 							</div>
 							<div>

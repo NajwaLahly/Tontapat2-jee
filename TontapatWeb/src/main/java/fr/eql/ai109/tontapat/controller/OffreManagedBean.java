@@ -60,5 +60,4 @@ public class OffreManagedBean implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 }

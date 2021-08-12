@@ -11,6 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.ibusiness.OffreSearchIBusiness;
@@ -30,6 +32,7 @@ public class OffreSearchManagedBean implements Serializable {
 	@ManagedProperty(value = "#{mbEspece}")
 	private EspeceManagedBean mbEspece;
 
+
 	private int searchIdTerrain;
 	private Date searchDateDebut;
 	private Date searchDateFin;
@@ -40,6 +43,8 @@ public class OffreSearchManagedBean implements Serializable {
 	private List<OffreDTO> searchResults;
 
 	private OffreSearch offreSearch = new OffreSearch();
+	
+	private Offre offreSelected = new Offre();// Ajout Elodie
 
 	@PostConstruct
 	public void init() {
@@ -47,6 +52,16 @@ public class OffreSearchManagedBean implements Serializable {
 		searchDateFin = new Date();
 	}
 
+	public float createOffreDTO() {// Ajout Elodie
+		OffreDTO offreDTO = new OffreDTO();
+		offreDTO.setOffre(offreSelected);
+		offreDTO = offreSearchIBusiness.calculatePrice(offreDTO);
+		
+		float prix = offreDTO.getPrixTotal();
+		System.out.println("ok");
+		return prix;
+	}
+	
 	public String showSearchResults() {
 		FacesMessage facesDateMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Veuillez entrer une date valide",
 				"Veuillez entrer une date valide");
@@ -68,6 +83,10 @@ public class OffreSearchManagedBean implements Serializable {
 		return offreSearchResultPage();
 	}
 
+	public String noRedirection() { //Ajout Elodie
+		return "faces-redirection=false";
+	}
+	
 	public String offreSearchResultPage() {
 		return "/offres/resultats.xhtml";
 	}
@@ -151,4 +170,13 @@ public class OffreSearchManagedBean implements Serializable {
 	public void setMbEspece(EspeceManagedBean mbEspece) {
 		this.mbEspece = mbEspece;
 	}
+
+	public Offre getOffreSelected() {
+		return offreSelected;
+	}
+
+	public void setOffreSelected(Offre offreSelected) {
+		this.offreSelected = offreSelected;
+	}
+
 }
