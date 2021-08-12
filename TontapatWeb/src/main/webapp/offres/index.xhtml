@@ -24,7 +24,10 @@
 						<div class="offre-box-info">
 							<div class="offre-box-info-header">
 								<h3>#{offre.nom}</h3>
-								<p>Proposée par #{offre.troupeau.utilisateur.prenom}</p>
+								<h:graphicImage class="profile-img" library="images"
+									name="/photos/user/profile/#{offre.troupeau.utilisateur.id}.png" />
+									#{offre.troupeau.utilisateur.prenom}
+							
 							</div>
 
 							<div class="offre-box-info-body">
