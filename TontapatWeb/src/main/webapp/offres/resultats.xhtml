@@ -16,7 +16,7 @@
 
 			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 				<h3>
-					<a href="offres/details.xhtml?id=#{searchResult.offre.id}">#{searchResult.offre.nom}</a>
+					<a href="offres/resultat-details.xhtml?id=#{searchResult.id}">#{searchResult.offre.nom}</a>
 				</h3>
    		 Proposée par #{searchResult.offre.troupeau.utilisateur.prenom} <br />
    		 Disponible du #{searchResult.offre.dateDebut} au #{searchResult.offre.dateFin} <br />

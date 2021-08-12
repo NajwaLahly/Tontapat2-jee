@@ -20,8 +20,10 @@ public class OffreDTO implements Serializable {
 	private float fraisIntervention;
 	private float fraisBetail;
 	private float fraisService;
+	private float TVA;
 	private float prixTotal;
-
+	private int id;
+	
 	public Date getDateApportTroupeau() {
 		return dateApportTroupeau;
 	}
@@ -105,5 +107,18 @@ public class OffreDTO implements Serializable {
 	}
 	public void setNombreBetes(int nombreBetes) {
 		this.nombreBetes = nombreBetes;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public float getTVA() {
+		return TVA;
+	}
+	public void setTVA(float tVA) {
+		TVA = tVA;
 	}
 }
