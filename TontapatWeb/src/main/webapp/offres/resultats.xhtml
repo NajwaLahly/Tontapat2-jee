@@ -38,7 +38,7 @@
 					<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
 					<div class="hidden-name">#{searchResult.offre.nom}</div>
 					<a class="box-link"
-						href="offres/resultat-details.xhtml?id=#{searchResult.id}">
+						href="resultat-details.xhtml?id=#{searchResult.id}">
 						<div class="search-result">
 							<div class="result-offre-box-info-header">
 								<div class="result-offre-box-info-title">
@@ -72,7 +72,7 @@
 									<div class="info">
 										<b:iconAwesome value="fal fa-close" size="lg"
 											styleClass="icon"></b:iconAwesome>
-										Annulation #{searchResult.offre.conditionAnnulation.nom}
+										Conditions d'annulation #{searchResult.offre.conditionAnnulation.nom.toLowerCase()}
 									</div>
 								</div>
 								<div class="result-offre-box-info-body-right">
