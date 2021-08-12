@@ -5,14 +5,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Espece;
 import fr.eql.ai109.tontapat.ibusiness.EspeceIBusiness;
 
 @ManagedBean(name = "mbEspece")
-@RequestScoped
+@SessionScoped
 public class EspeceManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
