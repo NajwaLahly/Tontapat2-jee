@@ -43,8 +43,6 @@ public class OffreSearchManagedBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		searchDateDebut = new Date();
-		searchDateFin = new Date();
 	}
 
 	public String showSearchResults() {
@@ -67,6 +65,7 @@ public class OffreSearchManagedBean implements Serializable {
 
 		return offreSearchResultPage();
 	}
+	//methode calcul prestationoffre
 
 	public String offreSearchResultPage() {
 		return "/offres/resultats.xhtml";
