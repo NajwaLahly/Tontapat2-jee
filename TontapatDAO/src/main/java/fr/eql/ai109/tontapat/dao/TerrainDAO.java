@@ -55,15 +55,9 @@ public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 	}
 
 
-	@Override
-	public Terrain selectLastInsert(Terrain terrain) {
-		Query query = em.createQuery("SELECT t FROM Terrain t WHERE t = LAST_INSERT_ID()");
-		//query.setParameter("utilisateurParam", utilisateur);
-		terrain = (Terrain) query.getSingleResult();
-		System.out.println(terrain.getNom());
-		System.out.println(terrain.getId());
-		return terrain;
-	}
+
+
+
 
 
 }

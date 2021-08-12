@@ -11,5 +11,4 @@ public interface TerrainIDAO  extends GenericIDAO<Terrain> {
 	List<Terrain> getTerrainsByUtilisateur(Utilisateur utilisateur);
 	List<String> getTerrainsByUtilisateurAsList(Utilisateur utilisateur);
 	Terrain ajoutNouveauTerrain (Terrain terrain);
-	Terrain selectLastInsert (Terrain terrain);
 }

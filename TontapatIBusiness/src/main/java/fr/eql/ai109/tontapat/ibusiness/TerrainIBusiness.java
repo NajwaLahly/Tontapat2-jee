@@ -11,6 +11,5 @@ public interface TerrainIBusiness {
 	List<String> findAllByCurrentUserAsList(Utilisateur utilisateur);
 	Terrain findById(int searchIdTerrain);
 	Terrain addNewTerrain (Terrain terrain);
-	Terrain selectLastIdTerrain (Terrain terrain);
 	
 }

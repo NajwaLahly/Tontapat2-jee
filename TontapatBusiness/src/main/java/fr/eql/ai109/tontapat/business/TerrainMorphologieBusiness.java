@@ -18,7 +18,7 @@ public class TerrainMorphologieBusiness implements TerrainMorphologieIBusiness {
 	private TerrainMorphologieIDAO terrainMorphologieIDAO;
 	
 	@Override
-	public TerrainMorphologie addNewTerrain(TerrainMorphologie terrainMorphologie) {
+	public TerrainMorphologie addNewTerrainMorphologie(TerrainMorphologie terrainMorphologie) {
 		return terrainMorphologieIDAO.ajoutNouveauTerrainMorphologie(terrainMorphologie);
 	}
 

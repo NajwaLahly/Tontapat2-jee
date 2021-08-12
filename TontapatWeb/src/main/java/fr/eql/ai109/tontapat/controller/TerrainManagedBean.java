@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.TerrainMorphologie;
@@ -18,7 +19,7 @@ import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 import fr.eql.ai109.tontapat.ibusiness.TerrainMorphologieIBusiness;
 
 @ManagedBean(name = "mbTerrain")
-@RequestScoped
+@SessionScoped
 public class TerrainManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -48,11 +49,50 @@ public class TerrainManagedBean implements Serializable {
 	
 	private TerrainMorphologie terrainMorphologie;
 	private float pourcentageId1;
-	private int morphologieId1;
-	private int morphologieId2;
-	private int morphologieId3;
-	private int morphologieId4;
-	//private Terrain terrainNew;
+	private float pourcentageId2;
+	private float pourcentageId3;
+	private float pourcentageId4;
+	public TerrainMorphologieIBusiness getTerrainMorphologieIBusiness() {
+		return terrainMorphologieIBusiness;
+	}
+
+	public void setTerrainMorphologieIBusiness(TerrainMorphologieIBusiness terrainMorphologieIBusiness) {
+		this.terrainMorphologieIBusiness = terrainMorphologieIBusiness;
+	}
+
+	public float getPourcentageId2() {
+		return pourcentageId2;
+	}
+
+	public void setPourcentageId2(float pourcentageId2) {
+		this.pourcentageId2 = pourcentageId2;
+	}
+
+	public float getPourcentageId3() {
+		return pourcentageId3;
+	}
+
+	public void setPourcentageId3(float pourcentageId3) {
+		this.pourcentageId3 = pourcentageId3;
+	}
+
+	public float getPourcentageId4() {
+		return pourcentageId4;
+	}
+
+	public void setPourcentageId4(float pourcentageId4) {
+		this.pourcentageId4 = pourcentageId4;
+	}
+
+	public Terrain getTerrainNew() {
+		return terrainNew;
+	}
+
+	public void setTerrainNew(Terrain terrainNew) {
+		this.terrainNew = terrainNew;
+	}
+
+	private Terrain terrainNew;
 	
 	
 	@PostConstruct
@@ -81,53 +121,41 @@ public class TerrainManagedBean implements Serializable {
 	}
 
 	public void addNew () {
-		Terrain terrainNew = new Terrain ();
-		addNewTerrain (terrainNew);
-		System.out.println("add new terrain dans la methode gene");
-		System.out.println(terrainNew.getId());
-		selectLastTerrainInsert (terrainNew);
-		System.out.println("select last terrain dans la methode gene");
-		System.out.println(terrainNew.getId());
-		addNewTerrainMorphologie(terrainNew);
-	}
-	
-	public Terrain addNewTerrain (Terrain terrainNew) {
+		
+		//addNewTerrain ();
+		terrainNew = new Terrain ();
 		terrainNew.setUtilisateur(utilisateurConnecte);
 		terrainNew.setNom(nom);
 		terrainNew.setAdresseVoie(adresse);
 		terrainNew.setDescription(description);
 		terrainNew.setSuperficie(superficie);
 		terrainNew.setDateAjout(dateAjout = new Date());
-		terrainIBusiness.addNewTerrain(terrainNew);
-		System.out.println("add new terrain");
-		System.out.println(terrainNew.getId());
-		//TerrainMorphologie terrainMophologieNew = new TerrainMorphologie ();
-		//terrainMophologieNew.setTerrain(terrainNew);
-		//terrainMophologieNew.setMorphologie(morphologieId1);
-		//terrainMophologieNew.setPourcentage(pourcentageId1);
-		return terrainNew;
-	}
-	
-	public Terrain selectLastTerrainInsert (Terrain terrain) {
-		terrainIBusiness.selectLastIdTerrain(terrain);
-		System.out.println("select last terrain");
-		return terrain;
-	}
-	
-	public void addNewTerrainMorphologie(Terrain terrainNew) {
-		System.out.println("add new terrainMorphologie");
-		System.out.println(terrainNew.getId());
+		
+		terrainNew = terrainIBusiness.addNewTerrain(terrainNew);
+		
 		TerrainMorphologie terrainMophologieNew = new TerrainMorphologie ();
 		terrainMophologieNew.setTerrain(terrainNew);
-		//terrainMophologieNew.setMorphologie(morphologieId1);
+		terrainMophologieNew.setMorphologie(mbMorphologie.showAll().get(0));
 		terrainMophologieNew.setPourcentage(pourcentageId1);
+		terrainMorphologieIBusiness.addNewTerrainMorphologie(terrainMophologieNew);
 		
+		terrainMophologieNew.setTerrain(terrainNew);
+		terrainMophologieNew.setMorphologie(mbMorphologie.showAll().get(1));
+		terrainMophologieNew.setPourcentage(pourcentageId2);
+		terrainMorphologieIBusiness.addNewTerrainMorphologie(terrainMophologieNew);
+		
+		terrainMophologieNew.setTerrain(terrainNew);
+		terrainMophologieNew.setMorphologie(mbMorphologie.showAll().get(2));
+		terrainMophologieNew.setPourcentage(pourcentageId3);
+		terrainMorphologieIBusiness.addNewTerrainMorphologie(terrainMophologieNew);
+		
+		terrainMophologieNew.setTerrain(terrainNew);
+		terrainMophologieNew.setMorphologie(mbMorphologie.showAll().get(3));
+		terrainMophologieNew.setPourcentage(pourcentageId4);
+		terrainMorphologieIBusiness.addNewTerrainMorphologie(terrainMophologieNew);
 	}
 	
-	//public addNewTerrain() {
-		
-	//	return idNewTerrain
-	//}
+	
 
 
 
@@ -234,38 +262,6 @@ public class TerrainManagedBean implements Serializable {
 
 	public void setTerrainMorphologie(TerrainMorphologie terrainMorphologie) {
 		this.terrainMorphologie = terrainMorphologie;
-	}
-
-	public int getMorphologieId1() {
-		return morphologieId1;
-	}
-
-	public void setMorphologieId1(int morphologieId1) {
-		this.morphologieId1 = morphologieId1;
-	}
-
-	public int getMorphologieId2() {
-		return morphologieId2;
-	}
-
-	public void setMorphologieId2(int morphologieId2) {
-		this.morphologieId2 = morphologieId2;
-	}
-
-	public int getMorphologieId3() {
-		return morphologieId3;
-	}
-
-	public void setMorphologieId3(int morphologieId3) {
-		this.morphologieId3 = morphologieId3;
-	}
-
-	public int getMorphologieId4() {
-		return morphologieId4;
-	}
-
-	public void setMorphologieId4(int morphologieId4) {
-		this.morphologieId4 = morphologieId4;
 	}
 
 	public float getPourcentageId1() {

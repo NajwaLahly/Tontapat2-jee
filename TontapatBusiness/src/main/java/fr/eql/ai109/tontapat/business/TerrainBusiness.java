@@ -47,14 +47,11 @@ public class TerrainBusiness implements TerrainIBusiness {
 	}
 
 	@Override
-	public Terrain addNewTerrain(Terrain terrain) {
-		return terrainIDAO.ajoutNouveauTerrain(terrain);
+	public Terrain addNewTerrain(Terrain terrain) {		
+		return terrainIDAO.add(terrain);
 	}
 
-	@Override
-	public Terrain selectLastIdTerrain(Terrain terrain) {
-		return terrainIDAO.selectLastInsert(terrain);
-	}
+
 
 
 }

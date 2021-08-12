@@ -7,12 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Morphologie;
 import fr.eql.ai109.tontapat.ibusiness.MorphologieIBusiness;
 
 @ManagedBean(name = "mbMorphologie")
-@RequestScoped
+@SessionScoped
 public class MorphologieManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
