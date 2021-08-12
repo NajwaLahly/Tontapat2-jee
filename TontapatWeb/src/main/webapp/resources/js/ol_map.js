@@ -10,22 +10,44 @@ var vectorMarkers = new ol.source.Vector({});
 for(var i=0; i < longs.length; i++)
 	{var featureMarker = new ol.Feature({
   	geometry: new ol.geom.Point(ol.proj.fromLonLat([longs[i].textContent, lats[i].textContent])),
-  	name: 'Chez moi',
+  	name: "Chez moi",
   	  });
 	
     vectorMarkers.addFeature(featureMarker);
 }
 
+var iconStyle = new ol.style.Style({
+    image: new ol.style.Icon({
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+    src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+    })
+});
+
+
+var labelStyle = new ol.style.Style({
+  text: new ol.style.Text({
+    font: '12px Calibri,sans-serif',
+    overflow: true,
+    fill: new ol.style.Fill({
+      color: '#000'
+    }),
+    stroke: new ol.style.Stroke({
+      color: '#fff',
+      width: 3
+    }),
+    offsetY: -12
+  })
+});
+var style = [iconStyle, labelStyle];
+
 var vectorMarkersLayer = new ol.layer.Vector({
     source: vectorMarkers,
-    style: new ol.style.Style({
-    	image: new ol.style.Icon({
-    		anchor: [0.5, 46],
-    		anchorXUnits: 'fraction',
-    		anchorYUnits: 'pixels',
-    		src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-    		})
-		})
+    style: function(feature) {
+        labelStyle.getText().setText(feature.get('name'));
+        return style;
+      }
 	});
 
 const map = new ol.Map({
