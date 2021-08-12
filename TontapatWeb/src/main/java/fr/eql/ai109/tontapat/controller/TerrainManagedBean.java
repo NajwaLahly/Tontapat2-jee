@@ -5,16 +5,16 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 
 @ManagedBean(name = "mbTerrain")
-@RequestScoped
+@SessionScoped
 public class TerrainManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

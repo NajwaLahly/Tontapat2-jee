@@ -7,6 +7,7 @@ const iconFeature1 = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([2.320160, 48.844970])),
 	name: 'Tour Montparnasse',
     	});
+
 const iconFeature2 = new ol.Feature({
   	geometry: new ol.geom.Point(ol.proj.fromLonLat([2.341110, 48.830620])),
   	name: 'Chez moi',
@@ -41,8 +42,8 @@ const iconFeature2 = new ol.Feature({
     	var points = [ [2.341110, 48.830620], [2.320160, 48.844970] ];
 
     	
-    	    points[0] = ol.proj.transform(points[0], 'EPSG:4326', 'EPSG:3857');
-    	    points[1] = ol.proj.transform(points[1], 'EPSG:4326', 'EPSG:3857');
+    	points[0] = ol.proj.transform(points[0], 'EPSG:4326', 'EPSG:3857');
+    	points[1] = ol.proj.transform(points[1], 'EPSG:4326', 'EPSG:3857');
 
     	
     	var featureLine = new ol.Feature({

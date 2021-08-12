@@ -5,8 +5,10 @@ import java.time.Duration;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.ejb.EJB;
@@ -47,8 +49,11 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		if (offres != null) {
 			List<OffreDTO> offresDTO = new ArrayList<OffreDTO>();
 			System.out.println("RESULTATS : " + offres.size());
+			int i = 1;
 			for (Offre o : offres) {
 				OffreDTO offreDTO = new OffreDTO();
+				offreDTO.setId(i);
+				i++;
 				System.out.println(" Offre n°" + o.getId() + " : " + o.getNom());
 				offreDTO.setOffre(o);
 				offreDTO.setSearch(offreSearch);
@@ -97,6 +102,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		offreDTO.setFraisInstallation(fraisInstallation);
 		offreDTO.setFraisIntervention(fraisIntervention);
 		offreDTO.setFraisService(fraisService);
+		offreDTO.setTVA(TVA);
 		offreDTO.setPrixTotal(prixTotal);
 		return offreDTO;
 	}
