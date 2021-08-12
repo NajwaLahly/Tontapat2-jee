@@ -4,35 +4,81 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
+
 	<ui:define name="title">
 		Résultats de votre recherche
 	</ui:define>
 
 	<ui:define name="content">
+<h1>Résultats de recherche</h1>
+		<div class="container search-container">
 
-		<div class="container">
-			<h1>Résultats de recherche</h1>
-
-			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
-				<h3>
-					<a href="offres/resultat-details.xhtml?id=#{searchResult.id}">#{searchResult.offre.nom}</a>
-				</h3>
-   		 Proposée par #{searchResult.offre.troupeau.utilisateur.prenom} <br />
-   		 Disponible du #{searchResult.offre.dateDebut} au #{searchResult.offre.dateFin} <br />
-   		 Tous les #{searchResult.offre.frequenceIntervention} jours<br />
-   		 Prise en charge de l'installation : #{searchResult.offre.installationAssuree == true ? "éleveur" : "client"} <br />
-   		 Couverture : #{searchResult.offre.zoneCouverture}km autour de #{searchResult.offre.troupeau.adresseVoie} <br />
-   		 Espèce et race : #{searchResult.offre.troupeau.race.espece.nom} - #{searchResult.offre.troupeau.race.nom} <br />
-   		 Conditions d'annulation : #{searchResult.offre.conditionAnnulation.nom} <br />
-   		 desc : #{searchResult.offre.description} <br />
-   		 prix total : #{searchResult.prixTotal} <br />
-   		 <input type="hidden" id="result1-x" value="5.456152" />
-   		 <input type="hidden" id="result1-y" value="6.587415" />
-   		 
-   		 --------------------------- <br />
-			</ui:repeat>
 			
+
+		<div class="map-search-results"></div>
+		<div class="search-results">
+			<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
+			<a class="box-link" href="details.xhtml?id=#{searchResult.offre.id}">
+				<div class="search-result">
+					
+						<div class="result-offre-box-info-header">
+
+							<div class="result-offre-box-info-title">
+								<h4>
+									#{searchResult.offre.nom}
+								</h4>
+								<h:graphicImage class="profile-img" library="images"
+									name="/photos/user/profile/#{searchResult.offre.troupeau.id}.png" />
+									#{searchResult.offre.troupeau.utilisateur.prenom}
+							</div>
+							<div class="result-offre-box-info-price">
+								<p>#{searchResult.prixTotal} €</p></div>
+						</div>
+						<div class="result-offre-box-info-body">
+							<div class="result-offre-box-info-body-left">
+								<div class="info">
+
+									<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+									<h:outputText value="#{searchResult.offre.dateDebut}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+									au
+									<h:outputText value="#{searchResult.offre.dateFin}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</div>
+								<div class="info">
+									<h:graphicImage library="images" styleClass="icon"
+										name="/icons/espece/#{searchResult.offre.troupeau.race.espece.id}.png" />
+									#{searchResult.offre.troupeau.race.nom}
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fal fa-close" size="lg" styleClass="icon"></b:iconAwesome>
+									Annulation #{searchResult.offre.conditionAnnulation.nom}
+								</div>
+							</div>
+							<div class="result-offre-box-info-body-right">
+								<div class="info">
+									<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
+									Intervention tous les #{searchResult.offre.frequenceIntervention} jours
+								</div>
+								<div class="info">
+									<h:graphicImage library="images" styleClass="icon"
+										name="/icons/install.png" />
+									#{searchResult.offre.installationAssuree == true ? "Installation asssurée" :
+									"Installation non assurée"}
+								</div>
+								<div class="info">
+									<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
+									Couverture : #{searchResult.offre.zoneCouverture}km
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</a>
+			</ui:repeat>
+		</div>
 		</div>
 	</ui:define>
 
