@@ -9,14 +9,14 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.ibusiness.OffreSearchIBusiness;
 
 @ManagedBean(name = "mbOffreSearch")
-@RequestScoped
+@SessionScoped
 public class OffreSearchManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,6 @@ public class OffreSearchManagedBean implements Serializable {
 	private int searchIdTerrain;
 	private Date searchDateDebut;
 	private Date searchDateFin;
-
 	private int searchIdEspece;
 	private Boolean searchInstallationAssuree;
 	private float searchPrixMaximum;
@@ -41,6 +40,8 @@ public class OffreSearchManagedBean implements Serializable {
 
 	private OffreSearch offreSearch = new OffreSearch();
 
+	private int id;
+	
 	@PostConstruct
 	public void init() {
 		searchDateDebut = new Date();
@@ -150,5 +151,13 @@ public class OffreSearchManagedBean implements Serializable {
 
 	public void setMbEspece(EspeceManagedBean mbEspece) {
 		this.mbEspece = mbEspece;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
