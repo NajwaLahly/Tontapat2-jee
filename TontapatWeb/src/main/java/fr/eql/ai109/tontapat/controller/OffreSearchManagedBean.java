@@ -9,16 +9,14 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
-import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.ibusiness.OffreSearchIBusiness;
 
 @ManagedBean(name = "mbOffreSearch")
-@RequestScoped
+@SessionScoped
 public class OffreSearchManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,36 +30,24 @@ public class OffreSearchManagedBean implements Serializable {
 	@ManagedProperty(value = "#{mbEspece}")
 	private EspeceManagedBean mbEspece;
 
-
 	private int searchIdTerrain;
 	private Date searchDateDebut;
 	private Date searchDateFin;
-
 	private int searchIdEspece;
 	private Boolean searchInstallationAssuree;
 	private float searchPrixMaximum;
 	private List<OffreDTO> searchResults;
 
 	private OffreSearch offreSearch = new OffreSearch();
-	
-	private Offre offreSelected = new Offre();// Ajout Elodie
 
+	private int id;
+	
 	@PostConstruct
 	public void init() {
 		searchDateDebut = new Date();
 		searchDateFin = new Date();
 	}
 
-	public float createOffreDTO() {// Ajout Elodie
-		OffreDTO offreDTO = new OffreDTO();
-		offreDTO.setOffre(offreSelected);
-		offreDTO = offreSearchIBusiness.calculatePrice(offreDTO);
-		
-		float prix = offreDTO.getPrixTotal();
-		System.out.println("ok");
-		return prix;
-	}
-	
 	public String showSearchResults() {
 		FacesMessage facesDateMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Veuillez entrer une date valide",
 				"Veuillez entrer une date valide");
@@ -83,10 +69,6 @@ public class OffreSearchManagedBean implements Serializable {
 		return offreSearchResultPage();
 	}
 
-	public String noRedirection() { //Ajout Elodie
-		return "faces-redirection=false";
-	}
-	
 	public String offreSearchResultPage() {
 		return "/offres/resultats.xhtml";
 	}
@@ -171,12 +153,11 @@ public class OffreSearchManagedBean implements Serializable {
 		this.mbEspece = mbEspece;
 	}
 
-	public Offre getOffreSelected() {
-		return offreSelected;
+	public int getId() {
+		return id;
 	}
 
-	public void setOffreSelected(Offre offreSelected) {
-		this.offreSelected = offreSelected;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 }
