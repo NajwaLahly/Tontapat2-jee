@@ -36,6 +36,9 @@ public class EspeceManagedBean implements Serializable {
 		return especeIBusiness.findById(id);
 	}
 
+	
+	
+	//*********Getter Setter*********
 	public List<Espece> getEspeces() {
 		return especes;
 	}
