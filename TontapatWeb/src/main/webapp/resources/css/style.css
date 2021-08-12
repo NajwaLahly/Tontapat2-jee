@@ -422,3 +422,7 @@ div.search-result:hover {
 .adresse-lat {
 	display: none !important;
 }
+
+.hidden-name {
+	display: none !important;
+}

@@ -16,6 +16,47 @@
 	height: 500px;
 	width: 100%;
 }
+      .ol-popup {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+      }
+      .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }
+      .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 8px;
+      }
+      .ol-popup-closer:after {
+        content: "✖";
+      }
 </style>
 
 
@@ -32,11 +73,16 @@
 
 				<h:outputScript library="js" name="ol_map.js" target="body" />
 				<div id="map" class="map"></div>
+				<div id="popup" class="ol-popup">
+     			 	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      				<div id="popup-content"></div>
+    			</div>
 			</div>
 			<div class="search-results">
 				<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 					<div class="adresse-long">#{searchResult.offre.troupeau.adresseLong}</div>
 					<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
+					<div class="hidden-name">#{searchResult.offre.nom}</div>
 					<a class="box-link"
 						href="details.xhtml?id=#{searchResult.offre.id}">
 						<div class="search-result">

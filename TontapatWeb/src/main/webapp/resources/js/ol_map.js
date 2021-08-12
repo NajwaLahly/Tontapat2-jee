@@ -4,13 +4,14 @@
 
 var longs = document.getElementsByClassName("adresse-long");
 var lats = document.getElementsByClassName("adresse-lat");
+var names = document.getElementsByClassName("hidden-name");
 
 var vectorMarkers = new ol.source.Vector({});
 
 for(var i=0; i < longs.length; i++)
 	{var featureMarker = new ol.Feature({
   	geometry: new ol.geom.Point(ol.proj.fromLonLat([longs[i].textContent, lats[i].textContent])),
-  	name: "Chez moi",
+  	name: names[i].textContent,
   	  });
 	
     vectorMarkers.addFeature(featureMarker);
@@ -49,20 +50,73 @@ var vectorMarkersLayer = new ol.layer.Vector({
         return style;
       }
 	});
+	
+
+/**
+ * Elements that make up the popup.
+ */
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+const overlay = new ol.Overlay({
+  element: container,
+  autoPan: true,
+  autoPanAnimation: {
+    duration: 250,
+  },
+});
+
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function () {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
+
 
 const map = new ol.Map({
     target: 'map',
+	
     layers: [
     new ol.layer.Tile({
     	source: new ol.source.OSM(),
     	})    
 	],
+	overlays: [overlay],
     view: new ol.View({
       	center: ol.proj.fromLonLat([5.0414701, 47.3215806]),
       	zoom: 8
       	})
     });
     	
+
+/**
+ * Add a click handler to the map to render the popup.
+ */
+map.on('singleclick', function(evt) {
+  var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    return feature.get('name');
+  })
+  if (name) {
+    container.style.display = "block";
+    var coordinate = evt.coordinate;
+    content.innerHTML = name;
+    overlay.setPosition(coordinate);
+  } else {
+    container.style.display = "none";
+  }
+});
+map.on('pointermove', function(evt) {
+  map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
+});
+
 
 map.addLayer(vectorMarkersLayer);
     	
