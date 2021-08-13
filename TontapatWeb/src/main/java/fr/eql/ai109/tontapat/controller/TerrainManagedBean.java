@@ -75,6 +75,7 @@ public class TerrainManagedBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		terrains = ShowAllbyCurrentUser();
+		//terrainTypeVegetations = showAllThisTerrain ();
 	}
 
 	public String mesTerrains() {
@@ -97,9 +98,13 @@ public class TerrainManagedBean implements Serializable {
 		return terrainIBusiness.findById(id);
 	}
 	
-	//public List<TerrainTypeVegetation> showAllThisTerrain () {
-	//	return terrainTypeVegetationIBusiness.findAllThisTerrain(terrain);
-	//}
+	public List<TerrainTypeVegetation> showAllThisTerrain (Terrain terrain) {
+		terrainTypeVegetations = terrainTypeVegetationIBusiness.findAllThisTerrain(terrain);
+		System.out.println(terrainTypeVegetations.get(0).getTerrain());
+		System.out.println(terrainTypeVegetations.get(0).getTypeVegetation());
+		System.out.println(terrainTypeVegetations.get(0).getPourcentage());
+		return terrainTypeVegetations;
+	}
 
 	public void addNew () {
 		

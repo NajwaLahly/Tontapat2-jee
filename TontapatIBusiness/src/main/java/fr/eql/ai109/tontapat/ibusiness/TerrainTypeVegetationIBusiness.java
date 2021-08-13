@@ -8,6 +8,6 @@ import fr.eql.ai109.tontapat.entity.TerrainTypeVegetation;
 public interface TerrainTypeVegetationIBusiness {
 	
 	TerrainTypeVegetation addNewTerrainTypeVegetation (TerrainTypeVegetation terrainTypeVegetation);
-//	List<TerrainTypeVegetation> findAllThisTerrain(Terrain terrain);
+	List<TerrainTypeVegetation> findAllThisTerrain(Terrain terrain);
 
 }
