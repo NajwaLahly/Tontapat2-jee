@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 
 import fr.eql.ai109.tontapat.entity.Offre;
+import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
@@ -26,8 +27,8 @@ public class PrestationManagedBean  implements Serializable {
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
 
-	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin) {
-		prestationIBusiness.createPrestationOffer(offre,idTerrain,debut, fin);
+	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin,OffreDTO prix) {
+		prestationIBusiness.createPrestationOffer(offre,idTerrain,debut, fin, prix.getPrixTotal());
 		return "/reservation/template_recapitulatif.xhtml";
 
 	}

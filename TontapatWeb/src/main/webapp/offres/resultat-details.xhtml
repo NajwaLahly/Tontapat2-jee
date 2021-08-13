@@ -79,7 +79,7 @@
 					</div>
 					<div class="btn-reservation">
 						<div>
-							<b:button onclick="" value="Réserver" styleClass="btn-success" />
+							<b:button onclick="$('.formReservation').modal('show')" value="Réserver" styleClass="btn-success" />
 						</div>
 						<div>
 							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
@@ -87,6 +87,8 @@
 					</div>
 				</div>
 			</div>
+						<ui:include src="/reservation/formulaireReservation.xhtml" />
+			
 		</div>
 
 	</ui:define>
