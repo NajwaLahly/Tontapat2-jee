@@ -68,18 +68,31 @@
 				<div class="tarif-reservation">
 					<div class="offre-details-tarif details-box">
 						<h3>Tarification</h3>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Prix au km</div>
+							<div class="prix-element">#{offre.prixKm} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Prix bête/jour</div>
+							<div class="prix-element">#{offre.prixBeteJour} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Coef d'installation</div>
+							<div class="prix-element">#{offre.prixInstallation}</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Coef d'intervention</div>
+							<div class="prix-element">#{offre.prixKm}</div>
+						</div>				
 
-						Prix au km : #{offre.prixKm} € <br /> Prix bête/jour :
-						#{offre.prixBeteJour} € <br /> Coef d'installation :
-						#{offre.prixInstallation} € <br /> Coef d'intervention :
-						#{offre.prixIntervention} € <br />
 					</div>
 					<div class="btn-reservation">
 						<div>
 							<b:button onclick="" value="Réserver" styleClass="btn-success" />
 						</div>
 						<div>
-							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
+							<b:button onclick="" value="Contacter l'éleveur"
+								styleClass="btn-contact" />
 						</div>
 					</div>
 				</div>

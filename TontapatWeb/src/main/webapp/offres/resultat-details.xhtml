@@ -68,14 +68,30 @@
 				<div class="tarif-reservation">
 					<div class="offre-details-tarif details-box">
 						<h3>Tarification</h3>
-
-						Frais d'installation : #{offreDTO.fraisInstallation} € <br />
-						Frais d'intervention : #{offreDTO.fraisIntervention} € <br />
-						Frais de bétail : #{offreDTO.fraisBetail} € <br />
-						Frais de service : #{offreDTO.fraisService} € <br />
-						TVA (20%) : #{offreDTO.TVA} € <br />
-						<h5>Prix total</h5> : #{offreDTO.prixTotal} € <br />
-						
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'installation</div>
+							<div class="prix-element">#{offreDTO.fraisInstallation} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'intervention</div>
+							<div class="prix-element">#{offreDTO.fraisIntervention} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de bétail</div>
+							<div class="prix-element">#{offreDTO.fraisBetail} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de service</div>
+							<div class="prix-element">#{offreDTO.fraisService} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">TVA (20%)</div>
+							<div class="prix-element">#{offreDTO.TVA} €</div>
+						</div>	
+						<div class="tarif-element">
+							<div class="titre-tarif-elem prix-total"><br/>Prix total</div>
+							<div class="prix-element prix-total"><br/>#{offreDTO.prixTotal} €</div>
+						</div>								
 					</div>
 					<div class="btn-reservation">
 						<div>
