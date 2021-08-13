@@ -31,15 +31,25 @@ public class Prestation implements Serializable {
 	@Column(name = "date_validation")
 	private Date dateValidation;
 	@Column(name = "num_reservation")
-	private int numReservation;
+	private String numReservation;
 	@Column(name = "date_refus")
 	private Date dateRefus;
 	@Column(name = "date_annulation")
 	private Date dateAnnulation;
 	@Column(name = "description_annulation")
 	private String descriptionAnnulation;
-	@Column(name = "prix_convenu")
-	private float prixConvenu;
+	@Column(name = "frais_installation")
+	private float fraisInstallation;
+	@Column(name = "frais_intervention")
+	private float fraisIntervention;
+	@Column(name = "frais_betail")
+	private float fraisBetail;
+	@Column(name = "frais_service")
+	private float fraisService;
+	@Column(name = "tva")
+	private float TVA;
+	@Column(name = "prix_total")
+	private float prixTotal;
 	@Column(name = "date_debut")
 	private Date dateDebut;
 	@Column(name = "date_fin")
@@ -98,8 +108,11 @@ public class Prestation implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Prestation(int id, Date dateReservation, Date dateValidation, int numReservation, Date dateRefus,
-			Date dateAnnulation, String descriptionAnnulation, float prixConvenu, Date dateDebut, Date dateFin,
+	
+	
+	public Prestation(int id, Date dateReservation, Date dateValidation, String numReservation, Date dateRefus,
+			Date dateAnnulation, String descriptionAnnulation, float fraisInstallation, float fraisIntervention,
+			float fraisBetail, float fraisService, float tVA, float prixTotal, Date dateDebut, Date dateFin,
 			boolean typeInstallation, Date dateDebutInstallation, Date dateFinInstallation, Date dateApportTroupeau,
 			Date dateRecuperationTroupeau, Date dateDebutDesinstallation, Date dateFinDesinstallation,
 			int frequenceIntervention, Terrain terrain, Troupeau troupeau, Offre offre, Annonce annonce,
@@ -114,7 +127,12 @@ public class Prestation implements Serializable {
 		this.dateRefus = dateRefus;
 		this.dateAnnulation = dateAnnulation;
 		this.descriptionAnnulation = descriptionAnnulation;
-		this.prixConvenu = prixConvenu;
+		this.fraisInstallation = fraisInstallation;
+		this.fraisIntervention = fraisIntervention;
+		this.fraisBetail = fraisBetail;
+		this.fraisService = fraisService;
+		TVA = tVA;
+		this.prixTotal = prixTotal;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.typeInstallation = typeInstallation;
@@ -138,6 +156,8 @@ public class Prestation implements Serializable {
 		this.interventions = interventions;
 		this.evaluations = evaluations;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -163,11 +183,11 @@ public class Prestation implements Serializable {
 		this.dateValidation = dateValidation;
 	}
 
-	public int getNumReservation() {
+	public String getNumReservation() {
 		return numReservation;
 	}
 
-	public void setNumReservation(int numReservation) {
+	public void setNumReservation(String numReservation) {
 		this.numReservation = numReservation;
 	}
 
@@ -195,12 +215,52 @@ public class Prestation implements Serializable {
 		this.descriptionAnnulation = descriptionAnnulation;
 	}
 
-	public float getPrixConvenu() {
-		return prixConvenu;
+	public float getFraisInstallation() {
+		return fraisInstallation;
 	}
 
-	public void setPrixConvenu(float prixConvenu) {
-		this.prixConvenu = prixConvenu;
+	public void setFraisInstallation(float fraisInstallation) {
+		this.fraisInstallation = fraisInstallation;
+	}
+
+	public float getFraisIntervention() {
+		return fraisIntervention;
+	}
+
+	public void setFraisIntervention(float fraisIntervention) {
+		this.fraisIntervention = fraisIntervention;
+	}
+
+	public float getFraisBetail() {
+		return fraisBetail;
+	}
+
+	public void setFraisBetail(float fraisBetail) {
+		this.fraisBetail = fraisBetail;
+	}
+
+	public float getFraisService() {
+		return fraisService;
+	}
+
+	public void setFraisService(float fraisService) {
+		this.fraisService = fraisService;
+	}
+
+	public float getTVA() {
+		return TVA;
+	}
+
+	public void setTVA(float tVA) {
+		TVA = tVA;
+	}
+
+	public float getPrixTotal() {
+		return prixTotal;
+	}
+
+	public void setPrixTotal(float prixTotal) {
+		this.prixTotal = prixTotal;
 	}
 
 	public Date getDateDebut() {
