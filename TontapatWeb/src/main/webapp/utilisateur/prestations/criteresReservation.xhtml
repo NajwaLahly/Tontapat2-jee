@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" />
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
+
+</h:head>
+
+<h:body>
+	<ui:composition>
+
+		<b:modal title="Réserver une prestation"
+			styleClass="formValidationModalClass" closable="true"
+			closeOnEscape="true">
+			<div>
+				<b:form horizontal="true">
+					<b:formGroup>
+						<div class="form-rows">
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>1. Sélectionnez un terrain</h4>
+									<h5>Le terrain pour lequel vous souhaitez réserver une
+										prestation.</h5>
+								</div>
+								<div class="select-menu">
+									<b:selectOneMenu value="#{mbTerrain.showById()}"
+										required="true" id="inpTerrain">
+										<f:selectItems value="#{mbTerrain.terrains}" var="terrain"
+											itemValue="#{terrain.id}" itemLabel="#{terrain.nom}" />
+									</b:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="dates zone">
+								<div class="titre-ss-titre">
+									<h4>2. Sélectionnez les dates de votre prestation</h4>
+								</div>
+								<div class="form-columns">
+									<div class="date-debut">
+										<b:dateTimePicker mode="toggle-icon"
+											value="#{mbOffreSearch.searchDateDebut}" id="inpDateDebut"
+											required="false" label="Date de début">
+											<f:convertDateTime pattern="yyyy-MM-dd"/>
+											</b:dateTimePicker>
+									</div>
+									<div class="date-fin">
+										<b:dateTimePicker mode="toggle-icon"
+											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin" required="true"
+											label="Date de fin" />
+									</div>
+								</div>
+							</div>
+
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>3. Sélectionnez une espèce de bétail</h4>
+									<h5>Une espèce particulière que vous souhaitez voir
+										apparaître dans la prestation.</h5>
+								</div>
+								<div class="select-menu">
+									<b:selectOneMenu value="#{mbOffreSearch.searchIdEspece}"
+										required="false" id="inpEspece">
+										<f:selectItem itemLabel="Toutes les espèces" itemValue="0" />
+										<f:selectItems value="#{mbEspece.especes}" var="espece"
+											itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
+									</b:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>4. Sélectionnez un type d'installation</h4>
+									<h5>Qui est en charge de la mise en place du matériel.</h5>
+								</div>
+								<div class="select-menu">
+									<b:selectOneMenu value="#{mbOffreSearch.searchInstallationAssuree}"
+										required="" id="inpInstallationAssuree">
+										<f:selectItem itemLabel="À la charge de l'éleveur"
+											itemValue="1" />
+										<f:selectItem
+											itemLabel="À la charge du propriétaire de terrain"
+											itemValue="0" />
+									</b:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>5. Sélectionnez une limite de prix</h4>
+									<h5>Le prix maximal que vous êtes prêt(e) à payer pour la
+										prestation.</h5>
+								</div>
+								<div class="prix-slider">
+
+									<b:slider min="0" max="100" step="1" value="25" label="" />
+								</div>
+							</div>
+
+							<div class="btn-suivant">
+								<b:commandButton styleClass="btn-suivant" update="@form"
+									dismiss="modal" value="Trouver des offres" look="success"
+									action="#{mbOffreSearch.showSearchResults()}"
+									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+							</div>
+						</div>
+
+					</b:formGroup>
+				</b:form>
+
+			</div>
+		</b:modal>
+	</ui:composition>
+</h:body>
+</html>
