@@ -2,11 +2,13 @@ package fr.eql.ai109.tontapat.controller;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
@@ -21,14 +23,17 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 
 @ManagedBean(name = "mbPrestation")
-@RequestScoped
+@SessionScoped
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
+	private Utilisateur utilisateurConnecte;
+	
 	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
 	private OffreDTO offreDTO;
-
+	
 
 	public OffreDTO getOffreDTO() {
 		return offreDTO;
@@ -55,5 +60,17 @@ public class PrestationManagedBean  implements Serializable {
 
 	private String addedPrestationPage() {
 		return "/offres/demandeEnvoyee.xhtml?faces-redirection=true";
+	}
+	
+	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
+		this.utilisateurConnecte = utilisateurConnecte;
+	}
+	
+	public List<Prestation> ShowAllbyCurrentUser() {
+		return prestationIBusiness.findAllByCurrentUser(utilisateurConnecte);
+	}
+	
+	public String mesPrestations() {
+		return "/utilisateur/prestations/index.xhtml?faces-redirection=false";
 	}
 }

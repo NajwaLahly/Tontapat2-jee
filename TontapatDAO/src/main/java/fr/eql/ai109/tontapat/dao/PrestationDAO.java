@@ -7,13 +7,14 @@ import java.util.Date;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Terrain;
-
+import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 @Remote(PrestationIDAO.class)
 @Stateless
@@ -79,6 +80,15 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 	@Override
 	public void createPrestationOffer(Offre offre) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur) {
+		List<Prestation> prestations = null;
+		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam");
+		query.setParameter("utilisateurParam", utilisateur);
+		prestations = query.getResultList();
+		return prestations;
 		
 	}
 

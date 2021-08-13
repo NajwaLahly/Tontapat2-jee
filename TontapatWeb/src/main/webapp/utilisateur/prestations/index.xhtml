@@ -13,8 +13,11 @@
 	<ui:define name="content">
 
 		<div class="container">
-
-			<h1>Mes Prestations</h1>
+			<ui:repeat value="#{mbPrestation.ShowAllbyCurrentUser()}" var="prestation">
+				#{prestation.offre.nom}</br>
+				#{prestation.terrain.nom}</br>
+			</ui:repeat>
+			
 
 		</div>
 	</ui:define>
