@@ -54,6 +54,6 @@ public class PrestationManagedBean  implements Serializable {
 	}
 
 	private String addedPrestationPage() {
-		return "offres/demandeEnvoyee.xhtml?faces-redirection=false";
+		return "/offres/demandeEnvoyee.xhtml?faces-redirection=true";
 	}
 }

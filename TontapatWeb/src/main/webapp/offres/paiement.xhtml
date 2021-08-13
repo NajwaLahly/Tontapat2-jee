@@ -36,11 +36,11 @@
 								<div class="btn-suivant">
 									<b:commandButton styleClass="btn-warning" value="Annuler"
 										onclick="$('.paiement').modal('hide')" />
-									<b:commandButton styleClass="btn-success" update="@form"
+									<b:commandButton styleClass="btn-success"
 									dismiss="modal" value="Trouver des offres" look="success"
 									action="#{mbPrestation.createFromOffreDTO()}"
-									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=false';"
-									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " />
+									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true';" />
+<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
 							 
 								</div>
 							</div>
