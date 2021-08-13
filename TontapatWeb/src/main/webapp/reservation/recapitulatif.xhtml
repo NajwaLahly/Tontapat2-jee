@@ -3,8 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
-
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<ui:insert name="head"></ui:insert>
 	<h:outputStylesheet library="css" name="style.css" />
@@ -24,22 +24,45 @@
 
 							</div>
 							<div class="modal-body">
-								<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
-									<h5>Nom de l'offre:#{offre.troupeau.nom}</h5>
-									<h5>Prestataire:#{offre.troupeau.utilisateur.nom}#{offre.troupeau.utilisateur.prenom}</h5>
-									<h5>Date de début:#{offre.dateDebut}</h5>
-									<h5>Date de fin:#{offre.dateFin}</h5>
-									<h5>Lieu de la prestation:#{offre.troupeau.adresseVoie}</h5>
-									<h5>Conditions
-										d'annulation:#{offre.conditionAnnulation.nom}</h5>
-									<p></p>
-									<h5>Frais d'installation:</h5>
-									<h5>Frais d'intervention:</h5>
-									<h5>Frais de bétail:</h5>
-									<h5>Frais de service:</h5>
-									<h5>TVA (20%):</h5>
-									<h5>Prix total:</h5>
-								</ui:repeat>
+
+								<f:metadata>
+									<f:viewParam name="id" value="#{mbOffreSearch.id}" />
+									<c:set var="offreDTO"
+										value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+										scope="request" />
+								</f:metadata>
+								<div class="select-menu">
+									<ul>
+										<li>Nom de l'offre : #{offreDTO.offre.nom}</li>
+										<li>Prestataire :
+											#{offreDTO.offre.troupeau.utilisateur.nom}
+											#{offreDTO.offre.troupeau.utilisateur.prenom}</li>
+										<li>Date de début : <h:outputText
+												value="#{offreDTO.search.dateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</li>
+										<li>Date de fin : <h:outputText
+												value="#{offreDTO.search.dateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText></li>
+										<li>Objet de la prestation :
+											#{offreDTO.search.terrain.nom}</li>
+										<li>Lieu de la prestation :
+											#{offreDTO.search.terrain.adresseVoie}</li>
+										<li>Conditions d'annulation :
+											#{offreDTO.offre.conditionAnnulation.nom}</li>
+										<li>Frais d'installation : #{offreDTO.fraisInstallation}
+											€</li>
+										<li>Frais d'intervention : #{offreDTO.fraisIntervention}
+											€</li>
+										<li>Frais de bétail : #{offreDTO.fraisBetail} €</li>
+										<li>Frais de service (10%) : #{offreDTO.fraisService} €</li>
+										<li>TVA (20%) : #{offreDTO.TVA} €</li>
+										<li><strong>Prix total : #{offreDTO.prixTotal} €</strong></li>
+									</ul>
+								</div>
+
 							</div>
 							<div>
 								<div class="btn-toolbar">
