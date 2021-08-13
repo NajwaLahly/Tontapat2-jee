@@ -13,7 +13,7 @@
 	<ui:define name="content">
 
 		<div class="container">
-			<h1>Toutes les offres</h1>
+			<h1>Toutes les offres (#{mbOffre.ShowAll().size()})</h1>
 			<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
 				<a class="box-link" href="details.xhtml?id=#{offre.id}">
 					<div class="offre-box">
@@ -51,7 +51,7 @@
 									<div class="info">
 										<b:iconAwesome value="fal fa-close" size="lg"
 											styleClass="icon"></b:iconAwesome>
-										Annulation #{offre.conditionAnnulation.nom}
+										Conditions d'annulation #{offre.conditionAnnulation.nom.toLowerCase()}
 									</div>
 								</div>
 								<div class="offre-box-info-body-right">
@@ -62,8 +62,8 @@
 									<div class="info">
 										<h:graphicImage library="images" styleClass="icon"
 											name="/icons/install.png" />
-										#{offre.installationAssuree == true ? "Installation asssurée"
-										: "Installation non assurée"}
+										#{offre.installationAssuree == true ? "Installation assurée"
+										: "Installation non-assurée"}
 									</div>
 									<div class="info">
 										<b:iconAwesome value="fal fa-globe" size="lg"

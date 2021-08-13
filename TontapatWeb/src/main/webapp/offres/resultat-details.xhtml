@@ -26,11 +26,11 @@
 						<h3>Caractéristiques</h3>
 						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
 						Prestation du
-						<h:outputText value="#{offreDTO.dateApportTroupeau}">
+						<h:outputText value="#{offreDTO.search.dateDebut}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 						au
-						<h:outputText value="#{offreDTO.dateRetraitTroupeau}">
+						<h:outputText value="#{offreDTO.search.dateFin}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 						<br />
@@ -73,13 +73,13 @@
 						Frais d'intervention : #{offreDTO.fraisIntervention} € <br />
 						Frais de bétail : #{offreDTO.fraisBetail} € <br />
 						Frais de service : #{offreDTO.fraisService} € <br />
-						TVA (20%) : #{offreDTO.fraisService} € <br />
+						TVA (20%) : #{offreDTO.TVA} € <br />
 						<h5>Prix total</h5> : #{offreDTO.prixTotal} € <br />
 						
 					</div>
 					<div class="btn-reservation">
 						<div>
-							<b:button onclick="" value="Réserver" styleClass="btn-success" />
+							<ui:include src="recapitulatif.xhtml" />
 						</div>
 						<div>
 							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
