@@ -88,15 +88,15 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 //		long duree = TimeUnit.DAYS.convert(dureeEnMillisecondes, TimeUnit.MILLISECONDS);
 		int duree = 15;
 		
-		int nombreBetes = (int) (offreDTO.getSearch().getTerrain().getSuperficie() / (duree * 10));
+		int nombreBetes = (int) (offreDTO.getSearch().getTerrain().getSuperficie() * 10000 / (duree * 10));
 
-		float fraisInstallation = prixKm * prixInstallation * distance * 2;
-		float fraisBetail = prixBeteJour * nombreBetes * duree;
-		float fraisIntervention = duree / offreDTO.getOffre().getFrequenceIntervention() * prixIntervention;
-		float fraisTotaux = fraisInstallation + fraisBetail + fraisIntervention;
-		float fraisService = (float) (fraisTotaux * 0.1);
-		float TVA = (float) ((fraisTotaux + fraisService) * 0.2);
-		float prixTotal = fraisTotaux + fraisService + TVA;
+		float fraisInstallation = Math.round((prixKm * prixInstallation * distance) * 2 * 100) / 100;
+		float fraisBetail = Math.round((prixBeteJour * nombreBetes * duree) * 100) / 100;
+		float fraisIntervention = Math.round((duree / offreDTO.getOffre().getFrequenceIntervention() * prixIntervention) * 100) / 100;
+		float fraisTotaux = Math.round((fraisInstallation + fraisBetail + fraisIntervention) * 100) / 100;
+		float fraisService = (float) Math.round((fraisTotaux * 0.1) * 100) / 100;
+		float TVA = (float) Math.round(((fraisTotaux + fraisService) * 0.2) * 100) / 100;
+		float prixTotal = Math.round((fraisTotaux + fraisService + TVA) * 100) / 100;
 		
 		offreDTO.setFraisBetail(fraisBetail);
 		offreDTO.setFraisInstallation(fraisInstallation);
