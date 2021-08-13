@@ -31,21 +31,37 @@
 										value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
 										scope="request" />
 								</f:metadata>
-								<h5>Nom de l'offre:#{offreDTO.offre.troupeau.nom}</h5>
-								<h5>Prestataire:#{offreDTO.offre.troupeau.utilisateur.nom}#{offre.troupeau.utilisateur.prenom}</h5>
-								<h5>Date de début:#{offreDTO.offre.dateDebut}</h5>
-								<h5>Date de fin:#{offreDTO.offre.dateFin}</h5>
-								<h5>Lieu de la prestation:#{offreDTO.offre.troupeau.adresseVoie}</h5>
-								<h5>Conditions
-									d'annulation:#{offreDTO.offre.conditionAnnulation.nom}</h5>
-
-								<p></p>
-								<h5>Frais d'installation : #{offreDTO.fraisInstallation} € </h5>
-								<h5>Frais d'intervention : #{offreDTO.fraisIntervention} € </h5>
-								<h5>Frais de bétail : #{offreDTO.fraisBetail} € </h5>
-								<h5>Frais de service : #{offreDTO.fraisService} € </h5>
-								<h5>TVA (20%) : #{offreDTO.fraisService} € </h5>
-								<h5>Prix total: #{offreDTO.prixTotal} € </h5><br />
+								<div class="select-menu">
+									<ul>
+										<li>Nom de l'offre : #{offreDTO.offre.nom}</li>
+										<li>Prestataire :
+											#{offreDTO.offre.troupeau.utilisateur.nom}
+											#{offreDTO.offre.troupeau.utilisateur.prenom}</li>
+										<li>Date de début : <h:outputText
+												value="#{offreDTO.search.dateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</li>
+										<li>Date de fin : <h:outputText
+												value="#{offreDTO.search.dateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText></li>
+										<li>Objet de la prestation :
+											#{offreDTO.search.terrain.nom}</li>
+										<li>Lieu de la prestation :
+											#{offreDTO.search.terrain.adresseVoie}</li>
+										<li>Conditions d'annulation :
+											#{offreDTO.offre.conditionAnnulation.nom}</li>
+										<li>Frais d'installation : #{offreDTO.fraisInstallation}
+											€</li>
+										<li>Frais d'intervention : #{offreDTO.fraisIntervention}
+											€</li>
+										<li>Frais de bétail : #{offreDTO.fraisBetail} €</li>
+										<li>Frais de service (10%) : #{offreDTO.fraisService} €</li>
+										<li>TVA (20%) : #{offreDTO.TVA} €</li>
+										<li><strong>Prix total : #{offreDTO.prixTotal} €</strong></li>
+									</ul>
+								</div>
 
 							</div>
 							<div>

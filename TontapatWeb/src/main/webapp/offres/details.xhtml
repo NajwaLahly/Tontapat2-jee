@@ -59,7 +59,7 @@
 						Espèce et race : #{offre.troupeau.race.espece.nom} -
 						#{offre.troupeau.race.nom} <br />
 						<h:graphicImage class="img-in-details" library="images"
-								name="/photos/user/troupeau/#{offre.troupeau.id}-1.jpg" />
+							name="/photos/user/troupeau/#{offre.troupeau.id}-1.jpg" />
 					</div>
 					<div class="offre-evaluations details-box">
 						<h3>Evaluations</h3>
@@ -76,15 +76,17 @@
 					</div>
 					<div class="btn-reservation">
 						<div>
-							<h:commandButton onclick="$('.formReservation').modal('show')" value="Réserver" 
-								styleClass="btn-success"/>
+							<b:button onclick="$('.formReservation').modal('show')"
+								value="Réserver" styleClass="btn-success" />
 						</div>
 						<div>
-							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
+							<b:button onclick="" value="Contacter l'éleveur"
+								styleClass="btn-contact" />
 						</div>
 					</div>
 				</div>
 			</div>
+			<ui:include src="/reservation/formulaireReservation.xhtml" />
 		</div>
 
 	</ui:define>

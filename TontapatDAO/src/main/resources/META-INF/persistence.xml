@@ -50,6 +50,7 @@
   			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/> 
 <!--           <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
  			 <property name="hbm2ddl.auto" value="create"/> 
+
 			<property name="hibernate.dialect"  
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
