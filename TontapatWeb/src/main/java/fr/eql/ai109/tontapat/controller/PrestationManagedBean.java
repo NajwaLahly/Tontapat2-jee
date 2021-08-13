@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import fr.eql.ai109.tontapat.entity.Offre;
+import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 
 
@@ -16,18 +17,48 @@ import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@ManagedProperty(value="#{mbOffre.offre}")
-	private Offre offreReservee; 
+	
+//	@ManagedProperty(value="#{mbOffre.offre}")
+//	private Offre offreReservee; 
+	
+	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
+	private OffreDTO offreDTO;
+	
+//	public Offre getOffreReservee() {
+//		return offreReservee;
+//	}
+//
+//	public void setOffreReservee(Offre offreReservee) {
+//		this.offreReservee = offreReservee;
+//	}
+
+	public OffreDTO getOffreDTO() {
+		return offreDTO;
+	}
+
+	public void setOffreDTO(OffreDTO offreDTO) {
+		this.offreDTO = offreDTO;
+	}
+
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
 
 
-	public String createPrestationOffer() {
-		System.out.println("ok");
-		System.out.println(offreReservee.getDescription());
-		prestationIBusiness.createPrestationOffer(offreReservee);
-		return null; 
+//	public String createPrestationOffer() {
+//		System.out.println("ok");
+//		System.out.println(offreReservee.getDescription());
+//		prestationIBusiness.createPrestationOffer(offreReservee);
+//		return null; 
+//
+//	}
+	
+	public String createFromOffreDTO() {
+		prestationIBusiness.createFromOffreDTO(offreDTO);
+		return addedPrestationPage();
+	}
 
+	private String addedPrestationPage() {
+		return "offres/demandeEnvoyee.xhtml?faces-redirection=false";
 	}
 
 }
