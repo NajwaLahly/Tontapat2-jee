@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import fr.eql.ai109.tontapat.entity.TerrainMorphologie;
 import fr.eql.ai109.tontapat.idao.TerrainMorphologieIDAO;
 
-
 @Remote(TerrainMorphologieIDAO.class)
 @Stateless
 public class TerrainMorphologieDAO extends GenericDAO<TerrainMorphologie> implements TerrainMorphologieIDAO {

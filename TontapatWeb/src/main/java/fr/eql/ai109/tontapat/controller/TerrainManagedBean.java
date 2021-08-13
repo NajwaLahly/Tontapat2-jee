@@ -14,9 +14,11 @@ import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.TerrainMorphologie;
+import fr.eql.ai109.tontapat.entity.TerrainTypeVegetation;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 import fr.eql.ai109.tontapat.ibusiness.TerrainMorphologieIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.TerrainTypeVegetationIBusiness;
 
 @ManagedBean(name = "mbTerrain")
 @SessionScoped
@@ -29,12 +31,18 @@ public class TerrainManagedBean implements Serializable {
 	
 	@EJB
 	private TerrainMorphologieIBusiness terrainMorphologieIBusiness;
+	
+	@EJB
+	private TerrainTypeVegetationIBusiness terrainTypeVegetationIBusiness;
 
 	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
 	private Utilisateur utilisateurConnecte;
 
 	@ManagedProperty(value = "#{mbMorphologie}")
 	private MorphologieManagedBean mbMorphologie;
+	
+	@ManagedProperty(value = "#{mbTypeVegetation}")
+	private TypeVegetationManagedBean mbTypeVegetation;
 	
 	private int terrainId;
 	private Terrain terrain;
@@ -46,51 +54,20 @@ public class TerrainManagedBean implements Serializable {
 	private Date dateAjout;
 	
 	private int searchIdMorphologie;
-	
 	private TerrainMorphologie terrainMorphologie;
 	private float pourcentageId1;
 	private float pourcentageId2;
 	private float pourcentageId3;
 	private float pourcentageId4;
-	public TerrainMorphologieIBusiness getTerrainMorphologieIBusiness() {
-		return terrainMorphologieIBusiness;
-	}
-
-	public void setTerrainMorphologieIBusiness(TerrainMorphologieIBusiness terrainMorphologieIBusiness) {
-		this.terrainMorphologieIBusiness = terrainMorphologieIBusiness;
-	}
-
-	public float getPourcentageId2() {
-		return pourcentageId2;
-	}
-
-	public void setPourcentageId2(float pourcentageId2) {
-		this.pourcentageId2 = pourcentageId2;
-	}
-
-	public float getPourcentageId3() {
-		return pourcentageId3;
-	}
-
-	public void setPourcentageId3(float pourcentageId3) {
-		this.pourcentageId3 = pourcentageId3;
-	}
-
-	public float getPourcentageId4() {
-		return pourcentageId4;
-	}
-
-	public void setPourcentageId4(float pourcentageId4) {
-		this.pourcentageId4 = pourcentageId4;
-	}
-
-	public Terrain getTerrainNew() {
-		return terrainNew;
-	}
-
-	public void setTerrainNew(Terrain terrainNew) {
-		this.terrainNew = terrainNew;
-	}
+	
+	private int searchIdTypeVegetation;
+	private TerrainTypeVegetation terrainTypeVegetation;
+	private float pourcentageTypeVegetationId1;
+	private float pourcentageTypeVegetationId2;
+	private float pourcentageTypeVegetationId3;
+	private float pourcentageTypeVegetationId4;
+	private List<TerrainTypeVegetation> terrainTypeVegetations;
+	
 
 	private Terrain terrainNew;
 	
@@ -119,6 +96,10 @@ public class TerrainManagedBean implements Serializable {
 	public Terrain showById(int id) {
 		return terrainIBusiness.findById(id);
 	}
+	
+	//public List<TerrainTypeVegetation> showAllThisTerrain () {
+	//	return terrainTypeVegetationIBusiness.findAllThisTerrain(terrain);
+	//}
 
 	public void addNew () {
 		
@@ -153,6 +134,29 @@ public class TerrainManagedBean implements Serializable {
 		terrainMophologieNew.setMorphologie(mbMorphologie.showAll().get(3));
 		terrainMophologieNew.setPourcentage(pourcentageId4);
 		terrainMorphologieIBusiness.addNewTerrainMorphologie(terrainMophologieNew);
+		
+		
+		TerrainTypeVegetation terrainTypeVegetationNew = new TerrainTypeVegetation ();
+		terrainTypeVegetationNew.setTerrain(terrainNew);
+		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(0));
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId1);
+		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+		
+		terrainTypeVegetationNew.setTerrain(terrainNew);
+		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(1));
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId2);
+		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+		
+		terrainTypeVegetationNew.setTerrain(terrainNew);
+		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(2));
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId2);
+		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+		
+		terrainTypeVegetationNew.setTerrain(terrainNew);
+		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(3));
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId3);
+		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+	
 	}
 	
 	
@@ -270,6 +274,110 @@ public class TerrainManagedBean implements Serializable {
 
 	public void setPourcentageId1(float pourcentageId1) {
 		this.pourcentageId1 = pourcentageId1;
+	}
+	
+	public TerrainMorphologieIBusiness getTerrainMorphologieIBusiness() {
+		return terrainMorphologieIBusiness;
+	}
+
+	public void setTerrainMorphologieIBusiness(TerrainMorphologieIBusiness terrainMorphologieIBusiness) {
+		this.terrainMorphologieIBusiness = terrainMorphologieIBusiness;
+	}
+
+	public float getPourcentageId2() {
+		return pourcentageId2;
+	}
+
+	public void setPourcentageId2(float pourcentageId2) {
+		this.pourcentageId2 = pourcentageId2;
+	}
+
+	public float getPourcentageId3() {
+		return pourcentageId3;
+	}
+
+	public void setPourcentageId3(float pourcentageId3) {
+		this.pourcentageId3 = pourcentageId3;
+	}
+
+	public float getPourcentageId4() {
+		return pourcentageId4;
+	}
+
+	public void setPourcentageId4(float pourcentageId4) {
+		this.pourcentageId4 = pourcentageId4;
+	}
+
+	public Terrain getTerrainNew() {
+		return terrainNew;
+	}
+
+	public void setTerrainNew(Terrain terrainNew) {
+		this.terrainNew = terrainNew;
+	}
+
+	public TerrainTypeVegetationIBusiness getTerrainTypeVegetationIBusiness() {
+		return terrainTypeVegetationIBusiness;
+	}
+
+	public void setTerrainTypeVegetationIBusiness(TerrainTypeVegetationIBusiness terrainTypeVegetationIBusiness) {
+		this.terrainTypeVegetationIBusiness = terrainTypeVegetationIBusiness;
+	}
+
+	public TypeVegetationManagedBean getMbTypeVegetation() {
+		return mbTypeVegetation;
+	}
+
+	public void setMbTypeVegetation(TypeVegetationManagedBean mbTypeVegetation) {
+		this.mbTypeVegetation = mbTypeVegetation;
+	}
+
+	public int getSearchIdTypeVegetation() {
+		return searchIdTypeVegetation;
+	}
+
+	public void setSearchIdTypeVegetation(int searchIdTypeVegetation) {
+		this.searchIdTypeVegetation = searchIdTypeVegetation;
+	}
+
+	public TerrainTypeVegetation getTerrainTypeVegetation() {
+		return terrainTypeVegetation;
+	}
+
+	public void setTerrainTypeVegetation(TerrainTypeVegetation terrainTypeVegetation) {
+		this.terrainTypeVegetation = terrainTypeVegetation;
+	}
+
+	public float getPourcentageTypeVegetationId1() {
+		return pourcentageTypeVegetationId1;
+	}
+
+	public void setPourcentageTypeVegetationId1(float pourcentageTypeVegetationId1) {
+		this.pourcentageTypeVegetationId1 = pourcentageTypeVegetationId1;
+	}
+
+	public float getPourcentageTypeVegetationId2() {
+		return pourcentageTypeVegetationId2;
+	}
+
+	public void setPourcentageTypeVegetationId2(float pourcentageTypeVegetationId2) {
+		this.pourcentageTypeVegetationId2 = pourcentageTypeVegetationId2;
+	}
+
+	public float getPourcentageTypeVegetationId3() {
+		return pourcentageTypeVegetationId3;
+	}
+
+	public void setPourcentageTypeVegetationId3(float pourcentageTypeVegetationId3) {
+		this.pourcentageTypeVegetationId3 = pourcentageTypeVegetationId3;
+	}
+
+	public float getPourcentageTypeVegetationId4() {
+		return pourcentageTypeVegetationId4;
+	}
+
+	public void setPourcentageTypeVegetationId4(float pourcentageTypeVegetationId4) {
+		this.pourcentageTypeVegetationId4 = pourcentageTypeVegetationId4;
 	}
 
 

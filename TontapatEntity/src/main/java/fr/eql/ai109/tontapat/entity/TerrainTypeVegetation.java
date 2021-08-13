@@ -11,14 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "terrain_morphologie")
-public class TerrainMorphologie implements Serializable {
+@Table(name = "terrain_type_vegetation")
+public class TerrainTypeVegetation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_terrain_morph", nullable = false)
+	@Column(name = "id_terrain_type_vege", nullable = false)
 	private int id;
 	
 	@ManyToOne
@@ -26,21 +26,21 @@ public class TerrainMorphologie implements Serializable {
 	private Terrain terrain;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_morphologie")
-	private Morphologie morphologie;
+	@JoinColumn(name = "id_type_vegetation")
+	private TypeVegetation typeVegetation;
 	
 	@Column(name = "pourcentage")
 	private float pourcentage;
 
-	public TerrainMorphologie() {
+	public TerrainTypeVegetation() {
 		super();
 	}
 
-	public TerrainMorphologie(int id, Terrain terrain, Morphologie morphologie, float pourcentage) {
+	public TerrainTypeVegetation(int id, Terrain terrain, TypeVegetation typeVegetation, float pourcentage) {
 		super();
 		this.id = id;
 		this.terrain = terrain;
-		this.morphologie = morphologie;
+		this.typeVegetation = typeVegetation;
 		this.pourcentage = pourcentage;
 	}
 
@@ -60,12 +60,12 @@ public class TerrainMorphologie implements Serializable {
 		this.terrain = terrain;
 	}
 
-	public Morphologie getMorphologie() {
-		return morphologie;
+	public TypeVegetation getTypeVegetation() {
+		return typeVegetation;
 	}
 
-	public void setMorphologie(Morphologie morphologie) {
-		this.morphologie = morphologie;
+	public void setTypeVegetation(TypeVegetation typeVegetation) {
+		this.typeVegetation = typeVegetation;
 	}
 
 	public float getPourcentage() {
@@ -75,6 +75,9 @@ public class TerrainMorphologie implements Serializable {
 	public void setPourcentage(float pourcentage) {
 		this.pourcentage = pourcentage;
 	}
+
+	
 	
 	
 }
+	
