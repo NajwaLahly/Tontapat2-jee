@@ -9,11 +9,9 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><ui:insert name="title"></ui:insert> - Tontapat</title>
 	<h:outputStylesheet library="css" name="style.css" />
-	<ui:insert name="js-head"></ui:insert>
 </h:head>
 
 <h:body>
-	<ui:include src="offres/recherche.xhtml" />
 	<b:navBar>
 		<div class="container">
 			<h:link class="navbar-brand">
@@ -34,7 +32,9 @@
 				</div>
 			</div>
 			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
-			
+			<b:navbarLinks pull="right">
+				<b:navLink value="" href="#"></b:navLink>
+			</b:navbarLinks>
 			<b:navbarLinks pull="right" styleClass="hidden-xs">
 				<b:navLink href="#">
 					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
@@ -94,7 +94,7 @@
 	<!-- 	<div class="container"> -->
 	<!-- 		<h1>My Website</h1> -->
 
-<!-- 			<ui:include src="/utilisateur/offres/editer.xhtml" /> -->
+	 		<ui:include src="recapitulatif.xhtml" />
 
 	<!-- 		<h1>Mes Annonces</h1> -->
 	<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->

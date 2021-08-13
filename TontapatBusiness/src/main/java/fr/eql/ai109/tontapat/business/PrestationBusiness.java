@@ -1,5 +1,8 @@
 package fr.eql.ai109.tontapat.business;
 
+
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -18,13 +21,12 @@ public class PrestationBusiness implements PrestationIBusiness {
 	private PrestationIDAO prestationIDAO;
 
 	@Override
-	public void createPrestationOffer(Offre offre) {
-		prestationIDAO.createPrestationOffer(offre);
+	public void createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin, float prix) {
+		prestationIDAO.createPrestationOffer(offre,idTerrain,debut, fin, prix);	
 	}
 
 	@Override
 	public Prestation createFromOffreDTO(OffreDTO offreDTO) {
 		return prestationIDAO.createFromOffreDTO(offreDTO);
 	}
-
 }

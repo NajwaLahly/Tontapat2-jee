@@ -1,6 +1,7 @@
 package fr.eql.ai109.tontapat.controller;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -12,25 +13,22 @@ import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 
 
+import fr.eql.ai109.tontapat.entity.Offre;
+import fr.eql.ai109.tontapat.entity.OffreDTO;
+import fr.eql.ai109.tontapat.entity.Prestation;
+import fr.eql.ai109.tontapat.entity.Terrain;
+import fr.eql.ai109.tontapat.entity.Utilisateur;
+import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
+
 @ManagedBean(name = "mbPrestation")
 @RequestScoped
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-//	@ManagedProperty(value="#{mbOffre.offre}")
-//	private Offre offreReservee; 
-	
 	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
 	private OffreDTO offreDTO;
-	
-//	public Offre getOffreReservee() {
-//		return offreReservee;
-//	}
-//
-//	public void setOffreReservee(Offre offreReservee) {
-//		this.offreReservee = offreReservee;
-//	}
+
 
 	public OffreDTO getOffreDTO() {
 		return offreDTO;
@@ -44,13 +42,11 @@ public class PrestationManagedBean  implements Serializable {
 	private PrestationIBusiness prestationIBusiness;
 
 
-//	public String createPrestationOffer() {
-//		System.out.println("ok");
-//		System.out.println(offreReservee.getDescription());
-//		prestationIBusiness.createPrestationOffer(offreReservee);
-//		return null; 
-//
-//	}
+	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin,OffreDTO prix) {
+		prestationIBusiness.createPrestationOffer(offre,idTerrain,debut, fin, prix.getPrixTotal());
+		return "/reservation/template_recapitulatif.xhtml";
+
+	}
 	
 	public String createFromOffreDTO() {
 		prestationIBusiness.createFromOffreDTO(offreDTO);
@@ -60,5 +56,4 @@ public class PrestationManagedBean  implements Serializable {
 	private String addedPrestationPage() {
 		return "offres/demandeEnvoyee.xhtml?faces-redirection=false";
 	}
-
 }
