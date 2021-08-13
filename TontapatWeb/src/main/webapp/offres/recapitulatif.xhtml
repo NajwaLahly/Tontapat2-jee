@@ -27,56 +27,47 @@
 			styleClass="recapitulatif-offreDTO" closable="true"
 			closeOnEscape="true">
 			<div>
-				<b:form horizontal="true">
-					<b:formGroup>
-						<div class="form-rows">
-							<div class="zone">
-								<div class="select-menu">
-									<ul>
-										<li>Nom de l'offre : #{offreDTO.offre.nom}</li>
-										<li>Prestataire :
-											#{offreDTO.offre.troupeau.utilisateur.nom}
-											#{offreDTO.offre.troupeau.utilisateur.prenom}</li>
-										<li>Date de début : <h:outputText
-												value="#{offreDTO.search.dateDebut}">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</h:outputText>
-										</li>
-										<li>Date de fin : <h:outputText
-												value="#{offreDTO.search.dateFin}">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</h:outputText></li>
-										<li>Objet de la prestation :
-											#{offreDTO.search.terrain.nom}</li>
-										<li>Lieu de la prestation :
-											#{offreDTO.search.terrain.adresseVoie}</li>
-										<li>Conditions d'annulation :
-											#{offreDTO.offre.conditionAnnulation.nom}</li>
-										<li>Frais d'installation : #{offreDTO.fraisInstallation}
-											€</li>
-										<li>Frais d'intervention : #{offreDTO.fraisIntervention}
-											€</li>
-										<li>Frais de bétail : #{offreDTO.fraisBetail} €</li>
-										<li>Frais de service (10%) : #{offreDTO.fraisService} €</li>
-										<li>TVA (20%) : #{offreDTO.TVA} €</li>
-										<li><strong>Prix total : #{offreDTO.prixTotal} €</strong></li>
-									</ul>
-								</div>
-								<div class="btn-suivant">
-									<b:commandButton styleClass="btn-warning" value="Annuler"
-										onclick="$('.recapitulatif-offreDTO').modal('hide')" />
-									<ui:include src="paiement.xhtml" />
-
-									<b:commandButton styleClass="btn-success"
-										 value="Passer au paiement"
-										onclick="$('.paiement').modal('show')" />
-								</div>
-							</div>
+				<div class="form-rows">
+					<div class="zone">
+						<div class="select-menu">
+							<ul>
+								<li>Nom de l'offre : #{offreDTO.offre.nom}</li>
+								<li>Prestataire :
+									#{offreDTO.offre.troupeau.utilisateur.nom}
+									#{offreDTO.offre.troupeau.utilisateur.prenom}</li>
+								<li>Date de début : <h:outputText
+										value="#{offreDTO.search.dateDebut}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</li>
+								<li>Date de fin : <h:outputText
+										value="#{offreDTO.search.dateFin}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText></li>
+								<li>Objet de la prestation : #{offreDTO.search.terrain.nom}</li>
+								<li>Lieu de la prestation :
+									#{offreDTO.search.terrain.adresseVoie}</li>
+								<li>Conditions d'annulation :
+									#{offreDTO.offre.conditionAnnulation.nom}</li>
+								<li>Frais d'installation : #{offreDTO.fraisInstallation} €</li>
+								<li>Frais d'intervention : #{offreDTO.fraisIntervention} €</li>
+								<li>Frais de bétail : #{offreDTO.fraisBetail} €</li>
+								<li>Frais de service (10%) : #{offreDTO.fraisService} €</li>
+								<li>TVA (20%) : #{offreDTO.TVA} €</li>
+								<li><strong>Prix total : #{offreDTO.prixTotal} €</strong></li>
+							</ul>
 						</div>
+						<div class="btn-suivant">
+							<b:button styleClass="btn-warning" value="Annuler"
+								onclick="$('.recapitulatif-offreDTO').modal('hide')" />
 
-					</b:formGroup>
-				</b:form>
+							<ui:include src="paiement.xhtml" />
 
+							<b:button styleClass="btn-success" value="Passer au paiement"
+							onclick="$('.paiement').modal('show')" />
+						</div>
+					</div>
+				</div>
 			</div>
 		</b:modal>
 	</ui:composition>
