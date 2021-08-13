@@ -3,9 +3,18 @@ package fr.eql.ai109.tontapat.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import fr.eql.ai109.tontapat.idao.GenericIDAO;
 
 public abstract class GenericDAO<T> implements GenericIDAO<T> {
@@ -13,17 +22,14 @@ public abstract class GenericDAO<T> implements GenericIDAO<T> {
 	@PersistenceContext(name="myPersistenceUnit")
 	protected EntityManager em;
 
-
 	public T add(T t) {
-		
 		em.persist(t);
+		em.flush();
 		return t;
 	}
 
 	public void delete(T t) {
-
 		em.remove(t);
-
 	}
 
 	public T update(T t) {		
