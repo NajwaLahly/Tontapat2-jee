@@ -3,7 +3,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
@@ -17,7 +19,7 @@
 	<ui:composition>
 		<b:modal title="Réservation" styleClass="formReservation"
 			closable="true" closeOnEscape="true">
-			<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
+			
 				<div>
 					<b:form horizontal="true">
 						<b:formGroup>
@@ -57,40 +59,6 @@
 									</div>
 								</div>
 
-								<div class="zone">
-									<div class="titre-ss-titre">
-										<h4>3. Sélectionnez une espèce de bétail (optionnel)</h4>
-										<h5>Une espèce particulière que vous souhaitez voir
-											apparaître dans la prestation.</h5>
-									</div>
-									<div class="select-menu">
-										<b:selectOneMenu value="#{mbOffreSearch.searchIdEspece}"
-											required="false" id="inpEspece">
-											<f:selectItem itemLabel="Toutes les espèces" itemValue="0" />
-											<f:selectItems value="#{mbEspece.especes}" var="espece"
-												itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
-										</b:selectOneMenu>
-									</div>
-								</div>
-
-								<div class="zone">
-									<div class="titre-ss-titre">
-										<h4>4. Sélectionnez un type d'installation</h4>
-										<h5>Qui serait en charge de la mise en place du matériel.</h5>
-									</div>
-									<div class="select-menu">
-										<b:selectOneMenu
-											value="#{mbOffreSearch.searchInstallationAssuree}"
-											required="" id="inpInstallationAssuree">
-											<f:selectItem itemLabel="À la charge de l'éleveur"
-												itemValue="1" />
-											<f:selectItem
-												itemLabel="À la charge du propriétaire de terrain"
-												itemValue="0" />
-										</b:selectOneMenu>
-									</div>
-								</div>
-
 								<div class="btn-suivant">
 									<div>
 										<h:commandButton onclick=""
@@ -102,7 +70,7 @@
 						</b:formGroup>
 					</b:form>
 				</div>
-			</ui:repeat>
+			
 		</b:modal>
 	</ui:composition>
 </h:body>

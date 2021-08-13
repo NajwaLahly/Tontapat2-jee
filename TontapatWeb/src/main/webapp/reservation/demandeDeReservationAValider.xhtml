@@ -31,15 +31,19 @@
 										value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
 										scope="request" />
 								</f:metadata>
-								<h5>Nom de l'offre:#{offreDTO.offre.troupeau.nom}</h5>
-								<h5>Prestataire:#{offreDTO.offre.troupeau.utilisateur.nom}#{offre.troupeau.utilisateur.prenom}</h5>
+								<h5>Nom de l'offre concernée:#{offreDTO.offre.troupeau.nom}</h5><br />
+								
+								<h5>Nom du propriétaire de terrain: ??? </h5>
+								<h5>Evaluation: ??? </h5><br />
+								
 								<h5>Date de début:#{offreDTO.offre.dateDebut}</h5>
 								<h5>Date de fin:#{offreDTO.offre.dateFin}</h5>
 								<h5>Lieu de la prestation:#{offreDTO.offre.troupeau.adresseVoie}</h5>
+								<h5>photo ??? </h5>
 								<h5>Conditions
-									d'annulation:#{offreDTO.offre.conditionAnnulation.nom}</h5>
+									d'annulation:#{offreDTO.offre.conditionAnnulation.nom}</h5><br />
 
-								<p></p>
+								
 								<h5>Frais d'installation : #{offreDTO.fraisInstallation} € </h5>
 								<h5>Frais d'intervention : #{offreDTO.fraisIntervention} € </h5>
 								<h5>Frais de bétail : #{offreDTO.fraisBetail} € </h5>
