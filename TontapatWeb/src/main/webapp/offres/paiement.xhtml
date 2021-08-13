@@ -12,12 +12,6 @@
 </h:head>
 
 <h:body>
-	<f:metadata>
-		<f:viewParam name="id" value="#{mbOffreSearch.id}" />
-		<c:set var="offreDTO"
-			value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
-			scope="request" />
-	</f:metadata>
 	<ui:composition>
 		<b:modal title="Choix du mode de paiement" styleClass="paiement"
 			closable="true" closeOnEscape="true">
@@ -31,20 +25,23 @@
 									<h5>Votre compte ne sera débité qu'au moment de la
 										validation de la prestation par l'éleveur.</h5>
 								</div>
-								<div class="select-menu">
+								<div class="zone">
 									<h:selectOneRadio value="#{mbUtilisateur.paiement}">
 									<f:selectItem itemValue="cb" itemLabel="Ma carte bancaire (n°#{mbUtilisateur.utilisateur.carteNumero})" />
 									<f:selectItem itemValue="vb" itemLabel="Mon compte bancaire (IBAN n°#{mbUtilisateur.utilisateur.virementIBAN})" />
-									<f:selectItem itemValue="pp" itemLabel="Mon compte PayPal (n°#{mbUtilisateur.utilisateur.paypalEmail})" />
+									<f:selectItem itemValue="pp" itemLabel="Mon compte PayPal (#{mbUtilisateur.utilisateur.paypalEmail})" />
 									
 									</h:selectOneRadio>
 								</div>
 								<div class="btn-suivant">
 									<b:commandButton styleClass="btn-warning" value="Annuler"
-										onclick="$('.recapitulatif-offreDTO').modal('hide')" />
-									<b:commandButton styleClass="btn-suivant" update="@form"
-										dismiss="modal" value="Payer et confirmer la demande" look="success"
-										oncomplete="if(!validationFailed) { $('paiement').modal('hide') } " />
+										onclick="$('.paiement').modal('hide')" />
+									<b:commandButton styleClass="btn-success" update="@form"
+									dismiss="modal" value="Trouver des offres" look="success"
+									action="#{mbPrestation.createFromOffreDTO()}"
+									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=false';"
+									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " />
+							 
 								</div>
 							</div>
 						</div>

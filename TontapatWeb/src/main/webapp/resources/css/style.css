@@ -3,9 +3,11 @@
 --------------------------------------------------*/
 
 /* body infos */
-.body {
+body {
 	background-color: rgb(255, 255, 255) !important;
+	font-family: Roboto Thin !important;
 }
+
 
 /*container of the page*/
 .container {
@@ -22,15 +24,16 @@ a:hover {
 	color: rgb(112, 173, 71);
 }
 
-h4, h1, h3 {
+h4, h3, h2 {
 	font-family: roboto Medium !important;
 	color: black !important;
 }
 
-
 h1 {
     text-align:center !important;
     margin-bottom: 20px !important;
+    font-family: coolvetica !important;
+	color: black !important;
 }
 /* navbar
 --------------------------------------------------
@@ -221,6 +224,7 @@ body .ui-slider.ui-slider-horizontal {
 	min-height: 0;
 	min-width: 0;
 	align-content: center;
+	font-size: smaller;
 	}
 
 .offre-box-info-body-right {
@@ -268,17 +272,19 @@ div.offre-box:hover {
 	display: flex;
 	flex-direction: row;
 	align-items: start;
-	margin: 0px 0px 0px 200px;
+	margin: 0px 100px 0px 150px;
 }
 
 .offre-details-info {
 	display: flex;
 	flex-direction: column;
+	flex: 4;
 }
 
-tarif-reservation {
+.tarif-reservation {
 	display: flex;
 	flex-direction: column;
+	flex: 2;
 }
 
 .details-box {
@@ -313,6 +319,16 @@ tarif-reservation {
 	color: white !important;
 }
 
+.tarif-element {
+	display: flex;
+	flex-direction: row;
+}
+
+.prix-element {
+	flex: 2;
+	text-align: end;
+}
+	
 /* search results 
 --------------------------------------------------
 --------------------------------------------------*/
@@ -415,6 +431,11 @@ div.search-result:hover {
 	border-radius: 50%;
 }
 
-.adresse-long,.hidden-name, .adresse-lat{
+.prix-total {
+    color: black;
+    font-weight: bold;
+}
+
+.adresse-long,.hidden-name, .adresse-lat {
 	display: none !important;
 }
