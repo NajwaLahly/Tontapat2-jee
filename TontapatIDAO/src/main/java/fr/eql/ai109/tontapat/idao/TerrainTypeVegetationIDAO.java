@@ -7,5 +7,5 @@ import fr.eql.ai109.tontapat.entity.TerrainTypeVegetation;
 
 public interface TerrainTypeVegetationIDAO extends GenericIDAO<TerrainTypeVegetation> {
 	TerrainTypeVegetation ajoutNouveauTerrainTypeVegetation (TerrainTypeVegetation terrainTypeVegetation);
-	List<TerrainTypeVegetation> getAllThisTerrain (Terrain terrain);
+	List<TerrainTypeVegetation> getAllTypeVegetationThisTerrain (Terrain terrain);
 }

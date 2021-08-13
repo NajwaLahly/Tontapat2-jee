@@ -4,16 +4,16 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
-		
+
 
 	<ui:define name="title">
 		Mes terrains
 	</ui:define>
-			
-					
+
+
 
 	<ui:define name="content">
-		
+
 		<div class="container">
 			<h1>Mes terrains</h1>
 			<ui:include src="editer.xhtml" />
@@ -54,28 +54,36 @@
 									#{terrain.superficie} ha
 								</div>
 							</div>
-							<div class="offre-box-info-body-right">							
+							<div class="offre-box-info-body-right">
 								<div class="info">
-								<b:iconAwesome value="fa-pagelines" size="lg"
-										styleClass="icon"></b:iconAwesome>		
-								
-									<ui:repeat value="#{mbTerrain.showAllThisTerrain(terrain)}"
+									<b:iconAwesome value="fa-pagelines" size="lg" styleClass="icon"></b:iconAwesome>
+
+									<ui:repeat value="#{mbTerrain.showAllTypeVegetationThisTerrain(terrain)}"
 										var="terrainTypeVegetations">
 										#{terrainTypeVegetations.typeVegetation.nom} 
 										#{terrainTypeVegetations.pourcentage} % /
 									</ui:repeat>
+									<br></br>
+									<b:iconAwesome value="fa-pagelines" size="lg" styleClass="icon"></b:iconAwesome>
+									
+									<ui:repeat
+										value="#{mbTerrain.showAllMorphologieThisTerrain(terrain)}"
+										var="terrainMorphologies">
+										#{terrainMorphologies.morphologie.nom} 
+										#{terrainMorphologies.pourcentage} % /
+									</ui:repeat>
 								</div>
-								
-						</div>
-					</div>
 
-				</div>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</ui:repeat>
-			
+
 		</div>
-		
-		
-		
+
+
+
 	</ui:define>
 </ui:composition>

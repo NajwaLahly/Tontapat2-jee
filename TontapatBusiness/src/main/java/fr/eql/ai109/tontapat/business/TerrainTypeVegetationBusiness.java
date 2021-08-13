@@ -25,7 +25,7 @@ public class TerrainTypeVegetationBusiness implements TerrainTypeVegetationIBusi
 	}
 
 	@Override
-	public List<TerrainTypeVegetation> findAllThisTerrain(Terrain terrain) {
-		return terrainTypeVegetationIDAO.getAllThisTerrain(terrain);
+	public List<TerrainTypeVegetation> findAllTypeVegetationThisTerrain(Terrain terrain) {
+		return terrainTypeVegetationIDAO.getAllTypeVegetationThisTerrain(terrain);
 	}
 }

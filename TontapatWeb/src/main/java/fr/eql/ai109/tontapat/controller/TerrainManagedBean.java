@@ -59,6 +59,7 @@ public class TerrainManagedBean implements Serializable {
 	private float pourcentageId2;
 	private float pourcentageId3;
 	private float pourcentageId4;
+	private List<TerrainMorphologie> terrainMorphologies;
 	
 	private int searchIdTypeVegetation;
 	private TerrainTypeVegetation terrainTypeVegetation;
@@ -66,6 +67,7 @@ public class TerrainManagedBean implements Serializable {
 	private float pourcentageTypeVegetationId2;
 	private float pourcentageTypeVegetationId3;
 	private float pourcentageTypeVegetationId4;
+	private float pourcentageTypeVegetationId5;
 	private List<TerrainTypeVegetation> terrainTypeVegetations;
 	
 
@@ -75,7 +77,6 @@ public class TerrainManagedBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		terrains = ShowAllbyCurrentUser();
-		//terrainTypeVegetations = showAllThisTerrain ();
 	}
 
 	public String mesTerrains() {
@@ -98,13 +99,16 @@ public class TerrainManagedBean implements Serializable {
 		return terrainIBusiness.findById(id);
 	}
 	
-	public List<TerrainTypeVegetation> showAllThisTerrain (Terrain terrain) {
-		terrainTypeVegetations = terrainTypeVegetationIBusiness.findAllThisTerrain(terrain);
-		System.out.println(terrainTypeVegetations.get(0).getTerrain());
-		System.out.println(terrainTypeVegetations.get(0).getTypeVegetation());
-		System.out.println(terrainTypeVegetations.get(0).getPourcentage());
+	public List<TerrainTypeVegetation> showAllTypeVegetationThisTerrain (Terrain terrain) {
+		terrainTypeVegetations = terrainTypeVegetationIBusiness.findAllTypeVegetationThisTerrain(terrain);
 		return terrainTypeVegetations;
 	}
+	
+	public List<TerrainMorphologie> showAllMorphologieThisTerrain (Terrain terrain) {
+		 terrainMorphologies = terrainMorphologieIBusiness.findAllMorphologieThisTerrain(terrain);
+		return  terrainMorphologies;
+	}
+
 
 	public void addNew () {
 		
@@ -154,12 +158,17 @@ public class TerrainManagedBean implements Serializable {
 		
 		terrainTypeVegetationNew.setTerrain(terrainNew);
 		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(2));
-		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId2);
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId3);
 		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
 		
 		terrainTypeVegetationNew.setTerrain(terrainNew);
 		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(3));
-		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId3);
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId4);
+		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+		
+		terrainTypeVegetationNew.setTerrain(terrainNew);
+		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(4));
+		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId5);
 		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
 	
 	}
@@ -383,6 +392,30 @@ public class TerrainManagedBean implements Serializable {
 
 	public void setPourcentageTypeVegetationId4(float pourcentageTypeVegetationId4) {
 		this.pourcentageTypeVegetationId4 = pourcentageTypeVegetationId4;
+	}
+
+	public List<TerrainMorphologie> getTerrainMorphologies() {
+		return terrainMorphologies;
+	}
+
+	public void setTerrainMorphologies(List<TerrainMorphologie> terrainMorphologies) {
+		this.terrainMorphologies = terrainMorphologies;
+	}
+
+	public float getPourcentageTypeVegetationId5() {
+		return pourcentageTypeVegetationId5;
+	}
+
+	public void setPourcentageTypeVegetationId5(float pourcentageTypeVegetationId5) {
+		this.pourcentageTypeVegetationId5 = pourcentageTypeVegetationId5;
+	}
+
+	public List<TerrainTypeVegetation> getTerrainTypeVegetations() {
+		return terrainTypeVegetations;
+	}
+
+	public void setTerrainTypeVegetations(List<TerrainTypeVegetation> terrainTypeVegetations) {
+		this.terrainTypeVegetations = terrainTypeVegetations;
 	}
 
 

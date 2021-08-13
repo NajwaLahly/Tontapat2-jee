@@ -128,18 +128,22 @@ INSERT INTO `espece_type_vegetation` (id_espece, id_type_vegetation) VALUES ('4'
 INSERT INTO `espece_type_vegetation` (id_espece, id_type_vegetation) VALUES ('4','4');
 INSERT INTO `espece_type_vegetation` (id_espece, id_type_vegetation) VALUES ('4','5');
 
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('1','1');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('1','2');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('1','3');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('1','4');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('2','1');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('2','2');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('2','3');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('2','4');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('3','1');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('3','2');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('3','3');
-INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie) VALUES ('3','4');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('1','1','25');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('1','2','25');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('1','3','25');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('1','4','25');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('2','1','50');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('2','2','20');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('2','3','10');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('2','4','20');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('3','1','10');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('3','2','40');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('3','3','40');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('3','4','10');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('4','1','15');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('4','2','35');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('4','3','45');
+INSERT INTO `terrain_morphologie` (id_terrain, id_morphologie, pourcentage) VALUES ('4','4','5');
 
 INSERT INTO `motif_refus_reservation` (nom) VALUES ('Mauvaise note');
 INSERT INTO `motif_refus_reservation` (nom) VALUES ('Terrain/troupeau inadapté');

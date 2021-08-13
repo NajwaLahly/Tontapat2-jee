@@ -21,7 +21,7 @@ public class TerrainTypeVegetationDAO extends GenericDAO<TerrainTypeVegetation> 
 	}
 
 	@Override
-	public List<TerrainTypeVegetation> getAllThisTerrain(Terrain terrain) {
+	public List<TerrainTypeVegetation> getAllTypeVegetationThisTerrain(Terrain terrain) {
 		List<TerrainTypeVegetation> terrainTypeVegetations = null;
 		Query query = em.createQuery("SELECT t FROM TerrainTypeVegetation t WHERE t.terrain=:terrainParam");
 		query.setParameter("terrainParam", terrain);
