@@ -14,13 +14,13 @@ import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 
 @Remote(PrestationIBusiness.class)
 @Stateless
-public class PrestationBusiness implements PrestationIBusiness  {
+public class PrestationBusiness implements PrestationIBusiness {
 
 	@EJB
-	private PrestationIDAO prestationIdao;
+	private PrestationIDAO prestationIDAO;
 
 	@Override
 	public void createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin, float prix) {
-		prestationIdao.createPrestationOffer(offre,idTerrain,debut, fin, prix);		
+		prestationIDAO.createPrestationOffer(offre,idTerrain,debut, fin, prix);	
 	}
 }

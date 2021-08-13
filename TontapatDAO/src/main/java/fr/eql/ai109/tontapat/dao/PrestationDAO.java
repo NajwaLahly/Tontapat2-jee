@@ -9,6 +9,8 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.eql.ai109.tontapat.entity.Offre;
+import fr.eql.ai109.tontapat.entity.OffreDTO;
+import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Terrain;
 
@@ -20,6 +22,42 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 	private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
 	@Override
+	public Prestation createFromOffreDTO(OffreDTO offreDTO) {
+		Offre offre = offreDTO.getOffre();
+		OffreSearch search = offreDTO.getSearch();
+		Prestation prestation = new Prestation();
+		
+		prestation.setTerrain(search.getTerrain());
+		
+		prestation.setDateDebutInstallation(search.getDateDebut());
+		prestation.setDateFinInstallation(search.getDateDebut());
+		prestation.setDateDebutDesinstallation(search.getDateFin());
+		prestation.setDateFinDesinstallation(search.getDateFin());
+		
+		prestation.setDateDebut(search.getDateDebut());
+		prestation.setDateApportTroupeau(search.getDateDebut());
+		prestation.setDateFin(search.getDateFin());
+		prestation.setDateRecuperationTroupeau(search.getDateFin());
+		prestation.setDateReservation(new Date());
+		
+		prestation.setTypeInstallation(offre.isInstallationAssuree());
+		prestation.setFrequenceIntervention(offre.getFrequenceIntervention());
+		prestation.setTroupeau(offre.getTroupeau());
+		prestation.setOffre(offre);
+		
+		prestation.setFraisInstallation(offreDTO.getFraisInstallation());
+		prestation.setFraisIntervention(offreDTO.getFraisIntervention());
+		prestation.setFraisBetail(offreDTO.getFraisBetail());
+		prestation.setFraisService(offreDTO.getFraisService());
+		prestation.setTVA(offreDTO.getTVA());
+		prestation.setPrixTotal(offreDTO.getPrixTotal());
+		
+		prestation = add(prestation);
+		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());
+		prestation = update(prestation);
+		return prestation;
+	}
+	@Override
 	public void createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin, float prix) {
 		Prestation prestation = new Prestation(); 
 		prestation.setOffre(offre);
@@ -30,7 +68,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		Terrain terrain = new Terrain();
 		terrain.setId(idTerrain);
 		prestation.setTerrain(terrain);
-		prestation.setPrixConvenu(prix);
+		prestation.setPrixTotal(prix);
 
 		prestation.setDateDebutInstallation(new Date(debut.getTime() - (MILLIS_IN_A_DAY * 2)));
 		prestation.setDateDebutDesinstallation(new Date(fin.getTime() - (MILLIS_IN_A_DAY * 2)));

@@ -49,7 +49,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		if (offres != null) {
 			List<OffreDTO> offresDTO = new ArrayList<OffreDTO>();
 			System.out.println("RESULTATS : " + offres.size());
-			int i = 1;
+			int i = 0;
 			for (Offre o : offres) {
 				OffreDTO offreDTO = new OffreDTO();
 				offreDTO.setId(i);

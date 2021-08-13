@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import javax.faces.context.FacesContext;
+import fr.eql.ai109.tontapat.entity.Offre;
+import fr.eql.ai109.tontapat.entity.OffreDTO;
+import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 
 
 import fr.eql.ai109.tontapat.entity.Offre;
@@ -23,13 +25,31 @@ import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
+	private OffreDTO offreDTO;
+
+
+	public OffreDTO getOffreDTO() {
+		return offreDTO;
+	}
+
+	public void setOffreDTO(OffreDTO offreDTO) {
+		this.offreDTO = offreDTO;
+	}
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
+
 
 	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin,OffreDTO prix) {
 		prestationIBusiness.createPrestationOffer(offre,idTerrain,debut, fin, prix.getPrixTotal());
 		return "/reservation/template_recapitulatif.xhtml";
 
+	}
+
+
+	private String addedPrestationPage() {
+		return "offres/demandeEnvoyee.xhtml?faces-redirection=false";
 	}
 }
