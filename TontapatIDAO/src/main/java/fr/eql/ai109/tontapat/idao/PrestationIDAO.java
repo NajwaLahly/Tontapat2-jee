@@ -9,14 +9,10 @@ import fr.eql.ai109.tontapat.entity.Prestation;
 
 public interface PrestationIDAO extends GenericIDAO<Prestation> {
 
-<<<<<<< HEAD
 	public void createPrestationOffer(Offre offre);
 
 	public Prestation createFromOffreDTO(OffreDTO offreDTO);
-	 
 
-=======
 	public void createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin, float prix);
->>>>>>> branch 'master' of https://github.com/NajwaLahly/Tontapat2-jee
 
 }
