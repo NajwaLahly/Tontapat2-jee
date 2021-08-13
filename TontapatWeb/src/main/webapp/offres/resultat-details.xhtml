@@ -14,7 +14,8 @@
 
 		<f:metadata>
 			<f:viewParam name="id" value="#{mbOffreSearch.id}" />
-			<c:set var="offreDTO" value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+			<c:set var="offreDTO"
+				value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
 				scope="request" />
 		</f:metadata>
 
@@ -26,20 +27,22 @@
 						<h3>Caractéristiques</h3>
 						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
 						Prestation du
-						<h:outputText value="#{offreDTO.dateApportTroupeau}">
+						<h:outputText value="#{offreDTO.search.dateDebut}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 						au
-						<h:outputText value="#{offreDTO.dateRetraitTroupeau}">
+						<h:outputText value="#{offreDTO.search.dateFin}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 						<br />
 						<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
-						Intervention: tous les #{offreDTO.offre.frequenceIntervention} jours <br />
+						Intervention: tous les #{offreDTO.offre.frequenceIntervention}
+						jours <br />
 						<h:graphicImage library="images" styleClass="icon"
 							name="/icons/install.png" />
-						Prise en charge de l'installation : #{offreDTO.offre.installationAssuree ==
-						true ? "éleveur" : "client"} <br />
+						Prise en charge de l'installation :
+						#{offreDTO.offre.installationAssuree == true ? "éleveur" :
+						"client"} <br />
 						<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
 						Couverture : #{offreDTO.offre.zoneCouverture}km autour de
 						#{offreDTO.offre.troupeau.adresseVoie}
@@ -71,19 +74,21 @@
 
 						Frais d'installation : #{offreDTO.fraisInstallation} € <br />
 						Frais d'intervention : #{offreDTO.fraisIntervention} € <br />
-						Frais de bétail : #{offreDTO.fraisBetail} € <br />
-						Frais de service : #{offreDTO.fraisService} € <br />
-						TVA (20%) : #{offreDTO.fraisService} € <br />
-						<h5>Prix total</h5> : #{offreDTO.prixTotal} € <br />
-						
+						Frais de bétail : #{offreDTO.fraisBetail} € <br /> Frais de
+						service : #{offreDTO.fraisService} € <br /> TVA (20%) :
+						#{offreDTO.TVA} € <br />
+						<h5>Prix total</h5>
+						: #{offreDTO.prixTotal} € <br />
+
 					</div>
 					<div class="btn-reservation">
 						<div>
-							<b:button onclick="$('.formReservation').modal('show')" value="Réserver" 
-								styleClass="btn-success"/>
+							<b:button onclick="$('.formReservation').modal('show')"
+								value="Réserver" styleClass="btn-success" />
 						</div>
 						<div>
-							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
+							<b:button onclick="" value="Contacter l'éleveur"
+								styleClass="btn-contact" />
 						</div>
 					</div>
 				</div>
