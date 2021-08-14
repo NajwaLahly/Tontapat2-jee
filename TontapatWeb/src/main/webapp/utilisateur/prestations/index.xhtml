@@ -14,8 +14,9 @@
 
 		<div class="container">
 			<ui:repeat value="#{mbPrestation.ShowAllbyCurrentUser()}" var="prestation">
-				#{prestation.offre.nom}</br>
-				#{prestation.terrain.nom}</br>
+				----------------------------------------
+				#{prestation.offre.nom}<br/>
+				#{prestation.terrain.nom}<br/>
 			</ui:repeat>
 			
 
