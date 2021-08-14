@@ -16,17 +16,15 @@
 			
 			<h1>Mes prestations</h1>
 				<b:dataTable value="#{mbPrestation.ShowAllbyCurrentUser()}" var="prestation">
-					<b:dataTableColumn value="#{prestation.offre.nom}" label="Offre" />
+					<b:dataTableColumn label="Offre">
+						<h:link styleClass="link-datatable" value="#{prestation.offre.nom}" outcome = "/offres/details.xhtml?id=#{prestation.offre.id}" />
+					</b:dataTableColumn>
 					<b:dataTableColumn value="#{prestation.terrain.nom}" label="Terrain" />			
 					<b:dataTableColumn value="#{prestation.dateDebut}" label="Date de début" />
 					<b:dataTableColumn value="#{prestation.troupeau.utilisateur.nom}" label="Nom du prestataire" />
 					<b:dataTableColumn value="#{prestation.dateValidation == null ? 'en attente' : 'validé'}" label="statut" />
-					<b:dataTableColumn value="#{prestation.prixTotal}" label="Prix total" />			
-					
-					
+					<b:dataTableColumn value="#{prestation.prixTotal}" label="Prix total" />							
 				</b:dataTable>
-			
-
 		</div>
 	</ui:define>
 </ui:composition>

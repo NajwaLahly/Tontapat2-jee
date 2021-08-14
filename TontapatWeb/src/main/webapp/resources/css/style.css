@@ -257,7 +257,7 @@ body .ui-slider.ui-slider-horizontal {
 	height: 20px;
 }
 
-a.box-link {
+a {
 	text-decoration: none !important;
 }
 
@@ -438,4 +438,11 @@ div.search-result:hover {
 
 .adresse-long,.hidden-name, .adresse-lat {
 	display: none !important;
+}
+
+/* table mes prestations
+--------------------------------------------------
+--------------------------------------------------*/
+a.link-datatable {
+	color: black;
 }
