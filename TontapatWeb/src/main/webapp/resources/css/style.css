@@ -98,9 +98,12 @@ h1 {
 --------------------------------------------------*/
 
 div.modal-header > h4 {
-    font-family: coolvetica;
-    font-size: x-large;
-    padding-left: 15rem;
+    font-family: coolvetica !important;
+    font-size: x-large;    
+}
+
+.modal-header {
+	text-align: center;
 }
 
 .zone {
@@ -434,6 +437,7 @@ div.search-result:hover {
 .prix-total {
     color: black;
     font-weight: bold;
+    font-size: larger;
 }
 
 .adresse-long,.hidden-name, .adresse-lat {
@@ -445,4 +449,12 @@ div.search-result:hover {
 --------------------------------------------------*/
 a.link-datatable {
 	color: black;
+}
+
+/* recapitulatif
+--------------------------------------------------
+--------------------------------------------------*/
+.btn-recap {
+	width: 15rem !important;
+	margin-left: 3rem !important;
 }
