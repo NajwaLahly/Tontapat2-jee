@@ -16,4 +16,6 @@ public interface PrestationIBusiness {
 	
 	public List<Prestation> findAllByCurrentUser(Utilisateur utilisateur);
 
+	public Prestation findById(int id);
+
 }

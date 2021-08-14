@@ -38,6 +38,10 @@ public class PrestationBusiness implements PrestationIBusiness {
 		return prestationIDAO.getPrestationsByUtilisateur(utilisateur);
 
 	}
+
+	public Prestation findById(int id) {
+		return prestationIDAO.getById(id);
+	}
 	
 
 }
