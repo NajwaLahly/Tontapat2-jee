@@ -25,23 +25,28 @@
 									<h5>Votre compte ne sera débité qu'au moment de la
 										validation de la prestation par l'éleveur.</h5>
 								</div>
-								<div class="zone">
-									<h:selectOneRadio value="#{mbUtilisateur.paiement}">
-									<f:selectItem itemValue="cb" itemLabel="Ma carte bancaire (n°#{mbUtilisateur.utilisateur.carteNumero})" />
-									<f:selectItem itemValue="vb" itemLabel="Mon compte bancaire (IBAN n°#{mbUtilisateur.utilisateur.virementIBAN})" />
-									<f:selectItem itemValue="pp" itemLabel="Mon compte PayPal (#{mbUtilisateur.utilisateur.paypalEmail})" />
-									
+								
+								<h:panelGrid columns="2">
+									<h:selectOneRadio 
+										styleClass="labelWhite" value="">
+										<f:selectItem itemLabel="" itemValue="" />
+										<f:selectItem itemLabel="" itemValue="" />
 									</h:selectOneRadio>
-								</div>
+									<h:panelGrid columns="1">
+										<h:graphicImage styleClass="img-paiement" library="images" name="/icons/CB.png" />
+										<h:graphicImage styleClass="img-paiement" library="images" name="/icons/VISA.png" />
+									</h:panelGrid>
+								</h:panelGrid>
+								
 								<div class="btn-suivant">
 									<b:commandButton styleClass="btn-warning" value="Annuler"
 										onclick="$('.paiement').modal('hide')" />
-									<b:commandButton styleClass="btn-success"
-									dismiss="modal" value="Trouver des offres" look="success"
-									action="#{mbPrestation.createFromOffreDTO()}"
-									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
-<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
-							 
+									<b:commandButton styleClass="btn-success" dismiss="modal"
+										value="Trouver des offres" look="success"
+										action="#{mbPrestation.createFromOffreDTO()}"
+										onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
+									<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
+
 								</div>
 							</div>
 						</div>
