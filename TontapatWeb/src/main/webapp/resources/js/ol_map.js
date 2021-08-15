@@ -131,10 +131,14 @@ map.on('singleclick', function(evt) {
   var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
     return feature.get('name');
   })
+
   if (name) {
     container.style.display = "block";
     var coordinate = evt.coordinate;
-    content.innerHTML = name;
+	var coordinateLong = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326')[0];
+	var coordinateLat =  ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326')[1]
+	var distance = calculateDistance([coordinateLong, coordinateLat], [longTerrain.textContent, latTerrain.textContent]);
+    content.innerHTML = name + " à " + distance + " Km";
     overlay.setPosition(coordinate);
   } else {
     container.style.display = "none";
@@ -148,9 +152,9 @@ map.on('pointermove', function(evt) {
 map.addLayer(vectorMarkersLayer);
 map.addLayer(vectorMarkersLayerTerrain);
     	
-calculateDistance([2.341110, 48.830620], [2.320160, 48.844970]);
+//calculateDistance([2.341110, 48.830620], [2.320160, 48.844970]);
 function calculateDistance(src , dest ){
 let finalmeasure = ol.sphere.getDistance(src , dest)/1000;
 //let finalmeasure = Math.round(line.getLength() * 100) / 100; //for rounding
-console.log(finalmeasure); //in Km
+return(finalmeasure.toFixed(2)); //in Km
 }
