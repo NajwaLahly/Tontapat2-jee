@@ -76,10 +76,12 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		float prixInstallation = offreDTO.getOffre().getPrixInstallation();
 		float prixIntervention = offreDTO.getOffre().getPrixIntervention();
 		float prixKm = offreDTO.getOffre().getPrixKm();
+		int frequenceIntervention = offreDTO.getOffre().getFrequenceIntervention();
 
 		//double distance = findDistanceBetween(offreDTO.getOffre().getTroupeau(), offreDTO.getSearch().getTerrain());
 		float distance = 55;
-		
+		float superficie = offreDTO.getSearch().getTerrain().getSuperficie() * 10000;
+		float surfaceConsommeeParJour = 10;
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
 //		Date dateFin = sdf.parse(offreDTO.getOffre().getDateFin().toString());
 //		int a = 1;
@@ -88,15 +90,23 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 //		long duree = TimeUnit.DAYS.convert(dureeEnMillisecondes, TimeUnit.MILLISECONDS);
 		int duree = 15;
 		
-		int nombreBetes = (int) (offreDTO.getSearch().getTerrain().getSuperficie() * 10000 / (duree * 10));
+		int nombreBetes = (int) (superficie / (duree * surfaceConsommeeParJour));
 
-		float fraisInstallation = Math.round((prixKm * prixInstallation * distance) * 2 * 100) / 100;
-		float fraisBetail = Math.round((prixBeteJour * nombreBetes * duree) * 100) / 100;
-		float fraisIntervention = Math.round((duree / offreDTO.getOffre().getFrequenceIntervention() * prixIntervention) * 100) / 100;
-		float fraisTotaux = Math.round((fraisInstallation + fraisBetail + fraisIntervention) * 100) / 100;
-		float fraisService = (float) Math.round((fraisTotaux * 0.1) * 100) / 100;
-		float TVA = (float) Math.round(((fraisTotaux + fraisService) * 0.2) * 100) / 100;
-		float prixTotal = Math.round((fraisTotaux + fraisService + TVA) * 100) / 100;
+		float fraisInstallation = (prixKm * prixInstallation * distance * superficie / 100) * 2;
+		float fraisBetail = (prixBeteJour * nombreBetes * duree);
+		float fraisIntervention = (duree / frequenceIntervention * prixIntervention * distance * prixKm * 5);
+		float fraisTotaux = (fraisInstallation + fraisBetail + fraisIntervention);
+		float fraisService = (float) (fraisTotaux * 0.1);
+		float TVA = (float) ((fraisTotaux + fraisService) * 0.2);
+		float prixTotal = (fraisTotaux + fraisService + TVA);
+		
+		fraisInstallation = Math.round(fraisInstallation * 100) / 100;
+		fraisBetail = Math.round(fraisBetail * 100) / 100;
+		fraisIntervention = Math.round(fraisIntervention * 100) / 100;
+		fraisTotaux = Math.round(fraisTotaux * 100) / 100;
+		fraisService = Math.round(fraisService * 100) / 100;
+		TVA = Math.round(TVA * 100) / 100;
+		prixTotal = Math.round(prixTotal * 100) / 100;
 		
 		offreDTO.setFraisBetail(fraisBetail);
 		offreDTO.setFraisInstallation(fraisInstallation);

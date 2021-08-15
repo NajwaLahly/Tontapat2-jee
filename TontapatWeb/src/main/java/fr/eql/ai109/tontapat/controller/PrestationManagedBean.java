@@ -34,14 +34,7 @@ public class PrestationManagedBean  implements Serializable {
 	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
 	private OffreDTO offreDTO;
 	
-
-	public OffreDTO getOffreDTO() {
-		return offreDTO;
-	}
-
-	public void setOffreDTO(OffreDTO offreDTO) {
-		this.offreDTO = offreDTO;
-	}
+	private int id;
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
@@ -62,8 +55,29 @@ public class PrestationManagedBean  implements Serializable {
 		return "/offres/demandeEnvoyee.xhtml?faces-redirection=true";
 	}
 	
+	public Prestation showById(int id) {
+		return prestationIBusiness.findById(id);
+	}
+	
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
+	}
+	
+
+	public OffreDTO getOffreDTO() {
+		return offreDTO;
+	}
+
+	public void setOffreDTO(OffreDTO offreDTO) {
+		this.offreDTO = offreDTO;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public List<Prestation> ShowAllbyCurrentUser() {
