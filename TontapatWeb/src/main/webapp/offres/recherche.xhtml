@@ -47,13 +47,12 @@
 										<b:dateTimePicker mode="toggle-icon"
 											value="#{mbOffreSearch.searchDateDebut}" id="inpDateDebut"
 											required="true" label="Date de début">
-											<f:convertDateTime pattern="yyyy-MM-dd"/>
 											</b:dateTimePicker>
 									</div>
 									<div class="date-fin">
 										<b:dateTimePicker mode="toggle-icon"
-											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin" required="true"
-											label="Date de fin" />
+											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin"
+											required="true" label="Date de fin" />
 									</div>
 								</div>
 							</div>
@@ -107,6 +106,7 @@
 								<b:commandButton styleClass="btn-suivant" update="@form"
 									dismiss="modal" value="Trouver des offres" look="success"
 									action="#{mbOffreSearch.showSearchResults()}"
+									onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
 									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
 						</div>

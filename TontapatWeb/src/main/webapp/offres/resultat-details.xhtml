@@ -1,0 +1,112 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="title">
+		Visualisation d'un résultat détaillé
+	</ui:define>
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbOffreSearch.id}" />
+			<c:set var="offreDTO" value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+				scope="request" />
+		</f:metadata>
+
+		<div class="container">
+			<h1>#{offreDTO.offre.nom}</h1>
+			<div class="offre-details-box">
+				<div class="offre-details-info">
+					<div class="offre-caracteristiques details-box">
+						<h3>Caractéristiques</h3>
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+						Prestation du
+						<h:outputText value="#{offreDTO.search.dateDebut}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						au
+						<h:outputText value="#{offreDTO.search.dateFin}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
+						Intervention: tous les #{offreDTO.offre.frequenceIntervention} jours <br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/install.png" />
+						Prise en charge de l'installation : #{offreDTO.offre.installationAssuree ==
+						true ? "éleveur" : "client"} <br />
+						<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
+						Couverture : #{offreDTO.offre.zoneCouverture}km autour de
+						#{offreDTO.offre.troupeau.adresseVoie}
+						<h3>Description</h3>
+						#{offreDTO.offre.description}
+					</div>
+					<div class="offre-troupeau-infos details-box">
+						<h3>Troupeau: #{offreDTO.offre.troupeau.nom}</h3>
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+						Valable à partir du
+						<h:outputText value="#{offreDTO.offre.troupeau.dateDisponibilite}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/espece/#{offreDTO.offre.troupeau.race.espece.id}.png" />
+						Espèce et race : #{offreDTO.offre.troupeau.race.espece.nom} -
+						#{offreDTO.offre.troupeau.race.nom} <br />
+						<h:graphicImage library="images" class="img-in-details"
+							name="/photos/user/troupeau/#{offreDTO.offre.troupeau.id}-1.jpg" />
+					</div>
+					<div class="offre-evaluations details-box">
+						<h3>Evaluations</h3>
+					</div>
+				</div>
+				<div class="tarif-reservation">
+					<div class="offre-details-tarif details-box">
+						<h3>Tarification</h3>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'installation</div>
+							<div class="prix-element">#{offreDTO.fraisInstallation} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'intervention</div>
+							<div class="prix-element">#{offreDTO.fraisIntervention} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de bétail</div>
+							<div class="prix-element">#{offreDTO.fraisBetail} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de service</div>
+							<div class="prix-element">#{offreDTO.fraisService} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">TVA (20%)</div>
+							<div class="prix-element">#{offreDTO.TVA} €</div>
+						</div>	
+						<div class="tarif-element">
+							<div class="titre-tarif-elem prix-total"><br/>Prix total</div>
+							<div class="prix-element prix-total"><br/>#{offreDTO.prixTotal} €</div>
+						</div>								
+					</div>
+					<div class="btn-reservation">
+						<div>
+							<ui:include src="recapitulatif.xhtml" />
+						</div>
+						<div>
+							<b:button onclick="" value="Contacter l'éleveur" styleClass="btn-contact"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+
+	</ui:define>
+
+</ui:composition>

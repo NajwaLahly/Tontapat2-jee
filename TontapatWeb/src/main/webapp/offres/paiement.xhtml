@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<b:modal title="Choix du mode de paiement" styleClass="paiement"
+			closable="true" closeOnEscape="true">
+			<div>
+				<b:form horizontal="true">
+					<b:formGroup>
+						<div class="form-rows">
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>Sélectionnez un mode de paiement</h4>
+									<h5>Votre compte ne sera débité qu'au moment de la
+										validation de la prestation par l'éleveur.</h5>
+								</div>
+								<div class="zone">
+									<h:selectOneRadio value="#{mbUtilisateur.paiement}">
+									<f:selectItem itemValue="cb" itemLabel="Ma carte bancaire (n°#{mbUtilisateur.utilisateur.carteNumero})" />
+									<f:selectItem itemValue="vb" itemLabel="Mon compte bancaire (IBAN n°#{mbUtilisateur.utilisateur.virementIBAN})" />
+									<f:selectItem itemValue="pp" itemLabel="Mon compte PayPal (#{mbUtilisateur.utilisateur.paypalEmail})" />
+									
+									</h:selectOneRadio>
+								</div>
+								<div class="btn-suivant">
+									<b:commandButton styleClass="btn-warning" value="Annuler"
+										onclick="$('.paiement').modal('hide')" />
+									<b:commandButton styleClass="btn-success"
+									dismiss="modal" value="Trouver des offres" look="success"
+									action="#{mbPrestation.createFromOffreDTO()}"
+									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
+<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
+							 
+								</div>
+							</div>
+						</div>
+
+					</b:formGroup>
+				</b:form>
+
+			</div>
+		</b:modal>
+	</ui:composition>
+</h:body>
+</html>

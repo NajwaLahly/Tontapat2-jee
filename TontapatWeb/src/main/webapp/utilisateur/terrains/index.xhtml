@@ -23,7 +23,7 @@
 					<div class="offre-box-img">
 						<h:link class="">
 							<h:graphicImage class="img-in-box" library="images"
-								name="/photos/user/terrain/1-1.png" />
+								name="/photos/user/terrain/#{terrain.id}-1.png" />
 						</h:link>
 					</div>
 					<div class="offre-box-info">
@@ -56,7 +56,7 @@
 							</div>
 							<div class="offre-box-info-body-right">
 								<div class="info">
-									<b:iconAwesome value="fa-pagelines" size="lg" styleClass="icon"></b:iconAwesome>
+							<b:iconAwesome value="fa-pagelines" size="lg" styleClass="icon"></b:iconAwesome>
 
 									<ui:repeat value="#{mbTerrain.showAllTypeVegetationThisTerrain(terrain)}"
 										var="terrainTypeVegetations">
@@ -71,7 +71,7 @@
 										var="terrainMorphologies">
 										#{terrainMorphologies.morphologie.nom} 
 										#{terrainMorphologies.pourcentage} % /
-									</ui:repeat>
+									</ui:repeat>		
 								</div>
 
 							</div>

@@ -17,13 +17,15 @@
 					<div class="offre-box-img">
 						<h:link class="">
 							<h:graphicImage class="img-in-box" library="images"
-								name="/photos/user/terrain/1-1.png" />
+								name="/photos/user/terrain/#{annonce.terrain.id}-1.png" />
 						</h:link>
 					</div>
 					<div class="offre-box-info">
 						<div class="offre-box-info-header">
 							<h3>#{annonce.nom}</h3>
-							<p>Proposée par #{annonce.terrain.utilisateur.prenom} </p>
+							<h:graphicImage class="profile-img" library="images"
+									name="/photos/user/profile/#{annonce.terrain.utilisateur.id}.png" />							
+							#{annonce.terrain.utilisateur.prenom} 
 						</div>
 
 						<div class="offre-box-info-body">

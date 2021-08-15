@@ -26,11 +26,6 @@ public class TerrainTypeVegetationDAO extends GenericDAO<TerrainTypeVegetation> 
 		Query query = em.createQuery("SELECT t FROM TerrainTypeVegetation t WHERE t.terrain=:terrainParam");
 		query.setParameter("terrainParam", terrain);
 		terrainTypeVegetations = query.getResultList();
-		//System.out.println(utilisateur.getNom());
-		//System.out.println(terrains);
-		System.out.println(terrainTypeVegetations.get(0).getTerrain());
-		System.out.println(terrainTypeVegetations.get(0).getTypeVegetation());
-		System.out.println(terrainTypeVegetations.get(0).getPourcentage());
 		return terrainTypeVegetations;
 	}
 }
