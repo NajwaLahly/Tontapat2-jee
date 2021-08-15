@@ -442,7 +442,7 @@ div.search-result:hover {
     font-size: larger;
 }
 
-.adresse-long,.hidden-name, .adresse-lat {
+#hidden-terrain-long, #hidden-terrain-lat, .adresse-long,.hidden-name, .adresse-lat {
 	display: none !important;
 }
 

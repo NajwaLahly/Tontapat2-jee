@@ -33,6 +33,9 @@
 			<div class="search-results">
 				<h1>Résultats de recherche
 					(#{mbOffreSearch.searchResults.size()})</h1>
+				<div id="hidden-terrain-long"> #{mbOffreSearch.offreSearch.terrain.adresseLong}</div>
+				<div id="hidden-terrain-lat"> #{mbOffreSearch.offreSearch.terrain.adresseLat}</div>
+				
 				<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 					<div class="adresse-long">#{searchResult.offre.troupeau.adresseLong}</div>
 					<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
