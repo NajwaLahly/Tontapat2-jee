@@ -12,6 +12,10 @@
 
 <h:body>
 	<ui:composition>
+	<div class="btn-modal">
+			<b:button onclick="$('.ajout-terrain').modal('show')"
+				value="Ajouter un terrain" styleClass="btn-success" />
+		</div>
 
 		<b:modal title="Ajouter un terrain" styleClass="ajout-terrain"
 			closable="true" closeOnEscape="true">
