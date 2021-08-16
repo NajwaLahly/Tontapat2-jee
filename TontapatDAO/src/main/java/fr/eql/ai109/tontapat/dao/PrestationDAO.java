@@ -86,7 +86,7 @@ public class PrestationDAO extends GenericDAO<Prestation> implements PrestationI
 	@Override
 	public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur) {
 		List<Prestation> prestations = null;
-		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam");
+		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam or p.troupeau.utilisateur=:utilisateurParam");
 		query.setParameter("utilisateurParam", utilisateur);
 		prestations = query.getResultList();
 		return prestations;
