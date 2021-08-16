@@ -89,7 +89,13 @@ public class PrestationManagedBean implements Serializable {
 		prestation = prestationIBusiness.findById(id);
 		return prestation;
 	}
-
+ 
+	public String validate() {
+		System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIID " + id);
+		prestation = prestationIBusiness.findById(id);
+		prestationIBusiness.validate(prestation);
+		return "/utilisateur/prestations/details.xhtml?id=" + prestation.getId();
+	}
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
 	}
