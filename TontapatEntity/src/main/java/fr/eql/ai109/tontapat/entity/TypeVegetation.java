@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +23,8 @@ public class TypeVegetation implements Serializable {
 	private int id;
 	@Column(name = "nom")
 	private String nom;
-	@ManyToMany(mappedBy = "typesVegetation")
-	Set<Terrain> terrains;
+	@OneToMany(mappedBy = "typeVegetation")
+	Set<TerrainTypeVegetation> terrainsTypeVegetation;
 	@ManyToMany(mappedBy = "typesVegetation")
 	Set<Espece> especes;
 	
@@ -32,11 +33,11 @@ public class TypeVegetation implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TypeVegetation(int id, String nom, Set<Terrain> terrains, Set<Espece> especes) {
+	public TypeVegetation(int id, String nom, Set<TerrainTypeVegetation> terrainsTypeVegetation, Set<Espece> especes) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.terrains = terrains;
+		this.terrainsTypeVegetation = terrainsTypeVegetation;
 		this.especes = especes;
 	}
 
@@ -56,12 +57,12 @@ public class TypeVegetation implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Terrain> getTerrains() {
-		return terrains;
+	public Set<TerrainTypeVegetation> getTerrainsTypeVegetation() {
+		return terrainsTypeVegetation;
 	}
 
-	public void setTerrains(Set<Terrain> terrains) {
-		this.terrains = terrains;
+	public void setTerrains(Set<TerrainTypeVegetation> terrainsTypeVegetation) {
+		this.terrainsTypeVegetation = terrainsTypeVegetation;
 	}
 
 	public Set<Espece> getEspeces() {

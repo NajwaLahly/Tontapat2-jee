@@ -31,7 +31,7 @@ public class PrestationBusiness implements PrestationIBusiness {
 	public Prestation createFromOffreDTO(OffreDTO offreDTO) {
 		return prestationIDAO.createFromOffreDTO(offreDTO);
 	}
-	
+
 	@Override
 	public List<Prestation> findAllByCurrentUser(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
@@ -43,8 +43,10 @@ public class PrestationBusiness implements PrestationIBusiness {
 		return prestationIDAO.getById(id);
 	}
 
+
 	@Override
 	public List<Prestation> findAllNotificationsByCurrentUser(Utilisateur utilisateur) { //Ajout Elodie
 		return prestationIDAO.getDemandesReservationByUtilisateur(utilisateur);
 	}
+
 }

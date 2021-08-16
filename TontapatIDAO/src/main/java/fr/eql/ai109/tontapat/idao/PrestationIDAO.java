@@ -17,4 +17,5 @@ public interface PrestationIDAO extends GenericIDAO<Prestation> {
 	public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur);
 	
 	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur); //Ajout Elodie
+
 }

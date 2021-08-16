@@ -111,6 +111,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		prestations = query.getResultList();
 		return prestations;
 	}
+
 	
 //	@Override
 //	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur) { // Ajout Elodie
@@ -152,7 +153,5 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 //		return prestations;
 //
 //	}
-
-
 
 }

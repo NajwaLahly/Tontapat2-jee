@@ -38,6 +38,18 @@ public class Prestation implements Serializable {
 	private Date dateAnnulation;
 	@Column(name = "description_annulation")
 	private String descriptionAnnulation;
+	@Column(name = "nombre_betes")
+	private int nombreBetes;
+	public int getNombreBetes() {
+		return nombreBetes;
+	}
+
+
+
+	public void setNombreBetes(int nombreBetes) {
+		this.nombreBetes = nombreBetes;
+	}
+
 	@Column(name = "frais_installation")
 	private float fraisInstallation;
 	@Column(name = "frais_intervention")

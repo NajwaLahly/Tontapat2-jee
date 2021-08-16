@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
@@ -22,18 +23,17 @@ import fr.eql.ai109.tontapat.entity.Troupeau;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 
 @ManagedBean(name = "mbPrestation")
-@RequestScoped
+@SessionScoped
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
 	private Utilisateur utilisateurConnecte;
-
+	
 	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
 	private OffreDTO offreDTO;
-
-
+	
 	private int id;
 
 	@EJB
@@ -60,6 +60,7 @@ public class PrestationManagedBean  implements Serializable {
 	private String addedPrestationPage() {
 		return "/offres/demandeEnvoyee.xhtml?faces-redirection=true";
 	}
+
 
 	public Prestation showById(int id) {
 		return prestationIBusiness.findById(id);
@@ -148,7 +149,6 @@ public class PrestationManagedBean  implements Serializable {
 		this.utilisateurConnecte = utilisateurConnecte;
 	}
 
-
 	public OffreDTO getOffreDTO() {
 		return offreDTO;
 	}
@@ -165,10 +165,11 @@ public class PrestationManagedBean  implements Serializable {
 		this.id = id;
 	}
 
+	
 	public List<Prestation> ShowAllbyCurrentUser() {
 		return prestationIBusiness.findAllByCurrentUser(utilisateurConnecte);
 	}
-
+	
 	public String mesPrestations() {
 		return "/utilisateur/prestations/index.xhtml?faces-redirection=false";
 	}
@@ -197,7 +198,4 @@ public class PrestationManagedBean  implements Serializable {
 	public Utilisateur getUtilisateurConnecte() {
 		return utilisateurConnecte;
 	}
-
-
-
 }
