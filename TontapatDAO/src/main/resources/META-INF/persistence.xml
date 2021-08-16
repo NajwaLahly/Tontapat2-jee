@@ -26,6 +26,7 @@
 		<class>fr.eql.ai109.tontapat.entity.SeuilTarification</class>
 		<class>fr.eql.ai109.tontapat.entity.Terrain</class>
 		<class>fr.eql.ai109.tontapat.entity.TerrainMorphologie</class>
+		<class>fr.eql.ai109.tontapat.entity.TerrainTypeVegetation</class>
 		<class>fr.eql.ai109.tontapat.entity.Troupeau</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeAbreuvoir</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeAbri</class>
@@ -47,8 +48,10 @@
 			
 			<!-- partie spécifique Hibernate -->
 			<property name="hibernate.show_sql" value="true" />
- 			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/> 
-<!--            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
+
+ 			<!-- <property name="javax.persistence.schema-generation.create-database-schemas" value="true"/>  --> 
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
  			 <property name="hbm2ddl.auto" value="create"/>
 			<property name="hibernate.dialect"  
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
