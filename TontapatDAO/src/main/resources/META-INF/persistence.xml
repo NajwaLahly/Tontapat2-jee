@@ -34,6 +34,7 @@
 		<class>fr.eql.ai109.tontapat.entity.TypeUtilisateur</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeVegetation</class>
 		<class>fr.eql.ai109.tontapat.entity.Utilisateur</class>
+		<class>fr.eql.ai109.tontapat.entity.Notification</class>
 
 		<properties>
 		
@@ -47,8 +48,8 @@
 			
 			<!-- partie spécifique Hibernate -->
 			<property name="hibernate.show_sql" value="true" />
-<!--    			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/> -->
-<!--           <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
+    			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/>
+ <!--          <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>  -->
  			 <property name="hbm2ddl.auto" value="create"/> 
 
 			<property name="hibernate.dialect"  

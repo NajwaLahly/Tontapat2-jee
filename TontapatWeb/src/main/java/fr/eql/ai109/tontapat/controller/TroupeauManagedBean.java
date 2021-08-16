@@ -12,6 +12,7 @@ import fr.eql.ai109.tontapat.entity.Troupeau;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.TroupeauIBusiness;
 
+
 @ManagedBean(name = "mbTroupeau")
 @RequestScoped
 public class TroupeauManagedBean implements Serializable  {
@@ -23,6 +24,11 @@ public class TroupeauManagedBean implements Serializable  {
 	
 	@EJB
 	private TroupeauIBusiness troupeauIBusiness;
+	
+	//Ajout Elodie
+	private Troupeau troupeau;
+	
+	//* Fin Ajout Elodie *
 	
 	//@EJB
 	//private UtilisateurManagedBean utilisateurManganedBean;
@@ -51,6 +57,37 @@ public class TroupeauManagedBean implements Serializable  {
 	
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
+	}
+	
+	// Ajout Elodie : Retourner un utilisateur non connecté à partir d'un troupeau
+	public Utilisateur getUtilisateurByTroupeau() {
+		Utilisateur utilisateurNonConnecte = new Utilisateur();
+		utilisateurNonConnecte = troupeau.getUtilisateur(); //Utiliser le IBusiness pour aller chercher dans le DAO		
+		return utilisateurNonConnecte;
+		
+	}
+
+	
+	//Ajout troupeau
+	
+	public TroupeauIBusiness getTroupeauIBusiness() {
+		return troupeauIBusiness;
+	}
+
+	public void setTroupeauIBusiness(TroupeauIBusiness troupeauIBusiness) {
+		this.troupeauIBusiness = troupeauIBusiness;
+	}
+
+	public Troupeau getTroupeau() {
+		return troupeau;
+	}
+
+	public void setTroupeau(Troupeau troupeau) {
+		this.troupeau = troupeau;
+	}
+
+	public Utilisateur getUtilisateurConnecte() {
+		return utilisateurConnecte;
 	}
 
 }

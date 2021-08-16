@@ -7,13 +7,14 @@ import java.util.Date;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Terrain;
-
+import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 @Remote(PrestationIDAO.class)
 @Stateless
@@ -26,32 +27,32 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		Offre offre = offreDTO.getOffre();
 		OffreSearch search = offreDTO.getSearch();
 		Prestation prestation = new Prestation();
-		
+
 		prestation.setTerrain(search.getTerrain());
-		
+
 		prestation.setDateDebutInstallation(search.getDateDebut());
 		prestation.setDateFinInstallation(search.getDateDebut());
 		prestation.setDateDebutDesinstallation(search.getDateFin());
 		prestation.setDateFinDesinstallation(search.getDateFin());
-		
+
 		prestation.setDateDebut(search.getDateDebut());
 		prestation.setDateApportTroupeau(search.getDateDebut());
 		prestation.setDateFin(search.getDateFin());
 		prestation.setDateRecuperationTroupeau(search.getDateFin());
 		prestation.setDateReservation(new Date());
-		
+
 		prestation.setTypeInstallation(offre.isInstallationAssuree());
 		prestation.setFrequenceIntervention(offre.getFrequenceIntervention());
 		prestation.setTroupeau(offre.getTroupeau());
 		prestation.setOffre(offre);
-		
+
 		prestation.setFraisInstallation(offreDTO.getFraisInstallation());
 		prestation.setFraisIntervention(offreDTO.getFraisIntervention());
 		prestation.setFraisBetail(offreDTO.getFraisBetail());
 		prestation.setFraisService(offreDTO.getFraisService());
 		prestation.setTVA(offreDTO.getTVA());
 		prestation.setPrixTotal(offreDTO.getPrixTotal());
-		
+
 		prestation = add(prestation);
 		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());
 		prestation = update(prestation);
@@ -72,8 +73,86 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 
 		prestation.setDateDebutInstallation(new Date(debut.getTime() - (MILLIS_IN_A_DAY * 2)));
 		prestation.setDateDebutDesinstallation(new Date(fin.getTime() - (MILLIS_IN_A_DAY * 2)));
-		
+
 		prestation.setDateApportTroupeau(new Date(debut.getTime() - MILLIS_IN_A_DAY));
 		add(prestation);	
 	}
+
+		@Override
+		public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur) {
+			List<Prestation> prestations = null;
+			Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam");
+			query.setParameter("utilisateurParam", utilisateur);
+			prestations = query.getResultList();
+			return prestations;
+			
+		}
+
+//	@Override
+//	public List<Prestation> getDemandesReservationByUtilisateur2(Utilisateur utilisateur) { // Ajout Elodie
+//		List<Prestation> prestations = null;
+//		Query query = em.createQuery("SELECT p FROM Prestation p "
+//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+//				+ "AND p.dateValidation IS NULL "
+//				+ "AND p.dateRefus IS NULL ");
+//		query.setParameter("utilisateurParam", utilisateur);
+//		prestations = query.getResultList();
+//		return prestations;
+//	}
+	
+	@Override
+	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur) { // Ajout Elodie
+		List<Prestation> prestations = null;
+		Query query = em.createQuery("SELECT p FROM Prestation p "
+				+ "WHERE p.troupeau.utilisateur=:utilisateurParam "
+				+ "AND p.dateValidation IS NULL "
+				+ "AND p.dateRefus IS NULL ");
+		query.setParameter("utilisateurParam", utilisateur);
+		prestations = query.getResultList();
+		return prestations;
+	}
+	
+//	@Override
+//	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur) { // Ajout Elodie
+//		List<Prestation> prestations = null;
+//		Query query = em.createQuery("SELECT p FROM Prestation p "
+//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+//				+ "AND p.dateValidation IS NOT NULL "
+//				+ "AND p.dateRefus IS NULL ");
+//		query.setParameter("utilisateurParam", utilisateur);
+//		prestations = query.getResultList();
+//		return prestations;
+//
+//	}
+	
+//	@Override
+//	public List<Prestation> getProprietaireTroupeau(Utilisateur utilisateur, Utilisateur utilisateur2) { // Ajout Elodie
+//		List<Prestation> prestations = null;
+//		Query query = em.createQuery("SELECT p FROM Prestation p "
+//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+//				+ "AND p.troupeau.utilisateur=:utilisateur2Param "
+//				+ "AND p.dateValidation IS NOT NULL "
+//				+ "AND p.dateRefus IS NULL ");
+//		query.setParameter("utilisateurParam", utilisateur);
+//		query.setParameter("utilisateur2Param", utilisateur2);
+//		prestations = query.getResultList();
+//		return prestations;
+//
+//	}
+	
+//	@Override
+//	public List<Prestation> getDemandesReservationRefused(Utilisateur utilisateur) { // Ajout Elodie
+//		List<Prestation> prestations = null;
+//		Query query = em.createQuery("SELECT p FROM Prestation p "
+//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+//				+ "AND p.dateValidation IS NULL "
+//				+ "AND p.dateRefus IS NULL ");
+//		query.setParameter("utilisateurParam", utilisateur);
+//		prestations = query.getResultList();
+//		return prestations;
+//
+//	}
+
+
+
 }

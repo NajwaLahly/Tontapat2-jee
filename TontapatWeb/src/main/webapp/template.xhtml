@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -34,13 +34,22 @@
 				</div>
 			</div>
 			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
-			
+
 			<b:navbarLinks pull="right" styleClass="hidden-xs">
 				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
+					<b:iconAwesome value="fal fa-calendar" size="lg">
+
+					</b:iconAwesome>
 				</b:navLink>
 
 				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg">
+
+					<b:navLink value="#{mbPrestation.demandeNotifs()}"
+						outcome="#{mbPrestation.showLastPrestationReserved()}"></b:navLink>
+
+					<b:navLink value="#{mbPrestation.demandeNotifs()}"
+						outcome="/reservation/recapitulatif.xhtml"></b:navLink>
+
 
 					<b:navLink value="n a validé votre demande de réservation."
 						href="#"></b:navLink>
@@ -64,7 +73,7 @@
 				<b:dropMenu
 					value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
 					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
-						outcome="/utilisateur/prestations/index.xhtml"></b:navLink>
+						outcome="#{mbPrestation.mesPrestations()}"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
 						outcome="#{mbTerrain.mesTerrains()}"></b:navLink>
@@ -94,7 +103,7 @@
 	<!-- 	<div class="container"> -->
 	<!-- 		<h1>My Website</h1> -->
 
-<!-- 			<ui:include src="/utilisateur/offres/editer.xhtml" /> -->
+	<!-- 			<ui:include src="/utilisateur/offres/editer.xhtml" /> -->
 
 	<!-- 		<h1>Mes Annonces</h1> -->
 	<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->

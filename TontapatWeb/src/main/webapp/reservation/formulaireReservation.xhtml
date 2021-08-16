@@ -51,12 +51,45 @@
 										<div class="date-fin">
 											<b:dateTimePicker mode="toggle-icon"
 												value="#{mbOffreSearch.searchDateFin}" id="inpDateFin"
-												required="true" label="Date de fin" >
+												required="true" label="Date de fin">
 											</b:dateTimePicker>
-												
+
 										</div>
 									</div>
-								</div>		
+								</div>
+								<div class="zone">
+									<div class="titre-ss-titre">
+										<h4>3. Sélectionnez une espèce de bétail</h4>
+										<h5>Une espèce particulière que vous souhaitez voir
+											apparaître dans la prestation.</h5>
+									</div>
+									<div class="select-menu">
+										<b:selectOneMenu value="#{mbOffreSearch.searchIdEspece}"
+											required="false" id="inpEspece">
+											<f:selectItem itemLabel="Toutes les espèces" itemValue="0" />
+											<f:selectItems value="#{mbEspece.especes}" var="espece"
+												itemValue="#{espece.id}" itemLabel="#{espece.nom}" />
+										</b:selectOneMenu>
+									</div>
+								</div>
+
+								<div class="zone">
+									<div class="titre-ss-titre">
+										<h4>4. Sélectionnez un type d'installation</h4>
+										<h5>Qui est en charge de la mise en place du matériel.</h5>
+									</div>
+									<div class="select-menu">
+										<b:selectOneMenu
+											value="#{mbOffreSearch.searchInstallationAssuree}"
+											required="" id="inpInstallationAssuree">
+											<f:selectItem itemLabel="À la charge de l'éleveur"
+												itemValue="1" />
+											<f:selectItem
+												itemLabel="À la charge du propriétaire de terrain"
+												itemValue="0" />
+										</b:selectOneMenu>
+									</div>
+								</div>
 
 								<div class="btn-suivant">
 									<div>
