@@ -466,6 +466,29 @@ a.link-datatable {
 	width: 10rem !important;
 }
 
+.radio_paiement td {
+	display: inline-flex !important;
+}
+
+.num-carte-compte {
+	width: 200px!important;
+}
+
+.cvc-expir {
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.cvc {
+	width: 50px;
+}
+
+.expir {
+	width: 100px;
+	margin-right: 50px;
+}
+
 /* paiement
 --------------------------------------------------
 --------------------------------------------------*/

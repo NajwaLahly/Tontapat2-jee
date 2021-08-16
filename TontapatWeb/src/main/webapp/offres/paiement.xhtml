@@ -14,7 +14,7 @@
 <h:body>
 	<ui:composition>
 		<b:modal title="Choix du mode de paiement" styleClass="paiement"
-			closable="true" closeOnEscape="true">
+			closable="true" closeOnEscape="true" id="paiement">
 			<div>
 				<b:form horizontal="true">
 					<b:formGroup>
@@ -25,24 +25,46 @@
 									<h5>Votre compte ne sera débité qu'au moment de la
 										validation de la prestation par l'éleveur.</h5>
 								</div>
-								<div class="zone">
-									<h:selectOneRadio value="#{mbUtilisateur.paiement}">
-									<f:selectItem itemValue="cb" itemLabel="Ma carte bancaire (n°#{mbUtilisateur.utilisateur.carteNumero})" />
-									<f:selectItem itemValue="vb" itemLabel="Mon compte bancaire (IBAN n°#{mbUtilisateur.utilisateur.virementIBAN})" />
-									<f:selectItem itemValue="pp" itemLabel="Mon compte PayPal (#{mbUtilisateur.utilisateur.paypalEmail})" />
-									
+								
+									<h:selectOneRadio value="#{mbUtilisateur.paiement}"
+										styleClass="radio_paiement">
+										<f:selectItem itemEscaped="false"
+											itemLabel="&lt;img src=&quot;../resources/images/icons/CB.png&quot; /&gt;"
+											itemValue="cb" />
+										<f:selectItem itemEscaped="false"
+											itemLabel="&lt;img src=&quot;../resources/images/icons/VISA.png&quot; /&gt;"
+											itemValue="visa" />
+										<f:selectItem itemEscaped="false"
+											itemLabel="&lt;img src=&quot;../resources/images/icons/Mastercard.png&quot; /&gt;"
+											itemValue="visa" />
 									</h:selectOneRadio>
+									<b:inputText type="text" label="Numéro de carte" placeholder=""
+										styleClass="num-carte-compte" required="true"
+										value="#{mbUtilisateur.utilisateur.carteNumero}"></b:inputText>
+
+									<div class="cvc-expir">
+										<div class="expir">
+											<b:inputText type="text" label="Expiration" placeholder=""
+												required="true"
+												value="#{mbUtilisateur.utilisateur.carteExpiration}"></b:inputText>
+										</div>
+										<div class="cvc">
+											<b:inputText type="text" label="CVC" placeholder=""
+												required="true"
+												value="#{mbUtilisateur.utilisateur.carteCVC}"></b:inputText>
+										</div>
+									</div>
 								</div>
 								<div class="btn-suivant">
-									<b:commandButton styleClass="btn-warning" value="Annuler"
+									<b:commandButton styleClass="btn-warning btn-recap" value="Annuler"
 										onclick="$('.paiement').modal('hide')" />
-									<b:commandButton styleClass="btn-success"
-									dismiss="modal" value="Trouver des offres" look="success"
-									action="#{mbPrestation.createFromOffreDTO()}"
-									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
-<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
-							 
-								</div>
+									<b:commandButton styleClass="btn-success btn-recap" dismiss="modal"
+										value="valider et payer" look="success"
+										action="#{mbPrestation.createFromOffreDTO()}"
+										onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
+									<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
+
+								
 							</div>
 						</div>
 
