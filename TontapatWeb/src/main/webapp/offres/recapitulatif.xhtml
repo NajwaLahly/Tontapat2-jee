@@ -12,12 +12,11 @@
 </h:head>
 
 <h:body>
-	<f:metadata>
-		<f:viewParam name="id" value="#{mbOffreSearch.id}" />
-		<c:set var="offreDTO"
-			value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
-			 />
-	</f:metadata>
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbOffreSearch.id}" />
+			<c:set var="offreDTO" value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+				/>
+		</f:metadata>
 	<ui:composition>
 		<div class="btn-modal">
 			<b:button onclick="$('.recapitulatif-offreDTO').modal('show')"

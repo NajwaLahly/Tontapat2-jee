@@ -15,25 +15,43 @@
 		<f:metadata>
 			<f:viewParam name="id" value="#{mbPrestation.id}" />
 			<c:set var="prestation"
-				value="#{mbPrestation.showById(mbPrestation.id)}" scope="request" />
+				value="#{mbPrestation.showById(mbPrestation.id)}" />
 		</f:metadata>
 
 		<div class="container">
 			<h1>Prestation n°#{prestation.numReservation}</h1>
 			Réalisée par #{prestation.offre.troupeau.utilisateur.prenom}
-			<h3>Statut :</h3>
-			<b:button styleClass="btn-primary" value="Voir la proposition" />
-			<b:button styleClass="btn-primary" value="Faire une proposition" />
-			<b:button styleClass="btn-primary" value="Evaluer" />
-			<b:button styleClass="btn-danger" value="Annuler" />
-			<b:button styleClass="btn-warning" value="Demander une intervention" />
-			<b:button styleClass="btn-warning" value="Faire une réclamation" />
+			<h3>
+				Statut :
+				<h:outputText value="refusée" rendered="#{prestation.statut == -2}" />
+				<h:outputText value="annulée" rendered="#{prestation.statut == -1}" />
+				<h:outputText value="en attente"
+					rendered="#{prestation.statut == 0}" />
+				<h:outputText value="validée" rendered="#{prestation.statut == 1}" />
+				<h:outputText value="commencée" rendered="#{prestation.statut == 2}" />
+				<h:outputText value="terminée" rendered="#{prestation.statut == 3}" />
+				<h:outputText value="clôturée" rendered="#{prestation.statut == 4}" />
+
+			</h3>
+			<b:button styleClass="btn-primary" value="Voir la proposition"
+				rendered="#{(prestation.statut == 1 or prestation.statut == 2) and (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)}" />
+			<b:button styleClass="btn-primary" value="Faire une proposition"
+				rendered="#{(prestation.statut == 1 or prestation.statut == 2) and (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null)}" />
+			<b:button styleClass="btn-primary" value="Evaluer"
+				rendered="#{prestation.statut == 3}" />
+			<b:button styleClass="btn-danger" value="Annuler"
+				rendered="#{prestation.statut > 0 and 3 > prestation.statut}" />
+			<b:button styleClass="btn-warning" value="Demander une intervention"
+				rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today}" />
+			<b:button styleClass="btn-warning" value="Faire une réclamation"
+				rendered="#{prestation.dateValidation != null}" />
 
 			<div class="offre-details-box">
 				<div class="offre-details-info">
 					<div class="offre-caracteristiques details-box">
 						<h3>Récapitulatif de la prestation</h3>
-						<b:iconAwesome value="fal fa-leaf" styleClass="icon" />Terrain : <strong>#{prestation.terrain.nom}</strong><br />
+						<b:iconAwesome value="fal fa-leaf" styleClass="icon" />
+						Terrain : <strong>#{prestation.terrain.nom}</strong><br />
 						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
 						Du
 						<h:outputText value="#{prestation.dateDebut}">
@@ -53,7 +71,9 @@
 						== true ? "éleveur" : "client"} <br />
 						<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
 						Intervention: tous les #{prestation.frequenceIntervention} jours <br />
-<b:iconAwesome value="fa fa-times" size="lg" styleClass="icon" /> Conditions d'annulation : #{prestation.conditionAnnulation.nom.toLowerCase()}<br />
+						<b:iconAwesome value="fa fa-times" size="lg" styleClass="icon" />
+						Conditions d'annulation :
+						#{prestation.conditionAnnulation.nom.toLowerCase()}<br />
 						<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
 						Offre :
 						<h:link outcome="/offres/details.xhtml?id=#{prestation.offre.id}"
@@ -61,17 +81,137 @@
 					</div>
 					<div class="offre-troupeau-infos details-box">
 						<h3>Historique</h3>
-						<b:iconAwesome value="fal fa-calendar" styleClass="icon" />
+
+						<h:panelGroup rendered="#{prestation.dateReservation != null}">
+							<b:iconAwesome value="fas fa-share" styleClass="icon" />
 						Demande envoyée le
 						<h:outputText value="#{prestation.dateReservation}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
 						à partir de l'offre
 						<h:link outcome="/offres/details.xhtml?id=#{prestation.offre.id}"
-							value="#{prestation.offre.nom}" />
-						de <strong>#{prestation.offre.troupeau.utilisateur.prenom}</strong><br />
-						
-						<b:iconAwesome value="fal fa-calendar" styleClass="icon" /><br />
+								value="#{prestation.offre.nom}" />
+						de #{prestation.offre.troupeau.utilisateur.prenom}
+						<br />
+						</h:panelGroup>
+
+						<h:panelGroup rendered="#{prestation.dateValidation != null}">
+							<b:iconAwesome value="fas fa-check" styleClass="icon" />
+							<h:outputText
+								value="Demande validée par #{prestation.troupeau.utilisateur.prenom} le " />
+							<h:outputText value="#{prestation.dateValidation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							<br />
+						</h:panelGroup>
+						<h:panelGroup rendered="#{prestation.dateRefus != null}">
+							<b:iconAwesome value="fas fa-times" styleClass="icon" />
+							<h:outputText
+								value="Demande refusée par #{prestation.troupeau.utilisateur.prenom} le " />
+							<h:outputText value="#{prestation.dateRefus}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							<br />
+						</h:panelGroup>
+
+						<h:panelGroup
+							rendered="#{(prestation.dateValidation > prestation.dateReservation) and (prestation.dateRefus == null) and (prestation.dateDebut > prestation.dateAnnulation)}">
+							<b:iconAwesome value="fal fa-times" styleClass="icon" />
+							<h:outputText
+								value="Prestation annulée par #{prestation.troupeau.utilisateur.prenom} le " />
+							<h:outputText value="#{prestation.dateAnnulation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							<h:outputText
+								value="(motif : #{prestation.desriptionAnnulation})" />
+							<br />
+						</h:panelGroup>
+
+						<ui:repeat
+							value="#{mbProposition.showAllByPrestationId(prestation.id)}"
+							var="proposition">
+							<h:panelGroup
+								rendered="#{prestation.dateDebut > proposition.dateCreation}">
+								<b:iconAwesome value="fal fa-comment" styleClass="icon" />
+								<h:outputText
+									value="Proposition envoyée par #{proposition.utilisateur.prenom} le " />
+								<h:outputText value="#{proposition.dateCreation}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+								<ul>
+
+									<li><strong>#{proposition.utilisateur.prenom}</strong> dit
+										: <br />« #{proposition.description} »</li>
+
+									<h:panelGroup rendered="#{proposition.dateDebutPrestation != prestation.dateDebut}">
+										<li>Changement de date de début : <h:outputText value="#{proposition.dateDebutPrestation}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+										</li>
+									</h:panelGroup>
+
+									<h:panelGroup rendered="#{proposition.dateFinPrestation != prestation.dateFin}">
+										<li>Changement de date de fin : <h:outputText value="#{proposition.dateFinPrestation}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+										</li>
+									</h:panelGroup>
+
+									<h:panelGroup
+										rendered="#{proposition.troupeau.id != prestation.troupeau.id}">
+										<li>Changement de troupeau : <strong>#{proposition.troupeau.nom}</strong>
+											(#{proposition.troupeau.race.espece.nom} -
+											#{proposition.troupeau.race.nom})</li>
+									</h:panelGroup>
+
+									<h:panelGroup
+										rendered="#{proposition.typeInstallation != prestation.typeInstallation}">
+										<li>Changement de type d'installation : à la charge 
+											<h:outputText rendered="#{proposition.typeInstallation == true}" value="de l'éleveur" />
+											<h:outputText rendered="#{proposition.typeInstallation == false}" value="du client" />
+											</li>
+									</h:panelGroup>
+
+									<h:panelGroup
+										rendered="#{proposition.prixPropose != prestation.prixTotal}">
+										<li>Changement de prix total : <strong>#{proposition.prixPropose} €</strong></li>
+									</h:panelGroup>
+								</ul>
+
+								<h:panelGroup rendered="#{proposition.dateValidation != null}">
+									<b:iconAwesome value="fal fa-check" styleClass="icon" />
+									<h:outputText value="Proposition validée le " />
+									<h:outputText value="#{proposition.dateValidation}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+									<br />
+								</h:panelGroup>
+
+								<h:panelGroup rendered="#{proposition.dateRefus != null}">
+									<b:iconAwesome value="fal fa-times" styleClass="icon" />
+									<h:outputText value="Proposition refusée le " />
+									<h:outputText value="#{proposition.dateValidation}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+									<br />
+								</h:panelGroup>
+
+
+							</h:panelGroup>
+
+						</ui:repeat>
+
+						<h:panelGroup
+							rendered="#{(prestation.dateValidation > prestation.dateReservation) and (prestation.dateRefus == null) and (prestation.dateAnnulation == null)}">
+							<b:iconAwesome value="fal fa-calendar" styleClass="icon" />
+							<h:outputText
+								value="La prestation #{prestation.dateDebut > mbPrestation.today ? 'commencera' : 'a commencé'} le " />
+							<h:outputText value="#{prestation.dateDebut}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							<br />
+						</h:panelGroup>
+
 					</div>
 				</div>
 				<div class="tarif-reservation">
@@ -105,16 +245,6 @@
 							<div class="prix-element prix-total">
 								<br />#{prestation.prixTotal} €
 							</div>
-						</div>
-					</div>
-					<div class="btn-reservation">
-						<div>
-							<b:button onclick="$('.formReservation').modal('show')"
-								value="Réserver" styleClass="btn-success" />
-						</div>
-						<div>
-							<b:button onclick="" value="Contacter l'éleveur"
-								styleClass="btn-contact" />
 						</div>
 					</div>
 				</div>
