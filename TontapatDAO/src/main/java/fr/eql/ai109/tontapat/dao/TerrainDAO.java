@@ -47,4 +47,17 @@ public class TerrainDAO extends GenericDAO<Terrain> implements TerrainIDAO {
 		return terrains;
 	}
 
+
+	@Override
+	public Terrain ajoutNouveauTerrain(Terrain terrain) {
+		add (terrain);
+		return terrain;
+	}
+
+
+
+
+
+
+
 }

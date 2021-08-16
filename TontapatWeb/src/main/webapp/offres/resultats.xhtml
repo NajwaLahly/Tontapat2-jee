@@ -11,16 +11,14 @@
 	<ui:define name="js-head">
 		<h:outputStylesheet
 			name="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css" />
-		
+
 		<h:outputStylesheet library="css" name="map.css" />
 
 
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Résultats de recherche (#{mbOffreSearch.searchResults.size()})</h1>
-
-		<div class="container search-container">
+		<div class="search-container">
 			<div class="map-search-results">
 				<script
 					src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
@@ -28,11 +26,16 @@
 				<h:outputScript library="js" name="ol_map.js" target="body" />
 				<div id="map" class="map"></div>
 				<div id="popup" class="ol-popup">
-     			 	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
-      				<div id="popup-content"></div>
-    			</div>
+					<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+					<div id="popup-content"></div>
+				</div>
 			</div>
 			<div class="search-results">
+				<h1>Résultats de recherche
+					(#{mbOffreSearch.searchResults.size()})</h1>
+				<div id="hidden-terrain-long"> #{mbOffreSearch.offreSearch.terrain.adresseLong}</div>
+				<div id="hidden-terrain-lat"> #{mbOffreSearch.offreSearch.terrain.adresseLat}</div>
+				
 				<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
 					<div class="adresse-long">#{searchResult.offre.troupeau.adresseLong}</div>
 					<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
@@ -40,62 +43,69 @@
 					<a class="box-link"
 						href="../offres/resultat-details.xhtml?id=#{searchResult.id}">
 						<div class="search-result">
-							<div class="result-offre-box-info-header">
-								<div class="result-offre-box-info-title">
-									<h4>#{searchResult.offre.nom}</h4>
-									<h:graphicImage class="profile-img" library="images"
-										name="/photos/user/profile/#{searchResult.offre.troupeau.id}.png" />
-									#{searchResult.offre.troupeau.utilisateur.prenom}
+							<div class="offre-box-img">
+							<h:graphicImage class="result-img-in-box" library="images"
+								name="/photos/user/troupeau/#{searchResult.offre.troupeau.id}-1.jpg" />
+							</div>
+							<div class="result-offre-box-info">
+								<div class="result-offre-box-info-header">
+									<div class="result-offre-box-info-title">
+										<h4>#{searchResult.offre.nom}</h4>
+										<h:graphicImage class="profile-img" library="images"
+											name="/photos/user/profile/#{searchResult.offre.troupeau.id}.png" />
+										#{searchResult.offre.troupeau.utilisateur.prenom}
+									</div>
+									<div class="result-offre-box-info-price">
+										<p>#{searchResult.prixTotal} €</p>
+									</div>
 								</div>
-								<div class="result-offre-box-info-price">
-									<p>#{searchResult.prixTotal} €</p>
+								<div class="result-offre-box-info-body">
+									<div class="result-offre-box-info-body-left">
+										<div class="info">
+
+											<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+											<h:outputText value="#{searchResult.offre.dateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+											au
+											<h:outputText value="#{searchResult.offre.dateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</div>
+										<div class="info">
+											<h:graphicImage library="images" styleClass="icon"
+												name="/icons/espece/#{searchResult.offre.troupeau.race.espece.id}.png" />
+											#{searchResult.offre.troupeau.race.nom}
+										</div>
+										<div class="info">
+											<b:iconAwesome value="fal fa-close" size="lg"
+												styleClass="icon"></b:iconAwesome>
+											Conditions d'annulation
+											#{searchResult.offre.conditionAnnulation.nom.toLowerCase()}
+										</div>
+									</div>
+									<div class="result-offre-box-info-body-right">
+										<div class="info">
+											<b:iconAwesome value="fal fa-user" size="lg"
+												styleClass="icon"></b:iconAwesome>
+											Intervention tous les
+											#{searchResult.offre.frequenceIntervention} jours
+										</div>
+										<div class="info">
+											<h:graphicImage library="images" styleClass="icon"
+												name="/icons/install.png" />
+											#{searchResult.offre.installationAssuree == true ?
+											"Installation asssurée" : "Installation non assurée"}
+										</div>
+										<div class="info">
+											<b:iconAwesome value="fal fa-globe" size="lg"
+												styleClass="icon"></b:iconAwesome>
+											Couverture : #{searchResult.offre.zoneCouverture}km
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="result-offre-box-info-body">
-								<div class="result-offre-box-info-body-left">
-									<div class="info">
-
-										<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
-										<h:outputText value="#{searchResult.offre.dateDebut}">
-											<f:convertDateTime pattern="dd/MM/yyyy" />
-										</h:outputText>
-										au
-										<h:outputText value="#{searchResult.offre.dateFin}">
-											<f:convertDateTime pattern="dd/MM/yyyy" />
-										</h:outputText>
-									</div>
-									<div class="info">
-										<h:graphicImage library="images" styleClass="icon"
-											name="/icons/espece/#{searchResult.offre.troupeau.race.espece.id}.png" />
-										#{searchResult.offre.troupeau.race.nom}
-									</div>
-									<div class="info">
-										<b:iconAwesome value="fal fa-close" size="lg"
-											styleClass="icon"></b:iconAwesome>
-										Conditions d'annulation #{searchResult.offre.conditionAnnulation.nom.toLowerCase()}
-									</div>
-								</div>
-								<div class="result-offre-box-info-body-right">
-									<div class="info">
-										<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
-										Intervention tous les
-										#{searchResult.offre.frequenceIntervention} jours
-									</div>
-									<div class="info">
-										<h:graphicImage library="images" styleClass="icon"
-											name="/icons/install.png" />
-										#{searchResult.offre.installationAssuree == true ?
-										"Installation asssurée" : "Installation non assurée"}
-									</div>
-									<div class="info">
-										<b:iconAwesome value="fal fa-globe" size="lg"
-											styleClass="icon"></b:iconAwesome>
-										Couverture : #{searchResult.offre.zoneCouverture}km
-									</div>
-								</div>
-							</div>
-
-						</div>						
+						</div>
 					</a>
 				</ui:repeat>
 			</div>

@@ -70,9 +70,6 @@ public class UtilisateurManagedBean implements Serializable {
 		return utilisateurIBusiness.findAll(); 
 	}
 	
-	public void test() {
-		System.out.println("test");
-	}
 	
 
 	public String getEmail() {

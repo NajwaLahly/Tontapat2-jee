@@ -85,6 +85,10 @@ public class OffreSearchManagedBean implements Serializable {
 		return "/offres/resultats.xhtml?faces-redirection=false";
 	}
 
+	
+	
+	
+	//*********Getter Setter*********
 	public int getSearchIdTerrain() {
 		return searchIdTerrain;
 	}
