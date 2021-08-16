@@ -500,3 +500,18 @@ a.link-datatable {
 .titre-ss-titre {
 	text-align: left !important;
 }
+
+
+.demande-envoyee {
+    background-color: white;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(128, 128, 128);
+    padding: 10px 30px 15px 30px;
+    font-size: 16px;
+    cursor: text !important;
+    margin-top: 0px !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 2px rgb(240, 240, 240);
+    width: 700px;
+    margin-left: 23rem !important;
+}
