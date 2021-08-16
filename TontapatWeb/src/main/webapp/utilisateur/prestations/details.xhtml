@@ -38,6 +38,15 @@
 			</h3>
 
 			<div class="btn-suivant">
+			
+			<b:button styleClass="btn-danger" value="Refuser"
+			rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
+			
+			<b:button styleClass="btn-success" value="Valider"
+			rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
+			
+			
+			
 				<ui:include
 					src="/utilisateur/prestations/propositions/details.xhtml" />
 				<b:button styleClass="btn-primary" value="Voir la proposition"
@@ -45,7 +54,7 @@
 					rendered="#{(prestation.statut == 1 or prestation.statut == 2)
 							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
 							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)
-							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur != mbUtilisateur.utilisateur)}" />
+							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur.id != mbUtilisateur.utilisateur.id)}" />
 
 				<ui:include src="/utilisateur/prestations/propositions/editer.xhtml" />
 				<b:button styleClass="btn-primary" value="Faire une proposition"
@@ -54,7 +63,7 @@
 				<b:button styleClass="btn-primary" value="Evaluer"
 					rendered="#{prestation.statut == 3}" />
 				<b:button styleClass="btn-danger" value="Annuler"
-					rendered="#{prestation.statut > -1 and 3 > prestation.statut}" />
+					rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
 				<b:button styleClass="btn-warning" value="Demander une intervention"
 					rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today}" />
 				<b:button styleClass="btn-warning" value="Faire une réclamation"
