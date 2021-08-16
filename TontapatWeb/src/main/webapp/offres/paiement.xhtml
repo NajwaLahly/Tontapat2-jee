@@ -49,9 +49,9 @@
 
 									<div class="cvc-expir">
 										<div class="expir">
-											<b:inputText type="text" label="Expiration" placeholder=""
+											<b:dateTimePicker type="text" label="Expiration" placeholder=""
 												required="true"
-												value="#{mbUtilisateur.utilisateur.carteExpiration}"></b:inputText>
+												value="#{mbUtilisateur.utilisateur.carteExpiration}"></b:dateTimePicker>
 										</div>
 										<div class="cvc">
 											<b:inputText type="text" label="CVC" placeholder=""
@@ -65,7 +65,7 @@
 										onclick="$('.paiement').modal('hide')" />
 									<b:commandButton styleClass="btn-success btn-recap" dismiss="modal"
 										value="valider et payer" look="success"
-										action="#{mbPrestation.createFromOffreDTO()}"
+										action="#{mbOffreSearch.createFromOffreDTO()}"
 										onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
 									<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
 

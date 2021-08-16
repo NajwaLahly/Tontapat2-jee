@@ -486,7 +486,7 @@ a.link-datatable {
 
 .expir {
 	width: 100px;
-	margin-right: 50px;
+	margin-right: 100px;
 }
 
 /* paiement
@@ -495,4 +495,8 @@ a.link-datatable {
 .img-paiement {
 	width: 30px;
 	height: 15px;
+}
+
+.titre-ss-titre {
+	text-align: left !important;
 }
