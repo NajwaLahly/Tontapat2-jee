@@ -19,7 +19,11 @@
 		</f:metadata>
 
 		<div class="container">
-			<h1>Prestation n°#{prestation.numReservation}</h1>
+			<h1>
+				Prestation n°<h:outputText value="#{prestation.dateReservation}">
+					<f:convertDateTime pattern="yyMMdd" />
+				</h:outputText>-#{prestation.id}
+			</h1>
 			Réalisée par #{prestation.offre.troupeau.utilisateur.prenom}
 			<h3>
 				Statut :
@@ -31,21 +35,32 @@
 				<h:outputText value="commencée" rendered="#{prestation.statut == 2}" />
 				<h:outputText value="terminée" rendered="#{prestation.statut == 3}" />
 				<h:outputText value="clôturée" rendered="#{prestation.statut == 4}" />
-
 			</h3>
-			<b:button styleClass="btn-primary" value="Voir la proposition"
-				rendered="#{(prestation.statut == 1 or prestation.statut == 2) and (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)}" />
-			<b:button styleClass="btn-primary" value="Faire une proposition"
-				rendered="#{(prestation.statut == 1 or prestation.statut == 2) and (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null)}" />
-			<b:button styleClass="btn-primary" value="Evaluer"
-				rendered="#{prestation.statut == 3}" />
-			<b:button styleClass="btn-danger" value="Annuler"
-				rendered="#{prestation.statut > 0 and 3 > prestation.statut}" />
-			<b:button styleClass="btn-warning" value="Demander une intervention"
-				rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today}" />
-			<b:button styleClass="btn-warning" value="Faire une réclamation"
-				rendered="#{prestation.dateValidation != null}" />
 
+			<div class="btn-suivant">
+				<ui:include
+					src="/utilisateur/prestations/propositions/details.xhtml" />
+				<b:button styleClass="btn-primary" value="Voir la proposition"
+					onclick="$('.proposition-details').modal('show')"
+					rendered="#{(prestation.statut == 1 or prestation.statut == 2)
+							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
+							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)
+							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur != mbUtilisateur.utilisateur)}" />
+
+				<ui:include src="/utilisateur/prestations/propositions/editer.xhtml" />
+				<b:button styleClass="btn-primary" value="Faire une proposition"
+					onclick="$('.proposition-details').modal('show')"
+					rendered="#{(prestation.statut == 1 or prestation.statut == 2) and ((1 > mbProposition.showAllByPrestationId(prestation.id).size()) or (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null))}" />
+				<b:button styleClass="btn-primary" value="Evaluer"
+					rendered="#{prestation.statut == 3}" />
+				<b:button styleClass="btn-danger" value="Annuler"
+					rendered="#{prestation.statut > -1 and 3 > prestation.statut}" />
+				<b:button styleClass="btn-warning" value="Demander une intervention"
+					rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today}" />
+				<b:button styleClass="btn-warning" value="Faire une réclamation"
+					rendered="#{prestation.dateValidation != null}" />
+
+			</div>
 			<div class="offre-details-box">
 				<div class="offre-details-info">
 					<div class="offre-caracteristiques details-box">
@@ -143,17 +158,21 @@
 									<li><strong>#{proposition.utilisateur.prenom}</strong> dit
 										: <br />« #{proposition.description} »</li>
 
-									<h:panelGroup rendered="#{proposition.dateDebutPrestation != prestation.dateDebut}">
-										<li>Changement de date de début : <h:outputText value="#{proposition.dateDebutPrestation}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-										</h:outputText>
+									<h:panelGroup
+										rendered="#{proposition.dateDebutPrestation != prestation.dateDebut}">
+										<li>Changement de date de début : <h:outputText
+												value="#{proposition.dateDebutPrestation}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
 										</li>
 									</h:panelGroup>
 
-									<h:panelGroup rendered="#{proposition.dateFinPrestation != prestation.dateFin}">
-										<li>Changement de date de fin : <h:outputText value="#{proposition.dateFinPrestation}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-										</h:outputText>
+									<h:panelGroup
+										rendered="#{proposition.dateFinPrestation != prestation.dateFin}">
+										<li>Changement de date de fin : <h:outputText
+												value="#{proposition.dateFinPrestation}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
 										</li>
 									</h:panelGroup>
 
@@ -161,20 +180,24 @@
 										rendered="#{proposition.troupeau.id != prestation.troupeau.id}">
 										<li>Changement de troupeau : <strong>#{proposition.troupeau.nom}</strong>
 											(#{proposition.troupeau.race.espece.nom} -
-											#{proposition.troupeau.race.nom})</li>
+											#{proposition.troupeau.race.nom})
+										</li>
 									</h:panelGroup>
 
 									<h:panelGroup
 										rendered="#{proposition.typeInstallation != prestation.typeInstallation}">
-										<li>Changement de type d'installation : à la charge 
-											<h:outputText rendered="#{proposition.typeInstallation == true}" value="de l'éleveur" />
-											<h:outputText rendered="#{proposition.typeInstallation == false}" value="du client" />
-											</li>
+										<li>Changement de type d'installation : à la charge <h:outputText
+												rendered="#{proposition.typeInstallation == true}"
+												value="de l'éleveur" /> <h:outputText
+												rendered="#{proposition.typeInstallation == false}"
+												value="du client" />
+										</li>
 									</h:panelGroup>
 
 									<h:panelGroup
 										rendered="#{proposition.prixPropose != prestation.prixTotal}">
-										<li>Changement de prix total : <strong>#{proposition.prixPropose} €</strong></li>
+										<li>Changement de prix total : <strong>#{proposition.prixPropose}
+												€</strong></li>
 									</h:panelGroup>
 								</ul>
 

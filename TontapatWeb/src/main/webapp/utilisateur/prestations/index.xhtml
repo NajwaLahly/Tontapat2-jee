@@ -13,21 +13,39 @@
 	<ui:define name="content">
 
 		<div class="container">
-			
+
 			<h1>Mes prestations</h1>
-				<b:dataTable value="#{mbPrestation.ShowAllbyCurrentUser()}" var="prestation">
+			<b:dataTable value="#{mbPrestation.ShowAllbyCurrentUser()}"
+				var="prestation">
 				<b:dataTableColumn label="Référence">
-				<h:link outcome="/utilisateur/prestations/details.xhtml?id=#{prestation.id}" value="#{prestation.numReservation}" />
+					<h:link
+						outcome="/utilisateur/prestations/details.xhtml?id=#{prestation.id}">
+						<h:outputText value="#{prestation.dateReservation}">
+							<f:convertDateTime pattern="yyMMdd" />
+						</h:outputText>-#{prestation.id}
+				</h:link>
 				</b:dataTableColumn>
-					<b:dataTableColumn label="Offre">
-						<h:link styleClass="link-datatable" value="#{prestation.offre.nom}" outcome = "/offres/details.xhtml?id=#{prestation.offre.id}" />
-					</b:dataTableColumn>
-					<b:dataTableColumn value="#{prestation.terrain.nom}" label="Terrain" />			
-					<b:dataTableColumn value="#{prestation.dateDebut}" label="Date de début" />
-					<b:dataTableColumn value="#{prestation.troupeau.utilisateur.nom}" label="Nom du prestataire" />
-					<b:dataTableColumn value="#{prestation.dateValidation == null ? 'En attente' : 'Validée'}" label="Statut" />
-					<b:dataTableColumn value="#{prestation.prixTotal}€" label="Prix total" />							
-				</b:dataTable>
+				<b:dataTableColumn label="Offre">
+					<h:link styleClass="link-datatable" value="#{prestation.offre.nom}"
+						outcome="/offres/details.xhtml?id=#{prestation.offre.id}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{prestation.terrain.nom}" label="Terrain" />
+				<b:dataTableColumn value="#{prestation.dateDebut}"
+					label="Date de début" />
+				<b:dataTableColumn value="#{prestation.troupeau.utilisateur.prenom} #{prestation.troupeau.utilisateur.nom}"
+					label="Nom du prestataire" />
+				<b:dataTableColumn
+					value="#{prestation.statut == -2? 'Refusée':
+							prestation.statut == -1? 'Annulée':
+							prestation.statut == 0? 'En attente':
+							prestation.statut == 1? 'Validée':
+							prestation.statut == 2? 'Commencée':
+							prestation.statut == 3? 'Terminée':
+							prestation.statut == 4? 'Clôturée':''}"
+					label="Statut" />
+				<b:dataTableColumn value="#{prestation.prixTotal}€"
+					label="Prix total" />
+			</b:dataTable>
 		</div>
 	</ui:define>
 </ui:composition>

@@ -108,7 +108,7 @@ public class PrestationManagedBean implements Serializable {
 	}
 
 	public String mesPrestations() {
-		return "/utilisateur/prestations/index.xhtml?faces-redirection=false";
+		return "/utilisateur/prestations/index.xhtml?faces-redirection=true";
 	}
 
 	public Date getToday() {
