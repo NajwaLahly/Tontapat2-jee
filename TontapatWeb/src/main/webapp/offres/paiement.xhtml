@@ -12,6 +12,11 @@
 </h:head>
 
 <h:body>
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbOffreSearch.id}" />
+			<c:set var="offreDTO" value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+				/>
+		</f:metadata>
 	<ui:composition>
 		<b:modal title="Choix du mode de paiement" styleClass="paiement"
 			closable="true" closeOnEscape="true">
@@ -38,7 +43,7 @@
 										onclick="$('.paiement').modal('hide')" />
 									<b:commandButton styleClass="btn-success"
 									dismiss="modal" value="Trouver des offres" look="success"
-									action="#{mbPrestation.createFromOffreDTO()}"
+									action="#{mbOffreSearch.createFromOffreDTO()}"
 									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
 <!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
 							 
