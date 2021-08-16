@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
@@ -13,12 +14,16 @@
 
 </h:head>
 
+<f:metadata>
+	<c:set var="prestation"
+		value="#{mbPrestation.showById(mbPrestation.id)}" />
+</f:metadata>
 <h:body>
+
 	<ui:composition>
 
 		<b:modal title="Proposition de négociation"
-			styleClass="proposition-editer" closable="true"
-			closeOnEscape="true">
+			styleClass="proposition-editer" closable="true" closeOnEscape="true">
 			<div>
 				<b:form horizontal="true">
 					<b:formGroup>
@@ -26,47 +31,65 @@
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>Récapitulatif</h4>
-									<ul>
-									<li>Réalisée par xxx</li>
-									<li>Terrain : xxx</li>
-									<li>Troupeau : race (nombre)</li>
-									<li>Installation : xxx</li>
-									<li>Date de début : xxx</li>
-									<li>Date de fin : xxx</li>
-									
+									<div class="form-columns">
+									<div><ul>
+										<li>Réalisée par <strong>#{prestation.troupeau.utilisateur.prenom}</strong></li>
+										<li>Terrain : <strong>#{prestation.terrain.nom}</strong> (#{prestation.terrain.superficie} Ha)</li>
+										<li>Troupeau : <strong>#{prestation.troupeau.nom}</strong>
+											(#{prestation.nombreBetes}
+											#{prestation.troupeau.race.espece.nom.toLowerCase()})
+										</li>
+										<li>Installation : <strong>à la charge
+										<h:outputText value="de l'éleveur" rendered="#{prestation.typeInstallation == true}" />
+										<h:outputText value="du client" rendered="#{prestation.typeInstallation == false}" />
+										
+										</strong></li>
+										<li>Date de début : <h:outputText
+												value="#{prestation.dateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText></li>
+										<li>Date de fin : <h:outputText
+												value="#{prestation.dateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText></li>
 									</ul>
-									<h5>Le terrain pour lequel vous souhaitez réserver une
-										prestation.</h5>
+									</div>
+									<div>
+									<h:graphicImage library="images" class="img-in-details"
+							name="/photos/user/troupeau/#{prestation.troupeau.id}-1.jpg" />
+							</div>
+									</div>
 								</div>
 							</div>
 
 							<div class="dates zone">
+								<div class="titre-ss-titre">
+									<h4>Dates de la prestation</h4>
+								</div>
 								<div class="form-columns">
 									<div class="date-debut">
 										<b:dateTimePicker mode="toggle-icon"
-											value="#{mbOffreSearch.searchDateDebut}" id="inpDateDebut"
-											required="true" label="Date de début">
-											</b:dateTimePicker>
+											value="#{mbProposition.dateDebut}" id="inpDateDebut"
+											 label="Date de début"
+											placeholder="#{prestation.dateDebut}" />
 									</div>
 									<div class="date-fin">
 										<b:dateTimePicker mode="toggle-icon"
-											value="#{mbOffreSearch.searchDateFin}" id="inpDateFin"
-											required="true" label="Date de fin" />
+											value="#{mbProposition.dateFin}" id="inpDateFin"
+											 label="Date de fin" 
+											placeholder="#{prestation.dateFin}" />
 									</div>
 								</div>
 							</div>
 
-<div class="zone">
-<b:inputText type="text" placeholder="prix de la prestation de base"
-					name="uname" required="true" styleClass="login-input"
-					value="mbpresta-prix"></b:inputText>
-</div>
-						
-
 							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>Type d'installation</h4>
+								</div>
 								<div class="select-menu">
-									<b:selectOneMenu value="#{mbOffreSearch.searchInstallationAssuree}"
-										required="" id="inpInstallationAssuree">
+									<b:selectOneMenu
+										value="#{mbProposition.typeInstallation}" required="true"
+										id="inpTypeInstallation">
 										<f:selectItem itemLabel="À la charge de l'éleveur"
 											itemValue="1" />
 										<f:selectItem
@@ -76,10 +99,43 @@
 								</div>
 							</div>
 
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>Prix total</h4>
+								</div>
+								<div class="form-columns">
+									<div class="date-debut">
+										<b:inputText type="text"
+											styleClass="login-input"
+											p:placeholder="#{prestation.prixTotal}"
+											value="#{mpProposition.prixTotal}">
+										</b:inputText>
+									</div>
+									<div class="date-fin">
+										<h3>€</h3>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>Description de votre proposition</h4>
+								</div>
+								<div class="form-columns">
+
+									<h:inputTextarea id="description" styleClass="login-input"
+										itemValue="#{mpProposition.description}"
+										itemLabel="votre message"
+										cols="20" rows="3"
+										requiredMessage="La description est obligatoire." />
+								</div>
+							</div>
+
 							<div class="btn-suivant">
 								<b:commandButton styleClass="btn-success" update="@form"
 									dismiss="modal" value="Envoyer la proposition" look="success"
-									action="#{mbOffreSearch.showSearchResults()}"
+									action="#{mbProposition.send()}"
 									onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
 									oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
 							</div>
