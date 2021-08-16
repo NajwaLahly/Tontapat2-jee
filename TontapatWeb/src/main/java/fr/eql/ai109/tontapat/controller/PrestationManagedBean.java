@@ -55,6 +55,16 @@ public class PrestationManagedBean implements Serializable {
 	public void setSearchResultId(int searchResultId) {
 		this.searchResultId = searchResultId;
 	}
+	
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
