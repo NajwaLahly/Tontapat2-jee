@@ -103,10 +103,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 	@Override
 	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur) { // Ajout Elodie
 		List<Prestation> prestations = null;
-		Query query = em.createQuery("SELECT p FROM Prestation p "
-				+ "WHERE p.troupeau.utilisateur=:utilisateurParam "
-				+ "AND p.dateValidation IS NULL "
-				+ "AND p.dateRefus IS NULL ");
+		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.troupeau.utilisateur=:utilisateurParam AND p.dateValidation IS NULL AND p.dateRefus IS NULL");
 		query.setParameter("utilisateurParam", utilisateur);
 		prestations = query.getResultList();
 		return prestations;

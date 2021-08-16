@@ -12,6 +12,8 @@ import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.OffreIBusiness;
 
+
+
 @ManagedBean(name = "mbOffre")
 @SessionScoped
 public class OffreManagedBean implements Serializable {

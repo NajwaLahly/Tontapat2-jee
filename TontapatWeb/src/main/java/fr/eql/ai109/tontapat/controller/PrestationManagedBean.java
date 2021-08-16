@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -42,6 +43,7 @@ public class PrestationManagedBean  implements Serializable {
 	//Ajout Elodie
 	private Prestation prestationReservee = new Prestation();
 	private OffreSearch offreSearch = new OffreSearch();
+	String notif = null;
 
 	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin,OffreDTO prix) {
 		if (prix == null) 
@@ -90,11 +92,16 @@ public class PrestationManagedBean  implements Serializable {
 	//		return notifs;
 	//	}
 
+	
+	@PostConstruct
+	public void init() { // ajout Elodie
+		notif = demandeNotifs();
+	}
+	
 	public String acceptedNotifs() { //Ajout Elodie
 		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
 		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
-		String notif = null;
-
+		
 		if(prestations.size()>0) {
 			for (Prestation prestation : prestations) {
 				Troupeau troupeau = prestation.getTroupeau();
@@ -106,6 +113,8 @@ public class PrestationManagedBean  implements Serializable {
 		}
 		return notif;
 	}
+	
+
 	
 	public String demandeNotifs() { //Ajout Elodie
 		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
