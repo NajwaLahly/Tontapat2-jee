@@ -32,24 +32,15 @@ public class PropositionManagedBean implements Serializable {
 		return currentPrestation;
 	}
 
-	public void setCurrentPrestation(Prestation currentPrestation) {
-		this.currentPrestation = currentPrestation;
-	}
-	
 	private int id;
 	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	private Proposition proposition;
 	private Date dateFin;
 	private boolean typeInstallation;
 	private float prixTotal;
 	private String description;
+	private Utilisateur expediteur;
 
 	@ManagedProperty(value = "#{mbPrestation.prestation}")
 	private Prestation currentPrestation;
@@ -57,6 +48,19 @@ public class PropositionManagedBean implements Serializable {
 	public List<Proposition> showAllByPrestationId(int id) {
 		System.out.println("PRESTATION ID MB : " + id);
 		return propositionIBusiness.findAllByPrestationId(id);
+	}
+	
+	public String send() {
+		proposition.setDateDebutPrestation(dateDebut);
+		proposition.setDateFinPrestation(dateFin);
+		proposition.setTypeInstallation(typeInstallation);
+		proposition.setPrixPropose(prixTotal);
+		proposition.setDescription(description);
+		proposition.setUtilisateur(expediteur);
+		proposition.setDateCreation(new Date());
+		proposition.setPrestation(currentPrestation);
+		propositionIBusiness.send(proposition);
+		return "/utilisateur/prestations/index.xhtml";
 	}
 	
 	public Proposition showById(int id) {
@@ -101,5 +105,24 @@ public class PropositionManagedBean implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Proposition getProposition() {
+		return proposition;
+	}
+
+	public void setProposition(Proposition proposition) {
+		this.proposition = proposition;
+	}
+	
+	public void setCurrentPrestation(Prestation currentPrestation) {
+		this.currentPrestation = currentPrestation;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
