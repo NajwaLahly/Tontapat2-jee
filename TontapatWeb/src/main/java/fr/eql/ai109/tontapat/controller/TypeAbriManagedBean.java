@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.TypeAbri;
+import fr.eql.ai109.tontapat.entity.TypeCloture;
 import fr.eql.ai109.tontapat.ibusiness.TypeAbriIBusiness;
 
 @ManagedBean(name = "mbTypeAbri")
@@ -19,6 +20,7 @@ public class TypeAbriManagedBean implements Serializable {
 	
 	private int typeAbriId;
 	private List<TypeAbri> typeAbris;
+	private TypeAbri typeAbri;
 	
 	@EJB
 	private TypeAbriIBusiness typeAbriIBusiness;
@@ -34,9 +36,9 @@ public class TypeAbriManagedBean implements Serializable {
 
 
 
-	//public TypeAbri showById(int id) {
-	//	return typeAbriIBusiness.findById(id);
-	//}
+	public TypeAbri showById(int id) {
+		return typeAbriIBusiness.findById(id);
+	}
 	
 	
 
@@ -64,6 +66,14 @@ public class TypeAbriManagedBean implements Serializable {
 
 	public void setTypeAbriIBusiness(TypeAbriIBusiness typeAbriIBusiness) {
 		this.typeAbriIBusiness = typeAbriIBusiness;
+	}
+
+	public TypeAbri getTypeAbri() {
+		return typeAbri;
+	}
+
+	public void setTypeAbri(TypeAbri typeAbri) {
+		this.typeAbri = typeAbri;
 	}
 
 	

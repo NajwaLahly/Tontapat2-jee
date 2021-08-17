@@ -14,10 +14,16 @@ import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.TerrainMorphologie;
+import fr.eql.ai109.tontapat.entity.TerrainTypeAbreuvoir;
+import fr.eql.ai109.tontapat.entity.TerrainTypeAbri;
+import fr.eql.ai109.tontapat.entity.TerrainTypeCloture;
 import fr.eql.ai109.tontapat.entity.TerrainTypeVegetation;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.TerrainIBusiness;
 import fr.eql.ai109.tontapat.ibusiness.TerrainMorphologieIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.TerrainTypeAbreuvoirIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.TerrainTypeAbriIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.TerrainTypeClotureIBusiness;
 import fr.eql.ai109.tontapat.ibusiness.TerrainTypeVegetationIBusiness;
 
 @ManagedBean(name = "mbTerrain")
@@ -34,6 +40,15 @@ public class TerrainManagedBean implements Serializable {
 	
 	@EJB
 	private TerrainTypeVegetationIBusiness terrainTypeVegetationIBusiness;
+	
+	@EJB
+	private TerrainTypeClotureIBusiness terrainTypeClotureIBusiness;
+	
+	@EJB
+	private TerrainTypeAbriIBusiness terrainTypeAbriIBusiness;
+	
+	@EJB
+	private TerrainTypeAbreuvoirIBusiness terrainTypeAbreuvoirIBusiness;
 
 	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
 	private Utilisateur utilisateurConnecte;
@@ -43,6 +58,15 @@ public class TerrainManagedBean implements Serializable {
 	
 	@ManagedProperty(value = "#{mbTypeVegetation}")
 	private TypeVegetationManagedBean mbTypeVegetation;
+	
+	@ManagedProperty(value = "#{mbTypeCloture}")
+	private TypeClotureManagedBean mbTypeCloture;
+	
+	@ManagedProperty(value = "#{mbTypeAbri}")
+	private TypeAbriManagedBean mbTypeAbri;
+	
+	@ManagedProperty(value = "#{mbTypeAbreuvoir}")
+	private TypeAbreuvoirManagedBean mbTypeAbreuvoir;
 	
 	private int terrainId;
 	private Terrain terrain;
@@ -69,6 +93,10 @@ public class TerrainManagedBean implements Serializable {
 	private float pourcentageTypeVegetationId4;
 	private float pourcentageTypeVegetationId5;
 	private List<TerrainTypeVegetation> terrainTypeVegetations;
+	
+	private TerrainTypeCloture terrainTypeCloture;
+	private TerrainTypeAbri terrainTypeAbri;
+	private TerrainTypeAbreuvoir terrainTypeAbreuvoir;
 	
 
 	private Terrain terrainNew;
@@ -170,6 +198,22 @@ public class TerrainManagedBean implements Serializable {
 		terrainTypeVegetationNew.setTypeVegetation(mbTypeVegetation.showAll().get(4));
 		terrainTypeVegetationNew.setPourcentage(pourcentageTypeVegetationId5);
 		terrainTypeVegetationIBusiness.addNewTerrainTypeVegetation(terrainTypeVegetationNew);
+		
+		TerrainTypeCloture terrainTypeClotureNew = new TerrainTypeCloture();
+		terrainTypeClotureNew.setTerrain(terrainNew);
+		terrainTypeClotureNew.setTypeCloture(mbTypeCloture.showById(mbTypeCloture.getTypeClotureId()));
+		terrainTypeClotureIBusiness.addNewTerrainTypeCloture(terrainTypeClotureNew );
+		
+		TerrainTypeAbri terrainTypeAbriNew = new TerrainTypeAbri();
+		terrainTypeAbriNew.setTerrain(terrainNew);
+		terrainTypeAbriNew.setTypeAbri(mbTypeAbri.showById(mbTypeAbri.getTypeAbriId()));
+		terrainTypeAbriIBusiness.addNewTerrainTypeAbri(terrainTypeAbriNew );
+	
+		TerrainTypeAbreuvoir terrainTypeAbreuvoirNew = new TerrainTypeAbreuvoir();
+		terrainTypeAbreuvoirNew.setTerrain(terrainNew);
+		terrainTypeAbreuvoirNew.setTypeAbreuvoir(mbTypeAbreuvoir.showById(mbTypeAbreuvoir.getTypeAbreuvoirId()));
+		terrainTypeAbreuvoirIBusiness.addNewTerrainTypeAbreuvoir(terrainTypeAbreuvoirNew );
+	
 	
 	}
 	
@@ -416,6 +460,78 @@ public class TerrainManagedBean implements Serializable {
 
 	public void setTerrainTypeVegetations(List<TerrainTypeVegetation> terrainTypeVegetations) {
 		this.terrainTypeVegetations = terrainTypeVegetations;
+	}
+
+	public TerrainTypeClotureIBusiness getTerrainTypeClotureIBusiness() {
+		return terrainTypeClotureIBusiness;
+	}
+
+	public void setTerrainTypeClotureIBusiness(TerrainTypeClotureIBusiness terrainTypeClotureIBusiness) {
+		this.terrainTypeClotureIBusiness = terrainTypeClotureIBusiness;
+	}
+
+	public TerrainTypeAbriIBusiness getTerrainTypeAbriIBusiness() {
+		return terrainTypeAbriIBusiness;
+	}
+
+	public void setTerrainTypeAbriIBusiness(TerrainTypeAbriIBusiness terrainTypeAbriIBusiness) {
+		this.terrainTypeAbriIBusiness = terrainTypeAbriIBusiness;
+	}
+
+	public TerrainTypeAbreuvoirIBusiness getTerrainTypeAbreuvoirIBusiness() {
+		return terrainTypeAbreuvoirIBusiness;
+	}
+
+	public void setTerrainTypeAbreuvoirIBusiness(TerrainTypeAbreuvoirIBusiness terrainTypeAbreuvoirIBusiness) {
+		this.terrainTypeAbreuvoirIBusiness = terrainTypeAbreuvoirIBusiness;
+	}
+
+	public TerrainTypeCloture getTerrainTypeCloture() {
+		return terrainTypeCloture;
+	}
+
+	public void setTerrainTypeCloture(TerrainTypeCloture terrainTypeCloture) {
+		this.terrainTypeCloture = terrainTypeCloture;
+	}
+
+	public TerrainTypeAbri getTerrainTypeAbri() {
+		return terrainTypeAbri;
+	}
+
+	public void setTerrainTypeAbri(TerrainTypeAbri terrainTypeAbri) {
+		this.terrainTypeAbri = terrainTypeAbri;
+	}
+
+	public TerrainTypeAbreuvoir getTerrainTypeAbreuvoir() {
+		return terrainTypeAbreuvoir;
+	}
+
+	public void setTerrainTypeAbreuvoir(TerrainTypeAbreuvoir terrainTypeAbreuvoir) {
+		this.terrainTypeAbreuvoir = terrainTypeAbreuvoir;
+	}
+
+	public TypeClotureManagedBean getMbTypeCloture() {
+		return mbTypeCloture;
+	}
+
+	public void setMbTypeCloture(TypeClotureManagedBean mbTypeCloture) {
+		this.mbTypeCloture = mbTypeCloture;
+	}
+
+	public TypeAbriManagedBean getMbTypeAbri() {
+		return mbTypeAbri;
+	}
+
+	public void setMbTypeAbri(TypeAbriManagedBean mbTypeAbri) {
+		this.mbTypeAbri = mbTypeAbri;
+	}
+
+	public TypeAbreuvoirManagedBean getMbTypeAbreuvoir() {
+		return mbTypeAbreuvoir;
+	}
+
+	public void setMbTypeAbreuvoir(TypeAbreuvoirManagedBean mbTypeAbreuvoir) {
+		this.mbTypeAbreuvoir = mbTypeAbreuvoir;
 	}
 
 

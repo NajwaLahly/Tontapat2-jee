@@ -23,4 +23,9 @@ public class TypeAbreuvoirBusiness implements TypeAbreuvoirIBusiness {
 		return typeAbreuvoirIDAO.getAll();
 	}
 
+	@Override
+	public TypeAbreuvoir findById(int id) {
+		return typeAbreuvoirIDAO.getById(id);
+		}
+
 }

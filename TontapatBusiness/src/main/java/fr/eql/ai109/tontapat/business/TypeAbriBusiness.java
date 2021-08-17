@@ -22,4 +22,9 @@ public class TypeAbriBusiness implements TypeAbriIBusiness {
 		return typeAbriIDAO.getAll();
 	}
 
+	@Override
+	public TypeAbri findById(int id) {
+		return typeAbriIDAO.getById(id);
+	}
+
 }

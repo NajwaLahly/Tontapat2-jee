@@ -7,5 +7,6 @@ import fr.eql.ai109.tontapat.entity.TypeAbreuvoir;
 public interface TypeAbreuvoirIBusiness {
 	
 	List<TypeAbreuvoir> findAll();
+	TypeAbreuvoir findById(int id);
 
 }

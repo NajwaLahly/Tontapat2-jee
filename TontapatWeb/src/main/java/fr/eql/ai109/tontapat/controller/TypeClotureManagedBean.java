@@ -19,6 +19,7 @@ public class TypeClotureManagedBean implements Serializable {
 	
 	private int typeClotureId;
 	private List<TypeCloture> typeClotures;
+	private TypeCloture typeCloture;
 	
 	@EJB
 	private TypeClotureIBusiness typeClotureIBusiness;
@@ -34,9 +35,9 @@ public class TypeClotureManagedBean implements Serializable {
 
 
 
-	//public TypeCloture showById(int id) {
-	//	return typeClotureIBusiness.findById(id);
-	//}
+	public TypeCloture showById(int id) {
+		return typeClotureIBusiness.findById(id);
+	}
 	
 	
 
@@ -65,4 +66,13 @@ public class TypeClotureManagedBean implements Serializable {
 	public void setTypeClotureIBusiness(TypeClotureIBusiness typeClotureIBusiness) {
 		this.typeClotureIBusiness = typeClotureIBusiness;
 	}
+
+	public TypeCloture getTypeCloture() {
+		return typeCloture;
+	}
+
+	public void setTypeCloture(TypeCloture typeCloture) {
+		this.typeCloture = typeCloture;
+	}
+	
 }

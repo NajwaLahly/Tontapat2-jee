@@ -8,7 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import fr.eql.ai109.tontapat.entity.Morphologie;
 import fr.eql.ai109.tontapat.entity.TypeAbreuvoir;
+import fr.eql.ai109.tontapat.entity.TypeCloture;
 import fr.eql.ai109.tontapat.ibusiness.TypeAbreuvoirIBusiness;
 
 @ManagedBean(name = "mbTypeAbreuvoir")
@@ -19,6 +21,7 @@ public class TypeAbreuvoirManagedBean implements Serializable {
 	
 	private int typeAbreuvoirId;
 	private List<TypeAbreuvoir> typeAbreuvoirs;
+	private TypeAbreuvoir typeAbreuvoir;
 	
 	@EJB
 	private TypeAbreuvoirIBusiness typeAbreuvoirIBusiness;
@@ -31,11 +34,11 @@ public class TypeAbreuvoirManagedBean implements Serializable {
 	public List<TypeAbreuvoir> showAll(){
 		return typeAbreuvoirIBusiness.findAll();		
 	}
+	
 
-
-	//public TypeAbreuvoir showById(int id) {
-	//	return typeAbreuvoirIBusiness.findById(id);
-	//}
+	public TypeAbreuvoir showById(int id) {
+		return typeAbreuvoirIBusiness.findById(id);
+	}
 	
 	
 
@@ -63,5 +66,14 @@ public class TypeAbreuvoirManagedBean implements Serializable {
 	public void setTypeAbreuvoirIBusiness(TypeAbreuvoirIBusiness typeAbreuvoirIBusiness) {
 		this.typeAbreuvoirIBusiness = typeAbreuvoirIBusiness;
 	}
+
+	public TypeAbreuvoir getTypeAbreuvoir() {
+		return typeAbreuvoir;
+	}
+
+	public void setTypeAbreuvoir(TypeAbreuvoir typeAbreuvoir) {
+		this.typeAbreuvoir = typeAbreuvoir;
+	}
+	
 	
 }

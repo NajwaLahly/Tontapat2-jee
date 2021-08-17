@@ -161,8 +161,8 @@
 									<h4>1. Choissisez un type de clôture existant sur le
 										terrain</h4>
 									<div class="select-menu">
-										<b:selectOneMenu value="#{mbTypeCloture.showAll()}"
-											required="false" id="inpTypeCloture">
+										<b:selectOneMenu value="#{mbTypeCloture.typeClotureId}"
+											required="false" id="inpTypeCloture"  >
 											<f:selectItems value="#{mbTypeCloture.typeClotures}"
 												var="typeCloture" itemValue="#{typeCloture.id}"
 												itemLabel="#{typeCloture.nom}" />
@@ -176,7 +176,7 @@
 								<div class="titre-ss-titre">
 									<h4>2. Choissisez un type d'abris existant sur le terrain</h4>
 									<div class="select-menu">
-										<b:selectOneMenu value="#{mbTypeAbri.showAll()}"
+										<b:selectOneMenu value="#{mbTypeAbri.typeAbriId}"
 											required="false" id="inpTypeAbri">
 											<f:selectItems value="#{mbTypeAbri.typeAbris}"
 												var="typeAbri" itemValue="#{typeAbri.id}"
@@ -190,7 +190,7 @@
 										<h4>3. Choissisez un type d'abreuvoir existant sur le
 											terrain</h4>
 											<div class="select-menu">
-										<b:selectOneMenu value="#{mbTypeAbreuvoir.showAll()}"
+										<b:selectOneMenu value="#{mbTypeAbreuvoir.typeAbreuvoirId}"
 											required="false" id="inpTypeAbreuvoir">
 											<f:selectItems value="#{mbTypeAbreuvoir.typeAbreuvoirs}"
 												var="typeAbreuvoir" itemValue="#{typeAbreuvoir.id}"

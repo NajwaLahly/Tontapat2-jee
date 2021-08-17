@@ -8,5 +8,6 @@ import fr.eql.ai109.tontapat.entity.TypeCloture;
 public interface TypeClotureIBusiness {
 	
 	List<TypeCloture> findAll();
+	TypeCloture findById(int id);
 
 }

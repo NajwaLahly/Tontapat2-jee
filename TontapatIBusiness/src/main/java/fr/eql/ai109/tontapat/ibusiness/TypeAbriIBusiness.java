@@ -8,5 +8,6 @@ import fr.eql.ai109.tontapat.entity.TypeAbri;
 public interface TypeAbriIBusiness {
 	
 	List<TypeAbri> findAll();
+	TypeAbri findById(int id);
 
 }

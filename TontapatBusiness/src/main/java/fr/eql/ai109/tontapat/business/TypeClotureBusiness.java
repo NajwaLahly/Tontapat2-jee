@@ -23,5 +23,10 @@ public class TypeClotureBusiness implements TypeClotureIBusiness {
 		return typeClotureIDAO.getAll();
 		
 	}
- 
+
+
+	@Override
+	public TypeCloture findById(int id) {
+		return typeClotureIDAO.getById(id);
+		}
 }
