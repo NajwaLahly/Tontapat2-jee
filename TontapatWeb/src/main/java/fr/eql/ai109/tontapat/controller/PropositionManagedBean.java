@@ -23,42 +23,64 @@ import fr.eql.ai109.tontapat.ibusiness.PropositionIBusiness;
 public class PropositionManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private PropositionIBusiness propositionIBusiness;
 
 	private Date dateDebut;
+
 	public Prestation getCurrentPrestation() {
 		return currentPrestation;
 	}
 
-	public void setCurrentPrestation(Prestation currentPrestation) {
-		this.currentPrestation = currentPrestation;
-	}
-	
 	private int id;
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
+	private Utilisateur utilisateurConnecte;
 
+	private Proposition proposition = new Proposition();
 	private Date dateFin;
-	private boolean typeInstallation;
+	private int typeInstallation;
 	private float prixTotal;
 	private String description;
 
 	@ManagedProperty(value = "#{mbPrestation.prestation}")
 	private Prestation currentPrestation;
-	
+
 	public List<Proposition> showAllByPrestationId(int id) {
 		System.out.println("PRESTATION ID MB : " + id);
 		return propositionIBusiness.findAllByPrestationId(id);
 	}
-	
+
+	public String send() {
+		if (dateDebut != null) {
+			proposition.setDateDebutPrestation(dateDebut);
+		} else {
+			proposition.setDateDebutPrestation(currentPrestation.getDateDebut());
+		}
+		if (dateFin != null) {
+			proposition.setDateFinPrestation(dateFin);
+		} else {
+			proposition.setDateFinPrestation(currentPrestation.getDateFin());
+		}
+		if (prixTotal > 0) {
+			proposition.setPrixPropose(prixTotal);
+		} else {
+			proposition.setPrixPropose(currentPrestation.getPrixTotal());
+		}
+		if (typeInstallation == 1) {
+			proposition.setTypeInstallation(true);
+		} else {
+			proposition.setTypeInstallation(false);
+		}
+		proposition.setDescription(description);
+		proposition.setUtilisateur(utilisateurConnecte);
+		proposition.setDateCreation(new Date());
+		proposition.setPrestation(currentPrestation);
+		propositionIBusiness.send(proposition);
+		return "/utilisateur/prestations/details.xhtml?id=" + currentPrestation.getId() + "&send";
+	}
+
 	public Proposition showById(int id) {
 		return propositionIBusiness.findById(id);
 	}
@@ -79,11 +101,11 @@ public class PropositionManagedBean implements Serializable {
 		this.dateFin = dateFin;
 	}
 
-	public boolean isTypeInstallation() {
+	public int getTypeInstallation() {
 		return typeInstallation;
 	}
 
-	public void setTypeInstallation(boolean typeInstallation) {
+	public void setTypeInstallation(int typeInstallation) {
 		this.typeInstallation = typeInstallation;
 	}
 
@@ -101,5 +123,33 @@ public class PropositionManagedBean implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Proposition getProposition() {
+		return proposition;
+	}
+
+	public void setProposition(Proposition proposition) {
+		this.proposition = proposition;
+	}
+
+	public void setCurrentPrestation(Prestation currentPrestation) {
+		this.currentPrestation = currentPrestation;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Utilisateur getUtilisateurConnecte() {
+		return utilisateurConnecte;
+	}
+
+	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
+		this.utilisateurConnecte = utilisateurConnecte;
 	}
 }

@@ -63,11 +63,11 @@
 								<div class="btn-suivant">
 									<b:commandButton styleClass="btn-warning btn-recap" value="Annuler"
 										onclick="$('.paiement').modal('hide')" />
-									<b:commandButton styleClass="btn-success btn-recap" dismiss="modal"
-										value="valider et payer" look="success"
-										action="#{mbOffreSearch.createFromOffreDTO()}"
-										onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
-									<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
+									<b:commandButton styleClass="btn-success"
+									dismiss="modal" value="Valider la demande" look="success"
+									action="#{mbOffreSearch.createFromOffreDTO()}"
+									onclick="return '/offres/demandeEnvoyee.xhtml?faces-redirection=true'" />
+<!-- 									oncomplete="if(!validationFailed) { $('.paiement').modal('hide') } " /> -->
 
 								</div>
 
