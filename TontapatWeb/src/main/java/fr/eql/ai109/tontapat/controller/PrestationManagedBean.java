@@ -13,10 +13,11 @@ import javax.faces.bean.SessionScoped;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
-
+import fr.eql.ai109.tontapat.ibusiness.PropositionIBusiness;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.Prestation;
+import fr.eql.ai109.tontapat.entity.Proposition;
 import fr.eql.ai109.tontapat.entity.Terrain;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
@@ -68,6 +69,9 @@ public class PrestationManagedBean implements Serializable {
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
+	
+	@EJB
+	private PropositionIBusiness propositionIBusiness;
 
 	public String createPrestationOffer(Offre offre, int idTerrain, Date debut, Date fin, OffreDTO prix) {
 		prestationIBusiness.createPrestationOffer(offre, idTerrain, debut, fin, prix.getPrixTotal());
@@ -99,8 +103,7 @@ public class PrestationManagedBean implements Serializable {
 	public void setUtilisateurConnecte(Utilisateur utilisateurConnecte) {
 		this.utilisateurConnecte = utilisateurConnecte;
 	}
-
-
+	
 	public OffreDTO getOffreDTO() {
 		return offreDTO;
 	}
