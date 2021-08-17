@@ -5,7 +5,7 @@
 /* body infos */
 body {
 	background-color: rgb(255, 255, 255) !important;
-	font-family: Roboto Thin !important;
+	font-family: Roboto Light !important;
 }
 
 body {
@@ -596,19 +596,17 @@ h1.title-before-eval {
 	flex-direction: row;
 }
 
-#map {
-}
-
 .img-in-box-acceuil {
     border-radius: 8px 0px 0px 8px;
-	width: 130px;
-	height: 97px;
+	width: 140px;
+	height: 107px;
 }
 
 .accueil-offre-box-info-header > h4 {
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 	margin-top: 5px;
 	font-size: medium;
+	margin-right: 8px;
 }
 
 .accueil-offre-box-info {
@@ -650,8 +648,10 @@ h1.title-before-eval {
 .acceuil-presta-info {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .acceuil-presta-titre {
 	margin: 23px !important;
 }
+
