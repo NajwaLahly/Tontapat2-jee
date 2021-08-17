@@ -14,22 +14,32 @@
 
 		<div class="container">
 			<h1>Demande de réservation envoyée avec succès</h1>
-			<div class="offre-details-box">
-				<div class="offre-details-info">
-					<p>Votre demande a bien été envoyée à l'éleveur.</p>
-					<p>Celui-ci a été notifié de votre demande et vous répondra
-						dans les plus brefs délais.</p>
+			<div class="demande-envoyee">
+				<div>
+					<h:graphicImage library="images" class=""
+						name="/photos/happy_sheep.png" />
 				</div>
-				<div class="btn-suivant">
-					<b:form>
-						<b:commandButton styleClass="btn-success" value="Continuer"
-							action="/offres/index.xhtml" />
-							<b:commandButton styleClass="btn-primary" value="Voir mes prestations"
-							action="/utilisateur/prestations/index.xhtml" />
-					</b:form>
+				<div class="demande-envoyee-txt">
+
+					<div>
+						<p>Votre demande a bien été envoyée à l'éleveur.</p>
+						<p>Celui-ci a été notifié de votre demande et vous répondra
+							dans les plus brefs délais.</p>
+					</div>
+					<div class="btn-suivant btn-reservation">
+						<b:form>
+							<b:commandButton styleClass="btn-success btn-demande"
+								value="Continuer" action="/offres/index.xhtml" />
+							<b:commandButton styleClass="btn-primary btn-demande"
+								value="Voir mes prestations"
+								action="/utilisateur/prestations/index.xhtml" />
+						</b:form>
+					</div>
 				</div>
+
 			</div>
 		</div>
+
 	</ui:define>
 
 </ui:composition>

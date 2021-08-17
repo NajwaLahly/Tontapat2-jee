@@ -38,6 +38,10 @@ h1 {
     font-family: coolvetica !important;
 	color: black !important;
 }
+
+p {
+    margin: 0 0 0 10px !important;
+}
 /* navbar
 --------------------------------------------------
 --------------------------------------------------*/
@@ -470,10 +474,79 @@ a.link-datatable {
 	width: 10rem !important;
 }
 
+.radio_paiement td {
+	display: inline-flex !important;
+}
+
+.num-carte-compte {
+	width: 200px!important;
+}
+
+.cvc-expir {
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.cvc {
+	width: 50px;
+}
+
+.expir {
+	width: 100px;
+	margin-right: 100px;
+}
+
 /* paiement
 --------------------------------------------------
 --------------------------------------------------*/
 .img-paiement {
 	width: 30px;
 	height: 15px;
+}
+
+.titre-ss-titre {
+	text-align: left !important;
+}
+
+
+.demande-envoyee {
+    background-color: white;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(128, 128, 128);
+    padding: 10px 30px 15px 30px;
+    font-size: 16px;
+    cursor: text !important;
+    margin-top: 0px !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 2px rgb(240, 240, 240);
+    width: 700px;
+    margin-left: 23rem !important;
+    display: flex;
+	flex-direction: row;
+    
+}
+
+.demande-envoyee-txt {
+	align-self: end;
+}
+
+.btn-demande {
+	width: 15rem !important;
+	margin-left: 0.75rem !important;
+}
+
+/*-------------evaluation ----------------
+------------------------------------------*/
+h1.title-before-eval {
+	margin-bottom: 0px !important;
+}
+
+.icon-star {
+	color: #fad645;
+}
+
+.eval-div {
+	text-align: center;
+	margin-bottom: 15px;
 }

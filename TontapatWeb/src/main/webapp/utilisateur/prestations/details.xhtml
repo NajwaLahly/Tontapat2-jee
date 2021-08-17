@@ -22,12 +22,21 @@
 
 		<h:panelGroup id="prestation-details">
 			<div class="container">
-				<h1>
+
+				<h1 class="title-before-eval">
 					Prestation n°<h:outputText value="#{prestation.dateReservation}">
-						<f:convertDateTime pattern="yyMMdd" />
-					</h:outputText>-#{prestation.id}
+						<f:convertDateTime pattern="yyMMdd" /></h:outputText>-#{prestation.id}
 				</h1>
-				Réalisée par #{prestation.offre.troupeau.utilisateur.prenom}
+				<div class="eval-div">
+				<h:graphicImage class="profile-img" library="images"
+					name="/photos/user/profile/#{prestation.offre.troupeau.utilisateur.id}.png" />
+				Réalisée par <b>#{prestation.offre.troupeau.utilisateur.prenom} </b>
+				<ui:repeat begin="1" end="3">
+					<b:iconAwesome value="fal fa-star" size="lg" styleClass="icon-star"></b:iconAwesome>
+				</ui:repeat>
+					<b:iconAwesome value="fal fa-star-half-empty" size="lg" styleClass="icon-star"></b:iconAwesome>				
+					<b:iconAwesome value="fal fa-star-o" size="lg" styleClass="icon-star"></b:iconAwesome>				
+				</div>
 				<h3>
 					Statut :
 					<h:outputText value="refusée" rendered="#{prestation.statut == -2}" />
@@ -40,6 +49,7 @@
 					<h:outputText value="terminée" rendered="#{prestation.statut == 3}" />
 					<h:outputText value="clôturée" rendered="#{prestation.statut == 4}" />
 				</h3>
+
 
 				<div class="btn-suivant">
 					<b:form>
