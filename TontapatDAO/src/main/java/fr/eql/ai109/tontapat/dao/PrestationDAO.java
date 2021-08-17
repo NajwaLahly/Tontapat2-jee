@@ -18,7 +18,7 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 @Remote(PrestationIDAO.class)
 @Stateless
-public class PrestationDAO  extends GenericDAO<Prestation> implements PrestationIDAO{
+public class PrestationDAO extends GenericDAO<Prestation> implements PrestationIDAO {
 
 	private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
@@ -52,12 +52,14 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		prestation.setFraisService(offreDTO.getFraisService());
 		prestation.setTVA(offreDTO.getTVA());
 		prestation.setPrixTotal(offreDTO.getPrixTotal());
-
+		prestation.setStatut(0);
 		prestation = add(prestation);
 		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());
 		prestation = update(prestation);
 		return prestation;
 	}
+	
+	
 	@Override
 	public void createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin, float prix) {
 		Prestation prestation = new Prestation(); 
@@ -98,18 +100,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		prestations = query.getResultList();
 		return prestations;
 	}
-	@Override
-	public void createDateValidation(Prestation lastReservation) {
-		lastReservation.setDateValidation(new Date());
-		update(lastReservation);
-		
-	}
-	@Override
-	public void createDateRefus(Prestation lastReservation) {
-		lastReservation.setDateRefus(new Date());
-		update(lastReservation);
-		
-	}
+
 
 	
 	@Override
@@ -119,6 +110,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
 				+ "AND p.dateValidation IS NOT NULL "
 				+ "AND p.dateRefus IS NULL ");
+
 		query.setParameter("utilisateurParam", utilisateur);
 		prestations = query.getResultList();
 		return prestations;
@@ -138,5 +130,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 //		return prestations;
 //
 //	}
+	
+
 
 }

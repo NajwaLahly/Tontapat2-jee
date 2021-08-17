@@ -43,27 +43,22 @@ public class PrestationBusiness implements PrestationIBusiness {
 		return prestationIDAO.getById(id);
 	}
 
-
 	@Override
 	public List<Prestation> findAllNotificationsByCurrentUser(Utilisateur utilisateur) { //Ajout Elodie
 		return prestationIDAO.getDemandesReservationByUtilisateur(utilisateur);
 	}
 
-	@Override
-	public void createDateValidation(Prestation lastReservation) {
-		prestationIDAO.createDateValidation(lastReservation);
-		
-	}
-
-	@Override
-	public void createDateRefus(Prestation lastReservation) {
-		prestationIDAO.createDateRefus(lastReservation);
-		
-	}
 
 	@Override
 	public List<Prestation> findValidatedPrestation(Utilisateur utilisateur){
 		return prestationIDAO.getDemandesReservationOffreAccepted(utilisateur);
+	}
+
+	public void validate(Prestation prestation) {
+		prestation.setDateValidation(new Date());
+		prestation.setStatut(1);
+		prestationIDAO.update(prestation);
+		
 	}
 
 }

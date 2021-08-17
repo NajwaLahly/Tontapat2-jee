@@ -18,10 +18,6 @@ public interface PrestationIDAO extends GenericIDAO<Prestation> {
 	
 	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur); //Ajout Elodie
 
-	public void createDateValidation(Prestation lastReservation);
-
-	public void createDateRefus(Prestation lastReservation);
-
 	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur); //Ajout Elodie
 
 }

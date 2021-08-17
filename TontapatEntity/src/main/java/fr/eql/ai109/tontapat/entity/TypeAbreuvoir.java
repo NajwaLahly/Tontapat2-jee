@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,19 +22,21 @@ public class TypeAbreuvoir implements Serializable {
 	private int id;
 	@Column(name = "nom")
 	private String nom;
-	@ManyToMany(mappedBy = "typesAbreuvoir")
-	private Set<Terrain> terrains;
+	@OneToMany(mappedBy = "typeAbreuvoir")
+	Set<TerrainTypeAbreuvoir> terrainsTypeAbreuvoir;
+	//private Set<Terrain> terrains;
 	
 	public TypeAbreuvoir() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TypeAbreuvoir(int id, String nom, Set<Terrain> terrains) {
+	public TypeAbreuvoir(int id, String nom, Set<TerrainTypeAbreuvoir> terrainsTypeAbreuvoir, Set<Terrain> terrains) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.terrains = terrains;
+		this.terrainsTypeAbreuvoir = terrainsTypeAbreuvoir;
+		//this.terrains = terrains;
 	}
 
 	public int getId() {
@@ -53,13 +55,23 @@ public class TypeAbreuvoir implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Terrain> getTerrains() {
-		return terrains;
+	public Set<TerrainTypeAbreuvoir> getTerrainsTypeAbreuvoir() {
+		return terrainsTypeAbreuvoir;
 	}
 
-	public void setTerrains(Set<Terrain> terrains) {
-		this.terrains = terrains;
+	public void setTerrainsTypeAbreuvoir(Set<TerrainTypeAbreuvoir> terrainsTypeAbreuvoir) {
+		this.terrainsTypeAbreuvoir = terrainsTypeAbreuvoir;
 	}
+
+	//public Set<Terrain> getTerrains() {
+	//	return terrains;
+	//}
+
+	//public void setTerrains(Set<Terrain> terrains) {
+	//	this.terrains = terrains;
+	//}
+
+	
 	
 	
 }

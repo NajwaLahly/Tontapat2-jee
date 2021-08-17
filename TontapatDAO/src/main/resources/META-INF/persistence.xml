@@ -27,6 +27,9 @@
 		<class>fr.eql.ai109.tontapat.entity.Terrain</class>
 		<class>fr.eql.ai109.tontapat.entity.TerrainMorphologie</class>
 		<class>fr.eql.ai109.tontapat.entity.TerrainTypeVegetation</class>
+		<class>fr.eql.ai109.tontapat.entity.TerrainTypeAbri</class>
+		<class>fr.eql.ai109.tontapat.entity.TerrainTypeAbreuvoir</class>
+		<class>fr.eql.ai109.tontapat.entity.TerrainTypeCloture</class>
 		<class>fr.eql.ai109.tontapat.entity.Troupeau</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeAbreuvoir</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeAbri</class>

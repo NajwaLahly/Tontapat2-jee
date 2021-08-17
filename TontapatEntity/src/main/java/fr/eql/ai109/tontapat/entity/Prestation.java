@@ -2,6 +2,7 @@ package fr.eql.ai109.tontapat.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -62,6 +63,8 @@ public class Prestation implements Serializable {
 	private float TVA;
 	@Column(name = "prix_total")
 	private float prixTotal;
+	@Column(name = "statut")
+	private Integer statut;
 	@Column(name = "date_debut")
 	private Date dateDebut;
 	@Column(name = "date_fin")
@@ -107,13 +110,13 @@ public class Prestation implements Serializable {
 	@JoinColumn(referencedColumnName = "id_motif_reclamation")
 	private MotifReclamation motifReclamation;
 	@OneToMany(mappedBy = "prestation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Proposition> propositions;
+	private List<Proposition> propositions;
 	@OneToMany(mappedBy = "prestation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Reclamation> reclamations;
+	private List<Reclamation> reclamations;
 	@OneToMany(mappedBy = "prestation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Intervention> interventions;
+	private List<Intervention> interventions;
 	@OneToMany(mappedBy = "prestation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Evaluation> evaluations;
+	private List<Evaluation> evaluations;
 	
 	public Prestation() {
 		super();
@@ -129,8 +132,8 @@ public class Prestation implements Serializable {
 			Date dateRecuperationTroupeau, Date dateDebutDesinstallation, Date dateFinDesinstallation,
 			int frequenceIntervention, Terrain terrain, Troupeau troupeau, Offre offre, Annonce annonce,
 			MotifRefusReservation motifRefusReservation, MotifAnnulation motifAnnulation,
-			ConditionAnnulation conditionAnnulation, MotifReclamation motifReclamation, Set<Proposition> propositions,
-			Set<Reclamation> reclamations, Set<Intervention> interventions, Set<Evaluation> evaluations) {
+			ConditionAnnulation conditionAnnulation, MotifReclamation motifReclamation, List<Proposition> propositions,
+			List<Reclamation> reclamations, List<Intervention> interventions, List<Evaluation> evaluations) {
 		super();
 		this.id = id;
 		this.dateReservation = dateReservation;
@@ -419,37 +422,43 @@ public class Prestation implements Serializable {
 		this.motifReclamation = motifReclamation;
 	}
 
-	public Set<Proposition> getPropositions() {
+	public List<Proposition> getPropositions() {
 		return propositions;
 	}
 
-	public void setPropositions(Set<Proposition> propositions) {
+	public void setPropositions(List<Proposition> propositions) {
 		this.propositions = propositions;
 	}
 
-	public Set<Reclamation> getReclamations() {
+	public List<Reclamation> getReclamations() {
 		return reclamations;
 	}
 
-	public void setReclamations(Set<Reclamation> reclamations) {
+	public void setReclamations(List<Reclamation> reclamations) {
 		this.reclamations = reclamations;
 	}
 
-	public Set<Intervention> getInterventions() {
+	public List<Intervention> getInterventions() {
 		return interventions;
 	}
 
-	public void setInterventions(Set<Intervention> interventions) {
+	public void setInterventions(List<Intervention> interventions) {
 		this.interventions = interventions;
 	}
 
-	public Set<Evaluation> getEvaluations() {
+	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
 
-	public void setEvaluations(Set<Evaluation> evaluations) {
+	public void setEvaluations(List<Evaluation> evaluations) {
 		this.evaluations = evaluations;
 	}
 	
-	
+	public Integer getStatut() {
+		return statut;
+	}
+
+	public void setStatut(Integer statut) {
+		this.statut = statut;
+	}
 }
