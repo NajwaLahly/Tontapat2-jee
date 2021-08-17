@@ -38,6 +38,10 @@ h1 {
     font-family: coolvetica !important;
 	color: black !important;
 }
+
+p {
+    margin: 0 0 0 10px !important;
+}
 /* navbar
 --------------------------------------------------
 --------------------------------------------------*/
@@ -530,4 +534,19 @@ a.link-datatable {
 .btn-demande {
 	width: 15rem !important;
 	margin-left: 0.75rem !important;
+}
+
+/*-------------evaluation ----------------
+------------------------------------------*/
+h1.title-before-eval {
+	margin-bottom: 0px !important;
+}
+
+.icon-star {
+	color: #fad645;
+}
+
+.eval-div {
+	text-align: center;
+	margin-bottom: 15px;
 }
