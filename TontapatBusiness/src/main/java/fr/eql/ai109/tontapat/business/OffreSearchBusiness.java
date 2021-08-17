@@ -108,6 +108,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		TVA = Math.round(TVA * 100) / 100;
 		prixTotal = Math.round(prixTotal * 100) / 100;
 		
+		offreDTO.setNombreBetes(nombreBetes);
 		offreDTO.setFraisBetail(fraisBetail);
 		offreDTO.setFraisInstallation(fraisInstallation);
 		offreDTO.setFraisIntervention(fraisIntervention);
