@@ -12,11 +12,11 @@
 
 <h:body>
 	<ui:composition>
-	<div class="container">
-		<div class="btn-modal">
+	<div class="btn-modal">
 			<b:button onclick="$('.ajout-terrain').modal('show')"
 				value="Ajouter un terrain" styleClass="btn-success" />
 		</div>
+
 		<b:modal title="Ajouter un terrain" styleClass="ajout-terrain"
 			closable="true" closeOnEscape="true">
 			<h4>Général</h4>
@@ -27,46 +27,132 @@
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>1. Choisissez un nom de terrain</h4>
-									<h5>Ce nom personnalisera le terrain dans les recherches.</h5>
 								</div>
 								<div class="select-menu">
-									<input value="" placeholder="Nom du terrain ..."> </input>
+									<b:inputText type="text" placeholder="Nom du terrain…"
+										required="true" value="#{mbTerrain.nom}"></b:inputText>
 								</div>
 							</div>
-
 							<div class="dates zone">
 								<div class="titre-ss-titre">
 									<h4>2. Choisissez une adresse pour le terrain</h4>
 								</div>
 								<div class="select-menu">
-									<input value="" placeholder="Adresse du terrain ...">
-
-									</input>
+									<b:inputText type="text" placeholder="Adresse du terrain…"
+										required="true" value="#{mbTerrain.adresse}"></b:inputText>
 								</div>
 							</div>
-
 							<div class="zone">
 								<div class="titre-ss-titre">
-									<h4>3. Définissez la superficie de votre terrain</h4>
+									<h4>3. Renseignez la superficie (Ha)</h4>
+									<h5>1 Ha = 100m x 100m = 10 000m²</h5>
 								</div>
 								<div class="select-menu">
-									<input value="" placeholder="Superficie du terrain (Ha) ...">
-
-									</input>
+									<b:inputText type="text" placeholder="Superficie du terrain…"
+										required="true" value="#{mbTerrain.superficie}"></b:inputText>
 								</div>
 							</div>
-
 							<div class="zone">
 								<div class="titre-ss-titre">
 									<h4>4. Décrivez votre terrain</h4>
 								</div>
-
 								<div class="select-menu">
-									<input value="" placeholder="Description du terrain ...">
-
-									</input>
+									<b:inputText type="text" placeholder="Description du terrain…"
+										required="true" value="#{mbTerrain.description}"></b:inputText>
 								</div>
+							</div>
 
+
+							<h4>Morphologie</h4>
+							<div>
+
+								<div class="form-rows">
+									<div class="zone">
+										<div class="select-menu">
+											<b:label value="#{mbMorphologie.morphologies.get(0).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageId1}" label="" />
+										</div>
+
+										<div class="select-menu">
+											<b:label value="#{mbMorphologie.morphologies.get(1).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageId2}" label="" />
+										</div>
+										<div class="select-menu">
+											<b:label value="#{mbMorphologie.morphologies.get(2).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageId3}" label="" />
+										</div>
+										<div class="select-menu">
+											<b:label value="#{mbMorphologie.morphologies.get(3).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageId4}" label="" />
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+
+							<h4>Types de végétation</h4>
+							<div>
+
+								<div class="form-rows">
+									<div class="zone">
+										<div class="select-menu">
+											<b:label
+												value="#{mbTypeVegetation.typeVegetations.get(0).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageTypeVegetationId1}" label="" />
+										</div>
+
+										<div class="select-menu">
+											<b:label
+												value="#{mbTypeVegetation.typeVegetations.get(1).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageTypeVegetationId2}" label="" />
+										</div>
+										<div class="select-menu">
+											<b:label
+												value="#{mbTypeVegetation.typeVegetations.get(2).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageTypeVegetationId3}" label="" />
+										</div>
+										<div class="select-menu">
+											<b:label
+												value="#{mbTypeVegetation.typeVegetations.get(3).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageTypeVegetationId4}" label="" />
+										</div>
+										<div class="select-menu">
+											<b:label
+												value="#{mbTypeVegetation.typeVegetations.get(4).nom}"></b:label>
+										</div>
+										<div class="prix-slider">
+											<b:slider min="0" max="100" step="1"
+												value="#{mbTerrain.pourcentageTypeVegetationId5}" label="" />
+										</div>
+									</div>
+
+
+								</div>
 							</div>
 
 
@@ -75,15 +161,16 @@
 									dismiss="modal" value="suivant" look="success"
 									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
-						</div>
+							<b:commandButton styleClass="btn-suivant" value="ajouter"
+								action="#{mbTerrain.addNew()}" />
 
+						</div>
 					</b:formGroup>
 				</b:form>
-
 			</div>
 		</b:modal>
-		</div>
+
 	</ui:composition>
-	
+
 </h:body>
 </html>

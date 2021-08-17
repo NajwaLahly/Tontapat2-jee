@@ -8,17 +8,18 @@ import java.util.Date;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Terrain;
-
+import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 @Remote(PrestationIDAO.class)
 @Stateless
-public class PrestationDAO  extends GenericDAO<Prestation> implements PrestationIDAO{
+public class PrestationDAO extends GenericDAO<Prestation> implements PrestationIDAO {
 
 	private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
@@ -53,6 +54,7 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		prestation.setTVA(offreDTO.getTVA());
 		prestation.setPrixTotal(offreDTO.getPrixTotal());
 		
+		prestation.setStatut(0);
 		prestation = add(prestation);
 		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());
 		prestation = update(prestation);
@@ -79,5 +81,13 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		add(prestation);	
 	}
 
+	@Override
+	public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur) {
+		List<Prestation> prestations = null;
+		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam or p.troupeau.utilisateur=:utilisateurParam");
+		query.setParameter("utilisateurParam", utilisateur);
+		prestations = query.getResultList();
+		return prestations;
 
+	}
 }

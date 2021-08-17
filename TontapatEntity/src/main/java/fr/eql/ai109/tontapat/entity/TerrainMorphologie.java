@@ -34,7 +34,6 @@ public class TerrainMorphologie implements Serializable {
 
 	public TerrainMorphologie() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public TerrainMorphologie(int id, Terrain terrain, Morphologie morphologie, float pourcentage) {

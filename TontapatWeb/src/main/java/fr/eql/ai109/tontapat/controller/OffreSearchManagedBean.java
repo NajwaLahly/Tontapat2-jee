@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
 import fr.eql.ai109.tontapat.ibusiness.OffreSearchIBusiness;
+import fr.eql.ai109.tontapat.ibusiness.PrestationIBusiness;
 
 @ManagedBean(name = "mbOffreSearch")
 @SessionScoped
@@ -23,6 +24,9 @@ public class OffreSearchManagedBean implements Serializable {
 
 	@EJB
 	private OffreSearchIBusiness offreSearchIBusiness;
+	
+	@EJB
+	private PrestationIBusiness prestationIBusiness;
 
 	@ManagedProperty(value = "#{mbTerrain}")
 	private TerrainManagedBean mbTerrain;
@@ -37,6 +41,15 @@ public class OffreSearchManagedBean implements Serializable {
 	private Boolean searchInstallationAssuree;
 	private float searchPrixMaximum;
 	private List<OffreDTO> searchResults;
+	private OffreDTO searchResult;
+	
+	public OffreDTO getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(OffreDTO searchResult) {
+		this.searchResult = searchResult;
+	}
 
 	private OffreSearch offreSearch = new OffreSearch();
 
@@ -69,9 +82,13 @@ public class OffreSearchManagedBean implements Serializable {
 	//methode calcul prestationoffre
 
 	public String offreSearchResultPage() {
-		return "/offres/resultats.xhtml?faces-redirection=false";
+		return "/offres/resultats.xhtml?faces-redirection=true";
 	}
 
+	
+	
+	
+	//*********Getter Setter*********
 	public int getSearchIdTerrain() {
 		return searchIdTerrain;
 	}
@@ -158,5 +175,23 @@ public class OffreSearchManagedBean implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+		System.out.println("ID setter : " + id);
+		searchResult = searchResults.get(id);
+		System.out.println("SEARCHRESULT : " + searchResult);
+		
+	}
+	
+	public String createFromOffreDTO() {
+		
+		
+		System.out.println("OFFRE DTO : " + searchResult);
+		System.out.println("SEARCH RESULT ID " + id);
+		
+		prestationIBusiness.createFromOffreDTO(searchResult);
+		return addedPrestationPage();
+	}
+	
+	private String addedPrestationPage() {
+		return "/offres/demandeEnvoyee.xhtml?faces-redirection=true";
 	}
 }

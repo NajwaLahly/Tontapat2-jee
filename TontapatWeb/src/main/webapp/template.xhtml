@@ -36,11 +36,13 @@
 			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
 			
 			<b:navbarLinks pull="right" styleClass="hidden-xs">
-				<b:navLink href="#">
-					<b:iconAwesome value="fal fa-calendar" size="lg"></b:iconAwesome>
+				<b:navLink outcome="#{mbPrestation.mesPrestations()}">
+					<b:iconAwesome value="fal fa-calendar" size="lg">
+					
+					</b:iconAwesome>
 				</b:navLink>
 
-				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg">
+				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg" styleClass="notif-dropdown">
 
 					<b:navLink value="n a validé votre demande de réservation."
 						href="#"></b:navLink>
@@ -53,7 +55,6 @@
 					<b:navLink></b:navLink>
 					<b:navLink value="n a refusé votre demande de réservation."
 						href="#"></b:navLink>
-					<b:navLink></b:navLink>
 				</b:dropMenu>
 
 
@@ -61,10 +62,12 @@
 					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
 				</b:navLink>
 
+<!-- <h:graphicImage class="profile-img" library="images" -->
+<!-- 									name="/photos/user/profile/#{mbUtilisateur.utilisateur.id}.png" /> -->
 				<b:dropMenu
 					value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
 					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
-						outcome="/utilisateur/prestations/index.xhtml"></b:navLink>
+						outcome="#{mbPrestation.mesPrestations()}"></b:navLink>
 					<b:navLink></b:navLink>
 					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
 						outcome="#{mbTerrain.mesTerrains()}"></b:navLink>
@@ -84,13 +87,13 @@
 			</b:navbarLinks>
 		</div>
 	</b:navBar>
-	<b:container>
+	
 		<b:row>
 			<b:column>
 				<ui:insert name="content"></ui:insert>
 			</b:column>
 		</b:row>
-	</b:container>
+	
 	<!-- 	<div class="container"> -->
 	<!-- 		<h1>My Website</h1> -->
 

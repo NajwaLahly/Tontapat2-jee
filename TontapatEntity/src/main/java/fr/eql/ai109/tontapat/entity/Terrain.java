@@ -57,12 +57,14 @@ public class Terrain implements Serializable {
 //			inverseJoinColumns = @JoinColumn(name = "id_morphologie"))
 	@OneToMany(mappedBy = "terrain")
 	Set<TerrainMorphologie> terrainMorphologies;
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "terrain_type_vegetation",
-			joinColumns = @JoinColumn(name = "id_terrain"),
-			inverseJoinColumns = @JoinColumn(name = "id_type_vegetation"))
-	Set<TypeVegetation> typesVegetation;
+	//@ManyToMany(fetch = FetchType.EAGER)
+	//@JoinTable(
+	//		name = "terrain_type_vegetation",
+	//		joinColumns = @JoinColumn(name = "id_terrain"),
+	//		inverseJoinColumns = @JoinColumn(name = "id_type_vegetation"))
+	@OneToMany(mappedBy = "terrain")
+	Set<TerrainTypeVegetation> terrainTypesVegetation;
+	//Set<TypeVegetation> typesVegetation;
 	@ManyToMany
 	@JoinTable(
 			name = "terrain_type_cloture",
@@ -89,7 +91,8 @@ public class Terrain implements Serializable {
 
 	public Terrain(int id, String nom, float superficie, String description, Date dateAjout, float adresseLat,
 			float adresseLong, String adresseVoie, Date dateRetrait, Set<Annonce> annonces, Set<Prestation> prestations,
-			Utilisateur utilisateur, Set<TerrainMorphologie> terrainMorphologies, Set<TypeVegetation> typesVegetation,
+			Utilisateur utilisateur, Set<TerrainMorphologie> terrainMorphologies,
+			Set<TerrainTypeVegetation> terrainTypesVegetation,
 			Set<TypeCloture> typesCloture, Set<TypeAbri> typesAbri, Set<TypeAbreuvoir> typesAbreuvoir) {
 		super();
 		this.id = id;
@@ -105,7 +108,8 @@ public class Terrain implements Serializable {
 		this.prestations = prestations;
 		this.utilisateur = utilisateur;
 		this.terrainMorphologies = terrainMorphologies;
-		this.typesVegetation = typesVegetation;
+		this.terrainTypesVegetation = terrainTypesVegetation;
+		//this.typesVegetation = typesVegetation;
 		this.typesCloture = typesCloture;
 		this.typesAbri = typesAbri;
 		this.typesAbreuvoir = typesAbreuvoir;
@@ -215,13 +219,13 @@ public class Terrain implements Serializable {
 		this.terrainMorphologies = terrainMorphologies;
 	}
 
-	public Set<TypeVegetation> getTypesVegetation() {
-		return typesVegetation;
-	}
+	//public Set<TypeVegetation> getTypesVegetation() {
+	//	return typesVegetation;
+	//}
 
-	public void setTypesVegetation(Set<TypeVegetation> typesVegetation) {
-		this.typesVegetation = typesVegetation;
-	}
+	//public void setTypesVegetation(Set<TypeVegetation> typesVegetation) {
+	//	this.typesVegetation = typesVegetation;
+	//}
 
 	public Set<TypeCloture> getTypesCloture() {
 		return typesCloture;
@@ -245,6 +249,14 @@ public class Terrain implements Serializable {
 
 	public void setTypesAbreuvoir(Set<TypeAbreuvoir> typesAbreuvoir) {
 		this.typesAbreuvoir = typesAbreuvoir;
+	}
+
+	public Set<TerrainTypeVegetation> getTerrainTypesVegetation() {
+		return terrainTypesVegetation;
+	}
+
+	public void setTerrainTypesVegetation(Set<TerrainTypeVegetation> terrainTypesVegetation) {
+		this.terrainTypesVegetation = terrainTypesVegetation;
 	}
 	
 	

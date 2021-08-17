@@ -7,7 +7,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 	<ui:define name="title">
-		Visualisation d'une offre
+		Demande de réservation envoyée
 	</ui:define>
 
 	<ui:define name="content">
@@ -16,11 +16,20 @@
 			<h1>Demande de réservation envoyée avec succès</h1>
 			<div class="offre-details-box">
 				<div class="offre-details-info">
-					Votre demande a bien été envoyée à l'éleveur. Celui-ci a été notifié de votre demande et vous répondra dans les plus brefs délais.
+					<p>Votre demande a bien été envoyée à l'éleveur.</p>
+					<p>Celui-ci a été notifié de votre demande et vous répondra
+						dans les plus brefs délais.</p>
+				</div>
+				<div class="btn-suivant">
+					<b:form>
+						<b:commandButton styleClass="btn-success" value="Continuer"
+							action="/offres/index.xhtml" />
+							<b:commandButton styleClass="btn-primary" value="Voir mes prestations"
+							action="/utilisateur/prestations/index.xhtml" />
+					</b:form>
 				</div>
 			</div>
 		</div>
-
 	</ui:define>
 
 </ui:composition>

@@ -1,21 +1,76 @@
-<ui:composition template="/template.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-	<ui:define name="title">
-		Visualisation d'une proposition
-	</ui:define>
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" />
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
+
+</h:head>
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbProposition.id}" />
+			<c:set var="proposition"
+				value="#{mbProposition.showById(mbProposition.id)}" />
+		</f:metadata>
+<h:body>
+
+	<ui:composition>
+
+		<b:modal title="Proposition de négociation"
+			styleClass="proposition-details" closable="true" closeOnEscape="true">
+			<div>
+				<div class="form-rows">
+					<div class="zone">
+						<div class="titre-ss-titre">
+							Envoyée par #{proposition.utilisateur.prenom} le
+							<h:outputText value="#{proposition.dateCreation}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							:
+						</div>
+						<ul>
+							<li>#{proposition.description}</li>
+						</ul>
+						<h4>Récapitulatif de la proposition</h4>
+						<ul>
+							<li>Terrain :</li>
+							<li>Troupeau :</li>
+							<li>Installation :</li>
+							<li>Date de début :</li>
+							<li>Date de fin :</li>
+							<li>Prix total :</li>
+						</ul>
+					</div>
+				</div>
+				<div class="btn-suivant">
+					<b:button styleClass="btn-danger" update="@form" dismiss="modal"
+						value="Refuser" look="success" action="#{mbProposition.send()}"
+						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
+						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+
+					<b:button styleClass="btn-warning" update="@form" dismiss="modal"
+						value="Contre-proposer" look="success"
+						action="#{mbProposition.send()}"
+						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
+						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+
+					<b:button styleClass="btn-success" update="@form" dismiss="modal"
+						value="Accepter la proposition" look="success"
+						action="#{mbProposition.send()}"
+						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
+						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
 
 
-	<ui:define name="content">
-
-		<div class="container">
-
-			<h1>Proposition n°xxx</h1>
-
-		</div>
-	</ui:define>
-</ui:composition>
+				</div>
+			</div>
+		</b:modal>
+	</ui:composition>
+</h:body>
+</html>
