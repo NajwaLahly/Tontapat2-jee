@@ -30,10 +30,19 @@
 						outcome="/offres/details.xhtml?id=#{prestation.offre.id}" />
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{prestation.terrain.nom}" label="Terrain" />
-				<b:dataTableColumn value="#{prestation.dateDebut}"
-					label="Date de début" />
-				<b:dataTableColumn value="#{prestation.troupeau.utilisateur.prenom} #{prestation.troupeau.utilisateur.nom}"
-					label="Nom du prestataire" />
+				<b:dataTableColumn label="Date de début">
+				<h:outputText value="#{prestation.dateDebut}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					</b:dataTableColumn>
+									<b:dataTableColumn label="Rôle">
+				<h:outputText
+				value="#{prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id ? 'Prestataire' : 'Bénéficiaire'}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Interlocuteur">
+				<h:outputText
+				value="#{prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id ? prestation.terrain.utilisateur.prenom : prestation.troupeau.utilisateur.prenom}" />
+				</b:dataTableColumn>
 				<b:dataTableColumn
 					value="#{prestation.statut == -2? 'Refusée':
 							prestation.statut == -1? 'Annulée':
