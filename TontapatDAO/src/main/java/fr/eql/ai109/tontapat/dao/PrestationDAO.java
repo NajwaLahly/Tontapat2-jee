@@ -87,56 +87,44 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 			return prestations;
 			
 		}
-
-//	@Override
-//	public List<Prestation> getDemandesReservationByUtilisateur2(Utilisateur utilisateur) { // Ajout Elodie
-//		List<Prestation> prestations = null;
-//		Query query = em.createQuery("SELECT p FROM Prestation p "
-//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
-//				+ "AND p.dateValidation IS NULL "
-//				+ "AND p.dateRefus IS NULL ");
-//		query.setParameter("utilisateurParam", utilisateur);
-//		prestations = query.getResultList();
-//		return prestations;
-//	}
 	
 	@Override
 	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur) { // Ajout Elodie
 		List<Prestation> prestations = null;
-		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.troupeau.utilisateur=:utilisateurParam AND p.dateValidation IS NULL AND p.dateRefus IS NULL");
+		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.troupeau.utilisateur=:utilisateurParam "
+				+ "AND p.dateValidation IS NULL "
+				+ "AND p.dateRefus IS NULL");
 		query.setParameter("utilisateurParam", utilisateur);
 		prestations = query.getResultList();
 		return prestations;
 	}
+	@Override
+	public void createDateValidation(Prestation lastReservation) {
+		lastReservation.setDateValidation(new Date());
+		update(lastReservation);
+		
+	}
+	@Override
+	public void createDateRefus(Prestation lastReservation) {
+		lastReservation.setDateRefus(new Date());
+		update(lastReservation);
+		
+	}
 
 	
-//	@Override
-//	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur) { // Ajout Elodie
-//		List<Prestation> prestations = null;
-//		Query query = em.createQuery("SELECT p FROM Prestation p "
-//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
-//				+ "AND p.dateValidation IS NOT NULL "
-//				+ "AND p.dateRefus IS NULL ");
-//		query.setParameter("utilisateurParam", utilisateur);
-//		prestations = query.getResultList();
-//		return prestations;
-//
-//	}
-	
-//	@Override
-//	public List<Prestation> getProprietaireTroupeau(Utilisateur utilisateur, Utilisateur utilisateur2) { // Ajout Elodie
-//		List<Prestation> prestations = null;
-//		Query query = em.createQuery("SELECT p FROM Prestation p "
-//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
-//				+ "AND p.troupeau.utilisateur=:utilisateur2Param "
-//				+ "AND p.dateValidation IS NOT NULL "
-//				+ "AND p.dateRefus IS NULL ");
-//		query.setParameter("utilisateurParam", utilisateur);
-//		query.setParameter("utilisateur2Param", utilisateur2);
-//		prestations = query.getResultList();
-//		return prestations;
-//
-//	}
+	@Override
+	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur) { // Ajout Elodie
+		List<Prestation> prestations = null;
+		Query query = em.createQuery("SELECT p FROM Prestation p "
+				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+				+ "AND p.dateValidation IS NOT NULL "
+				+ "AND p.dateRefus IS NULL ");
+		query.setParameter("utilisateurParam", utilisateur);
+		prestations = query.getResultList();
+		return prestations;
+
+	}
+
 	
 //	@Override
 //	public List<Prestation> getDemandesReservationRefused(Utilisateur utilisateur) { // Ajout Elodie

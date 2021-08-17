@@ -1,81 +1,121 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-<h:head>
-	<ui:insert name="head"></ui:insert>
-	<h:outputStylesheet library="css" name="style.css" />
-</h:head>
 
-<h:body>
-	<ui:composition>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<b:form horizontal="true">
-					<b:formGroup>
-						<div class="form-rows">
-							<div>
-								<f:metadata>
-									<f:viewParam name="id" value="#{mbPrestation.id}" />
-									<c:set var="prestation"
-										value="#{mbPrestation.showLastPrestationReserved.get(mbPrestation.id)}"
-										scope="request" />
-								</f:metadata>
-								<h4 class="center-block text-center">
-									<strong>Demande de réservation N° #{prestation.numReservation}</strong>
-								</h4>
+	<ui:define name="title">
+		Demande de réservation à valider
+	</ui:define>
 
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{mbPrestation.id}" />
+			<c:set var="prestation"
+				value="#{mbPrestation.showById(mbPrestation.id)}" scope="request" />
+		</f:metadata>
+
+		<div class="container">
+			<h1>Prestation n°#{prestation.numReservation}</h1>
+
+			<div class="offre-details-box">
+				<div class="offre-details-info">
+					<div class="offre-caracteristiques details-box">
+						<h3>Récapitulatif de la prestation</h3>
+						<b:iconAwesome value="fal fa-leaf" styleClass="icon" />
+						Terrain : <strong>#{prestation.terrain.nom}</strong><br />
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+						Du
+						<h:outputText value="#{prestation.dateDebut}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						au
+						<h:outputText value="#{prestation.dateFin}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/espece/#{prestation.offre.troupeau.race.espece.id}.png" />
+						#{prestation.offre.troupeau.race.nom} (#{prestation.nombreBetes})<br />
+						<h:graphicImage library="images" styleClass="icon"
+							name="/icons/install.png" />
+						Prise en charge de l'installation : #{prestation.typeInstallation
+						== true ? "éleveur" : "client"} <br />
+						<b:iconAwesome value="fal fa-user" size="lg" styleClass="icon"></b:iconAwesome>
+						Intervention: tous les #{prestation.frequenceIntervention} jours <br />
+						<b:iconAwesome value="fa fa-times" size="lg" styleClass="icon" />
+						Conditions d'annulation :
+						#{prestation.conditionAnnulation.nom.toLowerCase()}<br />
+						<b:iconAwesome value="fal fa-globe" size="lg" styleClass="icon"></b:iconAwesome>
+						Offre :
+						<h:link outcome="/offres/details.xhtml?id=#{prestation.offre.id}"
+							value="#{prestation.offre.nom}" />
+					</div>
+					<div class="offre-troupeau-infos details-box">
+						<h3>Historique</h3>
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon" />
+						Demande envoyée le
+						<h:outputText value="#{prestation.dateReservation}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						à partir de l'offre
+						<h:link outcome="/offres/details.xhtml?id=#{prestation.offre.id}"
+							value="#{prestation.offre.nom}" />
+
+						<b:iconAwesome value="fal fa-calendar" styleClass="icon" />
+						<br />
+					</div>
+				</div>
+				<div class="tarif-reservation">
+					<div class="offre-details-tarif details-box">
+						<h3>Tarification</h3>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'installation</div>
+							<div class="prix-element">#{prestation.fraisInstallation} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais d'intervention</div>
+							<div class="prix-element">#{prestation.fraisIntervention} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de bétail</div>
+							<div class="prix-element">#{prestation.fraisBetail} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">Frais de service (10%)</div>
+							<div class="prix-element">#{prestation.fraisService} €</div>
+						</div>
+						<div class="tarif-element">
+							<div class="titre-tarif-elem">TVA (20%)</div>
+							<div class="prix-element">#{prestation.TVA} €</div>
+						</div>
+
+						<div class="tarif-element">
+							<div class="titre-tarif-elem prix-total">
+								<br />Prix total
 							</div>
-							<div class="modal-body">
-								<h5>Nom de l'offre concernée:#{prestation.offre.troupeau.nom}</h5>
-								<br />
-
-								<h5>Nom du propriétaire de terrain: ???</h5>
-								<h5>Evaluation: ???</h5>
-								<br />
-
-								<h5>Date de début:#{offreDTO.offre.dateDebut}</h5>
-								<h5>Date de fin:#{offreDTO.offre.dateFin}</h5>
-								<h5>Lieu de la
-									prestation:#{offreDTO.offre.troupeau.adresseVoie}</h5>
-								<h5>photo ???</h5>
-								<h5>Conditions
-									d'annulation:#{offreDTO.offre.conditionAnnulation.nom}</h5>
-								<br />
-
-
-								<h5>Frais d'installation : #{offreDTO.fraisInstallation} €
-								</h5>
-								<h5>Frais d'intervention : #{offreDTO.fraisIntervention} €
-								</h5>
-								<h5>Frais de bétail : #{offreDTO.fraisBetail} €</h5>
-								<h5>Frais de service : #{offreDTO.fraisService} €</h5>
-								<h5>TVA (20%) : #{offreDTO.fraisService} €</h5>
-								<h5>Prix total: #{offreDTO.prixTotal} €</h5>
-								<br />
-
-							</div>
-							<div>
-								<div class="btn-toolbar">
-									<b:buttonGroup>
-										<b:commandButton update="@form" dismiss="modal"
-											value="Précédent" look="warning" style="margin:40px"
-											oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
-										<b:commandButton update="@form" dismiss="modal"
-											style="margin:40px" value="Passer au paiement" look="primary"
-											oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
-									</b:buttonGroup>
-								</div>
-
+							<div class="prix-element prix-total">
+								<br />#{prestation.prixTotal} €
 							</div>
 						</div>
-					</b:formGroup>
-				</b:form>
+					</div>
+					<div class="btn-reservation">
+						<div>
+							<b:commandButton onclick="" value="Accepter" styleClass="btn-success" 
+							action="#{mbPrestation.createDateValidation()}"/>
+						</div>
+						<div>
+							<b:commandButton onclick="" value="Refuser" styleClass="btn-danger" 
+							action="#{mbPrestation.createDateRefus()}"/>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</ui:composition>
-</h:body>
-</html>
+
+	</ui:define>
+
+</ui:composition>

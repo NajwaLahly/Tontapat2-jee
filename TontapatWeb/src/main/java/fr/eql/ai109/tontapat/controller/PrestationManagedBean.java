@@ -28,22 +28,27 @@ import fr.eql.ai109.tontapat.entity.Utilisateur;
 public class PrestationManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManagedProperty(value = "#{mbUtilisateur.utilisateur}")
 	private Utilisateur utilisateurConnecte;
-	
+
 	@ManagedProperty(value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}")
 	private OffreDTO offreDTO;
-	
+
 	private int id;
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
+
 	
 	//Ajout Elodie
 	private Prestation prestationReservee = new Prestation();
 	private OffreSearch offreSearch = new OffreSearch();
 	String notif = null;
+	private Prestation lastReservation = new Prestation();
+	
+	
+	
 
 	public String createPrestationOffer(Offre offre,int idTerrain,Date debut, Date fin,OffreDTO prix) {
 		if (prix == null) 
@@ -52,7 +57,7 @@ public class PrestationManagedBean  implements Serializable {
 		return "/reservation/template_recapitulatif.xhtml";
 
 	}
-	
+
 
 	public String createFromOffreDTO() {
 		prestationIBusiness.createFromOffreDTO(offreDTO);
@@ -73,84 +78,88 @@ public class PrestationManagedBean  implements Serializable {
 		return prestationIBusiness.findAllNotificationsByCurrentUser(utilisateurConnecte);
 	}
 
-	//	public List<String> acceptedNotifs() { //Ajout Elodie
-	//		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
-	//		System.out.println("******** PRESTATIONS ********* :" + prestations);
-	//		List<String> notifs = new ArrayList<String>();
-	//		
-	//		for (Prestation prestation : prestations) {
-	//			Troupeau troupeau = prestation.getTroupeau();
-	//			Utilisateur utlisateurNonConnecte = troupeau.getUtilisateur();
-	//			String nom = utlisateurNonConnecte.getNom();
-	//			String prenom = utlisateurNonConnecte.getPrenom();
-	//			String notif = nom + " " + prenom + " " + "a accepté votre demande de réservation";
-	//			System.out.println("******** NOTIFICATION ********* :" + notif);
-	//			System.out.println("******** DATE DE RESERVATION ********* :" + prestation.getDateReservation());
-	//			notifs.add(notif);
-	//			System.out.println("******** NOTIFICATIONS ********* :" + notifs);
-	//		}		
-	//		return notifs;
-	//	}
-
+	public String createDateValidation() { //Ajout Elodie
+		prestationIBusiness.createDateValidation(lastReservation);		
+		return "/index.xhtml";
+	}
 	
+	public String createDateRefus() { //Ajout Elodie
+		prestationIBusiness.createDateRefus(lastReservation);		
+		return "/index.xhtml";
+	}
+	
+
+
 	@PostConstruct
 	public void init() { // ajout Elodie
 		notif = demandeNotifs();
 	}
-	
+
 	public String acceptedNotifs() { //Ajout Elodie
-		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
-		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
-		
+		List<Prestation> prestations = new ArrayList<Prestation>();
+		prestations = prestationIBusiness.findValidatedPrestation(utilisateurConnecte);
+
 		if(prestations.size()>0) {
 			for (Prestation prestation : prestations) {
 				Troupeau troupeau = prestation.getTroupeau();
-				Utilisateur utlisateurNonConnecte = troupeau.getUtilisateur();
-				String nom = utlisateurNonConnecte.getNom();
-				String prenom = utlisateurNonConnecte.getPrenom();
-				notif = nom + " " + prenom + " " + "a accepté votre demande de réservation";
+				Utilisateur utilisateurNonConnecte = troupeau.getUtilisateur();
+				String nom = utilisateurNonConnecte.getNom();
+				String prenom = utilisateurNonConnecte.getPrenom();
+				Offre offre = prestation.getOffre();
+				String nomOffre = offre.getNom();
+				notif = nom + " " + prenom + " " + "a accepté votre demande de réservation "
+						+ "pour l'offre '" + nomOffre + "'";
 			}	
 		}
 		return notif;
 	}
-	
 
-	
+
+
 	public String demandeNotifs() { //Ajout Elodie
 		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
 		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
 		String notif = null;
 
-		if(prestations.size()>0) {
 			for (Prestation prestation : prestations) {
 				Offre offre = prestation.getOffre();
 				String titre = offre.getNom();
 				notif = "Vous avez une demande de réservation pour l'offre '" + titre + "'" ;
 			}	
-		}
+		
 		return notif;
 	}
-	
-	public int lastReservation() { //Ajout Elodie
+
+	//	public int lastReservation() { //Ajout Elodie
+	//		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
+	//		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
+	//
+	//		int idLastReservation = 0;
+	//		
+	//		if(prestations.size()>0) {
+	//			for (Prestation prestation : prestations) {
+	//				idLastReservation = prestation.getId();
+	//			}	
+	//		}
+	//		return idLastReservation;		
+	//	}
+
+
+	public Prestation lastReservation() { //Ajout Elodie
 		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
 		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
-
-		int idLastPrestation = 0;
-		
-		if(prestations.size()>0) {
-			for (Prestation prestation : prestations) {
-				idLastPrestation = prestation.getId();
-			}	
+		for (Prestation prestation : prestations) {
+			lastReservation = prestation;	
 		}
-		return idLastPrestation;
-		
-	}
+		return lastReservation;		
+	}	
+	
 	public Prestation showLastPrestationReserved() {
-		id = lastReservation();
+		//		id = lastReservation();
 		prestationReservee = prestationIBusiness.findById(id);
 		return prestationReservee;
 	}
-	
+
 	// Fin ajout Elodie
 
 
@@ -174,11 +183,11 @@ public class PrestationManagedBean  implements Serializable {
 		this.id = id;
 	}
 
-	
+
 	public List<Prestation> ShowAllbyCurrentUser() {
 		return prestationIBusiness.findAllByCurrentUser(utilisateurConnecte);
 	}
-	
+
 	public String mesPrestations() {
 		return "/utilisateur/prestations/index.xhtml?faces-redirection=false";
 	}
@@ -206,5 +215,35 @@ public class PrestationManagedBean  implements Serializable {
 
 	public Utilisateur getUtilisateurConnecte() {
 		return utilisateurConnecte;
+	}
+
+
+	public OffreSearch getOffreSearch() {
+		return offreSearch;
+	}
+
+
+	public void setOffreSearch(OffreSearch offreSearch) {
+		this.offreSearch = offreSearch;
+	}
+
+
+	public String getNotif() {
+		return notif;
+	}
+
+
+	public void setNotif(String notif) {
+		this.notif = notif;
+	}
+
+
+	public Prestation getLastReservation() {
+		return lastReservation;
+	}
+
+
+	public void setLastReservation(Prestation lastReservation) {
+		this.lastReservation = lastReservation;
 	}
 }

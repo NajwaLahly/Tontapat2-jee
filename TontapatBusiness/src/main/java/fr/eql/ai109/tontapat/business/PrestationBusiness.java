@@ -49,4 +49,21 @@ public class PrestationBusiness implements PrestationIBusiness {
 		return prestationIDAO.getDemandesReservationByUtilisateur(utilisateur);
 	}
 
+	@Override
+	public void createDateValidation(Prestation lastReservation) {
+		prestationIDAO.createDateValidation(lastReservation);
+		
+	}
+
+	@Override
+	public void createDateRefus(Prestation lastReservation) {
+		prestationIDAO.createDateRefus(lastReservation);
+		
+	}
+
+	@Override
+	public List<Prestation> findValidatedPrestation(Utilisateur utilisateur){
+		return prestationIDAO.getDemandesReservationOffreAccepted(utilisateur);
+	}
+
 }

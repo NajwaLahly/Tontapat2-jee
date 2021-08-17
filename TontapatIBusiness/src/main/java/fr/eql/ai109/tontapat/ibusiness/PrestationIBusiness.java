@@ -20,4 +20,10 @@ public interface PrestationIBusiness {
 	
 	public List<Prestation> findAllNotificationsByCurrentUser(Utilisateur utilisateur); //Ajout Elodie
 
+	public void createDateValidation(Prestation lastReservation);  //Ajout Elodie
+ 
+	public void createDateRefus(Prestation lastReservation);  //Ajout Elodie
+
+	public List<Prestation> findValidatedPrestation(Utilisateur utilisateur);
+
 }
