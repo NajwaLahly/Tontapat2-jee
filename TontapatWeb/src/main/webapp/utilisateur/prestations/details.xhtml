@@ -41,10 +41,10 @@
 
 			<div class="btn-suivant">
 				<b:form>
-					<b:commandButton styleClass="btn-danger" value="Refuser"
+					<b:commandButton styleClass="btn-danger" value="Refuser la demande"
 						rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
 
-					<b:commandButton styleClass="btn-success" value="Valider"
+					<b:commandButton styleClass="btn-success" value="Valider la demande"
 						action="#{mbPrestation.validate()}"
 						rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
 				</b:form>
@@ -57,6 +57,13 @@
 							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
 							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)
 							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur.id != mbUtilisateur.utilisateur.id)}" />
+			
+				<b:button styleClass="btn-primary" value="Proposition envoyée"
+					disabled="true"
+					rendered="#{(prestation.statut == 1 or prestation.statut == 2)
+							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
+							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)
+							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur.id == mbUtilisateur.utilisateur.id)}" />
 
 				<ui:include src="/utilisateur/prestations/propositions/editer.xhtml" />
 				<b:button styleClass="btn-primary" value="Faire une proposition"
