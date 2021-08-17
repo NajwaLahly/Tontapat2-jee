@@ -53,22 +53,21 @@
 				<div class="btn-suivant">
 								<b:form horizontal="true">
 					<b:formGroup>
-					<b:button styleClass="btn-danger" update="@form" dismiss="modal"
+					<b:commandButton styleClass="btn-danger" update="@form" dismiss="modal"
 						value="Refuser" look="success" action="#{mbProposition.refuse()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
-						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+						oncomplete="if(!validationFailed) { $('.proposition-details').modal('hide') } " />
 
-					<b:button styleClass="btn-warning" update="@form" dismiss="modal"
+					<b:commandButton styleClass="btn-warning" update="@form" dismiss="modal"
 						value="Contre-proposer" look="success"
-						action="#{mbProposition.couteroffer()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
-						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+						oncomplete="if(!validationFailed) { $('.proposition-details').modal('hide') } " />
 
-					<b:button styleClass="btn-success" update="@form" dismiss="modal"
+					<b:commandButton styleClass="btn-success" update="@form" dismiss="modal"
 						value="Accepter la proposition" look="success"
 						action="#{mbProposition.accept()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
-						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+						oncomplete="if(!validationFailed) { $('.proposition-details').modal('hide') } " />
 
 					</b:formGroup>
 				</b:form>
