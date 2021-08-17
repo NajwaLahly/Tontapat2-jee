@@ -104,6 +104,10 @@ public class PropositionManagedBean implements Serializable {
 		proposition = propositionIBusiness.findLatestFromPrestationId(currentPrestation.getId());
 		return proposition;
 	}
+	
+	public double roundCost(double cost) {
+		return (Math.ceil(cost*100))/100;
+	}
 
 	public Date getDateDebut() {
 		return dateDebut;
