@@ -11,4 +11,6 @@ public interface PropositionIBusiness {
 
 	public Proposition findById(int id);
 
+	public void send(Proposition proposition);
+
 }

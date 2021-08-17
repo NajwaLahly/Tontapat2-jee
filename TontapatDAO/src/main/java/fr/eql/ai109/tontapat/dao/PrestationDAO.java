@@ -53,6 +53,8 @@ public class PrestationDAO extends GenericDAO<Prestation> implements PrestationI
 		prestation.setTVA(offreDTO.getTVA());
 		prestation.setPrixTotal(offreDTO.getPrixTotal());
 		
+		prestation.setNombreBetes(offreDTO.getNombreBetes());
+		prestation.setConditionAnnulation(offreDTO.getOffre().getConditionAnnulation());
 		prestation.setStatut(0);
 		prestation = add(prestation);
 		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());

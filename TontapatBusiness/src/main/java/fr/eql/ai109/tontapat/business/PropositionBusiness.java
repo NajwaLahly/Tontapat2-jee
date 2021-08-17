@@ -28,4 +28,10 @@ public class PropositionBusiness implements PropositionIBusiness {
 		return propositionIDAO.getById(id);
 	}
 
+	@Override
+	public void send(Proposition proposition) {
+		propositionIDAO.add(proposition);
+		
+	}
+
 }
