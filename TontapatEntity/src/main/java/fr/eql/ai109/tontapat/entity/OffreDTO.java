@@ -7,7 +7,7 @@ public class OffreDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Offre offre;
+	public Offre offre;
 	private OffreSearch search;
 	private Date dateApportTroupeau;
 	private Date dateRetraitTroupeau;

@@ -9,5 +9,6 @@ public interface OffreIBusiness {
 	public List<Offre> findAll();
 	public List<Offre> findAllByCurrentUser(Utilisateur utilisateur);
 	public Offre findById(int id);
+
 }
 

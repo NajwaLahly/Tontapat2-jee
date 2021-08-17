@@ -9,7 +9,6 @@ import fr.eql.ai109.tontapat.entity.Prestation;
 
 public interface PrestationIDAO extends GenericIDAO<Prestation> {
 
-	public void createPrestationOffer(Offre offre);
 
 	public Prestation createFromOffreDTO(OffreDTO offreDTO);
 

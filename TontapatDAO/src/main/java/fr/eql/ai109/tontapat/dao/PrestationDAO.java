@@ -2,6 +2,7 @@ package fr.eql.ai109.tontapat.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -69,17 +70,14 @@ public class PrestationDAO  extends GenericDAO<Prestation> implements Prestation
 		terrain.setId(idTerrain);
 		prestation.setTerrain(terrain);
 		prestation.setPrixTotal(prix);
-
+		prestation.setNumReservation(prestation.getDateReservation() + "-" + prestation.getId());
 		prestation.setDateDebutInstallation(new Date(debut.getTime() - (MILLIS_IN_A_DAY * 2)));
 		prestation.setDateDebutDesinstallation(new Date(fin.getTime() - (MILLIS_IN_A_DAY * 2)));
-		
 		prestation.setDateApportTroupeau(new Date(debut.getTime() - MILLIS_IN_A_DAY));
+		prestation.setTypeInstallation(offre.isInstallationAssuree());
+		prestation.setFrequenceIntervention(offre.getFrequenceIntervention());
 		add(prestation);	
 	}
-	@Override
-	public void createPrestationOffer(Offre offre) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

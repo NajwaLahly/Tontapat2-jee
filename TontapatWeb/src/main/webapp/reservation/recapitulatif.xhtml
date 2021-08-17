@@ -3,62 +3,82 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
-
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<ui:insert name="head"></ui:insert>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<b:form horizontal="true">
-					<b:formGroup>
-						<div class="form-rows">
-							<div>
-								<h4 class="center-block text-center">
-									<strong>Récapitulatif</strong>
-								</h4>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<b:form horizontal="true">
+				<b:formGroup>
+					<div class="form-rows">
+						<div>
+							<h4 class="center-block text-center">
+								<strong>Récapitulatif</strong>
+							</h4>
 
-							</div>
-							<div class="modal-body">
-								<ui:repeat value="#{mbOffre.ShowById(mbOffre.id)}" var="offre">
-									<h5>Nom de l'offre:#{offre.troupeau.nom}</h5>
-									<h5>Prestataire:#{offre.troupeau.utilisateur.nom}#{offre.troupeau.utilisateur.prenom}</h5>
-									<h5>Date de début:#{offre.dateDebut}</h5>
-									<h5>Date de fin:#{offre.dateFin}</h5>
-									<h5>Lieu de la prestation:#{offre.troupeau.adresseVoie}</h5>
-									<h5>Conditions
-										d'annulation:#{offre.conditionAnnulation.nom}</h5>
-									<p></p>
-									<h5>Frais d'installation:</h5>
-									<h5>Frais d'intervention:</h5>
-									<h5>Frais de bétail:</h5>
-									<h5>Frais de service:</h5>
-									<h5>TVA (20%):</h5>
-									<h5>Prix total:</h5>
-								</ui:repeat>
-							</div>
-							<div>
-								<div class="btn-toolbar">
-									<b:buttonGroup>
-										<b:commandButton update="@form" dismiss="modal"
-											value="Précédent" look="warning" style="margin:40px"
-											oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
-										<b:commandButton update="@form" dismiss="modal"
-											style="margin:40px" value="Passer au paiement" look="primary"
-											oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
-									</b:buttonGroup>
-								</div>
-
-							</div>
 						</div>
-					</b:formGroup>
-				</b:form>
-			</div>
+						<div class="modal-body">
+
+							<f:metadata>
+								<f:viewParam name="id" value="#{mbOffreSearch.id}" />
+								<c:set var="offre"
+									value="#{mbOffreSearch.searchResults.get(mbOffreSearch.id)}"
+									scope="request" />
+							</f:metadata>
+							<ui:composition>
+								<div class="select-menu">
+									<ul>
+										<li>Nom de l'offre : #{offre.nom}</li>
+										<li>Prestataire : #{offre.troupeau.utilisateur.nom}
+											#{offre.troupeau.utilisateur.prenom}</li>
+										<li>Date de début : <h:outputText
+												value="#{mbOffreSearch.searchDateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</li>
+										<li>Date de fin : <h:outputText
+												value="#{mbOffreSearch.searchDateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText></li>
+										<li>Objet de la prestation : #{mbPrestation.getTerrainNom()}</li>
+										<li>Lieu de la prestation : #{mbPrestation.getAdresseTerrain()}</li>
+										<li>Conditions d'annulation :
+											#{offre.conditionAnnulation.nom}</li>
+										<li>Frais d'installation : #{mbPrestation.getFraisInstallationOffre()}
+											€</li>
+										<li>Frais d'intervention : #{mbPrestation.getFraisInterventionOffre()}
+											€</li>
+										<li>Frais de bétail : #{mbPrestation.getFraisBetailOffre() } €</li>
+										<li>Frais de service (10%) : #{mbPrestation.getFraisServiceOffre()} €</li>
+										<li>TVA (20%) : #{mbPrestation.getTvaOffre()} €</li>
+										<li><strong>Prix total : #{mbPrestation.prixTotal} €</strong></li>
+									</ul>
+								</div>
+							</ui:composition>
+						</div>
+						<div>
+							<div class="btn-toolbar">
+								<b:buttonGroup>
+									<b:commandButton update="@form" dismiss="modal"
+										value="Précédent" look="warning" style="margin:40px"
+										oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
+									<b:commandButton update="@form" dismiss="modal"
+										style="margin:40px" value="Passer au paiement" look="primary"
+										oncomplete="if(!validationFailed) { $('.ticketRecapitulatif').modal('hide') } " />
+								</b:buttonGroup>
+							</div>
+
+						</div>
+					</div>
+				</b:formGroup>
+			</b:form>
 		</div>
-	</ui:composition>
+	</div>
+
 </h:body>
 </html>

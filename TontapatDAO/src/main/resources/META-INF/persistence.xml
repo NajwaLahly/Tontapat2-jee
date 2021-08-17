@@ -1,14 +1,15 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-             version="2.1">
+	version="2.1">
 
 	<!-- Define persistence unit -->
-	<persistence-unit name="myPersistenceUnit" transaction-type="JTA">
-	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-	<jta-data-source>java:jboss/datasources/tontapat</jta-data-source>
-	
+	<persistence-unit name="myPersistenceUnit"
+		transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/tontapat</jta-data-source>
+
 		<class>fr.eql.ai109.tontapat.entity.Annonce</class>
 		<class>fr.eql.ai109.tontapat.entity.ConditionAnnulation</class>
 		<class>fr.eql.ai109.tontapat.entity.Espece</class>
@@ -34,23 +35,31 @@
 		<class>fr.eql.ai109.tontapat.entity.TypeUtilisateur</class>
 		<class>fr.eql.ai109.tontapat.entity.TypeVegetation</class>
 		<class>fr.eql.ai109.tontapat.entity.Utilisateur</class>
+		<class>fr.eql.ai109.tontapat.entity.Notification</class>
+
 
 		<properties>
-		
-		<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-		
-		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tontapat?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-		<property name="javax.persistence.jdbc.user" value="root" />
-		<property name="javax.persistence.jdbc.password" value="root" />
-		
+
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/tontapat?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="root" />
+
 			<!-- partie JPA générique -->
-			
+
 			<!-- partie spécifique Hibernate -->
 			<property name="hibernate.show_sql" value="true" />
- 			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/> 
-<!--            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
- 			 <property name="hbm2ddl.auto" value="create"/>
-			<property name="hibernate.dialect"  
+			<property name="javax.persistence.schema-generation.create-database-schemas" 
+				value="true"/>
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+			<property name="hbm2ddl.auto" value="create" />
+			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
 
