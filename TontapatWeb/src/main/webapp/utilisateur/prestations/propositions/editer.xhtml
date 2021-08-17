@@ -88,7 +88,7 @@
 								</div>
 								<div class="select-menu">
 									<b:selectOneMenu
-										value="#{mbProposition.typeInstallation}" required="true"
+										value="#{mbProposition.typeInstallation}"
 										id="inpTypeInstallation">
 										<f:selectItem itemLabel="À la charge de l'éleveur"
 											itemValue="1" />
@@ -125,8 +125,7 @@
 								<div class="form-columns">
 
 									<h:inputTextarea id="description" styleClass="login-input"
-										itemValue="#{mpProposition.description}"
-										itemLabel="votre message"
+										value="#{mbProposition.description}"
 										cols="20" rows="3"
 										requiredMessage="La description est obligatoire." />
 								</div>
@@ -136,8 +135,7 @@
 								<b:commandButton styleClass="btn-success" update="@form"
 									dismiss="modal" value="Envoyer la proposition" look="success"
 									action="#{mbProposition.send()}"
-									onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
-									oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+									oncomplete="$('.proposition-editer').modal('hide')" />
 							</div>
 						</div>
 
