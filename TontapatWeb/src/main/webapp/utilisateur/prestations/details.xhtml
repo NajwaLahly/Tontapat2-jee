@@ -24,18 +24,25 @@
 			<div class="container">
 
 				<h1 class="title-before-eval">
-					Prestation n°<h:outputText value="#{prestation.dateReservation}">
-						<f:convertDateTime pattern="yyMMdd" /></h:outputText>-#{prestation.id}
+					Prestation n°
+					<h:outputText value="#{prestation.dateReservation}">
+						<f:convertDateTime pattern="yyMMdd" />
+					</h:outputText>
+					-#{prestation.id}
 				</h1>
 				<div class="eval-div">
-				<h:graphicImage class="profile-img" library="images"
-					name="/photos/user/profile/#{prestation.offre.troupeau.utilisateur.id}.png" />
-				Réalisée par <b>#{prestation.offre.troupeau.utilisateur.prenom} </b>
-				<ui:repeat begin="1" end="3">
-					<b:iconAwesome value="fal fa-star" size="lg" styleClass="icon-star"></b:iconAwesome>
-				</ui:repeat>
-					<b:iconAwesome value="fal fa-star-half-empty" size="lg" styleClass="icon-star"></b:iconAwesome>				
-					<b:iconAwesome value="fal fa-star-o" size="lg" styleClass="icon-star"></b:iconAwesome>				
+					<h:graphicImage class="profile-img" library="images"
+						name="/photos/user/profile/#{prestation.offre.troupeau.utilisateur.id}.png" />
+					Réalisée par <b>#{prestation.offre.troupeau.utilisateur.prenom}
+					</b>
+					<ui:repeat begin="1" end="3">
+						<b:iconAwesome value="fal fa-star" size="lg"
+							styleClass="icon-star"></b:iconAwesome>
+					</ui:repeat>
+					<b:iconAwesome value="fal fa-star-half-empty" size="lg"
+						styleClass="icon-star"></b:iconAwesome>
+					<b:iconAwesome value="fal fa-star-o" size="lg"
+						styleClass="icon-star"></b:iconAwesome>
 				</div>
 				<h3>
 					Statut :
@@ -87,10 +94,9 @@
 						rendered="#{prestation.statut == 3}" />
 					<b:button styleClass="btn-warning"
 						value="Demander une intervention"
-						rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today and prestation.statut > 0}" />
+						rendered="#{prestation.statut == 2}" />
 
-					<b:button styleClass="btn-warning" value="Faire une réclamation"
-						rendered="#{prestation.dateValidation != null}" />
+					<b:button styleClass="btn-warning" value="Signaler un problème" />
 
 					<b:button styleClass="btn-danger" value="Annuler la prestation"
 						rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
@@ -232,7 +238,7 @@
 
 									<h:panelGroup rendered="#{proposition.dateValidation != null}">
 										<b:iconAwesome value="fal fa-check" styleClass="icon" />
-										<h:outputText value="Proposition validée le " />
+										<h:outputText value="Proposition acceptée le " />
 										<h:outputText value="#{proposition.dateValidation}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
@@ -292,14 +298,44 @@
 								<div class="prix-element">#{prestation.TVA} €</div>
 							</div>
 
-							<div class="tarif-element">
-								<div class="titre-tarif-elem prix-total">
-									<br />Prix total
+
+							<h:panelGroup
+								rendered="#{(prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA + 5) > prestation.prixTotal
+								and prestation.prixTotal > (prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA - 5)}">
+								<div class="tarif-element">
+									<div class="titre-tarif-elem prix-total">
+										<br />Prix total
+									</div>
+									<div class="prix-element prix-total">
+										<br />#{prestation.prixTotal} €
+									</div>
 								</div>
-								<div class="prix-element prix-total">
-									<br />#{prestation.prixTotal} €
+							</h:panelGroup>
+
+							<h:panelGroup
+								rendered="#{(prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA - 5) > prestation.prixTotal
+								or prestation.prixTotal > (prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA + 5)}">
+								<div class="tarif-element">
+									<div class="titre-tarif-elem prix-total">
+										<br />
+										<del>Prix total</del>
+									</div>
+									<div class="prix-element prix-total">
+										<br />
+										<del>#{mbProposition.roundCost(prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA)} €</del>
+									</div>
 								</div>
-							</div>
+								<div class="tarif-element">
+									<div class="titre-tarif-elem prix-total">
+										<br />Prix négocié
+									</div>
+									<div class="prix-element prix-total">
+										<br /> #{prestation.prixTotal} €
+									</div>
+								</div>
+
+							</h:panelGroup>
+
 						</div>
 					</div>
 				</div>
