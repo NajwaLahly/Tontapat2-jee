@@ -182,8 +182,7 @@ INSERT INTO `offre` VALUES (18,'2020-12-14 00:00:00','2020-12-15 00:00:00','2022
 INSERT INTO `offre` VALUES (19,'2020-12-15 00:00:00','2020-12-16 00:00:00','2022-12-31 00:00:00',NULL,'Nous vous proposons ces élégants Traits poitevins pour prendre soin de votre terrain. Vous verrez à quel point ces bêtes sont superbes et dociles !',3,true,'Des Poitevins coquins dans ta région !',3.2,1.28,1.5,0.6,90,3,19);
 
 
-INSERT INTO `prestation` (date_apport_troupeau, date_debut, date_debut_desinstallation,date_debut_installation, date_fin, date_fin_desinstallation, date_fin_installation,date_recuperation_troupeau, date_reservation, date_validation, frequence_intervention,num_reservation, nombre_betes, frais_installation, frais_intervention, frais_betail, frais_service, tva, prix_total, type_installation, conditionAnnulation_id_condition_annulation, offre_id_offre, terrain_id_terrain, troupeau_id_troupeau) VALUES ('2021-07-05', '2021-06-30', '2021-08-30', '2021-06-30','2021-09-05','2021-09-02', '2021-07-02', '2021-08-25','2021-06-20','2021-06-21','2','858487','16','850','665','1200','271.5','597.3','3583.8',true,'1','1','1','1');
-
+INSERT INTO `prestation` (date_apport_troupeau, date_debut, date_debut_desinstallation,date_debut_installation, date_fin, date_fin_desinstallation, date_fin_installation,date_recuperation_troupeau, date_reservation, date_validation, frequence_intervention,num_reservation, nombre_betes, frais_installation, frais_intervention, frais_betail, frais_service, tva, prix_total, type_installation, conditionAnnulation_id_condition_annulation, offre_id_offre, terrain_id_terrain, troupeau_id_troupeau, statut) VALUES ('2021-07-05', '2021-06-30', '2021-08-30', '2021-06-30','2021-09-05','2021-09-02', '2021-07-02', '2021-08-25','2021-06-20','2021-06-21','2','858487','16','850','665','1200','271.5','597.3','3583.8',true,'1','1','1','1','2');
 
 INSERT INTO `morphologie` (nom) VALUES ('Pente');
 INSERT INTO `morphologie` (nom) VALUES ('Vallonnement');
@@ -316,5 +315,6 @@ INSERT INTO `terrain_type_cloture` (id_terrain, id_type_cloture) VALUES ('1','4'
 INSERT INTO `terrain_type_abri` (id_terrain, id_type_abri) VALUES ('1','4');
 
 
-
+INSERT INTO `proposition` (date_creation, date_debut_prestation, date_fin_prestation, prestation_id_prestation, utilisateur_id_utilisateur, troupeau_id_troupeau, description, type_installation, prix_propose) VALUES ('2021-06-24','2021-06-30','2021-09-05','1','1', '1', 'Finalement je ne trouve pas ça assez cher, cordialement Robert', true, '4000');
+UPDATE `proposition` SET date_validation = '2021-06-25' WHERE id_proposition = 1;
 

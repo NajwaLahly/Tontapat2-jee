@@ -42,6 +42,13 @@ public class PrestationBusiness implements PrestationIBusiness {
 	public Prestation findById(int id) {
 		return prestationIDAO.getById(id);
 	}
+
+	public void validate(Prestation prestation) {
+		prestation.setDateValidation(new Date());
+		prestation.setStatut(1);
+		prestationIDAO.update(prestation);
+		
+	}
 	
 
 }

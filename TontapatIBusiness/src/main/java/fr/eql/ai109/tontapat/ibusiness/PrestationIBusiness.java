@@ -18,4 +18,6 @@ public interface PrestationIBusiness {
 
 	public Prestation findById(int id);
 
+	public void validate(Prestation prestation);
+
 }
