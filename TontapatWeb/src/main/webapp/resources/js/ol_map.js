@@ -5,6 +5,8 @@
 var longs = document.getElementsByClassName("adresse-long");
 var lats = document.getElementsByClassName("adresse-lat");
 var names = document.getElementsByClassName("hidden-name");
+var longTerrain = document.getElementById("hidden-terrain-long");
+var latTerrain = document.getElementById("hidden-terrain-lat");
 
 var vectorMarkers = new ol.source.Vector({});
 
@@ -22,7 +24,7 @@ var iconStyle = new ol.style.Style({
     anchor: [0.5, 46],
     anchorXUnits: 'fraction',
     anchorYUnits: 'pixels',
-    src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+    src: '../resources/images/icons/map_red.png'
     })
 });
 
@@ -51,6 +53,31 @@ var vectorMarkersLayer = new ol.layer.Vector({
       }
 	});
 	
+/* layer for terrain marker */
+var vectorMarkerTerrain = new ol.source.Vector({});
+var featureMarkerTerrain = new ol.Feature({
+  		geometry: new ol.geom.Point(ol.proj.fromLonLat([longTerrain.textContent, latTerrain.textContent])),
+  		name: "Mon terrain",
+  	  	});
+vectorMarkerTerrain.addFeature(featureMarkerTerrain);
+
+var iconStyleTerrain = new ol.style.Style({
+    image: new ol.style.Icon({
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+    src: '../resources/images/icons/map_green.png'
+    })
+});
+
+var styleTerrain = [iconStyleTerrain, labelStyle];
+var vectorMarkersLayerTerrain = new ol.layer.Vector({
+    source: vectorMarkerTerrain,
+    style: function(feature) {
+        labelStyle.getText().setText(feature.get('name'));
+        return styleTerrain;
+      }
+	});
 
 /**
  * Elements that make up the popup.
@@ -92,7 +119,7 @@ const map = new ol.Map({
 	overlays: [overlay],
     view: new ol.View({
       	center: ol.proj.fromLonLat([5.0414701, 47.3215806]),
-      	zoom: 8
+      	zoom: 9
       	})
     });
     	
@@ -104,10 +131,14 @@ map.on('singleclick', function(evt) {
   var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
     return feature.get('name');
   })
+
   if (name) {
     container.style.display = "block";
     var coordinate = evt.coordinate;
-    content.innerHTML = name;
+	var coordinateLong = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326')[0];
+	var coordinateLat =  ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326')[1]
+	var distance = calculateDistance([coordinateLong, coordinateLat], [longTerrain.textContent, latTerrain.textContent]);
+    content.innerHTML = name + " à " + distance + " Km";
     overlay.setPosition(coordinate);
   } else {
     container.style.display = "none";
@@ -119,10 +150,11 @@ map.on('pointermove', function(evt) {
 
 
 map.addLayer(vectorMarkersLayer);
+map.addLayer(vectorMarkersLayerTerrain);
     	
-calculateDistance([2.341110, 48.830620], [2.320160, 48.844970]);
+//calculateDistance([2.341110, 48.830620], [2.320160, 48.844970]);
 function calculateDistance(src , dest ){
 let finalmeasure = ol.sphere.getDistance(src , dest)/1000;
 //let finalmeasure = Math.round(line.getLength() * 100) / 100; //for rounding
-console.log(finalmeasure); //in Km
+return(finalmeasure.toFixed(2)); //in Km
 }

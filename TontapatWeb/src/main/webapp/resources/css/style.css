@@ -8,6 +8,9 @@ body {
 	font-family: Roboto Thin !important;
 }
 
+body {
+	overflow-x: hidden !important;
+}
 
 /*container of the page*/
 .container {
@@ -66,6 +69,7 @@ h1 {
 .navbar {
 	background-color: rgb(250, 250, 250) !important;
 	padding: .35rem .35rem !important;
+	margin-bottom: 0px !important;
 }
 
 .navbar-brand>img {
@@ -93,14 +97,21 @@ h1 {
 	box-shadow: 0px 0px 3px 2px rgb(240, 240, 240);
 }
 
+.notif-dropdown .caret {
+	display: none;
+}
+
 /* modal
 --------------------------------------------------
 --------------------------------------------------*/
 
 div.modal-header > h4 {
-    font-family: coolvetica;
-    font-size: x-large;
-    padding-left: 15rem;
+    font-family: coolvetica !important;
+    font-size: x-large;    
+}
+
+.modal-header {
+	text-align: center;
 }
 
 .zone {
@@ -257,7 +268,7 @@ body .ui-slider.ui-slider-horizontal {
 	height: 20px;
 }
 
-a.box-link {
+a {
 	text-decoration: none !important;
 }
 
@@ -342,7 +353,6 @@ div.offre-box:hover {
 	width: 550px !important;
 	height: 500px;
 	flex: 2;
-	margin-right: 10px;
 }
 
 .search-results {
@@ -355,27 +365,27 @@ div.offre-box:hover {
     font-size: 16px;
     border-radius: 10px;
     box-shadow: 0px 0px 3px 2px rgb(240,240,240);
-    margin: 0px 15px 15px 0px;
-    padding-left: 15px;
+    margin: 0px 0px 0px 0px;
+    padding-left: 5px;
 	padding-right: 10px;
-	width: 550px !important;
-	padding-left: 15px;
-	padding-right: 10px;
+	padding-left: 5px;
+	padding-right: 0px;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	height: 500px;
+	height: 679px;
 	flex: 2;
 }
 
 .search-result {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	color: rgb(128 128 128) !important;
 }
 
 .result-offre-box-info {
 	display: flex;
 	flex-direction: column;
+	flex: 2;
 }
 
 .result-offre-box-info-header {
@@ -394,7 +404,6 @@ div.offre-box:hover {
 }
 
 .search-result {
-	width: 600px;
 	height: 150px;
 	border-bottom: 1px solid rgb(230,230,230);
 	
@@ -404,9 +413,9 @@ div.offre-box:hover {
     padding-top: 10px;
     flex: 2;
     text-align: end;
-    padding-right: 50px !important;
     font-weight: bold;
     color: black;
+    padding-right: 5px;
 }
 
 .result-offre-box-info-title {
@@ -434,8 +443,37 @@ div.search-result:hover {
 .prix-total {
     color: black;
     font-weight: bold;
+    font-size: larger;
 }
 
-.adresse-long,.hidden-name, .adresse-lat {
+#hidden-terrain-long, #hidden-terrain-lat, .adresse-long,.hidden-name, .adresse-lat {
 	display: none !important;
+}
+
+/* table mes prestations
+--------------------------------------------------
+--------------------------------------------------*/
+a.link-datatable {
+	color: black;
+}
+
+/* recapitulatif
+--------------------------------------------------
+--------------------------------------------------*/
+.btn-recap {
+	width: 15rem !important;
+	margin-left: 3rem !important;
+}
+
+.mode-paiement {
+	border: 1px solid !important;
+	width: 10rem !important;
+}
+
+/* paiement
+--------------------------------------------------
+--------------------------------------------------*/
+.img-paiement {
+	width: 30px;
+	height: 15px;
 }

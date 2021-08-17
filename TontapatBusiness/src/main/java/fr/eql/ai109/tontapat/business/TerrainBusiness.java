@@ -20,6 +20,8 @@ public class TerrainBusiness implements TerrainIBusiness {
 	@EJB
 	private TerrainIDAO terrainIDAO;
 	
+
+	
 	@Override
 	public List<Terrain> findAll() {
 		
@@ -43,5 +45,13 @@ public class TerrainBusiness implements TerrainIBusiness {
 	public Terrain findById(int id) {
 		return terrainIDAO.getById(id);
 	}
+
+	@Override
+	public Terrain addNewTerrain(Terrain terrain) {		
+		return terrainIDAO.add(terrain);
+	}
+
+
+
 
 }
