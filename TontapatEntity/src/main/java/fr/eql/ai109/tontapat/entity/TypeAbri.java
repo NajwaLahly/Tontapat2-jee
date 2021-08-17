@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,19 +22,21 @@ public class TypeAbri implements Serializable {
 	private int id;
 	@Column(name = "nom")
 	private String nom;
-	@ManyToMany(mappedBy = "typesAbri")
-	private Set<Terrain> terrains;
+	@OneToMany(mappedBy = "typeAbri")
+	Set<TerrainTypeAbri> terrainsTypeAbri;
+	//private Set<Terrain> terrains;
 	
 	public TypeAbri() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TypeAbri(int id, String nom, Set<Terrain> terrains) {
+	public TypeAbri(int id, String nom, Set<TerrainTypeAbri> terrainsTypeAbri, Set<Terrain> terrains) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.terrains = terrains;
+		this.terrainsTypeAbri = terrainsTypeAbri;
+	//	this.terrains = terrains;
 	}
 
 	public int getId() {
@@ -53,13 +55,22 @@ public class TypeAbri implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Terrain> getTerrains() {
-		return terrains;
+	public Set<TerrainTypeAbri> getTerrainsTypeAbri() {
+		return terrainsTypeAbri;
 	}
 
-	public void setTerrains(Set<Terrain> terrains) {
-		this.terrains = terrains;
+	public void setTerrainsTypeAbri(Set<TerrainTypeAbri> terrainsTypeAbri) {
+		this.terrainsTypeAbri = terrainsTypeAbri;
 	}
-	
+
+	//public Set<Terrain> getTerrains() {
+	//	return terrains;
+	//}
+
+	//public void setTerrains(Set<Terrain> terrains) {
+	//	this.terrains = terrains;
+	//}
+
+
 	
 }
