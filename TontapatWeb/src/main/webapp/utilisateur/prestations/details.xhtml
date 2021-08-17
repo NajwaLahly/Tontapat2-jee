@@ -16,16 +16,16 @@
 			<f:viewParam name="id" value="#{mbPrestation.id}" />
 			<c:set var="prestation"
 				value="#{mbPrestation.showById(mbPrestation.id)}" />
+			<c:set var="proposition"
+				value="#{mbProposition.showLatestByCurrentPrestation()}" />
 		</f:metadata>
 
 		<h:panelGroup id="prestation-details">
 			<div class="container">
 				<h1>
-					Prestation n°
-					<h:outputText value="#{prestation.dateReservation}">
+					Prestation n°<h:outputText value="#{prestation.dateReservation}">
 						<f:convertDateTime pattern="yyMMdd" />
-					</h:outputText>
-					-#{prestation.id}
+					</h:outputText>-#{prestation.id}
 				</h1>
 				Réalisée par #{prestation.offre.troupeau.utilisateur.prenom}
 				<h3>
@@ -75,13 +75,16 @@
 						rendered="#{(prestation.statut == 1 or prestation.statut == 2) and ((1 > mbProposition.showAllByPrestationId(prestation.id).size()) or (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null))}" />
 					<b:button styleClass="btn-primary" value="Evaluer"
 						rendered="#{prestation.statut == 3}" />
-					<b:button styleClass="btn-danger" value="Annuler"
-						rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
 					<b:button styleClass="btn-warning"
 						value="Demander une intervention"
 						rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today and prestation.statut > 0}" />
+
 					<b:button styleClass="btn-warning" value="Faire une réclamation"
 						rendered="#{prestation.dateValidation != null}" />
+
+					<b:button styleClass="btn-danger" value="Annuler la prestation"
+						rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
+
 
 				</div>
 				<div class="offre-details-box">

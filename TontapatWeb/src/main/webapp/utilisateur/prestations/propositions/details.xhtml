@@ -15,12 +15,11 @@
 </h:head>
 
 		<f:metadata>
-			<f:viewParam name="id" value="#{mbProposition.id}" />
 			<c:set var="proposition"
-				value="#{mbProposition.showById(mbProposition.id)}" />
-		</f:metadata>
+				value="#{mbProposition.showLatestByCurrentPrestation()}" />
+		</f:metadata> 
 <h:body>
-
+ 
 	<ui:composition>
 
 		<b:modal title="Proposition de négociation"
@@ -29,23 +28,25 @@
 				<div class="form-rows">
 					<div class="zone">
 						<div class="titre-ss-titre">
-							Envoyée par #{proposition.utilisateur.prenom} le
+						<h:graphicImage class="profile-img" library="images"
+											name="/photos/user/profile/#{proposition.utilisateur.id}.png" />
+							Envoyée par <strong>#{proposition.utilisateur.prenom}</strong> le
 							<h:outputText value="#{proposition.dateCreation}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 							:
 						</div>
 						<ul>
-							<li>#{proposition.description}</li>
+							<li>« #{proposition.description} »</li>
 						</ul>
 						<h4>Récapitulatif de la proposition</h4>
 						<ul>
-							<li>Terrain :</li>
-							<li>Troupeau :</li>
-							<li>Installation :</li>
-							<li>Date de début :</li>
-							<li>Date de fin :</li>
-							<li>Prix total :</li>
+							<li>Terrain : <strong>#{proposition.prestation.terrain.nom}</strong> (#{proposition.prestation.terrain.superficie} Ha)</li>
+							<li>Troupeau : <strong>#{proposition.prestation.troupeau.nom}</strong> (#{proposition.prestation.nombreBetes}) - #{proposition.prestation.troupeau.race.nom} (#{proposition.prestation.troupeau.race.espece.nom})</li>
+							<li>Installation : <strong>à la charge <h:outputText value="de l'éleveur" rendered="#{proposition.typeInstallation == true}" /> <h:outputText value="du client" rendered="#{proposition.typeInstallation == false}" /></strong> <h:outputText value=" (modifié)" rendered="#{proposition.typeInstallation != proposition.prestation.typeInstallation}" /></li>
+							<li>Date de début : <strong> <h:outputText value="#{proposition.dateDebutPrestation}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText></strong><h:outputText value=" (modifié)" rendered="#{proposition.dateDebutPrestation != proposition.prestation.dateDebut}" /></li>
+							<li>Date de fin : <strong> <h:outputText value="#{proposition.dateFinPrestation}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText></strong><h:outputText value=" (modifié)" rendered="#{proposition.dateFinPrestation != proposition.prestation.dateFin}" /></li>
+							<li>Prix total : <strong>#{proposition.prixPropose} €</strong> <h:outputText value=" (modifié)" rendered="#{proposition.prixPropose != proposition.prestation.prixTotal}" /></li>
 						</ul>
 					</div>
 				</div>
