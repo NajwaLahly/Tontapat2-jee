@@ -78,6 +78,22 @@ public class PropositionManagedBean implements Serializable {
 		propositionIBusiness.send(proposition);
 		return "/utilisateur/prestations/details.xhtml?id=" + currentPrestation.getId() + "&send";
 	}
+	
+	public String accept() {
+		propositionIBusiness.accept(proposition);
+		return "/utilisateur/prestations/details.xhtml?id=" + currentPrestation.getId() + "&send";
+	}
+	
+	public String refuse() {
+		propositionIBusiness.refuse(proposition);
+		return "/utilisateur/prestations/details.xhtml?id=" + currentPrestation.getId() + "&send";
+	}
+	
+	public String counteroffer() {
+		return "/utilisateur/prestations/details.xhtml?id=" + currentPrestation.getId() + "&send";
+	}
+	
+	
 
 	public Proposition showById(int id) {
 		return propositionIBusiness.findById(id);

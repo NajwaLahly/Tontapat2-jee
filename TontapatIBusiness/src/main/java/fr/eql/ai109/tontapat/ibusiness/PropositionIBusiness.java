@@ -15,4 +15,8 @@ public interface PropositionIBusiness {
 
 	public Proposition findLatestFromPrestationId(int id);
 
+	public void accept(Proposition proposition);
+
+	public void refuse(Proposition proposition);
+
 }

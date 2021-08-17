@@ -1,5 +1,6 @@
 package fr.eql.ai109.tontapat.business;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -37,6 +38,19 @@ public class PropositionBusiness implements PropositionIBusiness {
 	@Override
 	public Proposition findLatestFromPrestationId(int id) {
 		return propositionIDAO.getLatestFromPrestationId(id);
+	}
+
+	@Override
+	public void accept(Proposition proposition) {
+		proposition.setDateValidation(new Date());
+		propositionIDAO.update(proposition);
+		
+	}
+
+	@Override
+	public void refuse(Proposition proposition) {
+		proposition.setDateRefus(new Date());
+		propositionIDAO.update(proposition);
 	}
 
 }

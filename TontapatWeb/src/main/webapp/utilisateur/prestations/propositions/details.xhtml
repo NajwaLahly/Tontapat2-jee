@@ -51,24 +51,28 @@
 					</div>
 				</div>
 				<div class="btn-suivant">
+								<b:form horizontal="true">
+					<b:formGroup>
 					<b:button styleClass="btn-danger" update="@form" dismiss="modal"
-						value="Refuser" look="success" action="#{mbProposition.send()}"
+						value="Refuser" look="success" action="#{mbProposition.refuse()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
 						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
 
 					<b:button styleClass="btn-warning" update="@form" dismiss="modal"
 						value="Contre-proposer" look="success"
-						action="#{mbProposition.send()}"
+						action="#{mbProposition.couteroffer()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
 						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
 
 					<b:button styleClass="btn-success" update="@form" dismiss="modal"
 						value="Accepter la proposition" look="success"
-						action="#{mbProposition.send()}"
+						action="#{mbProposition.accept()}"
 						onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
 						oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
 
-
+					</b:formGroup>
+				</b:form>
+				
 				</div>
 			</div>
 		</b:modal>
