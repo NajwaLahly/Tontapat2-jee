@@ -67,7 +67,7 @@
 				<b:button styleClass="btn-danger" value="Annuler"
 					rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
 				<b:button styleClass="btn-warning" value="Demander une intervention"
-					rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today}" />
+					rendered="#{mbPrestation.today > prestation.dateDebut and prestation.dateFin > mbPrestation.today and prestation.statut > 0}" />
 				<b:button styleClass="btn-warning" value="Faire une réclamation"
 					rendered="#{prestation.dateValidation != null}" />
 

@@ -94,17 +94,20 @@ INSERT INTO `type_intervention` (nom) VALUES ('Animal blessé');
 INSERT INTO `type_intervention` (nom) VALUES ('Animal mort');
 INSERT INTO `type_intervention` (nom) VALUES ('Animal manquant');
 
-INSERT INTO `type_cloture` VALUES (1,'Clôture complète');
-INSERT INTO `type_cloture` VALUES (2,'Clôture ovine');
-INSERT INTO `type_cloture` VALUES (3,'Clôture bovine');
+INSERT INTO `type_cloture` VALUES (1,'Aucune clôture');
+INSERT INTO `type_cloture` VALUES (2,'Clôture complète');
+INSERT INTO `type_cloture` VALUES (3,'Clôture ovine');
 INSERT INTO `type_cloture` VALUES (4,'Clôture caprine');
-INSERT INTO `type_cloture` VALUES (5,'Clôture équestre');
+INSERT INTO `type_cloture` VALUES (5,'Clôture bovine');
+INSERT INTO `type_cloture` VALUES (6,'Clôture équestre');
 
+INSERT INTO `type_abri` (nom) VALUES ('Aucun abri');
 INSERT INTO `type_abri` (nom) VALUES ('Abri de prairie mobile');
 INSERT INTO `type_abri` (nom) VALUES ('Abri en bois');
 INSERT INTO `type_abri` (nom) VALUES ('Abri en acier');
 INSERT INTO `type_abri` (nom) VALUES ('Abri en béton');
 
+INSERT INTO `type_abreuvoir` (nom) VALUES ('Aucun abreuvoir');
 INSERT INTO `type_abreuvoir` (nom) VALUES ('Bac à eau');
 INSERT INTO `type_abreuvoir` (nom) VALUES ('Râtelier');
 INSERT INTO `type_abreuvoir` (nom) VALUES ('Auge');

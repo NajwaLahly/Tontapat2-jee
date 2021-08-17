@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "type_cloture")
@@ -22,19 +23,21 @@ public class TypeCloture implements Serializable {
 	private int id;
 	@Column(name = "nom")
 	private String nom;
-	@ManyToMany(mappedBy = "typesCloture")
-	private Set<Terrain> terrains;
+	@OneToMany(mappedBy = "typeCloture")
+	Set<TerrainTypeCloture> terrainsTypeCloture;
+	//private Set<Terrain> terrains;
 	
 	public TypeCloture() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TypeCloture(int id, String nom, Set<Terrain> terrains) {
+	public TypeCloture(int id, String nom, Set<TerrainTypeCloture> terrainsTypeCloture, Set<Terrain> terrains) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.terrains = terrains;
+		this.terrainsTypeCloture = terrainsTypeCloture;
+		//this.terrains = terrains;
 	}
 
 	public int getId() {
@@ -53,14 +56,20 @@ public class TypeCloture implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Terrain> getTerrains() {
-		return terrains;
+	public Set<TerrainTypeCloture> getTerrainsTypeCloture() {
+		return terrainsTypeCloture;
 	}
 
-	public void setTerrains(Set<Terrain> terrains) {
-		this.terrains = terrains;
+	public void setTerrainsTypeCloture(Set<TerrainTypeCloture> terrainsTypeCloture) {
+		this.terrainsTypeCloture = terrainsTypeCloture;
 	}
-	
-	
-	
+
+	//public Set<Terrain> getTerrains() {
+	//	return terrains;
+	//}
+
+	//public void setTerrains(Set<Terrain> terrains) {
+	//	this.terrains = terrains;
+	//}
+
 }

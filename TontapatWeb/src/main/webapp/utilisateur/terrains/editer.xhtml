@@ -13,7 +13,7 @@
 
 <h:body>
 	<ui:composition>
-	<div class="btn-modal">
+		<div class="btn-modal">
 			<b:button onclick="$('.ajout-terrain').modal('show')"
 				value="Ajouter un terrain" styleClass="btn-success" />
 		</div>
@@ -62,109 +62,156 @@
 										required="true" value="#{mbTerrain.description}"></b:inputText>
 								</div>
 							</div>
+						</div>
 
+						<h4>Morphologie</h4>
+						<div>
 
-							<h4>Morphologie</h4>
-							<div>
-
-								<div class="form-rows">
-									<div class="zone">
-										<div class="select-menu">
-											<b:label value="#{mbMorphologie.morphologies.get(0).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageId1}" label="" />
-										</div>
-
-										<div class="select-menu">
-											<b:label value="#{mbMorphologie.morphologies.get(1).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageId2}" label="" />
-										</div>
-										<div class="select-menu">
-											<b:label value="#{mbMorphologie.morphologies.get(2).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageId3}" label="" />
-										</div>
-										<div class="select-menu">
-											<b:label value="#{mbMorphologie.morphologies.get(3).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageId4}" label="" />
-										</div>
+							<div class="form-rows">
+								<div class="zone">
+									<div class="select-menu">
+										<b:label value="#{mbMorphologie.morphologies.get(0).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageId1}" label="" />
 									</div>
 
-
+									<div class="select-menu">
+										<b:label value="#{mbMorphologie.morphologies.get(1).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageId2}" label="" />
+									</div>
+									<div class="select-menu">
+										<b:label value="#{mbMorphologie.morphologies.get(2).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageId3}" label="" />
+									</div>
+									<div class="select-menu">
+										<b:label value="#{mbMorphologie.morphologies.get(3).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageId4}" label="" />
+									</div>
 								</div>
+
+
 							</div>
+						</div>
 
-							<h4>Types de végétation</h4>
-							<div>
+						<h4>Types de végétation</h4>
+						<div>
 
-								<div class="form-rows">
-									<div class="zone">
-										<div class="select-menu">
-											<b:label
-												value="#{mbTypeVegetation.typeVegetations.get(0).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageTypeVegetationId1}" label="" />
-										</div>
-
-										<div class="select-menu">
-											<b:label
-												value="#{mbTypeVegetation.typeVegetations.get(1).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageTypeVegetationId2}" label="" />
-										</div>
-										<div class="select-menu">
-											<b:label
-												value="#{mbTypeVegetation.typeVegetations.get(2).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageTypeVegetationId3}" label="" />
-										</div>
-										<div class="select-menu">
-											<b:label
-												value="#{mbTypeVegetation.typeVegetations.get(3).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageTypeVegetationId4}" label="" />
-										</div>
-										<div class="select-menu">
-											<b:label
-												value="#{mbTypeVegetation.typeVegetations.get(4).nom}"></b:label>
-										</div>
-										<div class="prix-slider">
-											<b:slider min="0" max="100" step="1"
-												value="#{mbTerrain.pourcentageTypeVegetationId5}" label="" />
-										</div>
+							<div class="form-rows">
+								<div class="zone">
+									<div class="select-menu">
+										<b:label
+											value="#{mbTypeVegetation.typeVegetations.get(0).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageTypeVegetationId1}" label="" />
 									</div>
 
+									<div class="select-menu">
+										<b:label
+											value="#{mbTypeVegetation.typeVegetations.get(1).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageTypeVegetationId2}" label="" />
+									</div>
+									<div class="select-menu">
+										<b:label
+											value="#{mbTypeVegetation.typeVegetations.get(2).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageTypeVegetationId3}" label="" />
+									</div>
+									<div class="select-menu">
+										<b:label
+											value="#{mbTypeVegetation.typeVegetations.get(3).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageTypeVegetationId4}" label="" />
+									</div>
+									<div class="select-menu">
+										<b:label
+											value="#{mbTypeVegetation.typeVegetations.get(4).nom}"></b:label>
+									</div>
+									<div class="prix-slider">
+										<b:slider min="0" max="100" step="1"
+											value="#{mbTerrain.pourcentageTypeVegetationId5}" label="" />
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<h4>Matériels</h4>
+						<div class="form-rows">
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>1. Choisissez un type de clôture existant sur le
+										terrain</h4>
+									<div class="select-menu">
+										<b:selectOneMenu value="#{mbTypeCloture.typeClotureId}"
+											required="false" id="inpTypeCloture"  >
+											<f:selectItems value="#{mbTypeCloture.typeClotures}"
+												var="typeCloture" itemValue="#{typeCloture.id}"
+												itemLabel="#{typeCloture.nom}" />
+										</b:selectOneMenu>
+									</div>
 
 								</div>
+
 							</div>
+							<div class="dates zone">
+								<div class="titre-ss-titre">
+									<h4>2. Choisissez un type d'abri existant sur le terrain</h4>
+									<div class="select-menu">
+										<b:selectOneMenu value="#{mbTypeAbri.typeAbriId}"
+											required="false" id="inpTypeAbri">
+											<f:selectItems value="#{mbTypeAbri.typeAbris}"
+												var="typeAbri" itemValue="#{typeAbri.id}"
+												itemLabel="#{typeAbri.nom}" />
+										</b:selectOneMenu>
+									</div>
+
+								</div>
+								<div class="zone">
+									<div class="titre-ss-titre">
+										<h4>3. Choisissez un type d'abreuvoir existant sur le
+											terrain</h4>
+											<div class="select-menu">
+										<b:selectOneMenu value="#{mbTypeAbreuvoir.typeAbreuvoirId}"
+											required="false" id="inpTypeAbreuvoir">
+											<f:selectItems value="#{mbTypeAbreuvoir.typeAbreuvoirs}"
+												var="typeAbreuvoir" itemValue="#{typeAbreuvoir.id}"
+												itemLabel="#{typeAbreuvoir.nom}" />
+										</b:selectOneMenu>
+									</div>
+									</div>
+
+								</div>
+
+								<div class="btn-suivant">
+									<b:commandButton styleClass="btn-suivant" update="@form"
+										dismiss="modal" value="suivant" look="success"
+										oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+								</div>
+								<b:commandButton styleClass="btn-suivant" value="ajouter"
+									action="#{mbTerrain.addNew()}" />
 
 
-							<div class="btn-suivant">
-								<b:commandButton styleClass="btn-suivant" update="@form"
-									dismiss="modal" value="suivant" look="success"
-									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
 							</div>
-							<b:commandButton styleClass="btn-suivant" value="ajouter"
-								action="#{mbTerrain.addNew()}" />
-
 						</div>
 					</b:formGroup>
 				</b:form>
