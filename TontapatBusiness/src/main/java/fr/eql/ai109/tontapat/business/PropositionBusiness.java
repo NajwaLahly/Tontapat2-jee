@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import fr.eql.ai109.tontapat.entity.Prestation;
 import fr.eql.ai109.tontapat.entity.Proposition;
 import fr.eql.ai109.tontapat.ibusiness.PropositionIBusiness;
+import fr.eql.ai109.tontapat.idao.PrestationIDAO;
 import fr.eql.ai109.tontapat.idao.PropositionIDAO;
 
 @Remote(PropositionIBusiness.class)
@@ -18,6 +19,9 @@ public class PropositionBusiness implements PropositionIBusiness {
 
 	@EJB
 	private PropositionIDAO propositionIDAO;
+	
+	@EJB
+	private PrestationIDAO prestationIDAO;
 	
 	@Override
 	public List<Proposition> findAllByPrestationId(int id) {
@@ -43,6 +47,22 @@ public class PropositionBusiness implements PropositionIBusiness {
 	@Override
 	public void accept(Proposition proposition) {
 		proposition.setDateValidation(new Date());
+		
+		Prestation prestation = proposition.getPrestation();
+		
+		if(prestation.getDateDebut() != proposition.getDateDebutPrestation())
+			prestation.setDateDebut(proposition.getDateDebutPrestation());
+		
+		if(prestation.getDateFin() != proposition.getDateFinPrestation())
+			prestation.setDateFin(proposition.getDateFinPrestation());
+		
+		if(prestation.isTypeInstallation() != proposition.isTypeInstallation())
+			prestation.setTypeInstallation(proposition.isTypeInstallation());
+		
+		if(prestation.getPrixTotal() != proposition.getPrixPropose())
+			prestation.setPrixTotal(proposition.getPrixPropose());
+		
+		prestationIDAO.update(prestation);
 		propositionIDAO.update(proposition);
 		
 	}
