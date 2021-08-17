@@ -1,6 +1,18 @@
 /**
  * 
  */
+var offres = document.getElementsByClassName("map-offres");
+var offresNodes = Array.prototype.slice.call(
+  document.getElementsByClassName("map-offres")
+);
+var offresCoords = document.getElementsByClassName("offre-coords");
+
+var annonces = document.getElementsByClassName("map-annonces");
+var annoncesNodes = Array.prototype.slice.call(
+  document.getElementsByClassName("map-annonces")
+);
+var annoncesCoords = document.getElementsByClassName("annonce-coords");
+
 var longsOffres = document.getElementsByClassName("adresse-long-offre");
 var latsOffres = document.getElementsByClassName("adresse-lat-offre");
 var namesOffres = document.getElementsByClassName("hidden-name-offre");
@@ -19,12 +31,175 @@ for(var i=0; i < longsOffres.length; i++)
     vectorMarkersOffres.addFeature(featureMarker);
 }
 
+for (var i = 0; i < offres.length; i++) {
+  offres[i].addEventListener("mouseenter", focusMapMarker);
+  offres[i].addEventListener("mouseleave", unFocusMapMarker);
+}
+
+for (var i = 0; i < annonces.length; i++) {
+  annonces[i].addEventListener("mouseenter", focusMapMarkerAnnonce);
+  annonces[i].addEventListener("mouseleave", unFocusMapMarkerAnnonce);
+}
+
+function focusMapMarker(e) {
+  offreIdx = offresNodes.indexOf(e.target);
+  offre = offresCoords[offreIdx];
+
+  map.getLayers().forEach(function (layer) {
+    //If this is actually a group, we need to create an inner loop to go through its individual layers
+    if (layer instanceof ol.layer.Group) {
+      layer.getLayers().forEach(function (groupLayer) {
+        //If this is a vector layer, add it to our extent
+        if (layer instanceof ol.layer.Vector)
+          console.log(groupLayer.getSource().getExtent());
+      });
+    } else if (layer instanceof ol.layer.Vector) {
+      features = layer
+        .getSource()
+        .getFeatures()
+        .forEach(function (f) {
+          flatCoords = f.getGeometry().getCoordinates();
+          coords = ol.proj.transform(flatCoords, "EPSG:3857", "EPSG:4326");
+
+          if (
+            coords[0].toFixed(2) ==
+              parseFloat(offre.children[0].textContent).toFixed(2) &&
+            coords[1].toFixed(2) ==
+              parseFloat(offre.children[1].textContent).toFixed(2)
+          ) {
+            f.setStyle(iconStyleOffresFocused);
+          }
+        });
+    }
+  });
+}
+
+function unFocusMapMarker(e) {
+  offreIdx = offresNodes.indexOf(e.target);
+  offre = offresCoords[offreIdx];
+
+  map.getLayers().forEach(function (layer) {
+    //If this is actually a group, we need to create an inner loop to go through its individual layers
+    if (layer instanceof ol.layer.Group) {
+      layer.getLayers().forEach(function (groupLayer) {
+        //If this is a vector layer, add it to our extent
+        if (layer instanceof ol.layer.Vector)
+          console.log(groupLayer.getSource().getExtent());
+      });
+    } else if (layer instanceof ol.layer.Vector) {
+      features = layer
+        .getSource()
+        .getFeatures()
+        .forEach(function (f) {
+          flatCoords = f.getGeometry().getCoordinates();
+          coords = ol.proj.transform(flatCoords, "EPSG:3857", "EPSG:4326");
+
+          if (
+            coords[0].toFixed(2) ==
+              parseFloat(offre.children[0].textContent).toFixed(2) &&
+            coords[1].toFixed(2) ==
+              parseFloat(offre.children[1].textContent).toFixed(2)
+          ) {
+            f.setStyle(iconStyleOffres);
+          }
+        });
+    }
+  });
+}
+
+function focusMapMarkerAnnonce(e) {
+  annonceIdx = annoncesNodes.indexOf(e.target);
+  annonce = annoncesCoords[annonceIdx];
+
+  map.getLayers().forEach(function (layer) {
+    //If this is actually a group, we need to create an inner loop to go through its individual layers
+    if (layer instanceof ol.layer.Group) {
+      layer.getLayers().forEach(function (groupLayer) {
+        //If this is a vector layer, add it to our extent
+        if (layer instanceof ol.layer.Vector)
+          console.log(groupLayer.getSource().getExtent());
+      });
+    } else if (layer instanceof ol.layer.Vector) {
+      features = layer
+        .getSource()
+        .getFeatures()
+        .forEach(function (f) {
+          flatCoords = f.getGeometry().getCoordinates();
+          coords = ol.proj.transform(flatCoords, "EPSG:3857", "EPSG:4326");
+
+          if (
+            coords[0].toFixed(2) ==
+              parseFloat(annonce.children[0].textContent).toFixed(2) &&
+            coords[1].toFixed(2) ==
+              parseFloat(annonce.children[1].textContent).toFixed(2)
+          ) {
+            f.setStyle(iconStyleAnnoncesFocused);
+          }
+        });
+    }
+  });
+}
+
+function unFocusMapMarkerAnnonce(e) {
+  annonceIdx = annoncesNodes.indexOf(e.target);
+  annonce = annoncesCoords[annonceIdx];
+
+  map.getLayers().forEach(function (layer) {
+    //If this is actually a group, we need to create an inner loop to go through its individual layers
+    if (layer instanceof ol.layer.Group) {
+      layer.getLayers().forEach(function (groupLayer) {
+        //If this is a vector layer, add it to our extent
+        if (layer instanceof ol.layer.Vector)
+          console.log(groupLayer.getSource().getExtent());
+      });
+    } else if (layer instanceof ol.layer.Vector) {
+      features = layer
+        .getSource()
+        .getFeatures()
+        .forEach(function (f) {
+          flatCoords = f.getGeometry().getCoordinates();
+          coords = ol.proj.transform(flatCoords, "EPSG:3857", "EPSG:4326");
+
+          if (
+            coords[0].toFixed(2) ==
+              parseFloat(annonce.children[0].textContent).toFixed(2) &&
+            coords[1].toFixed(2) ==
+              parseFloat(annonce.children[1].textContent).toFixed(2)
+          ) {
+            f.setStyle(iconStyleAnnonces);
+          }
+        });
+    }
+  });
+}
+
+
 var iconStyleOffres = new ol.style.Style({
     image: new ol.style.Icon({
     anchor: [0.5, 46],
     anchorXUnits: 'fraction',
     anchorYUnits: 'pixels',
-    src: '../resources/images/icons/map_red.png'
+    src: 'resources/images/icons/map_red.png'
+    })
+});
+
+var iconStyleOffresFocused = new ol.style.Style({
+    image: new ol.style.Icon({
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+	scale: 1.5,
+    src: 'resources/images/icons/map_red.png'
+    })
+});
+
+var iconStyleAnnoncesFocused = new ol.style.Style({
+    image: new ol.style.Icon({
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+	scale: 1.5,
+    src: 'resources/images/icons/map_green.png'
     })
 });
 
@@ -53,7 +228,7 @@ var iconStyleAnnonces = new ol.style.Style({
     anchor: [0.5, 46],
     anchorXUnits: 'fraction',
     anchorYUnits: 'pixels',
-    src: '../resources/images/icons/map_green.png'
+    src: 'resources/images/icons/map_green.png'
     })
 });
 

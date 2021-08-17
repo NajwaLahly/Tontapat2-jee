@@ -30,8 +30,8 @@
 							<div class="acceuil-offres-infos">
 
 								<ui:repeat var="offre" value="#{mbOffre.ShowAll()}" size="3">
-									<h:link class="box-link" outcome="details.xhtml?id=#{offre.id}">
-										<div class="offre-box accueil-offre-box">
+									<h:link class="box-link" outcome="offres/details.xhtml?id=#{offre.id}">
+										<div class="offre-box accueil-offre-box map-offres">
 											<div class="offre-box-img">
 												<h:graphicImage class="img-in-box-acceuil" library="images"
 													name="/photos/user/troupeau/#{offre.troupeau.id}-1.jpg" />
@@ -70,7 +70,7 @@
 								<ui:repeat var="annonce" value="#{mbAnnonce.ShowAll()}" size="3">
 									<h:link class="box-link"
 										outcome="details.xhtml?id=#{annonce.id}">
-										<div class="offre-box accueil-offre-box">
+										<div class="offre-box accueil-offre-box map-annonces">
 											<div class="offre-box-img">
 												<h:graphicImage class="img-in-box-acceuil" library="images"
 													name="/photos/user/terrain/#{annonce.terrain.id}-1.png" />
@@ -104,14 +104,18 @@
 				</div>
 				<div class="acceuil-map-map">
 					<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
-						<div class="adresse-long-offre">#{offre.troupeau.adresseLong}</div>
-						<div class="adresse-lat-offre">#{offre.troupeau.adresseLat}</div>
-						<div class="hidden-name-offre">#{offre.nom}</div>
+						<div class="offre-coords">
+							<div class="adresse-long-offre">#{offre.troupeau.adresseLong}</div>
+							<div class="adresse-lat-offre">#{offre.troupeau.adresseLat}</div>
+							<div class="hidden-name-offre">#{offre.nom}</div>
+						</div>
 					</ui:repeat>
 					<ui:repeat value="#{mbAnnonce.ShowAll()}" var="annonce">
-						<div class="adresse-long-annonce">#{annonce.terrain.adresseLong}</div>
-						<div class="adresse-lat-annonce">#{annonce.terrain.adresseLat}</div>
-						<div class="hidden-name-annonce">#{annonce.nom}</div>
+						<div class="annonce-coords">
+							<div class="adresse-long-annonce">#{annonce.terrain.adresseLong}</div>
+							<div class="adresse-lat-annonce">#{annonce.terrain.adresseLat}</div>
+							<div class="hidden-name-annonce">#{annonce.nom}</div>
+						</div>
 					</ui:repeat>
 
 					<div id="map" class="map"></div>

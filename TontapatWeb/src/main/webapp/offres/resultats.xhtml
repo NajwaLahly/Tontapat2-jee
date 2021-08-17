@@ -40,12 +40,14 @@
 					#{mbOffreSearch.offreSearch.terrain.adresseLat}</div>
 
 				<ui:repeat value="#{mbOffreSearch.searchResults}" var="searchResult">
-					<div class="adresse-long">#{searchResult.offre.troupeau.adresseLong}</div>
-					<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
-					<div class="hidden-name">#{searchResult.offre.nom}</div>
 					<a class="box-link"
 						href="../offres/resultat-details.xhtml?id=#{searchResult.id}">
 						<div class="search-result">
+							<div class="offre-coords">
+								<div class="adresse-long">#{searchResult.offre.troupeau.adresseLong}</div>
+								<div class="adresse-lat">#{searchResult.offre.troupeau.adresseLat}</div>
+								<div class="hidden-name">#{searchResult.offre.nom}</div>
+							</div>
 							<div class="offre-box-img">
 								<h:graphicImage class="result-img-in-box" library="images"
 									name="/photos/user/troupeau/#{searchResult.offre.troupeau.id}-1.jpg" />
@@ -60,13 +62,14 @@
 									</div>
 									<div class="result-offre-box-info-price">
 										<p>#{searchResult.prixTotal} €</p>
-										
-											<c:forEach begin="1" end="3">
-												<b:iconAwesome value="fal fa-star" styleClass="icon-star"></b:iconAwesome>
-											</c:forEach>
-											<b:iconAwesome value="fal fa-star-half-empty" styleClass="icon-star"></b:iconAwesome>				
-											<b:iconAwesome value="fal fa-star-o" styleClass="icon-star"></b:iconAwesome>
-	
+
+										<c:forEach begin="1" end="3">
+											<b:iconAwesome value="fal fa-star" styleClass="icon-star"></b:iconAwesome>
+										</c:forEach>
+										<b:iconAwesome value="fal fa-star-half-empty"
+											styleClass="icon-star"></b:iconAwesome>
+										<b:iconAwesome value="fal fa-star-o" styleClass="icon-star"></b:iconAwesome>
+
 									</div>
 								</div>
 								<div class="result-offre-box-info-body">
