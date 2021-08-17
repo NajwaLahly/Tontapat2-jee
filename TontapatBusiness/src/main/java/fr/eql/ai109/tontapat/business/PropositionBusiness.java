@@ -34,4 +34,9 @@ public class PropositionBusiness implements PropositionIBusiness {
 		
 	}
 
+	@Override
+	public Proposition findLatestFromPrestationId(int id) {
+		return propositionIDAO.getLatestFromPrestationId(id);
+	}
+
 }

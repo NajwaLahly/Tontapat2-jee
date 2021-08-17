@@ -7,4 +7,6 @@ import fr.eql.ai109.tontapat.entity.Proposition;
 
 public interface PropositionIDAO extends GenericIDAO<Proposition> {
 	public List<Proposition> getAllByPrestationId(int id);
+
+	public Proposition getLatestFromPrestationId(int id);
 }

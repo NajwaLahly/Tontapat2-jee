@@ -14,10 +14,6 @@ import fr.eql.ai109.tontapat.entity.Proposition;
 import fr.eql.ai109.tontapat.entity.Utilisateur;
 import fr.eql.ai109.tontapat.ibusiness.PropositionIBusiness;
 
-/**
- * @author Val
- *
- */
 @ManagedBean(name = "mbProposition")
 @SessionScoped
 public class PropositionManagedBean implements Serializable {
@@ -26,8 +22,6 @@ public class PropositionManagedBean implements Serializable {
 
 	@EJB
 	private PropositionIBusiness propositionIBusiness;
-
-	private Date dateDebut;
 
 	public Prestation getCurrentPrestation() {
 		return currentPrestation;
@@ -39,6 +33,7 @@ public class PropositionManagedBean implements Serializable {
 	private Utilisateur utilisateurConnecte;
 
 	private Proposition proposition = new Proposition();
+	private Date dateDebut;
 	private Date dateFin;
 	private int typeInstallation;
 	private float prixTotal;
@@ -53,6 +48,9 @@ public class PropositionManagedBean implements Serializable {
 	}
 
 	public String send() {
+		Proposition proposition = new Proposition();
+		System.out.println("SEND SEND SEND SEND CURRENT PRESTATION id : " + currentPrestation.getId());
+		System.out.println("SEND SEND SEND SEND CURRENT PRESTATION date debut : " + currentPrestation.getDateDebut());
 		if (dateDebut != null) {
 			proposition.setDateDebutPrestation(dateDebut);
 		} else {
@@ -83,6 +81,12 @@ public class PropositionManagedBean implements Serializable {
 
 	public Proposition showById(int id) {
 		return propositionIBusiness.findById(id);
+	}
+
+	public Proposition showLatestByCurrentPrestation() {
+		System.out.println("*************************** CURRENT PRESTATION : " + currentPrestation.getId());
+		proposition = propositionIBusiness.findLatestFromPrestationId(currentPrestation.getId());
+		return proposition;
 	}
 
 	public Date getDateDebut() {
