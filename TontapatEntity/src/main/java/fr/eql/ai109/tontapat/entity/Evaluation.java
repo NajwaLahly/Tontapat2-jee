@@ -1,6 +1,8 @@
 package fr.eql.ai109.tontapat.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +36,9 @@ public class Evaluation implements Serializable {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id_utilisateur")
 	private Utilisateur utilisateurCible;
-	
+	@Column(name = "date_creation")
+	private Date dateCreation;
+
 	public Evaluation() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -99,6 +103,12 @@ public class Evaluation implements Serializable {
 		this.utilisateurCible = utilisateurCible;
 	}
 	
-	
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
 	
 }
