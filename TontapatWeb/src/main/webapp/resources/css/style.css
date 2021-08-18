@@ -699,3 +699,26 @@ h1.title-before-eval {
 	text-align: center;
 	margin-bottom: 10px;
 }
+
+.tabcontent > div {
+	padding-bottom: 0px !important;
+}
+
+.btn-ajouter {
+	width: 15rem;
+}
+
+.btn-ajouter-div {
+	text-align: center;
+	margin-left: 0px;
+}
+
+.btn-voir-propo-div {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.btn-voir-propo {
+	width: 16rem !important;
+	margin-left: 3rem !important;
+}

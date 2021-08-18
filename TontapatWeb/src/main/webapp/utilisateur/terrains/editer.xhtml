@@ -12,16 +12,19 @@
 
 <h:body>
 	<ui:composition>
+	
 		<div class="btn-modal">
 			<b:button onclick="$('.ajout-terrain').modal('show')"
 				value="Ajouter un terrain" styleClass="btn-success" />
 		</div>
 
-		<b:modal title="Ajouter un terrain" styleClass="ajout-terrain"
+		<b:modal title="Ajouter un terrain" styleClass="ajout-terrain" id="ajoutTerrain"
 			closable="true" closeOnEscape="true">
+
+			
 			<div class="tab">
 				<button class="tablinks" onclick="openDiv(event, 'General')">Général</button>
-				<button class="tablinks" onclick="openDiv(event, 'Morphologie')">Morphologie</button>
+				<button class="tablinks" onclick="openDiv(event, 'Morphologie')" id="test_morph">Morphologie</button>
 				<button class="tablinks" onclick="openDiv(event, 'Vegetation')">Végétation</button>
 				<button class="tablinks" onclick="openDiv(event, 'Materiel')">Matériel</button>
 
@@ -91,8 +94,6 @@
 								<b:slider min="0" max="100" step="1"
 									value="#{mbTerrain.pourcentageId4}" label="" />
 							</div>
-
-
 
 					</div>
 
@@ -175,19 +176,17 @@
 
 							</div>
 
-							<div class="btn-suivant">
-								<b:commandButton styleClass="btn-suivant btn-recap" update="@form"
-									dismiss="modal" value="suivant" look="success"
-									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
-							</div>
-							<b:commandButton styleClass="btn-suivant btn-recap" value="ajouter"
+							<div class="btn-ajouter-div">
+				
+							<b:commandButton styleClass="btn-ajouter" look="success" value="ajouter"
 								action="#{mbTerrain.addNew()}" />
-
+							</div>	
 
 						</div>
 			</b:form>
 
 		</b:modal>
+				
 		<h:outputScript library="js" name="ajout-terrain.js" target="body" />
 	</ui:composition>
 
