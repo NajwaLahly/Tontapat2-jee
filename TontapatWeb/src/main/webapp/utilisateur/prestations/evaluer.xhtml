@@ -3,50 +3,77 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<ui:insert name="head"></ui:insert>
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" />
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
+
 </h:head>
 
+<!-- <f:metadata> -->
+<!-- 	<c:set var="prestation" -->
+<!-- 		value="#{mbPrestation.showById(mbPrestation.id)}" /> -->
+<!-- </f:metadata> -->
 <h:body>
+
 	<ui:composition>
-		<div class="btn-suivant">
-			<b:button onclick="$('.formValidationModalClass').modal('show')"
-				value="ajouter terrain" styleClass="btn-suivant" />
-		</div>
-		<b:modal title="Evaluer une prestation"
-			styleClass="formValidationModalClass" closable="true"
-			closeOnEscape="true">
-			<h4>Général</h4>
+
+		<b:modal title="Evaluer la prestation" styleClass="evaluer-prestation"
+			closable="true" closeOnEscape="true">
 			<div>
 				<b:form horizontal="true">
 					<b:formGroup>
 						<div class="form-rows">
 							<div class="zone">
 								<div class="titre-ss-titre">
-									<h4>1. Titre</h4>
-									<h5>Explication.</h5>
-								</div>
-								<div class="select-menu">
-									<input type="text" id="nom" value="" placeholder="Nom du champ ..." />
+									<h4>Notez la qualité de la prestation</h4>
+									<div class="form-columns">
+										<b:iconAwesome value="fal fa-star" size="lg"
+											styleClass="icon-star-eval" id="s1" />
+										<b:iconAwesome value="fal fa-star" size="lg"
+											styleClass="icon-star-eval" id="s2" />
+										<b:iconAwesome value="fal fa-star" size="lg"
+											styleClass="icon-star-eval" id="s3" />
+										<b:iconAwesome value="fal fa-star" size="lg"
+											styleClass="icon-star-eval" id="s4" />
+										<b:iconAwesome value="fal fa-star" size="lg"
+											styleClass="icon-star-eval" id="s5" />
+
+									</div>
 								</div>
 							</div>
 
 							<div class="dates zone">
 								<div class="titre-ss-titre">
-									<h4>2. Choisissez une adresse pour le troupeau</h4>
+									<h4>Ajoutez un commentaire</h4>
 								</div>
-								<div class="select-menu">
-									<input type="text" id="adresseVoie" value="" placeholder="Adresse du terrain ..." />
+								<div class="form-columns">
+
+									<h:inputTextarea id="commentaire" styleClass="login-input"
+										value="#{mbEvaluation.commentaire}" cols="20" rows="3"
+										requiredMessage="La description est obligatoire." />
 								</div>
 							</div>
 
+
+
+							<div class="zone">
+								<div class="titre-ss-titre">
+									<h4>Description de votre proposition</h4>
+								</div>
+
+							</div>
+
 							<div class="btn-suivant">
-								<b:commandButton styleClass="btn-suivant" update="@form"
-									dismiss="modal" value="Suivant" look="success"
-									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+								<b:commandButton styleClass="btn-success" update="@form"
+									dismiss="modal" value="Envoyer la proposition" look="success"
+									action="#{mbEvaluation.add()}"
+									oncomplete="$('.evaluer-prestation').modal('hide')"
+									onclick="window.location.reload();" />
 							</div>
 						</div>
 

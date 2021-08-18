@@ -90,7 +90,9 @@
 					<b:button styleClass="btn-primary" value="Faire une proposition"
 						onclick="$('.proposition-editer').modal('show')"
 						rendered="#{(prestation.statut == 1 or prestation.statut == 2) and ((1 > mbProposition.showAllByPrestationId(prestation.id).size()) or (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null))}" />
+					<ui:include src="/utilisateur/prestations/evaluer.xhtml" />
 					<b:button styleClass="btn-primary" value="Evaluer"
+						onclick="$('.evaluer-prestation').modal('show')"
 						rendered="#{prestation.statut == 3}" />
 					<b:button styleClass="btn-warning"
 						value="Demander une intervention"
@@ -322,7 +324,9 @@
 									</div>
 									<div class="prix-element prix-total">
 										<br />
-										<del>#{mbProposition.roundCost(prestation.fraisInstallation + prestation.fraisIntervention + prestation.fraisBetail + prestation.fraisService + prestation.TVA)} €</del>
+										<del>#{mbProposition.roundCost(prestation.fraisInstallation
+											+ prestation.fraisIntervention + prestation.fraisBetail +
+											prestation.fraisService + prestation.TVA)} €</del>
 									</div>
 								</div>
 								<div class="tarif-element">
