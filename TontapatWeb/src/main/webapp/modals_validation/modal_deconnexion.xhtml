@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<ui:insert name="head"></ui:insert>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="/resources/js/moment.min.js" />
+	<h:outputScript name="/resources/js/bootstrap-datetimepicker.min.js" />
+
+</h:head>
+
+
+<h:body>
+	<ui:composition>
+
+		<div class="modal-dialog" id="formDeconnexion">
+			<div class="modal-content">
+				<b:form horizontal="true">
+					<b:formGroup>
+						<div class="form-rows">
+							<div class="zone">
+								<div class="titre-ss-titre">
+
+									<div>
+										<h4 class="center-block text-center">
+											<br /> Êtes-vous sûr(e) de vouloir vous déconnecter ?
+										</h4>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="btn-suivant">
+								<b:commandButton styleClass="btn-suivant" update="@form"
+									dismiss="modal" value="Déconnexion" look="danger"
+									action="#{mbUtilisateur.disconnect()}"
+									onclick="return '/connexion.xhtml?faces-redirection=false';"
+									oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } " />
+
+							</div>
+						</div>
+
+					</b:formGroup>
+				</b:form>
+			</div>
+		</div>
+	</ui:composition>
+</h:body>
+</html>

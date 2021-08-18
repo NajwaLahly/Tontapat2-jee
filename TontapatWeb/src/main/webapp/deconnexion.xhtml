@@ -1,21 +1,109 @@
-<ui:composition template="/template.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="title">
-		Déconnexion
-	</ui:define>
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title><ui:insert name="title"></ui:insert> - Tontapat</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:insert name="js-head"></ui:insert>
+</h:head>
 
-
-	<ui:define name="content">
-
+<h:body>
+	<ui:include src="offres/recherche.xhtml" />
+	<b:navBar>
 		<div class="container">
+			<h:link class="navbar-brand">
+				<h:graphicImage library="images" name="logo.png" />
+			</h:link>
+			<b:navbarLinks>
+				<b:navLink value="Offres" outcome="/offres/index.xhtml"></b:navLink>
+				<b:navLink value="Annonces" outcome="/annonces/index.xhtml"></b:navLink>
+			</b:navbarLinks>
 
-			<h1>Déconnexion</h1>
+			<div class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+				<div class="form-group">
+					<button class="search-button"
+						onclick="$('.formValidationModalClass').modal('show')">
+						<b:iconAwesome value="fal fa-search"></b:iconAwesome>
+						Rechercher une prestation
+					</button>
+				</div>
+			</div>
+			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
 
+			<b:navbarLinks pull="right" styleClass="hidden-xs">
+				<b:navLink href="#">
+					<b:iconAwesome value="fal fa-calendar" size="lg">
+
+					</b:iconAwesome>
+				</b:navLink>
+
+				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg">
+
+
+					<b:navLink value="n a validé votre demande de réservation."
+						href="#"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink value="n a refusé votre demande de réservation."
+						href="#"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink value="n a validé votre demande de réservation."
+						href="#"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink value="n a refusé votre demande de réservation."
+						href="#"></b:navLink>
+					<b:navLink></b:navLink>
+				</b:dropMenu>
+
+
+				<b:navLink href="#">
+					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
+				</b:navLink>
+
+				<b:dropMenu
+					value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
+					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"
+						outcome="#{mbPrestation.mesPrestations()}"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink iconAwesome="fas fa-leaf" value="Mes terrains"
+						outcome="#{mbTerrain.mesTerrains()}"></b:navLink>
+					<b:navLink iconAwesome="fas fa-tasks" value="Mes annonces"
+						outcome="#{mbAnnonce.mesAnnonces()}"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink iconAwesome="fas fa-horse" value="Mes troupeaux"
+						outcome="#{mbTroupeau.mesTroupeaux()}"></b:navLink>
+					<b:navLink iconAwesome="fas fa-euro-sign" value="Mes offres"
+						outcome="/utilisateur/offres/index.xhtml"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink iconAwesome="fas fa-user-alt" value="Mon profil"
+						outcome="#{mbUtilisateur.editer()}"></b:navLink>
+					<b:navLink iconAwesome="fas fa-times" value="Déconnexion"
+						outcome="#{mbUtilisateur.disconnectPage()}"></b:navLink>
+				</b:dropMenu>
+			</b:navbarLinks>
 		</div>
-	</ui:define>
-</ui:composition>
+	</b:navBar>
+	
+		<b:row>
+			<b:column>
+				<ui:insert name="content"></ui:insert>
+			</b:column>
+		</b:row>
+	
+	 	<div class="container"> 
+	<!-- 		<h1>My Website</h1> -->
+
+				<ui:include src="/modals_validation/modal_deconnexion.xhtml" />
+
+	<!-- 		<h1>Mes Annonces</h1> -->
+	<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->
+	<!--    		 #{value.nom} <br /> -->
+	<!-- </ui:repeat> -->
+	 	</div> 
+
+</h:body>
+</html>
