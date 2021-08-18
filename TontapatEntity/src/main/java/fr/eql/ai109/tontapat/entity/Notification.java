@@ -22,6 +22,8 @@ public class Notification implements Serializable{
     private int id;
     @Column(name = "action")
     private String action; 
+    @Column(name = "etat")
+    private String etat; 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPrestation", referencedColumnName = "id_prestation")
     private Prestation prestation; 
@@ -34,6 +36,13 @@ public class Notification implements Serializable{
     public Notification(int id,Prestation prestation) {
         super();
         this.id = id;
+        this.prestation = prestation;
+    }
+    
+    public Notification(int id, String etat, Prestation prestation) {
+        super();
+        this.id = id;
+        this.etat = etat;
         this.prestation = prestation;
     }
 
@@ -55,4 +64,14 @@ public class Notification implements Serializable{
     public void setPrestation(Prestation prestation) {
         this.prestation = prestation;
     }
+
+
+	public String getEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
 }

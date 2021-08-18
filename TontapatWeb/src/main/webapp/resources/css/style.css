@@ -477,3 +477,35 @@ a.link-datatable {
 	width: 30px;
 	height: 15px;
 }
+
+
+/* Notification -- Ajout Elodie à supprimer
+--------------------------------------
+--------------------------------------*/
+.notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+
+.notif-dropdown:hover{
+	display: block;
+}
+
+.notif-dropdown .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 0px 4px;
+  border-radius: 50%;
+  background-color: red;
+}

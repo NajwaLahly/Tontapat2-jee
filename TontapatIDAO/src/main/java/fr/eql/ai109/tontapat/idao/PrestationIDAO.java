@@ -20,4 +20,6 @@ public interface PrestationIDAO extends GenericIDAO<Prestation> {
 
 	public List<Prestation> getDemandesReservationOffreAccepted(Utilisateur utilisateur); //Ajout Elodie
 
+	public List<Prestation> getDemandesReservationOffreRefused(Utilisateur utilisateur); //Ajout Elodie
+
 }

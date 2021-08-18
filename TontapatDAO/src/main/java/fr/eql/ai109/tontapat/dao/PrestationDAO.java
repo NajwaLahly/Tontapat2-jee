@@ -83,19 +83,22 @@ public class PrestationDAO extends GenericDAO<Prestation> implements PrestationI
 		@Override
 		public List<Prestation> getPrestationsByUtilisateur(Utilisateur utilisateur) {
 			List<Prestation> prestations = null;
-			Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam");
+			Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.terrain.utilisateur=:utilisateurParam "
+					+ "or p.troupeau.utilisateur=:utilisateurParam");
 			query.setParameter("utilisateurParam", utilisateur);
 			prestations = query.getResultList();
 			return prestations;
-			
 		}
 	
 	@Override
 	public List<Prestation> getDemandesReservationByUtilisateur(Utilisateur utilisateur) { // Ajout Elodie
 		List<Prestation> prestations = null;
-		Query query = em.createQuery("SELECT p FROM Prestation p WHERE p.troupeau.utilisateur=:utilisateurParam "
+		Query query = em.createQuery("SELECT p FROM Prestation p "
+				+ "WHERE p.troupeau.utilisateur=:utilisateurParam "
 				+ "AND p.dateValidation IS NULL "
-				+ "AND p.dateRefus IS NULL");
+				+ "AND p.dateRefus IS NULL "
+//				+ "AND p.etatNotif IS NULL"
+				);
 		query.setParameter("utilisateurParam", utilisateur);
 		prestations = query.getResultList();
 		return prestations;
@@ -118,19 +121,16 @@ public class PrestationDAO extends GenericDAO<Prestation> implements PrestationI
 	}
 
 	
-//	@Override
-//	public List<Prestation> getDemandesReservationRefused(Utilisateur utilisateur) { // Ajout Elodie
-//		List<Prestation> prestations = null;
-//		Query query = em.createQuery("SELECT p FROM Prestation p "
-//				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
-//				+ "AND p.dateValidation IS NULL "
-//				+ "AND p.dateRefus IS NULL ");
-//		query.setParameter("utilisateurParam", utilisateur);
-//		prestations = query.getResultList();
-//		return prestations;
-//
-//	}
-	
+	@Override
+	public List<Prestation> getDemandesReservationOffreRefused(Utilisateur utilisateur) { // Ajout Elodie
+		List<Prestation> prestations = null;
+		Query query = em.createQuery("SELECT p FROM Prestation p "
+				+ "WHERE p.terrain.utilisateur=:utilisateurParam "
+				+ "AND p.dateValidation IS NULL "
+				+ "AND p.dateRefus IS NOT NULL ");
+		query.setParameter("utilisateurParam", utilisateur);
+		prestations = query.getResultList();
+		return prestations;
 
-
+	}
 }

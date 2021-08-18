@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.bean.SessionScoped;
 
+import fr.eql.ai109.tontapat.entity.Notification;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.OffreSearch;
@@ -71,18 +72,12 @@ public class PrestationManagedBean implements Serializable {
 
 	@EJB
 	private PrestationIBusiness prestationIBusiness;
-
-
 	
-	//Ajout Elodie
-	private Prestation prestationReservee = new Prestation();
-	private OffreSearch offreSearch = new OffreSearch();
-	String notif = null;
-	private Prestation lastReservation = new Prestation();
+	private Prestation prestationReservee = new Prestation();//Ajout Elodie
+	private OffreSearch offreSearch = new OffreSearch();//Ajout Elodie
+	String notif = null;//Ajout Elodie
+	private Prestation lastReservation = new Prestation();//Ajout Elodie
 	
-
-
-
 	public String createFromOffreDTO() {
 		prestationIBusiness.createFromOffreDTO(offreDTO);
 		return addedPrestationPage();
@@ -129,12 +124,6 @@ public class PrestationManagedBean implements Serializable {
 	}
 	
 
-
-	@PostConstruct
-	public void init() { // ajout Elodie
-		notif = demandeNotifs();
-	}
-
 	public String acceptedNotifs() { //Ajout Elodie
 		List<Prestation> prestations = new ArrayList<Prestation>();
 		prestations = prestationIBusiness.findValidatedPrestation(utilisateurConnecte);
@@ -153,6 +142,25 @@ public class PrestationManagedBean implements Serializable {
 		}
 		return notif;
 	}
+	
+	public String refusedNotifs() { //Ajout Elodie
+		List<Prestation> prestations = new ArrayList<Prestation>();
+		prestations = prestationIBusiness.findRefusedPrestation(utilisateurConnecte);
+
+		if(prestations.size()>0) {
+			for (Prestation prestation : prestations) {
+				Troupeau troupeau = prestation.getTroupeau();
+				Utilisateur utilisateurNonConnecte = troupeau.getUtilisateur();
+				String nom = utilisateurNonConnecte.getNom();
+				String prenom = utilisateurNonConnecte.getPrenom();
+				Offre offre = prestation.getOffre();
+				String nomOffre = offre.getNom();
+				notif = nom + " " + prenom + " " + "a refusé votre demande de réservation "
+						+ "pour l'offre '" + nomOffre + "'";
+			}	
+		}
+		return notif;
+	}
 
 
 
@@ -166,40 +174,15 @@ public class PrestationManagedBean implements Serializable {
 				String titre = offre.getNom();
 				notif = "Vous avez une demande de réservation pour l'offre '" + titre + "'" ;
 			}	
+			
+//			Notification notifCorrespondante = null;
+//			notifCorrespondante.setPrestation(prestation);
+//			notifCorrespondante.setEtat("lu");
+//			prestationIBusiness.readNotif(notifCorrespondante);
 		
 		return notif;
 	}
-
-	//	public int lastReservation() { //Ajout Elodie
-	//		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
-	//		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
-	//
-	//		int idLastReservation = 0;
-	//		
-	//		if(prestations.size()>0) {
-	//			for (Prestation prestation : prestations) {
-	//				idLastReservation = prestation.getId();
-	//			}	
-	//		}
-	//		return idLastReservation;		
-	//	}
-
-
-	public Prestation lastReservation() { //Ajout Elodie
-		List<Prestation> prestations = ShowAllNotificationsbyCurrentUser();
-		System.out.println("******** PRESTATIONS ********* :" + prestations.size());
-		for (Prestation prestation : prestations) {
-			lastReservation = prestation;	
-		}
-		return lastReservation;		
-	}	
 	
-	public Prestation showLastPrestationReserved() {
-		//		id = lastReservation();
-		prestationReservee = prestationIBusiness.findById(id);
-		return prestationReservee;
-	}
-
 	// Fin ajout Elodie
 
 

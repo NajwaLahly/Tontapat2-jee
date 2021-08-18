@@ -3,6 +3,7 @@ package fr.eql.ai109.tontapat.ibusiness;
 import java.util.Date;
 import java.util.List;
 
+import fr.eql.ai109.tontapat.entity.Notification;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.Prestation;
@@ -20,8 +21,10 @@ public interface PrestationIBusiness {
 	
 	public List<Prestation> findAllNotificationsByCurrentUser(Utilisateur utilisateur); //Ajout Elodie
 
-	public List<Prestation> findValidatedPrestation(Utilisateur utilisateur);
+	public List<Prestation> findValidatedPrestation(Utilisateur utilisateur); // Ajout Elodie
 
+	public List<Prestation> findRefusedPrestation(Utilisateur utilisateur); //Ajout Elodie
+	
 	public void validate(Prestation prestation);
-
+	
 }

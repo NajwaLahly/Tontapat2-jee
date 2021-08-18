@@ -44,38 +44,21 @@
 					</b:iconAwesome>
 				</b:navLink>
 
-				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg" styleClass="notif-dropdown">
+				<b:dropMenu value="" iconAwesome="fal fa-bell fa-lg"
+					styleClass="notif-dropdown">
+				
+					
+					<b:navLink value="#{mbPrestation.demandeNotifs()}" 
+						outcome=""> <b:button value="Marqué comme lu" 
+						onclick=""/>
+					</b:navLink> 
 
-
-					<f:metadata>
-						<f:viewParam name="id" value="#{mbPrestation.id}" />
-						<c:set var="searchLastPrestation"
-							value="#{mbPrestation.lastReservation}" />
-					</f:metadata>
-
-					<b:navLink value="#{mbPrestation.demandeNotifs()}"
-						outcome="/utilisateur/prestations/details.xhtml?id=#{searchLastPrestation.id}">
-					</b:navLink>
-
-					<b:navLink value="#{mbPrestation.acceptedNotifs()}"
-						outcome="">
+					<b:navLink value="#{mbPrestation.acceptedNotifs()}" outcome="">
 					</b:navLink>
 					
-<!-- 					<b:navLink value="n a validé votre demande de réservation." href="#"></b:navLink> -->
+					<b:navLink value="#{mbPrestation.refusedNotifs()}" outcome="">
+					</b:navLink>
 
-
-
-					<b:navLink value="n a validé votre demande de réservation."
-						href="#"></b:navLink>
-					<b:navLink></b:navLink>
-					<b:navLink value="n a refusé votre demande de réservation."
-						href="#"></b:navLink>
-					<b:navLink></b:navLink>
-					<b:navLink value="n a validé votre demande de réservation."
-						href="#"></b:navLink>
-					<b:navLink></b:navLink>
-					<b:navLink value="n a refusé votre demande de réservation."
-						href="#"></b:navLink>
 
 				</b:dropMenu>
 
@@ -84,8 +67,8 @@
 					<b:iconAwesome value="fal fa-comment" size="lg"></b:iconAwesome>
 				</b:navLink>
 
-<!-- <h:graphicImage class="profile-img" library="images" -->
-<!-- 									name="/photos/user/profile/#{mbUtilisateur.utilisateur.id}.png" /> -->
+				<!-- <h:graphicImage class="profile-img" library="images" -->
+				<!-- 									name="/photos/user/profile/#{mbUtilisateur.utilisateur.id}.png" /> -->
 				<b:dropMenu
 					value="#{mbUtilisateur.utilisateur.prenom != null ? mbUtilisateur.utilisateur.prenom : 'Connectez-vous'}">
 					<b:navLink iconAwesome="fal fa-calendar" value="Mes prestations"

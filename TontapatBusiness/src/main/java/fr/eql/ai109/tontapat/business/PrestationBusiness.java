@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import fr.eql.ai109.tontapat.entity.Notification;
 import fr.eql.ai109.tontapat.entity.Offre;
 import fr.eql.ai109.tontapat.entity.OffreDTO;
 import fr.eql.ai109.tontapat.entity.Prestation;
@@ -59,6 +60,11 @@ public class PrestationBusiness implements PrestationIBusiness {
 		prestation.setStatut(1);
 		prestationIDAO.update(prestation);
 		
+	}
+
+	@Override
+	public List<Prestation> findRefusedPrestation(Utilisateur utilisateur) {
+		return prestationIDAO.getDemandesReservationOffreRefused(utilisateur);
 	}
 
 }
