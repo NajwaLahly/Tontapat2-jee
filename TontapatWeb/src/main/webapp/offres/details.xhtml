@@ -14,12 +14,21 @@
 
 		<f:metadata>
 			<f:viewParam name="id" value="#{mbOffre.id}" />
-			<c:set var="offre" value="#{mbOffre.ShowById(mbOffre.id)}"
-				/>
+			<c:set var="offre" value="#{mbOffre.ShowById(mbOffre.id)}" />
 		</f:metadata>
 
 		<div class="container">
-			<h1>#{offre.nom}</h1>
+			<h1 class="title-before-eval">#{offre.nom}</h1>
+			<div class="eval-div">
+				<h:graphicImage class="profile-img" library="images"
+					name="/photos/user/profile/#{offre.troupeau.utilisateur.id}.png" />
+				Proposée par <b>#{offre.troupeau.utilisateur.prenom} </b>
+				<ui:repeat begin="1" end="3">
+					<b:iconAwesome value="fal fa-star" size="lg" styleClass="icon-star"></b:iconAwesome>
+				</ui:repeat>
+					<b:iconAwesome value="fal fa-star-half-empty" size="lg" styleClass="icon-star"></b:iconAwesome>				
+					<b:iconAwesome value="fal fa-star-o" size="lg" styleClass="icon-star"></b:iconAwesome>				
+			</div>
 			<div class="offre-details-box">
 				<div class="offre-details-info">
 					<div class="offre-caracteristiques details-box">
@@ -83,7 +92,7 @@
 						<div class="tarif-element">
 							<div class="titre-tarif-elem">Coef d'intervention</div>
 							<div class="prix-element">#{offre.prixKm}</div>
-						</div>				
+						</div>
 
 					</div>
 					<div class="btn-reservation">

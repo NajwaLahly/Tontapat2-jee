@@ -29,4 +29,15 @@ public class PropositionDAO extends GenericDAO<Proposition> implements Propositi
 		return propositions;
 	}
 
+	@Override
+	public Proposition getLatestFromPrestationId(int id) {
+		System.out.println();
+		List<Proposition> propositions = null;		
+		Query query = em.createQuery("SELECT p FROM Proposition p WHERE p.prestation.id=:prestationParam");
+		query.setParameter("prestationParam", id);
+		propositions = query.getResultList();
+		if (propositions.size() > 0) return propositions.get(propositions.size() - 1);
+		else return null;
+	}
+
 }
