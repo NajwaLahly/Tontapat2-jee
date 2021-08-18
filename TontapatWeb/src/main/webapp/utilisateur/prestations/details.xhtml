@@ -44,6 +44,7 @@
 					<b:iconAwesome value="fal fa-star-o" size="lg"
 						styleClass="icon-star"></b:iconAwesome>
 				</div>
+				<div class="btn-details-presta">
 				<h3>
 					Statut :
 					<h:outputText value="refusée" rendered="#{prestation.statut == -2}" />
@@ -58,27 +59,27 @@
 				</h3>
 
 
-				<div class="btn-suivant">
+				
 					<b:form>
-						<b:commandButton styleClass="btn-danger"
+						<b:commandButton styleClass="btn-danger btn-recap"
 							value="Refuser la demande"
 							rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
 
-						<b:commandButton styleClass="btn-success"
+						<b:commandButton styleClass="btn-success btn-recap"
 							value="Valider la demande" action="#{mbPrestation.validate()}"
 							rendered="#{prestation.statut == 0 and prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id}" />
 					</b:form>
 
 					<ui:include
 						src="/utilisateur/prestations/propositions/details.xhtml" />
-					<b:button styleClass="btn-primary" value="Voir la proposition"
+					<b:button styleClass="btn-primary btn-recap" value="Voir la proposition"
 						onclick="$('.proposition-details').modal('show')"
 						rendered="#{(prestation.statut == 1 or prestation.statut == 2)
 							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
 							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation == null)
 							and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).utilisateur.id != mbUtilisateur.utilisateur.id)}" />
 
-					<b:button styleClass="btn-primary" value="Proposition envoyée"
+					<b:button styleClass="btn-primary btn-recap" value="Proposition envoyée"
 						disabled="true"
 						rendered="#{(prestation.statut == 1 or prestation.statut == 2)
 							and (mbProposition.showAllByPrestationId(prestation.id).size() > 0)
@@ -87,18 +88,16 @@
 
 					<ui:include
 						src="/utilisateur/prestations/propositions/editer.xhtml" />
-					<b:button styleClass="btn-primary" value="Faire une proposition"
+					<b:button styleClass="btn-primary btn-recap" value="Faire une proposition"
 						onclick="$('.proposition-editer').modal('show')"
 						rendered="#{(prestation.statut == 1 or prestation.statut == 2) and ((1 > mbProposition.showAllByPrestationId(prestation.id).size()) or (mbProposition.showAllByPrestationId(prestation.id).size() > 0) and (mbProposition.showAllByPrestationId(prestation.id).get(mbProposition.showAllByPrestationId(prestation.id).size() - 1).dateValidation != null))}" />
-					<b:button styleClass="btn-primary" value="Evaluer"
+					<b:button styleClass="btn-primary btn-recap" value="Evaluer"
 						rendered="#{prestation.statut == 3}" />
-					<b:button styleClass="btn-warning"
+					<b:button styleClass="btn-warning btn-recap"
 						value="Demander une intervention"
 						rendered="#{prestation.statut == 2}" />
 
-					<b:button styleClass="btn-warning" value="Signaler un problème" />
-
-					<b:button styleClass="btn-danger" value="Annuler la prestation"
+					<b:button styleClass="btn-danger btn-recap" value="Annuler la prestation"
 						rendered="#{((prestation.terrain.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > -1) or (prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id and prestation.statut > 0)) and 3 > prestation.statut}" />
 
 
