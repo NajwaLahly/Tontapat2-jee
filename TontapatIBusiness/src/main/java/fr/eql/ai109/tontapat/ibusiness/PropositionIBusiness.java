@@ -13,4 +13,10 @@ public interface PropositionIBusiness {
 
 	public void send(Proposition proposition);
 
+	public Proposition findLatestFromPrestationId(int id);
+
+	public void accept(Proposition proposition);
+
+	public void refuse(Proposition proposition);
+
 }
