@@ -6,51 +6,190 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="title">
-		Page d'accueil
+		Accueil
+	</ui:define>
+	<ui:define name="js-head">
+		<h:outputStylesheet
+			name="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css" />
+		<h:outputStylesheet library="css" name="map_accueil.css" />
 	</ui:define>
 
 	<ui:define name="content">
+		<div class="accueil">
 
-		<b:form>
+			<div class="accueil-map">
+				<div class="left-accueil-map">
+					<div class="left-accueil-map-titre">
+						<h1>Explorez les environs</h1>
+					</div>
+					<div class="left-accueil-map-info">
+						<div class="accueil-offres">
+							<div class="accueil-titre">
+								<h3>Dernières offres</h3>
+							</div>
+							<div class="acceuil-offres-infos">
 
-			<div class="btn-suivant">
-				<b:commandButton styleClass="btn-suivant" update="@form"
-					value="Mes terrains" look="primary" size="lg"
-					action="#{mbTerrain.mesTerrains()}" />
-			</div>
-			<div class="btn-suivant">
-				<b:commandButton styleClass="btn-suivant" update="@form"
-					value="Mes troupeaux" look="primary" size="lg"
-					action="#{mbTroupeau.mesTroupeaux()}" />
-			</div>
-			<div class="btn-suivant">
-				<b:commandButton styleClass="btn-suivant" update="@form"
-					value="Mes annonces" look="primary" size="lg"
-					action="#{mbAnnonce.mesAnnonces()}" />
-			</div>
-			<div class="btn-suivant">
-				<b:commandButton styleClass="btn-suivant" update="@form"
-					value="Mes offres" look="primary" size="lg"
-					action="#{mbOffre.mesOffres()}" />
-			</div>
-		</b:form>
-		<b:container>
-			<b:row>
-				<b:column>
-					<ui:insert name="content"></ui:insert>
-				</b:column>
-			</b:row>
-		</b:container>
-		<!-- 	<div class="container"> -->
-		<!-- 		<h1>My Website</h1> -->
+								<ui:repeat var="offre" value="#{mbOffre.ShowAll()}" size="3">
+									<h:link class="box-link" outcome="offres/details.xhtml?id=#{offre.id}">
+										<div class="offre-box accueil-offre-box map-offres">
+											<div class="offre-box-img">
+												<h:graphicImage class="img-in-box-acceuil" library="images"
+													name="/photos/user/troupeau/#{offre.troupeau.id}-1.jpg" />
+											</div>
+											<div class="offre-box-info accueil-offre-box-info">
+												<div
+													class="offre-box-info-header accueil-offre-box-info-header">
+													<h4>#{offre.nom}</h4>
+													<h:graphicImage class="profile-img" library="images"
+														name="/photos/user/profile/#{offre.troupeau.utilisateur.id}.png" />
+													Proposée par #{offre.troupeau.utilisateur.prenom}
+												</div>
+												<div class="offre-box-info-body">
+													<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+													<h:outputText value="#{offre.dateDebut}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText>
+													au
+													<h:outputText value="#{offre.dateFin}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText>
+												</div>
+											</div>
+										</div>
+									</h:link>
+								</ui:repeat>
 
-		<!-- 		<ui:include src="modal_offre.xhtml" /> -->
+							</div>
+						</div>
+						<div class="accueil-offres">
+							<div class="accueil-titre">
+								<h3>Dernières Annonces</h3>
+							</div>
+							<div class="acceuil-offres-infos">
 
-		<!-- 		<h1>Mes Annonces</h1> -->
-		<!-- 		<ui:repeat value="#{mbAnnonce.ShowAll()}" var="value"> -->
-		<!--    		 #{value.nom} <br /> -->
-		<!-- </ui:repeat> -->
-		<!-- 	</div> -->
+								<ui:repeat var="annonce" value="#{mbAnnonce.ShowAll()}" size="3">
+									<h:link class="box-link"
+										outcome="details.xhtml?id=#{annonce.id}">
+										<div class="offre-box accueil-offre-box map-annonces">
+											<div class="offre-box-img">
+												<h:graphicImage class="img-in-box-acceuil" library="images"
+													name="/photos/user/terrain/#{annonce.terrain.id}-1.png" />
+											</div>
+											<div class="offre-box-info accueil-offre-box-info">
+												<div
+													class="offre-box-info-header accueil-offre-box-info-header">
+													<h4>#{annonce.nom}</h4>
+													<h:graphicImage class="profile-img" library="images"
+														name="/photos/user/profile/#{annonce.terrain.utilisateur.id}.png" />
+													Proposée par #{annonce.terrain.utilisateur.prenom}
+												</div>
+												<div class="offre-box-info-body">
+													<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+													<h:outputText value="#{annonce.dateDebut}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText>
+													au
+													<h:outputText value="#{annonce.dateFin}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText>
+												</div>
+											</div>
+										</div>
+									</h:link>
+								</ui:repeat>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="acceuil-map-map">
+					<ui:repeat value="#{mbOffre.ShowAll()}" var="offre">
+						<div class="offre-coords">
+							<div class="adresse-long-offre">#{offre.troupeau.adresseLong}</div>
+							<div class="adresse-lat-offre">#{offre.troupeau.adresseLat}</div>
+							<div class="hidden-name-offre">#{offre.nom}</div>
+						</div>
+					</ui:repeat>
+					<ui:repeat value="#{mbAnnonce.ShowAll()}" var="annonce">
+						<div class="annonce-coords">
+							<div class="adresse-long-annonce">#{annonce.terrain.adresseLong}</div>
+							<div class="adresse-lat-annonce">#{annonce.terrain.adresseLat}</div>
+							<div class="hidden-name-annonce">#{annonce.nom}</div>
+						</div>
+					</ui:repeat>
+
+					<div id="map" class="map"></div>
+					<div id="popup" class="ol-popup">
+						<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+						<div id="popup-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="accueil-prestation">
+				<div class="acceuil-presta-titre">
+					<h1>Vos prestations</h1>
+				</div>
+				<div class="acceuil-presta-info">
+
+						<ui:repeat var="prestation"
+							value="#{mbPrestation.ShowAllbyCurrentUser()}">
+							<h:link class="box-link"
+								outcome="details.xhtml?id=#{prestation.id}">
+								<div class="offre-box presta-offre-box">
+									<div class="presta-box-img">
+										<h:graphicImage class="img-in-box-acceuil" library="images"
+											name="/photos/user/troupeau/#{prestation.offre.troupeau.id}-1.jpg" />
+									</div>
+									<div class="offre-box-info accueil-offre-box-info">
+										<div
+											class="offre-box-info-header accueil-offre-box-info-header">
+											<h4>#{prestation.offre.nom}</h4>
+											<h:graphicImage class="profile-img" library="images"
+												name="/photos/user/profile/#{prestation.offre.troupeau.utilisateur.id}.png" />
+											Proposée par #{prestation.offre.troupeau.utilisateur.prenom}
+										</div>
+										<div class="presta-box-info-body">
+											<b:iconAwesome value="fal fa-calendar" styleClass="icon"></b:iconAwesome>
+											<h:outputText value="#{prestation.dateDebut}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+											au
+											<h:outputText value="#{prestation.dateFin}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText><br/>
+											
+											<b:iconAwesome name="refresh" styleClass="icon"/>
+											Statut :
+											<h:outputText value="refusée"
+												rendered="#{prestation.statut == -2}" />
+											<h:outputText value="annulée"
+												rendered="#{prestation.statut == -1}" />
+											<h:outputText value="en attente"
+												rendered="#{prestation.statut == 0}" />
+											<h:outputText value="validée"
+												rendered="#{prestation.statut == 1}" />
+											<h:outputText value="commencée"
+												rendered="#{prestation.statut == 2}" />
+											<h:outputText value="terminée"
+												rendered="#{prestation.statut == 3}" />
+											<h:outputText value="clôturée"
+												rendered="#{prestation.statut == 4}" />
+											
+										</div>
+									</div>
+								</div>
+							</h:link>
+						</ui:repeat>
+
+					
+				</div>
+
+			</div>
+		</div>
+		<script
+			src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+
+		<h:outputScript library="js" name="ol_map_accueil.js" />
 
 
 	</ui:define>

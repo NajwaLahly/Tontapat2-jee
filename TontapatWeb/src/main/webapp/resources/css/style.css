@@ -5,7 +5,7 @@
 /* body infos */
 body {
 	background-color: rgb(255, 255, 255) !important;
-	font-family: Roboto Thin !important;
+	font-family: Roboto Light !important;
 }
 
 body {
@@ -37,6 +37,10 @@ h1 {
     margin-bottom: 20px !important;
     font-family: coolvetica !important;
 	color: black !important;
+}
+
+p {
+    margin: 0 0 0 10px !important;
 }
 /* navbar
 --------------------------------------------------
@@ -400,7 +404,7 @@ div.offre-box:hover {
 
 .result-img-in-box {
 	width: 230px;
-	height: 150px;
+	height: 145px;
 }
 
 .search-result {
@@ -470,10 +474,228 @@ a.link-datatable {
 	width: 10rem !important;
 }
 
+.radio_paiement td {
+	display: inline-flex !important;
+}
+
+.num-carte-compte {
+	width: 200px!important;
+}
+
+.cvc-expir {
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.cvc {
+	width: 50px;
+}
+
+.expir {
+	width: 100px;
+	margin-right: 100px;
+}
+
 /* paiement
 --------------------------------------------------
 --------------------------------------------------*/
 .img-paiement {
 	width: 30px;
 	height: 15px;
+}
+
+.titre-ss-titre {
+	text-align: left !important;
+}
+
+
+.demande-envoyee {
+    background-color: white;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(128, 128, 128);
+    padding: 10px 30px 15px 30px;
+    font-size: 16px;
+    cursor: text !important;
+    margin-top: 0px !important;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 2px rgb(240, 240, 240);
+    width: 700px;
+    margin-left: 23rem !important;
+    display: flex;
+	flex-direction: row;
+    
+}
+
+.demande-envoyee-txt {
+	align-self: end;
+}
+
+.btn-demande {
+	width: 15rem !important;
+	margin-left: 0.75rem !important;
+}
+
+/*-------------evaluation ----------------
+------------------------------------------*/
+h1.title-before-eval {
+	margin-bottom: 0px !important;
+}
+
+.icon-star {
+	color: #fad645;
+}
+
+.eval-div {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+/*-------------page d'accueil ----------------
+------------------------------------------*/
+.accueil {
+	display: flex;
+	flex-direction: column;
+}
+
+.accueil-map {
+	display: flex;
+	flex-direction: row;
+}
+
+.left-accueil-map {
+	display: flex;
+	flex-direction: column;
+}
+
+.adresse-long-offre, .adresse-lat-offre, .hidden-name-offre,
+.adresse-long-annonce, .adresse-lat-annonce, .hidden-name-annonce {
+	display: none !important;
+}
+
+.acceuil-map-map {
+	background-color: white;
+	border: 1px solid rgb(230, 230, 230);
+	color: rgb(128, 128, 128);
+	padding: 0 0 0 0 !important;
+	font-size: 16px;
+	cursor: text !important;
+	margin-top: 30px !important;
+	border-radius: 10px;
+	box-shadow: 0px 0px 3px 2px rgb(240, 240, 240);
+	width: 700px;
+	margin-right: 30px;
+	margin-left: 20px;
+	flex: 2;
+	height: 100%;
+}
+
+.left-accueil-map-info {
+	flex: 3;
+	display: flex;
+	flex-direction: row;
+}
+
+.img-in-box-acceuil {
+    border-radius: 8px 0px 0px 8px;
+	width: 140px;
+	height: 107px;
+}
+
+.accueil-offre-box-info-header > h4 {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-size: medium;
+	margin-right: 8px;
+}
+
+.accueil-offre-box-info {
+	margin-left: 5px !important;
+	flex: 2 !important;
+}
+
+.accueil-offre-box-info-header {
+	font-size: smaller;
+}
+
+.accueil-offre-box {
+	max-width: 80%;
+	margin-right: 1rem !important;
+	margin-left: 2.3rem !important;
+}
+
+.accueil-offres-infos {
+	display: flex;
+	flex-direction: row;
+}
+
+.accueil-titre {
+	margin: 23px !important;
+}
+
+.presta-box-info-body {
+	flex: 3;
+	font-size: smaller;
+}
+
+.presta-offre-box {
+	max-width: 100%;
+	margin-right: 1rem !important;
+	margin-left: 2.3rem !important;
+	width: 500px;
+}
+
+.acceuil-presta-info {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.acceuil-presta-titre {
+	margin: 23px !important;
+}
+
+/*-----------------terrain ajout ---------------
+----------------------------------------------*/
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+    padding-left: 6rem;
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.03s;
+  font-size: 17px;
+  background-color: white;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  border-bottom: 3px solid #5cb85c;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+
+
+.btn-details-presta {
+	text-align: center;
+	margin-bottom: 10px;
 }

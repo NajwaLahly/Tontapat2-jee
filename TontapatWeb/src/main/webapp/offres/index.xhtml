@@ -3,7 +3,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:b="http://bootsfaces.net/ui">
 
 	<ui:define name="title">
@@ -26,8 +26,15 @@
 								<h3>#{offre.nom}</h3>
 								<h:graphicImage class="profile-img" library="images"
 									name="/photos/user/profile/#{offre.troupeau.utilisateur.id}.png" />
-									#{offre.troupeau.utilisateur.prenom}
-							
+								#{offre.troupeau.utilisateur.prenom}
+								<c:forEach begin="1" end="3">
+									<b:iconAwesome value="fal fa-star" 
+										styleClass="icon-star"></b:iconAwesome>
+								</c:forEach>
+								<b:iconAwesome value="fal fa-star-half-empty" 
+									styleClass="icon-star"></b:iconAwesome>
+								<b:iconAwesome value="fal fa-star-o" 
+									styleClass="icon-star"></b:iconAwesome>
 							</div>
 
 							<div class="offre-box-info-body">
@@ -51,7 +58,8 @@
 									<div class="info">
 										<b:iconAwesome value="fal fa-close" size="lg"
 											styleClass="icon"></b:iconAwesome>
-										Conditions d'annulation #{offre.conditionAnnulation.nom.toLowerCase()}
+										Conditions d'annulation
+										#{offre.conditionAnnulation.nom.toLowerCase()}
 									</div>
 								</div>
 								<div class="offre-box-info-body-right">
@@ -62,8 +70,8 @@
 									<div class="info">
 										<h:graphicImage library="images" styleClass="icon"
 											name="/icons/install.png" />
-										#{offre.installationAssuree == true ? "Installation assurée"
-										: "Installation non-assurée"}
+										#{offre.installationAssuree == true ? "Installation assurée" :
+										"Installation non-assurée"}
 									</div>
 									<div class="info">
 										<b:iconAwesome value="fal fa-globe" size="lg"

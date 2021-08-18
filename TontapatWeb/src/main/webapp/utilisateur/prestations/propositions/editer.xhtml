@@ -32,32 +32,37 @@
 								<div class="titre-ss-titre">
 									<h4>Récapitulatif</h4>
 									<div class="form-columns">
-									<div><ul>
-										<li>Réalisée par <strong>#{prestation.troupeau.utilisateur.prenom}</strong></li>
-										<li>Terrain : <strong>#{prestation.terrain.nom}</strong> (#{prestation.terrain.superficie} Ha)</li>
-										<li>Troupeau : <strong>#{prestation.troupeau.nom}</strong>
-											(#{prestation.nombreBetes}
-											#{prestation.troupeau.race.espece.nom.toLowerCase()})
-										</li>
-										<li>Installation : <strong>à la charge
-										<h:outputText value="de l'éleveur" rendered="#{prestation.typeInstallation == true}" />
-										<h:outputText value="du client" rendered="#{prestation.typeInstallation == false}" />
-										
-										</strong></li>
-										<li>Date de début : <h:outputText
-												value="#{prestation.dateDebut}">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</h:outputText></li>
-										<li>Date de fin : <h:outputText
-												value="#{prestation.dateFin}">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</h:outputText></li>
-									</ul>
-									</div>
-									<div>
-									<h:graphicImage library="images" class="img-in-details"
-							name="/photos/user/troupeau/#{prestation.troupeau.id}-1.jpg" />
-							</div>
+										<div>
+											<ul>
+												<li>Réalisée par <strong>#{prestation.troupeau.utilisateur.prenom}</strong></li>
+												<li>Terrain : <strong>#{prestation.terrain.nom}</strong>
+													(#{prestation.terrain.superficie} Ha)
+												</li>
+												<li>Troupeau : <strong>#{prestation.troupeau.nom}</strong>
+													(#{prestation.nombreBetes}
+													#{prestation.troupeau.race.espece.nom.toLowerCase()})
+												</li>
+												<li>Installation : <strong>à la charge <h:outputText
+															value="de l'éleveur"
+															rendered="#{prestation.typeInstallation == true}" /> <h:outputText
+															value="du client"
+															rendered="#{prestation.typeInstallation == false}" />
+
+												</strong></li>
+												<li>Date de début : <h:outputText
+														value="#{prestation.dateDebut}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText></li>
+												<li>Date de fin : <h:outputText
+														value="#{prestation.dateFin}">
+														<f:convertDateTime pattern="dd/MM/yyyy" />
+													</h:outputText></li>
+											</ul>
+										</div>
+										<div>
+											<h:graphicImage library="images" class="img-in-details"
+												name="/photos/user/troupeau/#{prestation.troupeau.id}-1.jpg" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -70,14 +75,12 @@
 									<div class="date-debut">
 										<b:dateTimePicker mode="toggle-icon"
 											value="#{mbProposition.dateDebut}" id="inpDateDebut"
-											 label="Date de début"
-											placeholder="#{prestation.dateDebut}" />
+											label="Date de début" placeholder="#{prestation.dateDebut}" />
 									</div>
 									<div class="date-fin">
 										<b:dateTimePicker mode="toggle-icon"
 											value="#{mbProposition.dateFin}" id="inpDateFin"
-											 label="Date de fin" 
-											placeholder="#{prestation.dateFin}" />
+											label="Date de fin" placeholder="#{prestation.dateFin}" />
 									</div>
 								</div>
 							</div>
@@ -87,14 +90,13 @@
 									<h4>Type d'installation</h4>
 								</div>
 								<div class="select-menu">
-									<b:selectOneMenu
-										value="#{mbProposition.typeInstallation}" required="true"
+									<b:selectOneMenu value="#{mbProposition.typeInstallation}"
 										id="inpTypeInstallation">
 										<f:selectItem itemLabel="À la charge de l'éleveur"
 											itemValue="1" />
 										<f:selectItem
 											itemLabel="À la charge du propriétaire de terrain"
-											itemValue="0" />
+											itemValue="2" />
 									</b:selectOneMenu>
 								</div>
 							</div>
@@ -105,10 +107,9 @@
 								</div>
 								<div class="form-columns">
 									<div class="date-debut">
-										<b:inputText type="text"
-											styleClass="login-input"
+										<b:inputText type="text" styleClass="login-input"
 											p:placeholder="#{prestation.prixTotal}"
-											value="#{mpProposition.prixTotal}">
+											value="#{mbProposition.prixTotal}">
 										</b:inputText>
 									</div>
 									<div class="date-fin">
@@ -125,9 +126,7 @@
 								<div class="form-columns">
 
 									<h:inputTextarea id="description" styleClass="login-input"
-										itemValue="#{mpProposition.description}"
-										itemLabel="votre message"
-										cols="20" rows="3"
+										value="#{mbProposition.description}" cols="20" rows="3"
 										requiredMessage="La description est obligatoire." />
 								</div>
 							</div>
@@ -136,8 +135,8 @@
 								<b:commandButton styleClass="btn-success" update="@form"
 									dismiss="modal" value="Envoyer la proposition" look="success"
 									action="#{mbProposition.send()}"
-									onclick="return '/offres/resultats.xhtml?faces-redirection=false';"
-									oncomplete="if(!validationFailed) { $('.proposition-editer').modal('hide') } " />
+									oncomplete="$('.proposition-editer').modal('hide')"
+									onclick="window.location.reload();" />
 							</div>
 						</div>
 

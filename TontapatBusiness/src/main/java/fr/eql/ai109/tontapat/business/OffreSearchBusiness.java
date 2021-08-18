@@ -61,6 +61,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 				//Calcul du prix
 				offreDTO = calculatePrice(offreDTO);
 				//if (offreDTO.getPrixTotal() <= offreSearch.getPrixMaximum())
+				if(offreDTO.getNombreBetes() <= offreDTO.getOffre().getTroupeau().getEffectif())
 					offresDTO.add(offreDTO);
 			}
 			return offresDTO;
@@ -108,6 +109,7 @@ public class OffreSearchBusiness implements OffreSearchIBusiness {
 		TVA = Math.round(TVA * 100) / 100;
 		prixTotal = Math.round(prixTotal * 100) / 100;
 		
+		offreDTO.setNombreBetes(nombreBetes);
 		offreDTO.setFraisBetail(fraisBetail);
 		offreDTO.setFraisInstallation(fraisInstallation);
 		offreDTO.setFraisIntervention(fraisIntervention);
