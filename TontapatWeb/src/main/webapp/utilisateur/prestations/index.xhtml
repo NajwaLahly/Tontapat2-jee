@@ -41,8 +41,10 @@
 				</b:dataTableColumn>
 				<b:dataTableColumn label="Interlocuteur">
 				<h:outputText
-				value="#{prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id ? prestation.terrain.utilisateur.prenom : prestation.troupeau.utilisateur.prenom}" />
+				value="#{prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id ? prestation.terrain.utilisateur.prenom : prestation.troupeau.utilisateur.prenom} 
+				#{prestation.troupeau.utilisateur.id == mbUtilisateur.utilisateur.id ? prestation.terrain.utilisateur.nom : prestation.troupeau.utilisateur.nom}" />
 				</b:dataTableColumn>
+				
 				<b:dataTableColumn
 					value="#{prestation.statut == -2? 'Refusée':
 							prestation.statut == -1? 'Annulée':
